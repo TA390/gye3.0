@@ -43,6 +43,14 @@ group :development, :test do
   gem 'spring'
 end
 
+# testing environment
+# ADDED: 1/3/15
+group :test do
+  gem 'minitest-reporters', '1.0.5'
+  gem 'mini_backtrace',     '0.1.3'
+  gem 'guard-minitest',     '2.3.1'
+end
+
 group :production do
   # Used by Heroku to serve static assets 
   # such as images and stylesheets
@@ -50,3 +58,4 @@ group :production do
   gem 'rails_12factor'
 end
 
+ruby "2.2.0"

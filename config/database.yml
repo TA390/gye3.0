@@ -24,12 +24,12 @@ default: &default
 # ADDED DEVELOPMENT SETTINGS 26/02
 development:
   <<: *default
-  host: ec2-54-225-101-202.compute-1.amazonaws.com
-  database: d20brc78d6aha
-  username: nrxpjwcwyulpob
+  host: ec2-23-23-177-33.compute-1.amazonaws.com
+  database: d47k4dejthqsen
+  username: rqimuzbruvzmdo
   port: 5432
-  password: Q1ITCpT_Q6rVduGIYJPGMFHxGX
-  
+  password: tDYlDfjrKNNvrCz1sufZ7nP6lY
+
 # END DEVELOPMENT SETTINGS 26/02
 
 ###############################
@@ -67,12 +67,12 @@ development:
   # Defaults to warning.
 #  #min_messages: notice
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+  # Warning: The database defined as "test" will be erased and
+  # re-generated from your development database when you run "rake".
+  # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: gye3_0_test
+  database: 
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

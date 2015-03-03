@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   
   root 'static_pages#home'
   
+  resources :volunteers
+  resources :ngos
+  resources :events
+  resources :guest_lists
+  resources :categories
+  
+  
   get 'static_pages/home', as: 'static_pages_home'
 
   # The priority is based upon order of creation: first created -> highest priority.

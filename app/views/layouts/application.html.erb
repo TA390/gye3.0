@@ -6,37 +6,12 @@
                               media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
-  <!-- HTML 5 support for IE version less than 9 -->
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-    </script>
-  <![endif]-->
+  <%= render 'layouts/shim' %>
 
 </head>
 <body>
+  <%= render 'layouts/header' %>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Give Your Effort</a>
-    </div>
-    <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Home",   '#' %></li>
-              <li><%= link_to "About",   '#' %></li>
-              <li><%= link_to "Events", '#' %></li>
-              <li><%= link_to "Volunteer", '#' %></li>
-            </ul>
-    </div>
-  </div>
-</div>
-  
   
 <div class="container-fluid">
   <div class="row">

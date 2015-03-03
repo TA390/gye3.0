@@ -1,3 +1,21 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.vertical-center {
+  min-height: 100%;  /* Added for browsers that do NOT support vh unit */
+  min-height: 100vh; 
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+#btn-default{
+  background-color: #2E64FE;
+}
+
+#sign_up_btn{
+  border: 1px solid #fff;
+  border-radius: 10px;
+}

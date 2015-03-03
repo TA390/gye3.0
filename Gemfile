@@ -60,3 +60,7 @@ end
 
 # explicity stated for heroku
 ruby '2.2.0'
+
+# Bootstrap gem added 03/03/15
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'

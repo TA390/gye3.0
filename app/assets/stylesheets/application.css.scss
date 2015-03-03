@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+/* bootstrap libraries added 03/03/15 */
+@import "bootstrap-sprockets";
+@import "bootstrap";

@@ -2,8 +2,13 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionController::TestCase
   
-  # Test GET request on each page
-  # should return code 200 'success'
+  # Test All Static Pages
+  
+  def setup
+    # this function is run before test executes so it can
+    # be used to specify variables for duplicated code in the
+    # test below ( e.g. @title_variable = "Give Your Effort" )
+  end
   
   # Home Page
   test "should get home" do

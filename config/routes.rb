@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
   
   root 'static_pages#home'
-
-  get 'static_pages#about', as: 'about'
-  get 'static_pages#events', as: 'events'
-  get 'static_pages#volunteer', as: 'volunteer'
-  get 'static_pages#ngo', as: 'ngo'
   
-  resources :volunteers
-  resources :ngos
-  resources :events
-  resources :guest_lists
-  resources :categories
+  get 'home'       => 'static_pages#home'
+  get 'about'      => 'static_pages#about'
+  get 'events'     => 'static_pages#events'
+  get 'volunteer'  => 'static_pages#volunteer'
+  get 'ngo'        => 'static_pages#ngo'
+  
+  #resources :volunteers
+  #resources :ngos
+  #resources :events
+  #resources :guest_lists
+  #resources :categories
   
 
 

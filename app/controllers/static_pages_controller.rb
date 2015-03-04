@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
   def about
   end
   
-  def event
+  def events
   end
   
   def volunteer

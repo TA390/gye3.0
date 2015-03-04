@@ -18,10 +18,10 @@ class StaticPagesControllerTest < ActionController::TestCase
   end
   
   # About Us Page
-  test "should get aboutUs" do
-    get :aboutUs
+  test "should get about" do
+    get :about
     assert_response :success
-    assert_select "title", "About GYE"
+    assert_select "title", "About Us"
   end
   
   # Events Page
@@ -36,6 +36,12 @@ class StaticPagesControllerTest < ActionController::TestCase
     get :volunteer
     assert_response :success
     assert_select "title", "Volunteer"
+  end
+  
+    test "should get ngo" do
+    get :ngo
+    assert_response :success
+    assert_select "title", "NGO"
   end
 
 end

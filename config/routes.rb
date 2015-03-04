@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   
   root 'static_pages#home'
+
+  get 'static_pages#about', as: 'about'
+  get 'static_pages#events', as: 'events'
+  get 'static_pages#volunteer', as: 'volunteer'
+  get 'static_pages#ngo', as: 'ngo'
   
   resources :volunteers
   resources :ngos
@@ -8,8 +13,7 @@ Rails.application.routes.draw do
   resources :guest_lists
   resources :categories
   
-  
-  get 'static_pages/home', as: 'static_pages_home'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

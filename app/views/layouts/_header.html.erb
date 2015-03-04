@@ -10,10 +10,13 @@
     </div>
     <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Home",   '#' %></li>
-              <li><%= link_to "About",   '#' %></li>
-              <li><%= link_to "Events", '#' %></li>
-              <li><%= link_to "Volunteer", '#' %></li>
+              <li><%= link_to "Home",   'root_path' %></li>
+              <li><%= link_to "About",   'about_path' %></li>
+              <li><%= link_to "Events", 'events_path' %></li>
+              <li><%= link_to "Volunteer", 'volunteer_path' %></li>
+              <li><%= link_to "NGO", 'ngo_path' %></li>
+              
+              <li id="log_in_btn"><%= link_to "Log in", '#' %></li>
               <li id="sign_up_btn"><%= link_to "Sign Up", '#' %></li>
             </ul>
     </div>

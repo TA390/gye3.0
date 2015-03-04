@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// color variables
+$gray-medium-light: #EAEAEA;
+$gray-light: #777;
+// end color variables
+
 .vertical-center {
   min-height: 100%;  /* Added for browsers that do NOT support vh unit */
   min-height: 100vh; 
@@ -16,6 +21,34 @@
 }
 
 #sign_up_btn{
-  border: 1px solid #fff;
-  border-radius: 10px;
+  background-color: $gray-medium-light;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
 }

@@ -1,0 +1,53 @@
+<br>
+<br>
+<div class="container-fluid">
+  <%= link_to 'Go Back', ngos_path %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>Editing NGO</h1>
+    </div>
+    <div class="panel-body">
+      <%= form_for @ngo, class: 'text-center' do |f| %>
+
+        <% if @ngo.errors.any? %>
+        <div id="error_explanation">
+          <h2> <%= pluralize(@ngo.errors.count, "error") %> prohibited 
+            this ngo from being saved: </h2>
+          <ul>
+            <% @ngo.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :name %><br>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :location %><br>
+          <%= f.text_field :location, class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :url %><br>
+          <%= f.text_field :url, class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %><br>
+          <%= f.email_field :email, class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :phone_number %><br>
+          <%= f.text_field :phone_number, class:"form-control" %>
+        </div>
+
+        <%= f.submit class: "btn btn-primary btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>

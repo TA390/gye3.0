@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore schema file for git conflicts
+schema.rb
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep

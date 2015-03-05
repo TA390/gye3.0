@@ -1,0 +1,30 @@
+<br>
+<br>
+<br>
+<p>
+  <strong>Name:</strong>
+  <%= @ngo.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @ngo.location %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @ngo.url %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @ngo.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @ngo.phone_number %>
+</p>
+
+<%= link_to 'Back', ngos_path %> |
+<%= link_to 'Edit', edit_ngo_path(@ngo) %>

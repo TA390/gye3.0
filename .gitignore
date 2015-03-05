@@ -16,8 +16,4 @@ schema.rb
 /tmp
 
 # ignore database schema file
-<<<<<<< HEAD
-./schema.rb
-=======
 schema.rb
->>>>>>> user_sign_up_v1

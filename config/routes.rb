@@ -4,16 +4,16 @@ Rails.application.routes.draw do
   
   get 'home'       => 'static_pages#home'
   get 'about'      => 'static_pages#about'
-  get 'events'     => 'static_pages#events'
-  get 'volunteer'  => 'static_pages#volunteer'
-  get 'ngo'        => 'static_pages#ngo'
+  get 'events'     => 'static_pages#event'
+  get 'volunteers'  => 'static_pages#volunteer'
+  get 'ngos'        => 'ngos#index'
   get 'signup'     => 'volunteers#new'
   
-  #resources :volunteers
-  #resources :ngos
-  #resources :events
-  #resources :guest_lists
-  #resources :categories
+  resources :volunteers
+  resources :ngos
+  resources :events
+  resources :guest_lists
+  resources :categories
   
 
 

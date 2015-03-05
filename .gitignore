@@ -13,4 +13,4 @@
 /tmp
 
 # ignore database schema file
-./schema.rb
+schema.rb

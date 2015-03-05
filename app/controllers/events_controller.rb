@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    #@event = @ngo.events.create(event_params)
   end
 
   # GET /events/1/edit

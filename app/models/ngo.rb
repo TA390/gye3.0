@@ -1,4 +1,5 @@
 class Ngo < ActiveRecord::Base
+  has_many :events, dependent: :destroy
   
   validates :name, length: { minimum: 2 }
   validates :password, length: { in: 6..20 }

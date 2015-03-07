@@ -25,6 +25,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     
     # ensure the page is displayed again when an error occurs
     assert_template 'volunteers/new'
+    # ensure message is displayed for a failed sign up
+    assert_select 'div#<error_explanation>'
+    assert_select 'div.<field_with_errors>'
   end
   
   
@@ -52,6 +55,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     
     # ensure the profile page is loaded after sign up
     assert_template 'volunteers/show'
+    # test that the flash displays a message
+    assert_not flash.nil
   end
   
 end

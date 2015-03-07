@@ -7,6 +7,8 @@ class VolunteerTest < ActiveSupport::TestCase
     @new_user = 
       Volunteer.new(first_name: "Joe", 
                     last_name: "Bloggs",
+                    gender: "M",
+                    location: "London, UK",
                     email: "joe_bloggs@test.com",
                     password: "secure",
                     password_confirmation: "secure")
@@ -31,6 +33,16 @@ class VolunteerTest < ActiveSupport::TestCase
   
   test "email should be present" do
     @new_user.email = "     "     
+    assert_not @new_user.valid?
+  end
+  
+  test "gender should be present" do
+    @new_user.gender = "     "     
+    assert_not @new_user.valid?
+  end
+  
+  test "location should be present" do
+    @new_user.location = "     "     
     assert_not @new_user.valid?
   end
   # end test

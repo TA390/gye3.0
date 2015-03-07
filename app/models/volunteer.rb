@@ -17,6 +17,12 @@ class Volunteer < ActiveRecord::Base
     length: {maximum: 254},
     uniqueness: { case_sensitive: false },
     email_format: { message: "Error: Please enter a valid email address" }
+  
+  validates :gender, 
+    presence: true
+  
+  validates :location, 
+    presence: true
 
   # password security
   has_secure_password

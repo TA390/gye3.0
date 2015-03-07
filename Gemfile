@@ -71,3 +71,6 @@ gem 'autoprefixer-rails'
 # email / url validatoion added 04/03/15
 gem 'validates_email_format_of'
 gem 'validate_url'
+
+# password encryption added 5/3/15
+gem 'bcrypt'

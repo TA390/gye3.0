@@ -42,6 +42,7 @@ GEM
     autoprefixer-rails (5.1.7)
       execjs
       json
+    bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.2)
@@ -66,7 +67,7 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    execjs (2.3.0)
+    execjs (2.4.0)
     ffi (1.9.6)
     formatador (0.2.5)
     globalid (0.3.3)
@@ -220,7 +221,7 @@ GEM
       addressable
     validates_email_format_of (1.6.2)
       i18n
-    web-console (2.1.0)
+    web-console (2.1.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
@@ -231,6 +232,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  bcrypt
   bootstrap-sass (~> 3.2.0)
   byebug
   coffee-rails (~> 4.1.0)

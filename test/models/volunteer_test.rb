@@ -3,31 +3,40 @@ require 'test_helper'
 class VolunteerTest < ActiveSupport::TestCase
   
   def setup
-    @new_user = Volunteer.new(first_name: "Joe", 
-                              last_name: "Bloggs",
-                              email: "joebloggs@test.com")
+  
+    @new_user = 
+      Volunteer.new(first_name: "Joe", 
+                    last_name: "Bloggs",
+                    email: "joe_bloggs@test.com",
+                    password: "secure",
+                    password_confirmation: "secure")
   end
 
+  # test that the entry is valid
   test "valid database entry" do
     assert @new_user.valid?
   end
+  # end test
   
+  # test that the fields are not empty
   test "first_name should be present" do
-    @new_user.first_name = ""
+    @new_user.first_name = "     "
     assert_not @new_user.valid?
   end
   
-  test "last_name should be present" do
-    @new_user.last_name = ""
+    test "last_name should be present" do
+    @new_user.last_name = "     "
     assert_not @new_user.valid?
   end
   
   test "email should be present" do
-    @new_user.email = ""     
+    @new_user.email = "     "     
     assert_not @new_user.valid?
   end
+  # end test
   
-  test "first name length" do
+  # test the length of input fields
+    test "first name length" do
     assert @new_user.first_name.length < 255
   end
   
@@ -38,6 +47,38 @@ class VolunteerTest < ActiveSupport::TestCase
   test "email length" do
     assert @new_user.email.length < 255
   end
+  # end test
   
-
+  # test that the email address entered is unqiue
+  # FoO@tEsT.cOm is equal to foo@test.com
+  test "email addresses should be unique" do
+    duplicate_user = @new_user.dup
+    duplicate_user.email = @new_user.email.upcase
+    @new_user.save
+    assert_not duplicate_user.valid?
+  end
+  
+  test "email addresses should be saved as lowercase" do
+    mixed_case_email = "JoE_bLoGgS@tEsT.cOm"
+    @new_user.email = mixed_case_email
+    @new_user.save
+    assert_equal mixed_case_email.downcase,
+      @new_user.reload.email
+  end
+  # end test
+  
+  # password tests
+  test "password should be present" do
+    @new_user.password =
+      @new_user.password_confirmation = "     "
+    assert_not @new_user.valid?
+  end
+  
+  test "password should have a minimum length" do
+    @new_user.password = 
+      @new_user.password_confirmation = "xxxxx"
+      assert_not @new_user.valid?
+  end
+  # end password test
+  
 end

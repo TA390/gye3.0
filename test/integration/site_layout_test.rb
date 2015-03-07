@@ -10,8 +10,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
       assert_select "a[href=?]", root_path # count: 2
       assert_select "a[href=?]", about_path
       assert_select "a[href=?]", events_path
-      assert_select "a[href=?]", volunteer_path
-      assert_select "a[href=?]", ngo_path
+      assert_select "a[href=?]", volunteers_path
+      assert_select "a[href=?]", ngos_path
       
       get signup_path
       assert_select "a[href=?]", signup_path

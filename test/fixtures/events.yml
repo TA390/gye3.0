@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  start: 2015-03-04 00:05:44
-  end: 2015-03-04 00:05:44
-  location: MyString
+#one:
+#  name: AString
+#  start: 2015-03-04 00:05:44
+#  end: 2015-03-04 00:05:44
+#  location: BString
 
-two:
-  name: MyString
-  start: 2015-03-04 00:05:44
-  end: 2015-03-04 00:05:44
-  location: MyString
+#two:
+#  name: CString
+#  start: 2015-03-04 00:05:44
+#  end: 2015-03-04 00:05:44
+#  location: DString

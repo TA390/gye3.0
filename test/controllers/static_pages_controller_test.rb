@@ -27,7 +27,7 @@ class StaticPagesControllerTest < ActionController::TestCase
   
   # Events Page
   test "should get events" do
-    get :events
+    get :event
     assert_response :success
     assert_select "title", "Events"
   end

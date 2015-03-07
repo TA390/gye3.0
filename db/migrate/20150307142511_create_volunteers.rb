@@ -1,4 +1,5 @@
 class CreateVolunteers < ActiveRecord::Migration
+
   def change
     create_table :volunteers do |t|
       t.string :first_name
@@ -8,4 +9,5 @@ class CreateVolunteers < ActiveRecord::Migration
       t.timestamps null: false
     end
   end
+
 end

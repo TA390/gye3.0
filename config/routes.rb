@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   get 'events'     => 'static_pages#events'
   get 'volunteer'  => 'static_pages#volunteer'
   get 'ngo'        => 'static_pages#ngo'
+  get 'signup'     => 'volunteers#new'
   
-  #resources :volunteers
-  #resources :ngos
-  #resources :events
-  #resources :guest_lists
-  #resources :categories
+  resources :volunteers
+  resources :ngos
+  resources :events
+  resources :event_volunteers
+  resources :tags
   
 
 

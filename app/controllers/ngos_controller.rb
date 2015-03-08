@@ -1,6 +1,6 @@
 class NgosController < ApplicationController
   def index
-    @ngo = Ngo.all
+    @ngo = Ngo.order(:name)
   end
 
   def show

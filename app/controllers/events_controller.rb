@@ -1,12 +1,38 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  #before_action(:set_event, { :only => [:show, :edit, :update, :destroy] })
+  #two lines above are the same!!
+  
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    #byebug
+    
+    if params[:tags].present?
+     #joins event table to tags (via event_tags) on tag name matching param tags
+      @events = Event.joins( :tags).where(tags: {:name => params[:tags]} ).order(:start)
+
+    elsif params[:ngos].present?
+      #joins event table to ngos (on ngoid) matching param ngos name
+      @events = Event.joins( :ngo).where(ngos: {:name => params[:ngos]} ).order(:start)
+      
+    else
+      #show all
+      @events = Event.order(:start)
+
+    end
   end
 
+# expected sql query:
+# SELECT e.* FROM events AS e
+# INNER JOIN event_tags AS et
+# ON et.event_id = e.id
+# INNER JOIN tags AS t
+# ON t.id = et.tag_id
+# WHERE t.name IN ( 'name', 'name')
+    
+  
+  
   # GET /events/1
   # GET /events/1.json
   def show
@@ -30,7 +56,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        format.json { render :show, :status => :created, :location => @event }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }

@@ -59,6 +59,7 @@ group :production do
   # such as images and stylesheets
   # ADDED: 1/3/15
   gem 'rails_12factor'
+  gem 'puma' # production grade server for large amounts of traffic
 end
 
 # explicity stated for heroku
@@ -71,3 +72,6 @@ gem 'autoprefixer-rails'
 # email / url validatoion added 04/03/15
 gem 'validates_email_format_of'
 gem 'validate_url'
+
+# password encryption added 5/3/15
+gem 'bcrypt'

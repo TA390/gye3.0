@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
+=begin
   setup do
     @event = events(:one)
   end
@@ -46,4 +47,5 @@ class EventsControllerTest < ActionController::TestCase
 
     assert_redirected_to events_path
   end
+=end
 end

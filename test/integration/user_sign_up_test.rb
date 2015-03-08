@@ -57,6 +57,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'volunteers/show'
     # test that the flash displays a message
     assert_not flash.nil
+    # test that the user is logged in once signed up
+    # helper function defined in test/test_helper.rb
+    assert is_logged_in?
   end
   
 end

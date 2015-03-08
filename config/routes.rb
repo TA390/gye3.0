@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'sessions/new'
+
   root 'static_pages#home'
   
   get 'home'        => 'static_pages#home'
@@ -7,7 +9,11 @@ Rails.application.routes.draw do
   get 'events'      => 'static_pages#event'
   get 'volunteers'  => 'static_pages#volunteer'
   get 'ngos'        => 'static_pages#ngo'
-  get 'signup'      => 'volunteers#new'
+  get 'signup'      => 'volunteers#new'  # signup_path
+  
+  get 'login'       => 'sessions#new'      # login_path
+  post 'login'      => 'sessions#create'   # login_path
+  delete 'logout'   => 'sessions#destroy'  # logout_path
   
   resources :volunteers
   resources :ngos

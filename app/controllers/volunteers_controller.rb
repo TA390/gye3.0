@@ -11,6 +11,7 @@ class VolunteersController < ApplicationController
   def create
     @user = Volunteer.new(user_params)    
     if @user.save
+      log_in(@user)
       flash[:success] = "Welcome to your profile"
       redirect_to @user
     else

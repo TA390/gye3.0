@@ -1,1 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bill:
+  first_name: Bill
+  last_name:  Gates
+  gender:     M
+  location:   California
+  email:      bill_gates@test.com
+  password_digest: <%= Volunteer.digest('password') %>

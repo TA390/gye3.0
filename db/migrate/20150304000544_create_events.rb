@@ -8,7 +8,7 @@ class CreateEvents < ActiveRecord::Migration
       t.timestamps null: false
       
       t.belongs_to :ngo, index:true
-#       t.integer :ngo_id, null: false  
+      #t.integer :ngo_id, null: false
     end
   end
 end

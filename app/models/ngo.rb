@@ -1,8 +1,8 @@
 class Ngo < ActiveRecord::Base
   has_many :events, dependent: :destroy
   
-    validates :ngo_id,
-      presence: true
+  #validates :ngo_id, #TELL TAHA TO DELETE!!!
+  #  presence: true
   
   validates :name, 
     length: { minimum: 2 }

@@ -23,14 +23,13 @@ class EventsController < ApplicationController
     end
   end
 
-# expected sql query:
-# SELECT e.* FROM events AS e
-# INNER JOIN event_tags AS et
-# ON et.event_id = e.id
-# INNER JOIN tags AS t
-# ON t.id = et.tag_id
-# WHERE t.name IN ( 'name', 'name')
-    
+
+#   SELECT "events".* 
+#   FROM "events" 
+#   INNER JOIN "event_tags" ON "event_tags"."event_id" = "events"."id" 
+#   INNER JOIN "tags" ON "tags"."id" = "event_tags"."tag_id" 
+#   WHERE "tags"."name" = 'dog'  
+#   ORDER BY "events"."start" ASC
   
   
   # GET /events/1

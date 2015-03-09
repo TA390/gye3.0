@@ -1,5 +1,5 @@
 class AddIndexToVolunteersEmail < ActiveRecord::Migration
   def change
-    add_index :users, :email, unique: true
+    add_index :volunteers, :email, unique: true
   end
 end

@@ -36,12 +36,16 @@ class SiteLoginTest < ActionDispatch::IntegrationTest
     
     # test that the user was redirected to the home page
     assert_redirected_to root_url
+    
+    # simulate a user clicking logout in a different window
+    delete logout_path
+    
     follow_redirect!
     
     # test that the correct paths (menu buttons) are visible 
     # to the user (i.e reinstate 'login' and remove 'account')
     assert_select "a[href=?]", login_path
-    assert_select "a[href=?]", logout_path,      count: 0
+    assert_select "a[href=?]", logout_path, count: 0
     assert_select "a[href=?]", volunteer_path(@user), count: 0
   end
   
@@ -62,4 +66,18 @@ class SiteLoginTest < ActionDispatch::IntegrationTest
     get root_path
     assert flash.empty?
   end
+  
+  # test the behaviour of the cookie when a user select remember me
+  test "login and remember the user" do
+    log_in_as(@user, remember_me: '1')
+    assert_not_nil cookies['remember_token']
+  end
+
+  # test the behaviour of the cookie when a user doesn't select remember me
+  test "login but don't remember the user" do
+    log_in_as(@user, remember_me: '0')
+    assert_nil cookies['remember_token']
+  end
+  
+  
 end

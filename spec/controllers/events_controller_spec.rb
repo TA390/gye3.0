@@ -78,8 +78,6 @@ RSpec.describe EventsController, :type => :controller do
         get :index, ngos: ['charityRus']
         expect(assigns(:events)).to eq([])
       end
-      
-      
     end # /when ngos = unicef
   end # /GET index
 end

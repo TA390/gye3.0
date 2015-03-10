@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get 'login'       => 'sessions#new'      # login_path
   post 'login'      => 'sessions#create'   # login_path
   delete 'logout'   => 'sessions#destroy'  # logout_path
-
   
   resources :volunteers
   resources :ngos
@@ -22,7 +21,17 @@ Rails.application.routes.draw do
   resources :event_volunteers
   resources :tags
   
+#   # added for fb authentication
+#   FacebookAuthExample::Application.routes.draw do
+#     get 'auth/:provider/callback', to: 'sessions#create'
+#     get 'auth/failure', to: redirect('/')
+#     get 'signout', to: 'sessions#destroy', as: 'signout'
 
+#     resources :sessions, only: [:create, :destroy]
+#     # resource :home, only: [:show]
+
+#     # root to: "home#show"
+#   end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

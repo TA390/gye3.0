@@ -75,3 +75,9 @@ gem 'validate_url'
 
 # password encryption added 5/3/15
 gem 'bcrypt'
+
+# simplecov added 9/3/15
+gem 'simplecov', :require => false, :group => :test
+
+# omniauth for fb login 10/3/15
+gem 'omniauth-facebook'

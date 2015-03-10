@@ -1,4 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
+
+#added 9/3/2015 for rspec testing - DS
+require 'simplecov'
+SimpleCov.start
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 

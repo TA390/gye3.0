@@ -1,5 +1,7 @@
 class Volunteer < ActiveRecord::Base
   has_many :events, through: :event_volunteers
+  has_many :volunteer_tags
+  has_many :tags, through: :volunteer_tags
   
   # enter all emails into the db in a lowercase format
   before_save { email.downcase! }

@@ -91,6 +91,10 @@ class VolunteerTest < ActiveSupport::TestCase
       @new_user.password_confirmation = "xxxxx"
       assert_not @new_user.valid?
   end
-  # end password test
+  # end password 
+  
+  test "authenticated? - return false for users will nil digest" do
+      assert_not @new_user.authenticated?('')
+  end
   
 end

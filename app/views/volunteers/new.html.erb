@@ -1,5 +1,24 @@
 <% provide(:title, 'Sign up') %>
 
+<body class = "signup">
+  
+  <div class="page-scroll">
+    <a href="#signupform" class="btn btn-circle">
+      <i class="fa fa-angle-double-down animated"></i>
+    </a>
+  </div>
+  
+<div class ="signup_pic">
+  <img src="http://www.volunteerswmi.org/servlet/servlet.ImageServer?id=015A0000004i1NcIAI&oid=00DA0000000BVISMA4" alt="description here "/>
+</div>  
+
+  
+ 
+
+
+  
+<div id="signupform">
+  
 <div class="container">
   <div class="row text-center">
     <br/>
@@ -7,7 +26,8 @@
     <br/>
   </div>
 </div>
-
+  
+  
 <div class="container">
 <div class="row">
   <div class="col-md-6 col-md-offset-3 form-group">
@@ -24,13 +44,18 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
     
-      <div class="controls-row control-label"> 
-        <%= f.label :gender, "Male" %>
-        <%= f.radio_button :gender, "M" %>
 
-        <%= f.label :gender, "Female" %>
+ 
+        <%= f.radio_button :gender, "M" %>
+          Male
+        <br>
+     
         <%= f.radio_button :gender, "F" %>
+         Female
       </div>
+    
+      
+    
     
       <%= f.label :location %>
       <%= f.text_field :location, class: 'form-control' %>
@@ -46,4 +71,6 @@
   </div>
 </div>
 </div>
+  </div>
 
+</body>

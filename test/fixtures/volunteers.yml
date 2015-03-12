@@ -7,3 +7,12 @@ bill:
   location:   California
   email:      bill_gates@test.com
   password_digest: <%= Volunteer.digest('password') %>
+  
+  
+tom:
+  first_name: Tom
+  last_name:  Hanks
+  gender:     M
+  location:   California
+  email:      tom_hanks@test.com
+  password_digest: <%= Volunteer.digest('password') %>

@@ -4,16 +4,16 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   
-  get 'home'        => 'static_pages#home'
-  get 'about'       => 'static_pages#about'
-  get 'events'      => 'static_pages#event'
-  get 'volunteers'  => 'static_pages#volunteer'
-  get 'ngos'        => 'static_pages#ngo'
-  get 'signup'      => 'volunteers#new'  # signup_path
+  get 'home'        => 'static_pages#home'       # root_path
+  get 'about'       => 'static_pages#about'      # about_path
+  get 'events'      => 'static_pages#event'      # events_path
+  get 'volunteers'  => 'static_pages#volunteer'  # volunteers_path
+  get 'ngos'        => 'static_pages#ngo'        # ngos_path
+  get 'signup'      => 'volunteers#new'          # signup_path
   
-  get 'login'       => 'sessions#new'      # login_path
-  post 'login'      => 'sessions#create'   # login_path
-  delete 'logout'   => 'sessions#destroy'  # logout_path
+  get 'login'       => 'sessions#new'            # login_path
+  post 'login'      => 'sessions#create'         # login_path
+  delete 'logout'   => 'sessions#destroy'        # logout_path
 
   
   resources :volunteers

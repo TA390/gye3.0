@@ -17,7 +17,7 @@ class Volunteer < ActiveRecord::Base
     presence: true,
     length: {maximum: 254},
     uniqueness: { case_sensitive: false },
-    email_format: { message: "Error: Please enter a valid email address" }
+    email_format: {}
   
   validates :gender, 
     presence: true
@@ -27,7 +27,9 @@ class Volunteer < ActiveRecord::Base
 
   # password security
   has_secure_password
-  
+
+  # 'allow_blank' will only take effect when a user is updating
+  # their profile (i.e they don't have to enter a new password)
   validates :password,
     presence: true,
     length: { minimum: 6, maximum: 254 }

@@ -43,7 +43,7 @@ class UsersProfileEdits < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     # test that the user was redirected to their profile page
     assert_redirected_to @user
-    # reload the user's information
+    # reload the user's information from the db
     @user.reload
     # test that the changes made were updated in the db correctly
     assert_equal @user.first_name, name

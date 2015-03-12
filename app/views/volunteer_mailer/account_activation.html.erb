@@ -1,0 +1,7 @@
+<h1>Give Your Effort Account Activation</h1>
+
+<p> Hi, <%= @user.first_name %> </p>
+
+<p> Welcome to Give Your Effort! </p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>

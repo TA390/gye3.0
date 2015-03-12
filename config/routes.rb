@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   resources :event_volunteers
   resources :tags
   
+  # account activation email link
+  resources :account_activations, only: [:edit]
+  
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do
 #     get 'auth/:provider/callback', to: 'sessions#create'

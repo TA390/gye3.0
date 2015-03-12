@@ -1,0 +1,57 @@
+.event body {
+    background-color: white;
+    padding-top: 30px;
+  
+}
+
+.event .dropdownbox_des {
+	text-align: center;
+}
+
+.event .dropdownbarbox {
+	text-align: center;
+	background-color: white;
+	padding-top: 15px;	
+}
+
+.event .sidebar_plus_events{
+	margin-right: 30px;
+	margin-left: 30px ;
+}
+
+
+.event .sidebar {
+    background-color: white;
+    padding-left: 50px;
+    padding-top: 30px;	
+	padding-bottom: 30px;	
+	border-right: 1px solid #d3d3d3;
+  
+}
+
+.event .search_result {
+	text-align: center;
+	padding-top: 20px;	
+	padding-bottom: 30px;	
+}
+
+
+.event .events {
+    background-color: white;}
+
+/* h1 { padding-top: 10px; }
+h2 { padding-top: 10px; }*/
+
+.event .one_event {
+	 margin-top: 50px;
+	 border: 1px solid #d3d3d3;
+    border-radius: 25px; 
+    padding: 15px 15px 15px 15px;
+}
+
+
+.event .event_pic img {
+    width: 180px; 
+    height: 180px;
+    border-radius: 20px;  
+}

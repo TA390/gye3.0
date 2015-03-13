@@ -13,4 +13,5 @@ class Ngo < ActiveRecord::Base
     #uniqueness: true { message: "Error: Email already in use" }
   #validates :bio, length: { maximum: 500 }
   #validates :terms_of_service, acceptance: true
+
 end

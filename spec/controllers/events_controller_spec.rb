@@ -51,7 +51,7 @@ RSpec.describe EventsController, :type => :controller do
     end # /when tags = dog and cat
     
     
-    context "when testing index functionality of ngos" do
+    context "when testing index functionality events for ngos" do
       let(:unicef) { Ngo.create!(name: 'unicef', email: 'test@gmail.com', password: 'xzyabc123') }
       let(:wateraid) { Ngo.create!(name: 'wateraid', email: 'w@gmail.com', password: 'xzyabc123') }
       let!(:charityRus) { Ngo.create!(name: 'charityRus', email: 'crus@gmail.com', password: 'xzyabc123') } 

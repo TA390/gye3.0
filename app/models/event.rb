@@ -4,4 +4,5 @@ class Event < ActiveRecord::Base
   has_many :tags, through: :event_tags
   has_many :event_volunteers
   has_many :volunteers, through: :event_volunteers
+  has_one :wall, dependent: :destroy
 end

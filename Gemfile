@@ -44,6 +44,10 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+#   # DS added for ER modelling
+#   gem "rails-erd"
+  
 end
 
 # testing environment
@@ -81,3 +85,6 @@ gem 'simplecov', :require => false, :group => :test
 
 # omniauth for fb login 10/3/15
 gem 'omniauth-facebook'
+
+# for foreign key generator
+gem 'immigrant'

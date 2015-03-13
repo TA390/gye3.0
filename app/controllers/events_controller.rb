@@ -19,7 +19,6 @@ class EventsController < ApplicationController
     else
       #show all
       @events = Event.order(:start)
-
     end
   end
 

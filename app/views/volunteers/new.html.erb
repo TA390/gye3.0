@@ -1,6 +1,29 @@
 <% provide(:title, 'Sign up') %>
 
+<!-- jquery for tabs -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script>
+    $(function() {
+      $( "#tabs" ).tabs();
+    });
+  </script>
+<!-- end jquery for tabs -->
+
 <body class = "signup">
+  
+        <!-- Page Heading -->
+        <div class="container">
+        <div class="row text-center">
+          <br/>
+          <br/>
+          <h1>Sign Up</h1>
+          <br/>
+          <br/>
+        </div>
+        </div>
+        <!-- end Page Heading -->
   
   <div class="page-scroll">
     <a href="#signupform" class="btn btn-circle">
@@ -12,66 +35,32 @@
   <img src="http://www.volunteerswmi.org/servlet/servlet.ImageServer?id=015A0000004i1NcIAI&oid=00DA0000000BVISMA4" alt="description here "/>
 </div>  
 
+<!-- Volunteer / NGO sign up form -->
   
- 
-
-
+<% if @invalid_input == false %>
+<ul class="nav nav-tabs container" role="tablist" id="tabs">
   
-<div id="signupform">
+    <li role="presentation" class="active"><a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer</a></li>
+    <li role="presentation"><a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab">NGO</a></li>
   
-<div class="container">
-  <div class="row text-center">
-    <br/>
-    <h1>Sign up</h1>
-    <br/>
-  </div>
-</div>
+</ul>
+<% end %>
   
+<div class="tab-content">
   
-<div class="container">
-<div class="row">
-  <div class="col-md-6 col-md-offset-3 form-group">
-    <%= form_for(@user) do |f| %>
-    
-      <%= render 'shared/error_messages' %>
-    
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name, class: 'form-control' %>
-    
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: 'form-control' %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-    
-
-       Male
-        <%= f.radio_button :gender, "M" %>
-          
-        <br>
-          Female    
-        <%= f.radio_button :gender, "F" %>
-     
-      <br>
-      <br>
-    
-      
-    
-    
-      <%= f.label :location %>
-      <%= f.text_field :location, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "Create Account", class: "btn btn-primary" %>
+  <% if @invalid_input == true %>
+    <div role="tabpanel" class="tab-pane active">
+    <% if @ngo == true %>
+      <%= render 'layouts/ngo_form' %>
+    <% else %>
+      <%= render 'layouts/volunteer_form' %>
     <% end %>
-  </div>
+    </div>
+  <% else %>
+    <%= render 'layouts/volunteer_form' %>
+    <%= render 'layouts/ngo_form' %> 
+  <% end %>
 </div>
-</div>
-  </div>
+<!-- end Volunteer / NGO sign up form -->
 
 </body>

@@ -8,34 +8,35 @@ class Volunteer < ActiveRecord::Base
   before_save   :downcase_email
   before_create :create_activation_digest
   
-  validates :first_name, 
-    presence: true,
-    length: {maximum: 254}
 
-  validates :last_name, 
-    presence: true,
-    length: {maximum: 254}
+      validates :first_name, 
+        presence: true,
+        length: {maximum: 254}
 
-  validates :email,
-    presence: true,
-    length: {maximum: 254},
-    uniqueness: { case_sensitive: false },
-    email_format: {}
+      validates :last_name, 
+        presence: true,
+        length: {maximum: 254}
+
+      validates :email,
+        presence: true,
+        length: {maximum: 254},
+        uniqueness: { case_sensitive: false },
+        email_format: {}
+
+      validates :gender, 
+        presence: true
+
+      validates :location, 
+        presence: true
+
+      # password security
+      has_secure_password
+
+      # their profile (i.e they don't have to enter a new password)
+      validates :password,
+        presence: true,
+        length: { minimum: 6, maximum: 254 }
   
-  validates :gender, 
-    presence: true
-  
-  validates :location, 
-    presence: true
-
-  # password security
-  has_secure_password
-
-  # 'allow_blank' will only take effect when a user is updating
-  # their profile (i.e they don't have to enter a new password)
-  validates :password,
-    presence: true,
-    length: { minimum: 6, maximum: 254 }
 
   class << self
     # Function to return the hash digest of 'string'

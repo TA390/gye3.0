@@ -103,3 +103,16 @@ input {
 }
 
 /* End User Login Remeber Me Button */
+
+/* sign up tabs */
+.nav-tabs > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs{
+    text-align:center;
+}
+/* end sign up tabs */

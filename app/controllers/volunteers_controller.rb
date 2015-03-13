@@ -9,6 +9,8 @@ class VolunteersController < ApplicationController
   
   def new
     @user = Volunteer.new
+    @ngo = false
+    @invalid_input = false
   end
   
   def create
@@ -23,6 +25,7 @@ class VolunteersController < ApplicationController
       #flash[:success] = "Welcome to your profile"
       #redirect_to @user
     else
+      @invalid_input = true
       render 'new'
     end
   end
@@ -47,9 +50,19 @@ class VolunteersController < ApplicationController
   private
   
     def user_params
-      params.require(:volunteer).permit(:first_name, :last_name, :email,
-                                        :gender, :location, :password, 
-                                        :password_confirmation)
+
+      if params[:commit] == "Create Volunteer Account"
+        flash[:danger] = "Burn"
+        params.require(:volunteer).permit(:first_name, :last_name, :email,
+                                          :gender, :location, :password, 
+                                          :password_confirmation)
+      else
+        @ngo = true
+        params.require(:volunteer).permit(:first_name, :email,
+                                          :location, :password, 
+                                          :password_confirmation)
+      end
+      
     end
   
     # Function to test if a user has logged in

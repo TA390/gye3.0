@@ -94,7 +94,7 @@ class VolunteerTest < ActiveSupport::TestCase
   # end password 
   
   test "authenticated? - return false for users will nil digest" do
-      assert_not @new_user.authenticated?('')
+      assert_not @new_user.authenticated?(:remember, '')
   end
   
 end

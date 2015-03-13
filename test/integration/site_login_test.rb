@@ -69,13 +69,13 @@ class SiteLoginTest < ActionDispatch::IntegrationTest
   
   # test the behaviour of the cookie when a user select remember me
   test "login and remember the user" do
-    log_in_as(@user, remember_me: '1')
+    log_in_as(@user, remember_me: 1)
     assert_not_nil cookies['remember_token']
   end
 
   # test the behaviour of the cookie when a user doesn't select remember me
   test "login but don't remember the user" do
-    log_in_as(@user, remember_me: '0')
+    log_in_as(@user, remember_me: 0)
     assert_nil cookies['remember_token']
   end
   

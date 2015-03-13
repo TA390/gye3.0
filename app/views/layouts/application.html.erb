@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- chris testing 2222 -->
 <html>
 <head>
   <title> <%= page_title(yield(:title)) %> </title>
@@ -16,6 +17,7 @@
 <br>
   
 <div class="container-fluid">
+  
   <div class="container">
     <% flash.each do |message_type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
@@ -25,7 +27,6 @@
   <div class="row">
     <%= yield %>
   </div>
-  
 
   <%= render 'layouts/footer' %>
 

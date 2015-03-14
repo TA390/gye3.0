@@ -88,3 +88,7 @@ gem 'omniauth-facebook'
 
 # for foreign key generator
 gem 'immigrant'
+
+# table inheritance
+gem 'active_record-acts_as'
+

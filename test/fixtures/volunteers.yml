@@ -1,22 +1,36 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 bill:
-  first_name: Bill
-  last_name:  Gates
-  gender:     M
+  name: Bill
   location:   California
   email:      bill_gates@test.com
   password_digest: <%= Volunteer.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
   
+steve:
+  name: Steve
+  location:   California
+  email:      steve@test.com
+  password_digest: <%= Volunteer.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  
   
 tom:
-  first_name: Tom
+  name:       Tom
   last_name:  Hanks
   gender:     M
   location:   California
   email:      tom_hanks@test.com
+  password_digest: <%= Volunteer.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  
+company:
+  name: Oxfam
+  location:   London
+  email:      oxfam@test.com
   password_digest: <%= Volunteer.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>

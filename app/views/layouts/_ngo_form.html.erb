@@ -1,4 +1,4 @@
-<div role="tabpanel" class="tab-pane" id="ngo">
+
     <div id="signupform">
       
       <div class="container">
@@ -18,8 +18,8 @@
           
           <%= render 'shared/error_messages' if params[:commit] == "Create NGO Account" %>
 
-            <%= f.label :first_name, "name" %>
-            <%= f.text_field :first_name, class: 'form-control' %>
+            <%= f.label "Name" %>
+            <%= f.text_field :name, class: 'form-control' %>
 
             <%= f.label :email %>
             <%= f.email_field :email, class: 'form-control' %>
@@ -45,4 +45,3 @@
       </div>
         
     </div> 
-  </div>

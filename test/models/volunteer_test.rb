@@ -5,7 +5,7 @@ class VolunteerTest < ActiveSupport::TestCase
   def setup
   
     @new_user = 
-      Volunteer.new(first_name: "Joe", 
+           User.new(name: "Joe", 
                     last_name: "Bloggs",
                     gender: "M",
                     location: "London, UK",
@@ -21,8 +21,8 @@ class VolunteerTest < ActiveSupport::TestCase
   # end test
   
   # test that the fields are not empty
-  test "first_name should be present" do
-    @new_user.first_name = "     "
+  test "name should be present" do
+    @new_user.name = "     "
     assert_not @new_user.valid?
   end
   
@@ -49,7 +49,7 @@ class VolunteerTest < ActiveSupport::TestCase
   
   # test the length of input fields
     test "first name length" do
-    assert @new_user.first_name.length < 255
+    assert @new_user.name.length < 255
   end
   
   test "last name length" do

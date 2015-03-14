@@ -29,16 +29,22 @@ class VolunteersController < ApplicationController
   end
   
   def new
-    @user = Volunteer.new
-    @ngo = false
-    @invalid_input = false
+    @user = User.new
   end
   
   def create
-    @user = Volunteer.new(user_params)    
+  
+    if params[:commit] == "Create Volunteer Account"
+      @user = User.new(user_params)
+      @created_for = "new_user"
+    else
+      @user = Ngo.new(user_params)
+      @created_for = "new_ngo"
+    end
+      
     if @user.save
       @user.send_activation_email
-      flash[:info] = "We have sent you your activation email."
+      flash[:info] = "We have sent your activation email."
       redirect_to root_url
       
       #log_in(@user)
@@ -46,7 +52,6 @@ class VolunteersController < ApplicationController
       #flash[:success] = "Welcome to your profile"
       #redirect_to @user
     else
-      @invalid_input = true
       render 'new'
     end
   end
@@ -66,23 +71,16 @@ class VolunteersController < ApplicationController
     end
   end
   
-  
+
+
   # private functions
   private
   
     def user_params
 
-      if params[:commit] == "Create Volunteer Account"
-        flash[:danger] = "Burn"
-        params.require(:volunteer).permit(:first_name, :last_name, :email,
-                                          :gender, :location, :password, 
-                                          :password_confirmation)
-      else
-        @ngo = true
-        params.require(:volunteer).permit(:first_name, :email,
-                                          :location, :password, 
-                                          :password_confirmation)
-      end
+      params.require(:volunteer).permit(:name, :last_name, :email,
+                                        :location, :gender, :password, 
+                                        :password_confirmation, :type)
       
     end
   

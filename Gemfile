@@ -91,4 +91,3 @@ gem 'immigrant'
 
 # table inheritance
 gem 'active_record-acts_as'
-

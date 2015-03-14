@@ -4,7 +4,7 @@ class SiteLoginTest < ActionDispatch::IntegrationTest
   
   def setup
     # profile created in test/fixtures/volunteers.yml
-    @user = volunteers(:bill)
+    @user = volunteers(:tom)
   end
   
   test "valid login and logout" do

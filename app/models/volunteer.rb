@@ -1,4 +1,6 @@
 class Volunteer < ActiveRecord::Base
+  
+  
   has_many :events, through: :event_volunteers
   has_many :volunteer_tags
   has_many :tags, through: :volunteer_tags
@@ -8,12 +10,29 @@ class Volunteer < ActiveRecord::Base
   before_save   :downcase_email
   before_create :create_activation_digest
   
+  # To allow inheritance
+  def self.type
+    %w(User Ngo)
+  end
 
-      validates :first_name, 
-        presence: true,
-        length: {maximum: 254}
+  scope :users, -> { where(type: 'User') } 
+  scope :ngos, -> { where(type: 'Ngo') } 
+  
+  def self.inherited(child)
+    child.instance_eval do
+      def model_name
+        Volunteer.model_name
+      end
+    end
+    super
+  end
+  # end of inheritance
+  
+  def self.select_options
+    descendants.map{ |c| c.to_s }.sort
+  end
 
-      validates :last_name, 
+      validates :name, 
         presence: true,
         length: {maximum: 254}
 
@@ -22,10 +41,7 @@ class Volunteer < ActiveRecord::Base
         length: {maximum: 254},
         uniqueness: { case_sensitive: false },
         email_format: {}
-
-      validates :gender, 
-        presence: true
-
+  
       validates :location, 
         presence: true
 
@@ -96,6 +112,7 @@ class Volunteer < ActiveRecord::Base
     update_attribute(:activated_at, Time.zone.now)
   end
   
-
-  
 end
+
+class User < Volunteer; end 
+class Ngo < Volunteer; end

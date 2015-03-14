@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersProfileEdits < ActionDispatch::IntegrationTest
 
   def setup
-    @user = volunteers(:bill)
+    @user = volunteers(:tom)
   end
   
   test "invalid profile edit" do
@@ -11,9 +11,9 @@ class UsersProfileEdits < ActionDispatch::IntegrationTest
     get edit_volunteer_path(@user)
     assert_template 'volunteers/edit'
     patch volunteer_path(@user), 
-      volunteer: {first_name: "",
+    volunteer: {name: "",
                   last_name: "",
-                  email: "bill@test",
+                  email: "tom@test",
                   location: "",
                   password: "pass",
                   password_confirmation: "word"}
@@ -29,11 +29,11 @@ class UsersProfileEdits < ActionDispatch::IntegrationTest
     # check that they arrived at their required destination
     assert_redirected_to edit_volunteer_path(@user)
     
-    name  = "William"
-    email = "bill_gates@hotmail.com"
+    name  = "Thomas"
+    email = "tom_hanks@hotmail.com"
     patch volunteer_path(@user), 
-      volunteer: { first_name: name,
-                   last_name: "Gates",
+    volunteer: { name: name,
+                   last_name: "Hanks",
                    email: email,
                    location: "California",
                    password: "password",
@@ -46,7 +46,7 @@ class UsersProfileEdits < ActionDispatch::IntegrationTest
     # reload the user's information from the db
     @user.reload
     # test that the changes made were updated in the db correctly
-    assert_equal @user.first_name, name
+    assert_equal @user.name, name
     assert_equal @user.email, email
   end
   

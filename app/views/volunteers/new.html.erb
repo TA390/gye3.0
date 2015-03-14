@@ -37,29 +37,51 @@
 
 <!-- Volunteer / NGO sign up form -->
   
-<% if @invalid_input == false %>
+
 <ul class="nav nav-tabs container" role="tablist" id="tabs">
   
-    <li role="presentation" class="active"><a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer</a></li>
-    <li role="presentation"><a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab">NGO</a></li>
+  <% if @created_for != "new_ngo" %>
+    <li role="presentation" class="active">
+  <% else %>
+    <li role="presentation">
+  <% end %>   
+    <a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer</a>
+  </li>
+  
+  <% if @created_for == "new_ngo" %>
+    <li role="presentation" class="active">
+  <% else %>
+    <li role="presentation">
+  <% end %>  
+    <a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab">NGO</a>
+  </li>
   
 </ul>
-<% end %>
+
   
 <div class="tab-content">
-  
-  <% if @invalid_input == true %>
-    <div role="tabpanel" class="tab-pane active">
-    <% if @ngo == true %>
-      <%= render 'layouts/ngo_form' %>
-    <% else %>
-      <%= render 'layouts/volunteer_form' %>
-    <% end %>
-    </div>
+ 
+
+  <% if @created_for != "new_ngo" %>
+    <div role="tabpanel" class="tab-pane active"  id="volunteer">
   <% else %>
+    <div role="tabpanel" class="tab-pane"  id="volunteer">
+  <% end %>  
     <%= render 'layouts/volunteer_form' %>
-    <%= render 'layouts/ngo_form' %> 
+  </div>
+  
+  
+  <% if @created_for == "new_ngo" %>
+  <div role="tabpanel" class="tab-pane active" id="ngo">
+  <% else %>
+  <div role="tabpanel" class="tab-pane" id="ngo">
   <% end %>
+    <%= render 'layouts/ngo_form' %>
+  </div>
+
+  
+
+  
 </div>
 <!-- end Volunteer / NGO sign up form -->
 

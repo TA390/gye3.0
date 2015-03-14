@@ -81,3 +81,7 @@ gem 'simplecov', :require => false, :group => :test
 
 # omniauth for fb login 10/3/15
 gem 'omniauth-facebook'
+
+# table inheritance
+gem 'active_record-acts_as'
+

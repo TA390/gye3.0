@@ -116,9 +116,5 @@ class Volunteer < ActiveRecord::Base
   
 end
 
-<<<<<<< HEAD
-
-=======
->>>>>>> roll_back_added_columns_to_volunteer_table
 class User < Volunteer; end 
 class Ngo < Volunteer; end

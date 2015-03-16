@@ -11,7 +11,73 @@
       
       
       
-      <div class="container">
+        
+  <div class="container">
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                        <h3 class="panel-title"> Join us and make an impact <small>It's free!</small></h3>
+                        </div>
+                        <div class="panel-body">
+                          
+                          <%= form_for(@user) do |f| %>
+          
+                        <%= render 'shared/error_messages' if params[:commit] == "Create NGO Account" %>
+                          
+                       
+
+                              <div class="name">
+                                 <%= f.text_field :name,placeholder: "Name", class: 'form-control' %>
+                                <!--input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address"-->
+                            </div>
+
+
+                            <div class="form-group">
+                               <%= f.email_field :email,  placeholder: "Email address",class: 'form-control' %>
+                                <!--input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address"-->
+                            </div>
+
+                            <div class="form-group">
+                                <%= f.text_field :location, placeholder: "Location", class: 'form-control' %>
+                                <!--input type="address" name="address" id="address" class="form-control input-sm" placeholder="Address"-->
+                            </div>
+
+                          
+                             <div class="form-group">
+                                <%= f.url_field :url, placeholder: "URL", class: 'form-control' %>
+                               <!--input type="address" name="address" id="address" class="form-control input-sm" placeholder="Address"-->
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <%= f.password_field :password, placeholder: "Password", class: 'form-control' %>
+                                        <!--input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password"-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                      <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: 'form-control' %>
+
+                                        <!--input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password"-->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <%= submit_tag 'Create NGO Account', class: "btn btn-primary" %>                        
+                          
+                            <% end %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+      
+      <!-- div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3 form-group">
           <%= form_for(@user) do |f| %>
@@ -19,23 +85,23 @@
           <%= render 'shared/error_messages' if params[:commit] == "Create NGO Account" %>
 
             <%= f.label "Name" %>
-            <%= f.text_field :name, class: 'form-control' %>
+          <%= f.text_field :name, placeholder: "name testing", class: 'form-control' %>
 
             <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
+            <%= f.email_field :email,  placeholder: "name testing",class: 'form-control' %>
 
 
             <%= f.label :location %>
-            <%= f.text_field :location, class: 'form-control' %>
+            <%= f.text_field :location, placeholder: "name testing", class: 'form-control' %>
           
             <%= f.label :url %>
             <%= f.url_field :url, class: 'form-control' %>
            
             <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.password_field :password, placeholder: "name testing", class: 'form-control' %>
 
             <%= f.label :password_confirmation, "Confirmation" %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
+            <%= f.password_field :password_confirmation, placeholder: "name testing", class: 'form-control' %>
 
             <%= submit_tag 'Create NGO Account', class: "btn btn-primary" %>
             
@@ -44,4 +110,4 @@
       </div>
       </div>
         
-    </div> 
+    </div--> 

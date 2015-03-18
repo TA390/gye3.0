@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   
   get 'home'        => 'static_pages#home'       # root_path
   get 'about'       => 'static_pages#about'      # about_path
-  get 'events'      => 'static_pages#event'      # events_path
-  get 'volunteers'       => 'static_pages#volunteer'  # volunteers_path
+  get 'events'      => 'events#index'            # events_path
+  get 'volunteers'  => 'static_pages#volunteer'  # volunteers_path
   get 'ngos'        => 'static_pages#ngo'        # ngos_path
   get 'signup'      => 'volunteers#new'          # signup_path
   
@@ -23,7 +23,6 @@ Rails.application.routes.draw do
 
   
   resources :volunteers
-  
   resources :ngos
   resources :events
   resources :event_volunteers

@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   end
   
   def about
+    #gon.location = Volunteer.limit(10)
   end
   
   def event

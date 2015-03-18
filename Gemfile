@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# auto-complete search
+gem 'gon'
+gem 'twitter-typeahead-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -91,3 +94,5 @@ gem 'immigrant'
 
 # table inheritance
 gem 'active_record-acts_as'
+
+

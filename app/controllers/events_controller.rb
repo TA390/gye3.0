@@ -23,7 +23,7 @@ class EventsController < ApplicationController
       # use for volunteer profile page to see which events I am signed up to
     elsif params[:vid].present?
       #joins event table to volunteers (on volid) matching param volunteer id
-      @events = Event.joins( :volunteer).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)      
+      @events = Event.joins( :volunteers).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)      
       
       # needs testing!!! input year-month-day like: '20015-3-19'
     elsif params[ :start].present?

@@ -17,6 +17,19 @@ class Volunteer < ActiveRecord::Base
     %w(User Ngo)
   end
 
+  # Returns count of sign ups to events
+  def signups
+    return self.event_volunteers.count()
+  end
+  
+  ### WIP ###
+  def future_signups
+    return self.event_volunteers.joins( :event).where(Event.upcoming).count()  
+    #return self.event_volunteers.joins( :event).where(:start > ::DateTime.current).count()  
+    #return self.event_volunteers.joins( :event).where(event.future?).count()  
+  end
+  
+  
   scope :users, -> { where(type: 'User') } 
   scope :ngos, -> { where(type: 'Ngo') } 
   

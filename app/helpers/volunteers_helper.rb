@@ -5,7 +5,7 @@ module VolunteersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     size = options[:size]
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.first_name, class: "gravatar")
+    image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
   
 end

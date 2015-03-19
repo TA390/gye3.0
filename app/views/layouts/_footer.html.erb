@@ -1,17 +1,10 @@
-<footer class="footer">
+<footer class="fbar navbar-fixed-bottom">
   <small>
     <a href="#">www.giveyoureffort.com</a>
+    <%= link_to image_tag('assets/images/FacebookIcon.png'), 
+      'http://www.facebook.com/sharer.php?u='+request.fullpath, :target => :blank %>
   </small>
-  <nav>
-    <ul>
-      <li><%= link_to "Home",   root_path %></li>
-      <li><%= link_to "About",   about_path %></li>
-      <li><%= link_to "Events", events_path %></li>
-      <li><%= link_to "Volunteer", volunteers_path %></li>
-      <li><%= link_to "NGO", ngos_path %></li>
-      <%= link_to image_tag('assets/images/FacebookIcon.png'), 
-        'http://www.facebook.com/sharer.php?u='+request.fullpath, :target => :blank %>
-      
-    </ul>
-  </nav>
+
 </footer>
+
+    

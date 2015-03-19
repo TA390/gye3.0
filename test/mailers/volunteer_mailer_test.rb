@@ -9,7 +9,7 @@ class VolunteerMailerTest < ActionMailer::TestCase
     assert_equal "GYE - Account activation", mail.subject
     assert_equal [user.email], mail.to
     assert_equal ["noreply@gye.com"], mail.from
-    assert_match user.first_name,               mail.body.encoded
+    assert_match user.name,               mail.body.encoded
     assert_match user.activation_token,   mail.body.encoded
     assert_match CGI::escape(user.email), mail.body.encoded
   end

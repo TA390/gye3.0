@@ -1,4 +1,4 @@
-<div role="tabpanel" class="tab-pane active" id="volunteer">  
+ 
     <div id="signupform">
       
       <div class="container">
@@ -16,8 +16,8 @@
 
           <%= render 'shared/error_messages' if params[:commit] == "Create Volunteer Account" %>
 
-            <%= f.label :first_name %>
-            <%= f.text_field :first_name, class: 'form-control' %>
+          <%= f.label :name, "First Name" %>
+            <%= f.text_field :name, class: 'form-control' %>
 
             <%= f.label :last_name %>
             <%= f.text_field :last_name, class: 'form-control' %>
@@ -35,7 +35,7 @@
             <br/>
 
             <%= f.label :location %>
-            <%= f.text_field :location, class: 'form-control' %>
+          <%= f.text_field :location, id: "_volunteer_form", class: 'typehead form-control'%>
 
             <%= f.label :password %>
             <%= f.password_field :password, class: 'form-control' %>
@@ -50,4 +50,3 @@
       </div>
       
     </div>
-  </div>

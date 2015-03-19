@@ -1,7 +1,9 @@
-class Ngo < ActiveRecord::Base
-  has_many :events, dependent: :destroy
-
+class Ngo < Volunteer #ActiveRecord::Base
   
+  
+  has_many :events, dependent: :destroy
+  
+=begin
   validates :name, 
     length: { minimum: 2 }
   validates :password, 
@@ -13,5 +15,6 @@ class Ngo < ActiveRecord::Base
     #uniqueness: true { message: "Error: Email already in use" }
   #validates :bio, length: { maximum: 500 }
   #validates :terms_of_service, acceptance: true
-
+=end
+  
 end

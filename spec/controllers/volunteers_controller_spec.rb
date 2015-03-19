@@ -20,10 +20,10 @@ RSpec.describe VolunteersController, :type => :controller do
 #       let!(:test_event_tag_3) { EventTag.create!(tag: dog, event: test_event_4) }
 #       let!(:test_event_tag_4) { EventTag.create!(tag: cat, event: test_event_4) }
 
-      #       NY = v2v4
-      #       SF = v3
-      #       Lon = v1
-      #       Paris = none       
+      #        NY = v2v4
+      #        SF = v3
+      #        Lon = v1
+      #        Paris = none       
       it "assigns @volunteers when query has no params" do
         get :index
         expect(assigns(:volunteers)).to eq([v1,v2,v3,v4])
@@ -75,7 +75,7 @@ RSpec.describe VolunteersController, :type => :controller do
       end      
 
       it "assigns @volunteers when query tag = dog and cat" do
-        get :index, tags: ['dog'], tag: ['cat']
+        get :index, tags: ['dog' && 'cat']
         expect(assigns(:volunteers)).to eq([v4])
       end
       
@@ -84,7 +84,7 @@ RSpec.describe VolunteersController, :type => :controller do
         expect(assigns(:volunteers)).to eq([])
         #assert_nil(assigns(:volunteers))
       end      
-    end # /when testing index functionality of volunteers for tags
+   end # /when testing index functionality of volunteers for tags
     
     
     context "when testing index functionality of volunteers for events" do     
@@ -96,7 +96,6 @@ RSpec.describe VolunteersController, :type => :controller do
       let!(:test_event_vol_1) { EventVolunteer.create!(event: test_event_1, volunteer: v1) }
       let!(:test_event_vol_2) { EventVolunteer.create!(event: test_event_2, volunteer: v1) }
       let!(:test_event_vol_3) { EventVolunteer.create!(event: test_event_3, volunteer: v1) }
-      let!(:test_event_vol_4) { EventVolunteer.create!(event: test_event_4, volunteer: v1) }
       let!(:test_event_vol_5) { EventVolunteer.create!(event: test_event_1, volunteer: v2) }
       let!(:test_event_vol_6) { EventVolunteer.create!(event: test_event_2, volunteer: v2) }
       let!(:test_event_vol_7) { EventVolunteer.create!(event: test_event_3, volunteer: v3) }
@@ -105,27 +104,27 @@ RSpec.describe VolunteersController, :type => :controller do
       
       #       e1 = v1v2v4
       #       e2 = v1v2
-      #       e3 = v3
+      #       e3 = v1v3
       #       e4 = none
       it "assigns @volunteers when query event = e1" do
-        get :index, events: ['test_event_1']
+        get :index, event_ids: [test_event_1.id]
         expect(assigns(:volunteers)).to eq([v1,v2,v4])
       end
       
       it "assigns @volunteers when query event = e2" do
-        get :index, events: ['test_event_2']
+        get :index, event_ids: [test_event_2.id]
         expect(assigns(:volunteers)).to eq([v1,v2])
       end    
       
       it "assigns @volunteers when query event = e3" do
-        get :index, events: ['test_event_3']
-        expect(assigns(:volunteers)).to eq([v3])
-      end      
+        get :index, event_ids: [test_event_3.id]
+        expect(assigns(:volunteers)).to eq([v1,v3])
+      end
       
       it "assigns @volunteers when query event = e4" do
-        get :index, events: ['test_event_4']
+        get :index, event_ids: [test_event_4.id]
         expect(assigns(:volunteers)).to eq([])
       end
-    end # /when testing index functionality of volunteers for events
+     end # /when testing index functionality of volunteers for events
   end # /GET index
 end

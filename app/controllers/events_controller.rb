@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :add_volunteer]
   #before_action(:set_event, { :only => [:show, :edit, :update, :destroy] })
   #two lines above are the same!!
   
@@ -16,6 +16,20 @@ class EventsController < ApplicationController
       #joins event table to ngos (on ngoid) matching param ngos name
       @events = Event.joins( :ngo).where(ngos: {:name => params[:ngos]} ).order(:start)
       
+    elsif params[:location].present?
+      #shows all event with location matching params location
+      @events = Event.where( :location => params[:location]).order(:start)
+      
+      # use for volunteer profile page to see which events I am signed up to
+    elsif params[:vid].present?
+      #joins event table to volunteers (on volid) matching param volunteer id
+      @events = Event.joins( :volunteer).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)      
+      
+      # needs testing!!! input year-month-day like: '20015-3-19'
+    elsif params[ :start].present?
+      #shows all event with start date matching params start
+      @events = Event.where( :start.strftime('%F') => params[:start]).order(:name)
+      
     else
       #show all
       @events = Event.order(:start)
@@ -30,6 +44,12 @@ class EventsController < ApplicationController
 #   WHERE "tags"."name" = 'dog'  
 #   ORDER BY "events"."start" ASC
   
+  
+  def add_volunteer
+    event_vol = EventVolunteer.new(create_params)
+    event_vol.save()
+    event_vol.errors
+  end
   
   # GET /events/1
   # GET /events/1.json

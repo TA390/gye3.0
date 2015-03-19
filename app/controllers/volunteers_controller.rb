@@ -6,15 +6,15 @@ class VolunteersController < ApplicationController
     #list all vols by loc, by tag, and by event (signed up!)
     if params[:tags].present?
       #joins vol table to tags (via volunteer_tag) on tag name matching param tags
-      @volunteer = Volunteer.joins( :tags).where(tags: {:name => params[:tags]} ).order(:first_name)
+      @volunteers = Volunteer.joins( :tags).where(tags: {:name => params[:tags]} ).order(:first_name)
     
-    elsif params[:events].present?
+    elsif params[:event_ids].present?
       #joins vol table to events (via event_volunteer) on event name matching param events
-      @volunteers = Volunteer.joins( :events).where(events: {:name => params[:events]} ).order(:first_name)
+      @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_ids]} ).order(:first_name)
       # need to add to table, 2 columns, sign_up and basket (AND signup == true)
       
     elsif params[:location].present?
-      #joins event table to ngos (on ngoid) matching param ngos name
+      #shows all vols with location matching params location
       @volunteers = Volunteer.where(:location => params[:location]).order(:first_name)
       
     else

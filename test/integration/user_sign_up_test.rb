@@ -19,10 +19,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       
       # erroneous sign up information
       post volunteers_path, 
-      volunteer: {first_name:  "",
-                  last_name:  "",
+      volunteer: {name:  "",
                   email: "joebloggs",
-                  gender: "",
                   location: "",
                   password: "pass",
                   password_confirmation: "word"}
@@ -48,10 +46,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_difference 'Volunteer.count', 1 do    
       # valid sign up information
       post volunteers_path, 
-      volunteer: {first_name:  "Joe",
-                  last_name:  "Bloggs",
+      volunteer: {name:  "Joe",
                   email: "joe_bloggs@test.com",
-                  gender: "M",
                   location: "London",
                   password: "password",
                   password_confirmation: "password"}

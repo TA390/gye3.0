@@ -17,3 +17,6 @@ schema.rb
 
 # ignore database schema file
 schema.rb
+
+#ignore coverage folder
+/coverage/*

@@ -3,8 +3,9 @@ require 'test_helper'
 class VolunteersControllerTest < ActionController::TestCase
   
   def setup
-    @user = volunteers(:bill)
-    @second_user = volunteers(:tom)
+    @generic_user = volunteers(:bill)
+    
+    @second_user = volunteers(:steve)
   end
   
   test "should get new" do
@@ -13,33 +14,38 @@ class VolunteersControllerTest < ActionController::TestCase
   end
   
   test "redirect user trying to edit when not logged in" do
-    get :edit, id: @user
+    get :edit, id: @generic_user
     assert_not flash.empty?
     assert_redirected_to login_url
+
   end
   
   test "redirect user trying to update when not logged in" do
-    patch :update, id: @user, 
-      volunteer: { first_name: @user.first_name, 
-                   email: @user.email }
+    patch :update, id: @generic_user, 
+      volunteer: { name: @generic_user.name, 
+                   email: @generic_user.email }
     
     assert_not flash.empty?
     assert_redirected_to login_url
+
   end
   
   test "redirect user trying to edit a profile that isn't theirs" do
     log_in_as(@second_user)
-    get :edit, id: @user
+    get :edit, id: @generic_user
     assert flash.empty?
     assert_redirected_to root_url
+
   end
 
   test "redirect user trying to update a profile that isn't theirs" do
     log_in_as(@second_user)
-    patch :update, id: @user, user: { first_name: @user.first_name, 
-                                      email: @user.email }
+    
+    patch :update, id: @generic_user, volunteer: { name: @generic_user.name, 
+                                                      email: @generic_user.email }
     assert flash.empty?
     assert_redirected_to root_url
+    
   end
 
 end

@@ -3,15 +3,14 @@ class VolunteersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   
   def index
-    #list all vols by loc, by tag, and by event (signed up!)
     if params[:tags].present?
       #joins vol table to tags (via volunteer_tag) on tag name matching param tags
       @volunteers = Volunteer.joins( :tags).where(tags: {:name => params[:tags]} ).order(:first_name)
     
     elsif params[:event_ids].present?
-      #joins vol table to events (via event_volunteer) on event name matching param events
+      #joins vol table to events (via event_volunteer) on event id matching param event_ids
       @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_ids]} ).order(:first_name)
-      # need to add to table, 2 columns, sign_up and basket (AND signup == true)
+      
       
     elsif params[:location].present?
       #shows all vols with location matching params location

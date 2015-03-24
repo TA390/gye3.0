@@ -8,6 +8,9 @@ class EventsController < ApplicationController
   def index
     #byebug
     
+    # add params[:tags].present? && params[:location].present?
+    # filter by !3 - tag, loc, date
+    
     if params[:tags].present?
      #joins event table to tags (via event_tags) on tag name matching param tags
       @events = Event.joins( :tags).where(tags: {:name => params[:tags]} ).order(:start)
@@ -20,7 +23,6 @@ class EventsController < ApplicationController
       #shows all event with location matching params location
       @events = Event.where( :location => params[:location]).order(:start)
       
-      # use for volunteer profile page to see which events I am signed up to
     elsif params[:vid].present?
       #joins event table to volunteers (on volid) matching param volunteer id
       @events = Event.joins( :volunteers).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)      

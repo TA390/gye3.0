@@ -38,7 +38,7 @@ class NgosController < ApplicationController
   #method when creating new ngo
   private
   def ngo_params
-    params.require(:ngo).permit(:name, :password, :location, :url, :email, :phone)
+    params.require(:ngo).permit(:name, :password, :location, :url, :email, :phone_number)
   end
  
 end

@@ -26,16 +26,5 @@ class Event < ActiveRecord::Base
   def past?
     self.start < ::DateTime.current
   end
-  
-  scope :upcoming, -> { where(future: true) }
-  
 end
 
-
-#   def full
-#     capacity = self.EventVolunteers.count
-#     if self.occupancy == capacity
-#       return true
-#       # errors.add(:occupancy, "Sorry this event is full")
-#     end
-#   end

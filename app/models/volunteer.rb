@@ -22,14 +22,30 @@ class Volunteer < ActiveRecord::Base
     return self.event_volunteers.count()
   end
   
-  ### WIP ###
+  # Returns count of sign ups to events in the future
   def future_signups
-    return self.event_volunteers.joins( :event).where(Event.upcoming).count()  
-    #return self.event_volunteers.joins( :event).where(:start > ::DateTime.current).count()  
-    #return self.event_volunteers.joins( :event).where(event.future?).count()  
+    return self.event_volunteers.joins( :event).where("start > ?", DateTime.now).count()
+    #return Event.where("start > ?", DateTime.now).joins( :volunteers).where(volunteers: {:id => self.id} ).count()
+    #same as above (for refence)
   end
   
+  # Returns count of sign ups to events in the past
+  def past_signups
+    return self.event_volunteers.joins( :event).where("start < ?", DateTime.now).count()
+    #return Event.where("start < ?", DateTime.now).joins( :volunteers).where(volunteers: {:id => self.id} ).count()
+    #same as above (for refence)
+  end
   
+  def future_signups_list
+    return Event.where("start > ?", DateTime.now).joins( :volunteers).where(volunteers: {:id => self.id} )
+  end
+  
+  def past_signups_list
+    return Event.where("start < ?", DateTime.now).joins( :volunteers).where(volunteers: {:id => self.id} )
+  end
+  
+
+
   scope :users, -> { where(type: 'User') } 
   scope :ngos, -> { where(type: 'Ngo') } 
   

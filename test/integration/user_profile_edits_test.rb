@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersProfileEdits < ActionDispatch::IntegrationTest
+class UsersProfileEditsTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = volunteers(:tom)
@@ -11,14 +11,15 @@ class UsersProfileEdits < ActionDispatch::IntegrationTest
     get edit_volunteer_path(@user)
     assert_template 'volunteers/edit'
     patch volunteer_path(@user), 
-    volunteer: {name: "",
+    volunteer: {  name: "",
                   last_name: "",
                   email: "tom@test",
+                  gender: "",
                   location: "",
                   password: "pass",
                   password_confirmation: "word"}
     
-    assert_template 'volunteers/edit'
+    assert_template 'volunteers'
   end
   
   test "valid profile edit and forwarding to the intended page" do
@@ -32,9 +33,10 @@ class UsersProfileEdits < ActionDispatch::IntegrationTest
     name  = "Thomas"
     email = "tom_hanks@hotmail.com"
     patch volunteer_path(@user), 
-    volunteer: { name: name,
+    volunteer: {   name: name,
                    last_name: "Hanks",
                    email: email,
+                   gender: "M",
                    location: "California",
                    password: "password",
                    password_confirmation: "password" }

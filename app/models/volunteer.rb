@@ -12,10 +12,6 @@ class Volunteer < ActiveRecord::Base
   before_save   :downcase_email
   before_create :create_activation_digest
   
-  # To allow inheritance
-  def self.type
-    %w(User Ngo)
-  end
 
   # Returns count of sign ups to events
   def signups
@@ -28,20 +24,7 @@ class Volunteer < ActiveRecord::Base
     #return self.event_volunteers.joins( :event).where(:start > ::DateTime.current).count()  
     #return self.event_volunteers.joins( :event).where(event.future?).count()  
   end
-  
-  
-  scope :users, -> { where(type: 'User') } 
-  scope :ngos, -> { where(type: 'Ngo') } 
-  
-  def self.inherited(child)
-    child.instance_eval do
-      def model_name
-        Volunteer.model_name
-      end
-    end
-    super
-  end
-  # end of inheritance
+ 
   
   def self.select_options
     descendants.map{ |c| c.to_s }.sort
@@ -50,6 +33,13 @@ class Volunteer < ActiveRecord::Base
       validates :name, 
         presence: true,
         length: {maximum: 254}
+  
+      validates :last_name, 
+        presence: true,
+        length: {maximum: 254}
+  
+      validates :gender, 
+        presence: true
 
       validates :email,
         presence: true,
@@ -65,6 +55,8 @@ class Volunteer < ActiveRecord::Base
 
       # their profile (i.e they don't have to enter a new password)
       validates :password,
+        # allow blank will only apply to profile updates
+        allow_blank: true,
         presence: true,
         length: { minimum: 6, maximum: 254 }
   
@@ -128,6 +120,3 @@ class Volunteer < ActiveRecord::Base
   end
   
 end
-
-class User < Volunteer; end 
-class Ngo < Volunteer; end

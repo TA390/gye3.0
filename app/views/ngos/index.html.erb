@@ -1,3 +1,4 @@
+<% provide(:title, 'Ngo') %>
 <br>
 <br>
 <h1>Listing Ngos</h1>
@@ -31,6 +32,36 @@
 </table>
 
 <br>
+
+<body class="v_index">
+    <div class="volunteers col-md-9 col-md-offset-1">
+      <%= @ngo.each do |ngo| %>
+        <div class = "one_volunteer">
+          <div class ="row">
+
+            <div class="col-md-3">
+              <div class="container">
+                <div class ="volunteer_pic">
+                  <img src="http://wikivillage.co.za/sites/default/files/media/garden-route-spca/garden-route-spca1.jpg" alt="description here "/>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-9 ">
+              <h3><%= ngo.name %> <%=ngo.id%> </h3>
+                <p> []</p>
+
+              <%=button_to 'Show', ngo, :method => :get, :class => "btn btn-info"%>
+
+            </div>
+          </div>
+          <!--End of Row -->
+        </div>
+        <!--End of one_volunteer wrappper -->
+      <% end %>
+    </div>
+
+</body>
 
 <%= link_to 'New Ngo', new_ngo_path %>
 

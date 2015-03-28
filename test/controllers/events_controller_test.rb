@@ -1,6 +1,14 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
+  
+  # Events Page
+  test "should get events" do
+    get :index
+    assert_response :success
+    assert_select "title", "Events"
+  end
+  
 =begin
   setup do
     @event = events(:one)

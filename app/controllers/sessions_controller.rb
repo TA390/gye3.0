@@ -1,14 +1,20 @@
 class SessionsController < ApplicationController
   
   def new
-
+    # if already logged in redirect to profile of user
+    if Volunteer.find_by(id: session[:user_id])
+      redirect_to Volunteer.find_by(id: session[:user_id])
+    elsif Ngo.find_by(id: session[:ngo_id])
+      redirect_to Ngo.find_by(id: session[:ngo_id])
+    end
   end
   
   def create
     
     user = Volunteer.find_by(email: params[:session][:email].downcase)
     
-    if user && user.authenticate(params[:session][:password])
+    
+    if  user && user.authenticate(params[:session][:password])
       # SET TO TRUE AFTER DEVELOPMENT
       if user.activated? == false
         log_in(user)

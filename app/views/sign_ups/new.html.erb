@@ -1,0 +1,65 @@
+<% provide(:title, 'Sign up') %>
+
+<!-- jquery for tabs -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script>
+    $(function() {
+      $( "#tabs" ).tabs();
+    });
+  </script>
+<!-- end jquery for tabs -->
+
+<body class = "signup">
+  
+        <!-- Page Heading -->
+        <div class="container">
+        <div class="row text-center">
+          <br/>
+          <br/>
+          <h1>Sign Up</h1>
+          <br/>
+          <br/>
+        </div>
+        </div>
+        <!-- end Page Heading -->
+  
+  <div class="page-scroll">
+    <a href="#signupform" class="btn btn-circle">
+      <i class="fa fa-angle-double-down animated"></i>
+    </a>
+  </div> 
+
+<!-- Volunteer / NGO sign up form -->
+  
+
+<ul class="nav nav-tabs container" role="tablist" id="tabs">
+  
+  <li role="presentation" class="active">  
+    <a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer</a>
+  </li>
+  <li>
+    <a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab">NGO</a>
+  </li>
+  
+</ul>
+
+  
+<div class="tab-content">
+ 
+
+  <div role="tabpanel" class="tab-pane active"  id="volunteer">
+    <%= render template: 'volunteers/new' %>
+  </div>
+
+  <div role="tabpanel" class="tab-pane" id="ngo">
+    <%= render template: 'ngos/new' %>
+  </div>
+
+ 
+  
+</div>
+<!-- end Volunteer / NGO sign up form -->
+
+</body>

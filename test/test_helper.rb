@@ -19,6 +19,10 @@ class ActiveSupport::TestCase
     !session[:user_id].nil?
   end
   
+    def is_ngo_logged_in?
+    !session[:ngo_id].nil?
+  end
+  
   # Function to log in a test user
   def log_in_as(user, options = {})
     
@@ -26,14 +30,29 @@ class ActiveSupport::TestCase
     remember_me = options[:remember_me] || '1'
     
     if integration_test?
-      post login_path, session: { email:       user.email,
-                                  password:    password,
-                                  remember_me: remember_me }
+      post vlogin_path, session: { email:       user.email,
+                                   password:    password,
+                                   remember_me: remember_me }
     else
       session[:user_id] = user.id
     end
   end
 
+  
+  def log_in_as_ngo(ngo, options = {})
+    password    = options[:password]    || 'password'
+    remember_me = options[:remember_me] || '1'
+    if integration_test?
+      post nlogin_path, ngo_session: { email:       ngo.email,
+                                       password:    password,
+                                       remember_me: remember_me }
+    else
+      session[:ngo_id] = ngo.id
+    end
+  end
+  
+  
+  
   private
 
   # Function return true if inside an integration test.

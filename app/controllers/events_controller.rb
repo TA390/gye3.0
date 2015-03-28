@@ -26,7 +26,7 @@ class EventsController < ApplicationController
       @events = Event.joins( :volunteers).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)      
       
       # needs testing!!! input year-month-day like: '20015-3-19'
-    elsif params[ :start].present?
+    elsif params[:start].present?
       #shows all event with start date matching params start
       @events = Event.where( :start.strftime('%F') => params[:start]).order(:name)
       

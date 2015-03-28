@@ -5,7 +5,7 @@ class VolunteerTest < ActiveSupport::TestCase
   def setup
   
     @new_user = 
-           User.new(name: "Joe", 
+      Volunteer.new(name: "Joe", 
                     last_name: "Bloggs",
                     gender: "M",
                     location: "London, UK",
@@ -83,13 +83,17 @@ class VolunteerTest < ActiveSupport::TestCase
   test "password should be present" do
     @new_user.password =
       @new_user.password_confirmation = "     "
-    assert_not @new_user.valid?
+    assert @new_user.valid?
   end
   
   test "password should have a minimum length" do
     @new_user.password = 
       @new_user.password_confirmation = "xxxxx"
       assert_not @new_user.valid?
+  end
+  
+  test "passwords should match" do
+    assert (@new_user.password == @new_user.password_confirmation)
   end
   # end password 
   

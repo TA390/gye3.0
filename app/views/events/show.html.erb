@@ -37,16 +37,22 @@
     <meta name="description"               content="Description" />
     <meta name="keywords"                  content="Keywords" />
     <meta name="author"                    content="Kevin Sickmueller" />
-    <style type="text/css" media="all">@import "css/master.scss";</style>
+    <style type="text/css" media="all">@import "css/master.css";</style>
 	
+	<!-- === Bootstrap ================================================================================================= -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- ============================================================================================================= -->
+	 
 	<script
       src="http://maps.googleapis.com/maps/api/js"> 
     </script>
-
-    <script>
+    
+	<script>
       var map;
       var london = new google.maps.LatLng(51.508742,-0.120850);
-
+	  
       // Add a Home control that returns the user to London
       function HomeControl(controlDiv, map) {
         controlDiv.style.padding = '5px';
@@ -94,7 +100,7 @@
 <!-- ==========================================================================================================
 
 ========================================================================================================== -->
-  <body class="event_detail">
+  <body class="about">
     <div id="page-container" style="height: 964px;">
       <div id="main-nav">
         <dl>
@@ -117,23 +123,26 @@
 
 <!-- ==========================================================================================================
 
-========================================================================================================== -->	  
-      <div style="height: 55px;">
-        <h2 style="height: 11px;">GIVE YOUR EFFORT                             
-                                              <input type="button" name="Login_Volunteer"
-
-            value="Login as Volunteer" /> <input type="button" name="Login_NGO"
-
-            value="Login as NGO" /></h2>
-        <h4 style="margin-top: 10.55px; height: 18px;">             Make a
-          Change, Contribute your Best</h4>
+========================================================================================================== -->	 
+      <div id="header-a">
+           <br>	    
+           <button type="button" class="btn btn-default btn-sm">Login as Volunteer</button>	
+           <button type="button" class="btn btn-default btn-sm">Login as NGO</button>		            
       </div>
+	  <div id="header-b"> 
+	       <h4><p class="text-muted"><B>GIVE YOUR EFFORT</B></p>
+		       <div style="margin-left: 40px;">
+  		           <p class="small"><B>Make a Change, Contribute your Best </B></p>
+			   </div>
+		   </h4>
+	  </div>
 	  
-      <div style="height: 100px;" id="searchbar1">
-        <h2 style="height: 8px;">Find Your Way to Make a Change!</h2>
-        Whenever you like. Global find your match!
-        <div style="height: 20px;" class="styled-select blue semi-square">
-          <select style="height: 20px;">
+      <div id="searchbar1">
+        <h3><B>Find Your Way to Make a Change!</B>
+		    <p class="small", style="color:black">Whenever you like. Global find your match!</p>
+		</h3>
+        <div style="height: 25px;" class="styled-select blue semi-square">
+          <select >
             <option>LOCATION</option>
             <option>London</option>
             <option>Madrid</option>			
@@ -142,65 +151,80 @@
             <option>Rome</option>
             <option>Tokio</option>
           </select>
+		  
           <select>
             <option>WHAT</option>
-            <option>What Option 1</option>
-            <option>What Option 2</option>
-            <option>What Option 3</option>
-            <option>What Option 4</option>
+            <option>NGO</option>
+            <option>Volunteer</option>
+            <option>I don't care!</option>
           </select>
+		  
           <select>
             <option>WHEN</option>
-            <option>WHEN Option 1</option>
-            <option>WHEN Option 2</option>
-            <option>WHEN Option 3</option>
-            <option>WHEN Option 4</option>
+            <option>immediate</option>
+			<option>1st of January</option>
+            <option>1st of April</option>
+            <option>1st of July</option>
+			<option>1st of October</option>
           </select>
+		  
           <select>
             <option>LENGTH</option>
-            <option>LENGTH Option 1</option>
-            <option>LENGTH Option 2</option>
-            <option>LENGTH Option 3</option>
+            <option>1 Month</option>
+            <option>6 Month</option>
+            <option>12 Month</option>
           </select>
+		  
           <select>
             <option>EFFORT</option>
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
           </select>
-          <a href="#" class="ButtonFind">Find</a> </div>
+		  
+		  <a href="./result.html" class="btn btn-default btn-sm" style="height: 23px;">
+                 <span class="glyphicon glyphicon-search"></span><strong>Search</strong>
+          </a>	
       </div>
-
+    </div>
+	
+	
 <!-- ==========================================================================================================
-
+ Unicef video and Google map
 ========================================================================================================== -->	  
-	<div id="sidebar-a">
-	March 12, 2015
-		<div id="googleMap" style="width:280px;height:300px;"></div>
+	<div id="sidebar-a">	
+	 <p id="today"></p>
+	    <script>
+            var d = new Date();
+            document.getElementById("today").innerHTML = d.toUTCString();
+        </script>
+		<div id="googleMap" style="width:280px;height:290px;"></div>
 	</div>
 	
 	<div id="content-a">
 	  <br>
 	  <table border="0">
         <tr>
-           <th><img src="assets/general/unicef.gif" width="98" height="32" alt="unicef UK" /></th>
-		   <th>UNICEF UK: Help giving out Food<br>
+           <th><img src="images/general/unicef.gif" width="98" height="32" alt="unicef UK" /></th>
+		   <th><p style="color:grey;font-size:80%">UNICEF UK: Help giving out Food<br>
 		       <font size="-3">#giving food #londonershelplondoners #goodfood #southken</font>
+			   </p>
 		   </th>
         </tr>
        </table>
 	
        <div>
-		  <iframe src="https://player.vimeo.com/video/23340265" width="460" height="260" frameborder="1" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		  <iframe src="https://player.vimeo.com/video/23340265" width="460" height="260" 
+		          frameborder="1" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+	      </iframe>
        </div>
-	
 	</div>  
 	
 <!-- ==========================================================================================================
 
 ========================================================================================================== -->	  
 	<div id="sidebar-b">
-	    <span style="color: black;">SCORE OF THE NGO</span>
+	    <span style="color: black;"><B>SCORE OF THE NGO</B></span>
 		<br><br>
 		<span class="starRating">
              <input type="radio" name="overall" id="overall1" value = "1">         <label for="overall1">1</label>
@@ -250,7 +274,7 @@
 	</div>
 	
 	<div id="content-b">
-	    <span style="color: black;">SCORE OF THE EVENT</span>
+	    <span style="color: black;"><B>SCORE OF THE EVENT</B></span>
 		<br><br>
 		<span class="starRating">
              <input type="radio" name="effort" id="effort1" value = "1">         <label for="effort1">1</label>
@@ -297,7 +321,6 @@
              <input type="radio" name="security" id="security6" value = "6">         <label for="security6">6</label>
         </span> SECURITY
 		<br><br>	
-		<hr style="width: 760px; color: black; margin-top: -4px; margin-left: 0px;" />	
 	</div>  
 
 <!-- ==========================================================================================================
@@ -306,12 +329,12 @@
 	<div id="sidebar-c">
 		<span style="color: black;">MEET OTHER ATTENDEE</span>
 	    <div style="text-align: center;">
-		   <a href="#"><img src="assets/images/headers/Angie_g.jpg" alt="" title="Angie" style="width: 83px; height: 83px;" /></a>  
-			 <a href="#"><img src="assets/images/headers/JAY_g.jpg"   alt="" title="Jay"   style="width: 83px; height: 83px;" /></a> <br>
-			 <a href="#"><img src="assets/images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" /></a>  
-			 <a href="#"><img src="assets/images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" /></a> <br>
-			 <a href="#"><img src="assets/images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" /></a>  
-			 <a href="#"><img src="assets/images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" /></a> 
+		    <img src="images/headers/Angie_g.jpg" alt="" title="Angie" style="width: 83px; height: 83px;" />  
+			<img src="images/headers/JAY_g.jpg"   alt="" title="Jay"   style="width: 83px; height: 83px;" /> <br>
+			<img src="images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" />  
+			<img src="images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" /> <br>
+			<img src="images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" />  
+			<img src="images/headers/bubble2.jpg" alt="" title="Image" style="width: 83px; height: 83px;" /> 
         </div>	
 	</div>
 	
@@ -320,7 +343,16 @@
 		<p>&nbsp</p>
 	</div>  
 	
-      <div style="height: 55px;" id="section_story_of_month"> </div>
+      <div style="height: 70px;" id="section_story_of_month"> 
+         <br>
+	     <p><small>&nbspTell a friend:</small>
+	        <a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+			&nbsp&nbsp	
+            <button type="button" class="btn btn-default btn-sm">
+			        <span class="glyphicon glyphicon-log-in"></span> Sign up 
+			</button> 		  
+		 </p>
+	  </div>
       <div style="height: 80px; text-align: center;">	
 <!-- ==========================================================================================================
 
@@ -328,14 +360,15 @@
     <div style="height: 100px;" id="section1">
 	   <span style="color: black;">OTHER EVENTS IN THIS AREA</span><br><br>
        <div style="text-align: center;">
-		    <img src="assets/images/general/Event1.GIF"     alt="" title="January 2015"      style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      
-			<img src="assets/images/general/Event2.GIF"     alt="" title="Come together"     style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   
-			<img src="assets/images/general/Event3.GIF"     alt="" title="All Time Low"      style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     
-			<img src="assets/images/general/Event6.gif"     alt="" title="Out of this world" style="width: 150px; height: 100px;" /><br>     
-			<img src="assets/images/general/Event_May.GIF"  alt="" title="May 2015"          style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-			<img src="assets/images/general/Event_June.GIF" alt="" title="June 2015"         style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-			<img src="assets/images/general/Event_July.GIF" alt="" title="July 2015"         style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-			<img src="assets/images/general/Event5.GIF"     alt="" title="It's us"           style="width: 150px; height: 100px;" /> 
+		    <img src="images/general/Event1.gif"     alt="" title="January 2015"      style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      
+			<img src="images/general/Event2.gif"     alt="" title="Come together"     style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   
+			<img src="images/general/Event3.gif"     alt="" title="All Time Low"      style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     
+			<img src="images/general/Event6.gif"     alt="" title="Out of this world" style="width: 150px; height: 100px;" />
+			<br><br>      
+			<img src="images/general/Event_May.gif"  alt="" title="May 2015"          style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+			<img src="images/general/Event_June.gif" alt="" title="June 2015"         style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+			<img src="images/general/Event_July.gif" alt="" title="July 2015"         style="width: 150px; height: 100px;" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+			<img src="images/general/Event5.gif"     alt="" title="It's us"           style="width: 150px; height: 100px;" /> 
         </div>	 
 	</div>
 	
@@ -346,7 +379,7 @@
         <div id="copyright" style="background-color: #666666; margin-left: -19px; width: 760px; margin-top: 177px; height: 72px;text-align: left;">
 		<span
             style="color: white;text-align: right;">Copyright © Kevin Sickmueller<br />
-            Powered by <a href="http://www.google.com/">HTML and CSS</a><a href="http://www.vadmin.co.nz/"></a></span>
+            Powered by <a href="http://www.google.com/">HTML,CSS and Bootstrap</a><a href="http://www.vadmin.co.nz/"></a></span>
         </div>
       </div>
     </div>

@@ -95,4 +95,7 @@ gem 'immigrant'
 # table inheritance
 gem 'active_record-acts_as'
 
+# add fake users to the db
+gem 'faker'
+
 

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'ngo_sessions/new'
+
+  get 'logins/new'
+
   get 'sessions/new'
 
   root 'static_pages#home'
@@ -7,20 +11,20 @@ Rails.application.routes.draw do
   get 'home'        => 'static_pages#home'       # root_path
   get 'about'       => 'static_pages#about'      # about_path
   get 'events'      => 'events#index'            # events_path
-  get 'volunteers'  => 'static_pages#volunteer'  # volunteers_path
-  get 'ngos'        => 'static_pages#ngo'        # ngos_path
-  get 'signup'      => 'volunteers#new'          # signup_path
+  get 'volunteers'  => 'volunteers#index'        # volunteers_path
+  get 'ngos'        => 'ngos#index'              # ngos_path
+  get 'signup'      => 'sign_ups#new'            # signup_path
   
 
-  get 'login'       => 'sessions#new'      # login_path
-  post 'login'      => 'sessions#create'   # login_path
-  delete 'logout'   => 'sessions#destroy'  # logout_path
+  get 'login'       => 'logins#new'              # login_path
 
-  get 'login'       => 'sessions#new'            # login_path
-  post 'login'      => 'sessions#create'         # login_path
-  delete 'logout'   => 'sessions#destroy'        # logout_path
+  get 'vlogin'       => 'sessions#new'           # login_path
+  post 'vlogin'      => 'sessions#create'        # login_path
+  delete 'vlogout'   => 'sessions#destroy'       # logout_path
 
-
+  get 'nlogin'       => 'ngo_sessions#new'       # login_path
+  post 'nlogin'      => 'ngo_sessions#create'    # login_path
+  delete 'nlogout'   => 'ngo_sessions#destroy'   # logout_path
   
   resources :volunteers
   resources :ngos
@@ -33,6 +37,10 @@ Rails.application.routes.draw do
   
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do
+  get 'ngo_sessions/new'
+
+  get 'logins/new'
+
 #     get 'auth/:provider/callback', to: 'sessions#create'
 #     get 'auth/failure', to: redirect('/')
 #     get 'signout', to: 'sessions#destroy', as: 'signout'

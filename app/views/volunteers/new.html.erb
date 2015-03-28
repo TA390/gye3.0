@@ -1,88 +1,51 @@
-<% provide(:title, 'Sign up') %>
-
-<!-- jquery for tabs -->
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-  <script>
-    $(function() {
-      $( "#tabs" ).tabs();
-    });
-  </script>
-<!-- end jquery for tabs -->
-
-<body class = "signup">
-  
-        <!-- Page Heading -->
-        <div class="container">
+ <div id="signupform">
+      
+      <div class="container">
         <div class="row text-center">
           <br/>
-          <br/>
-          <h1>Sign Up</h1>
-          <br/>
+          <h1>Volunteer</h1>
           <br/>
         </div>
+      </div>
+
+      <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 form-group">
+          <%= form_for(@user) do |f| %>
+
+          <%= render 'shared/error_messages' if params[:commit] == "Create Volunteer Account" %>
+
+          <%= f.label :name, "First Name" %>
+            <%= f.text_field :name, class: 'form-control' %>
+
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: 'form-control' %>
+
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control' %>
+
+              Male
+              <%= f.radio_button :gender, "M" %>     
+            <br/>
+
+              Female    
+              <%= f.radio_button :gender, "F" %> 
+            <br/>
+            <br/>
+
+            <%= f.label :location %>
+          <%= f.text_field :location, id: "_volunteer_form", class: 'typehead form-control'%>
+
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control' %>
+
+            <%= f.label :password_confirmation, "Confirmation" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+            <%= submit_tag 'Create Volunteer Account', class: "btn btn-primary" %>
+          <% end %>
         </div>
-        <!-- end Page Heading -->
-  
-  <div class="page-scroll">
-    <a href="#signupform" class="btn btn-circle">
-      <i class="fa fa-angle-double-down animated"></i>
-    </a>
-  </div>
-  
-<div class ="signup_pic">
-  <img src="http://www.volunteerswmi.org/servlet/servlet.ImageServer?id=015A0000004i1NcIAI&oid=00DA0000000BVISMA4" alt="description here "/>
-</div>  
-
-<!-- Volunteer / NGO sign up form -->
-  
-
-<ul class="nav nav-tabs container" role="tablist" id="tabs">
-  
-  <% if @created_for != "new_ngo" %>
-    <li role="presentation" class="active">
-  <% else %>
-    <li role="presentation">
-  <% end %>   
-    <a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer</a>
-  </li>
-  
-  <% if @created_for == "new_ngo" %>
-    <li role="presentation" class="active">
-  <% else %>
-    <li role="presentation">
-  <% end %>  
-    <a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab">NGO</a>
-  </li>
-  
-</ul>
-
-  
-<div class="tab-content">
- 
-
-  <% if @created_for != "new_ngo" %>
-    <div role="tabpanel" class="tab-pane active"  id="volunteer">
-  <% else %>
-    <div role="tabpanel" class="tab-pane"  id="volunteer">
-  <% end %>  
-    <%= render 'layouts/volunteer_form' %>
-  </div>
-  
-  
-  <% if @created_for == "new_ngo" %>
-  <div role="tabpanel" class="tab-pane active" id="ngo">
-  <% else %>
-  <div role="tabpanel" class="tab-pane" id="ngo">
-  <% end %>
-    <%= render 'layouts/ngo_form' %>
-  </div>
-
-  
-
-  
-</div>
-<!-- end Volunteer / NGO sign up form -->
-
-</body>
+      </div>
+      </div>
+      
+    </div>

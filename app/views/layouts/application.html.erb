@@ -9,27 +9,21 @@
                               media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
-  
 
+  
 </head>
 <body>
+
   <%= render 'layouts/header' %>
-<br>
-<br>
-<br>
-  
-<div class="container-fluid">
   
   <div class="container">
     <% flash.each do |message_type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
   </div>
-  
-  <div class="row">
-    <%= yield %>
-  </div>
+   
+  <%= yield %>
+
 
   <%= render 'layouts/footer' %>
 

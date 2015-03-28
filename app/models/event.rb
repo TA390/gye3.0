@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   has_many :event_volunteers
   has_many :volunteers, through: :event_volunteers
   has_one :wall, dependent: :destroy 
+
   
   # Checks to see if event is full (occupancy==count of event_volunteers)
   # Returns true if count is greater or equal to occupancy (does not block)
@@ -29,8 +30,6 @@ class Event < ActiveRecord::Base
   
   scope :upcoming, -> { where(future: true) }
   
-end
-
 
 #   def full
 #     capacity = self.EventVolunteers.count
@@ -39,3 +38,5 @@ end
 #       # errors.add(:occupancy, "Sorry this event is full")
 #     end
 #   end
+
+end

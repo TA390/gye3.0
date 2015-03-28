@@ -8,6 +8,13 @@ class VolunteersControllerTest < ActionController::TestCase
     @second_user = volunteers(:steve)
   end
   
+  # Volunteer Page
+  test "should get volunteer" do
+    get :index
+    assert_response :success
+    assert_select "title", "Volunteer"
+  end
+  
   test "should get new" do
     get :new
     assert_response :success

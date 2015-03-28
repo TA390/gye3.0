@@ -26,7 +26,7 @@ module SessionsHelper
     cookies.permanent[:remember_token] = user.remember_token
   end
   
-  # Function to return true if 'user'is the current user
+  # Function to return true if 'user' is the current user
   def current_user?(user)
     user == current_user
   end
@@ -35,8 +35,11 @@ module SessionsHelper
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= Volunteer.find_by(id: user_id)
+
     elsif (user_id = cookies.signed[:user_id])
+
       user = Volunteer.find_by(id: user_id)
+
       if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user

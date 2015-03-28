@@ -1,3 +1,87 @@
+
+<% provide(:title, @ngo.name) %>
+
+<body class="profile">
+  
+  <div class="container target">
+    <div class="row">
+      <div class="col-sm-10">
+        <h1 class=""><%= @ngo.name %></h1>
+        <button type="button" class="btn btn-success">Send me a message</button>
+      </div>
+      
+      <div class="col-sm-2">
+        <a href="/users" class="pull-right"><img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"></a>
+      </div>
+    </div>
+    <br>
+    
+    <div class="row">
+      <div class="col-sm-3">
+      <!--left col-->
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Profile</strong></div>
+            <ul class="list-group">
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @ngo.created_at%></li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= @ngo.email %></li>
+          </ul>
+        </div>
+                   
+        <div class="panel panel-default">
+          <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body"><a href="http://www.leonardodicaprio.com/" class="">www.leonardodicaprio.com</a></div>
+          </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Activity <i class="fa fa-dashboard fa-1x"></i></strong></div>
+            <ul class="list-group">
+
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Events attended</strong></span> 125</li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Events bookmarked</strong></span> 13</li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average volunteer rating</strong></span> 4.5</li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Attendance record</strong></span> 95%</li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
+            </ul>
+        </div>
+        
+          <div class="panel panel-default">
+            <div class="panel-heading">Social Media</div>
+            <div class="panel-body">	
+              <i class="fa fa-facebook fa-2x"></i>  
+              <i class="fa fa-github fa-2x"></i> 
+              <i class="fa fa-twitter fa-2x"></i> 
+              <i class="fa fa-pinterest fa-2x"></i>  
+              <i class="fa fa-google-plus fa-2x"></i>
+            </div>
+        </div>
+      </div>
+      
+     <!--Main panels-->
+      <div class="col-sm-9" contenteditable="false" style="">
+        <div class="panel panel-default">
+          <div class="panel-heading"><%= @ngo.name %>'s Biography</div>
+            <div class="panel-body"> A long description about me.</div>
+        </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading"><%= @ngo.name %>'s Friends</div>
+            <div class="panel-body"> Friend 1 Friend 2....</div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading"><%= @ngo.name %>'s Event Testimonials</div>
+            <div class="panel-body"> "Blah blah"</div>
+      </div>
+       
+      
+      </div>
+    </div>
+  </div>
+    
+</body> 
+
+
 <br>
 <br>
 <br>

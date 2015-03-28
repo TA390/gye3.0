@@ -13,7 +13,9 @@ Volunteer.create!(name: "Bill",
                   location: "California",
                   gender: "M",
                   password: "password",
-                  password_confirmation: "password")
+                  password_confirmation: "password",
+                  activated: true,
+                  activated_at: Time.zone.now)
 
 99.times do |n|
   name  = Faker::Name.first_name
@@ -28,5 +30,7 @@ Volunteer.create!(name: "Bill",
                     gender: gender,
                     location: location,
                     password: password,
-                    password_confirmation: password)
+                    password_confirmation: password,
+                    activated: true,
+                    activated_at: Time.zone.now)
 end

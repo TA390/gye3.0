@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'ngo_password_resets/new'
+
+  get 'ngo_password_resets/edit'
+
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   get 'ngo_sessions/new'
 
   get 'logins/new'
@@ -34,9 +42,22 @@ Rails.application.routes.draw do
   
   # account activation email link
   resources :account_activations, only: [:edit]
+  resources :ngo_account_activations, only: [:edit]
+  
+  # forgotten passwords
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :ngo_password_resets, only: [:new, :create, :edit, :update]
   
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do
+  get 'ngo_password_resets/new'
+
+  get 'ngo_password_resets/edit'
+
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   get 'ngo_sessions/new'
 
   get 'logins/new'

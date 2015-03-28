@@ -19,14 +19,19 @@ class VolunteersController < ApplicationController
       
     else
       #show all
-      @volunteers = Volunteer.order(:name)
+      # SET ACTIVATED TO true FOR PRODUCTION
+      @volunteers = Volunteer.paginate(page: params[:page], 
+        per_page: 10).order(:name).where(activated: false).order(:name)
+   
     end
+   
   end
       
 
   def show
 
       @user = Volunteer.find(params[:id])
+      redirect_to root_url and return unless @user
     
   end
   
@@ -40,7 +45,7 @@ class VolunteersController < ApplicationController
       
     if @user.save
       @user.send_activation_email
-      flash[:info] = "We have sent your activation email."
+      flash[:info] = "Please check your email to activate your account"
       redirect_to root_url
       
       #log_in(@user)

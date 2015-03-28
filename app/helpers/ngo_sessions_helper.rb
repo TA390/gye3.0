@@ -11,7 +11,7 @@ module NgoSessionsHelper
       @current_ngo ||= Ngo.find_by(id: ngo_id)
     elsif (ngo_id = cookies.signed[:ngo_id])
       ngo = Ngo.find_by(id: ngo_id)
-      if ngo && ngo.authenticated?(cookies[:remember_token])
+      if ngo && ngo.authenticated?(:remember, cookies[:remember_token])
         log_in_ngo ngo
         @current_ngo = ngo
       end

@@ -6,11 +6,14 @@ class NgosController < ApplicationController
   before_action :correct_ngo,   only: [:edit, :update]
   
   def index
-    @ngo = Ngo.order(:name)
+    # SET ACTIVATED TO true FOR PRODUCTION
+    @ngos = Ngo.paginate(page: params[:page], 
+      per_page: 10).where(activated: false).order(:name)
   end
 
   def show
     @ngo = Ngo.find_by(id: params[:id])
+    redirect_to root_url and return unless @ngo
   end
 
   def new
@@ -21,9 +24,9 @@ class NgosController < ApplicationController
     @ngo = Ngo.new(ngo_params)
 
     if @ngo.save
-      log_in_ngo @ngo
-      flash[:success] = "Welcome to your Profile Page"
-      redirect_to @ngo
+      @ngo.send_activation_email
+      flash[:info] = "Please check your email to activate your account"
+      redirect_to root_url
     else
       render 'new'
     end

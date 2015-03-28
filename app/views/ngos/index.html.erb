@@ -15,8 +15,9 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @ngo.each do |ngo| %>
+  <tbody> 
+
+    <% @ngos.each do |ngo| %>
       <tr>
         <td><%= ngo.name %></td>
         <td><%= ngo.location %></td>
@@ -33,9 +34,11 @@
 
 <br>
 
+
 <body class="v_index">
     <div class="volunteers col-md-9 col-md-offset-1">
-      <%= @ngo.each do |ngo| %>
+      <%= will_paginate %>
+      <%= @ngos.each do |ngo| %>
         <div class = "one_volunteer">
           <div class ="row">
 
@@ -59,9 +62,10 @@
         </div>
         <!--End of one_volunteer wrappper -->
       <% end %>
-    </div>
-
+      <%= will_paginate %>
+      </div>
 </body>
+
 
 <%= link_to 'New Ngo', new_ngo_path %>
 

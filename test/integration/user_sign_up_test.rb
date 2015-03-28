@@ -73,7 +73,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert user.reload.activated?
     follow_redirect!
     # ensure the profile page is loaded after sign up
-    assert_template root_path
+    assert_template 'volunteers/show'
     # test that the user is logged in once signed up
     # helper function defined in test/test_helper.rb
     assert is_logged_in?

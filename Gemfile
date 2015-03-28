@@ -98,4 +98,8 @@ gem 'active_record-acts_as'
 # add fake users to the db
 gem 'faker'
 
+# page scrolling
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 

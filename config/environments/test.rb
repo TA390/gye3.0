@@ -34,6 +34,10 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  
+  # configure emails with domain
+  config.action_mailer.default_url_options = 
+    { host: 'http://gye-vm-199744.euw1.nitrousbox.com' }
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random

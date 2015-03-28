@@ -1,0 +1,12 @@
+Hi <%= @ngo.name %>,
+
+Welcome to Give Your Effort! 
+
+Click on the link below to activate your account:
+
+<%= edit_account_activation_url(@ngo.activation_token, 
+                                email: @ngo.email) %>
+
+
+Thanks,
+GYE Team

@@ -133,6 +133,8 @@
 	            
 	  
     <div class="volunteers col-md-9 col-md-offset-1">
+    <div id="infinite-scrolling">
+      <%= will_paginate %>
       <% @volunteers.each do |volunteer| %>
         <div class = "one_volunteer">
           <div class ="row">
@@ -157,7 +159,9 @@
         </div>
         <!--End of one_volunteer wrappper -->
       <% end %>
+      <%= will_paginate %>
     </div>
+  </div>
   </div>
 </body>
 

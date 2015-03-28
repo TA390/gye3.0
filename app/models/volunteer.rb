@@ -8,7 +8,7 @@ class Volunteer < ActiveRecord::Base
   has_many :posts
   
   # enter all emails into the db in a lowercase format
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
   
@@ -95,9 +95,32 @@ class Volunteer < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
   
+  # Function to activate an account, setting the values in the db
+  def activate
+    update_attribute(:activated, true)
+    update_attribute(:activated_at, Time.zone.now)
+  end
+  
   # Function to send an activation email
   def send_activation_email
     VolunteerMailer.account_activation(self).deliver_now
+  end
+  
+  # password reset
+  def create_reset_digest
+    self.reset_token = Volunteer.new_token
+    update_attribute(:reset_digest, Volunteer.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  # sends password reset email
+  def send_password_reset_email
+    VolunteerMailer.password_reset(self).deliver_now
+  end
+  
+  # Function to test and return true if a password reset has expired
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
   
   private
@@ -113,10 +136,6 @@ class Volunteer < ActiveRecord::Base
       self.activation_digest = Volunteer.digest(activation_token)
     end
   
-  # Function to activate an account, setting the values in the db
-  def activate
-    update_attribute(:activated,    true)
-    update_attribute(:activated_at, Time.zone.now)
-  end
+
   
 end

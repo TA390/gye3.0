@@ -7,8 +7,7 @@ class VolunteerMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-
-    mail to: user.email, subject: "GYE - Account activation"
+    mail to: user.email, subject: "GYE Account Activation"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -16,9 +15,8 @@ class VolunteerMailer < ApplicationMailer
   #
   #   en.volunteer_mailer.password_reset.subject
   #
-  def password_reset
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def password_reset(user)
+    @user = user
+    mail to: user.email, subject: "GYE Password Reset"
   end
 end

@@ -20,12 +20,19 @@ class NgoSessionsController < ApplicationController
     ngo = Ngo.find_by(email: params[:ngo_session][:email].downcase)
     
     if ngo && ngo.authenticate(params[:ngo_session][:password])
-      log_in_ngo ngo
-      params[:ngo_session][:remember_me] == '1' ? 
-        remember_ngo(ngo) : forget_ngo(ngo)
-      # redirect to page trying to be accessed or 
-      # the home page if an error occurs
-      redirect_back_or ngo
+      if ngo.activated? == false
+        log_in_ngo ngo
+        params[:ngo_session][:remember_me] == '1' ? 
+          remember_ngo(ngo) : forget_ngo(ngo)
+        # redirect to page trying to be accessed or 
+        # the home page if an error occurs
+        redirect_back_or ngo
+      else
+        message  = "Account not activated. "
+        message += "Please check your email for an activation link."
+        flash[:warning] = message
+        redirect_to root_url        
+      end
     else
       flash.now[:danger] = 'Invalid email or password'
       render 'new'

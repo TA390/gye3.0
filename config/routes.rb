@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :events
   resources :event_volunteers
   resources :tags
+ 
   
   # account activation email link
   resources :account_activations, only: [:edit]
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
   # forgotten passwords
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :ngo_password_resets, only: [:new, :create, :edit, :update]
+            
   
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do

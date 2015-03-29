@@ -12,6 +12,7 @@ class NgosController < ApplicationController
   end
 
   def show
+    @event = current_ngo.events.build if logged_in_ngo?
     @ngo = Ngo.find_by(id: params[:id])
     redirect_to root_url and return unless @ngo
   end
@@ -52,15 +53,6 @@ class NgosController < ApplicationController
     def ngo_params
       params.require(:ngo).permit(:name, :password,
                                   :password_confirmation,                                             :location, :url, :email, :phone)
-    end
-  
-    # test that the ngo is logged in
-    def logged_in_ngo
-      unless logged_in_ngo?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to nlogin_url
-      end
     end
  
     # redirect users that are not the user currently logged in

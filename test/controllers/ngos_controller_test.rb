@@ -6,6 +6,7 @@ class NgosControllerTest < ActionController::TestCase
   def setup
     @ngo = ngos(:oxfam)
     @second_ngo = ngos(:water_aid)
+    
   end
   
   test "should get ngo" do

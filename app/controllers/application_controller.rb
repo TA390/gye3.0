@@ -8,4 +8,14 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include NgoSessionsHelper 
 
+  private
+  
+    # test that the ngo is logged in
+    def logged_in_ngo
+      unless logged_in_ngo?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to nlogin_url
+      end
+    end
 end

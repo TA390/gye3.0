@@ -53,8 +53,23 @@ class NgoTest < ActiveSupport::TestCase
       assert_not @ngo.valid?
   end
   
-    test "authenticated? should return false for a user with nil digest" do
+  test "authenticated? should return false for a user with nil digest" do
       assert_not @ngo.authenticated?(:remember, '')
+  end
+  
+  test "delete events whan an NGO is deleted" do
+    @ngo.save
+    @ngo.events.create!(
+                       name: "Serve Dinner at a Homeless Shelter",
+                       start: DateTime.new(2015, 5, 30, 13, 0, 0),
+                       end: DateTime.new(2015, 5, 30, 14, 30, 0),
+                       location: "London",
+                       description: "Become an important member of the community by volunteering to serve those in need",
+                       occupancy: 3)
+    
+    assert_difference 'Event.count', -1 do
+      @ngo.destroy
+    end
   end
 
 end

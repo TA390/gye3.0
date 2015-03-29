@@ -1,4 +1,3 @@
-
 <% provide(:title, @ngo.name) %>
 
 <body class="profile">
@@ -7,15 +6,69 @@
     <div class="row">
       <div class="col-sm-10">
         <h1 class=""><%= @ngo.name %></h1>
-        <button type="button" class="btn btn-success">Send me a message</button>
-      </div>
+        <div>
+          <button type="button" class="btn btn-success">Send me a message</button>
+        </div>
+
+        <%if logged_in_ngo? %>
+          <div>
+            <button id="trigger" type="button" 
+              class="btn btn-success">Create event</button>
+          </div>
+        <% end %>
+        
+      </div>      
       
       <div class="col-sm-2">
-        <a href="/users" class="pull-right"><img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"></a>
+        <a href="/users" class="pull-right">
+          <img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg">
+        </a>
       </div>
     </div>
-    <br>
+  </div>
+  
+
+<!-- create an event js -->
+<%if logged_in_ngo? %>
+  <script>
+    document.getElementById("trigger").addEventListener("click", function() {
     
+      var split = $('.split').height();
+
+      if( 0 === split ){
+        
+        var autoHeight = $('.split').css('height', 'auto').height();
+    
+        $('.split').height(0).animate(
+          {'height': autoHeight }, 'slow'
+        );
+      }
+      else{
+        $('.split').animate(
+          {'height': '0px'}, 'slow'
+        );
+      }
+  
+    }, true);
+  </script>
+<!-- end create an event js -->
+<!-- create an event -->
+  <div class="split">
+  
+    <div class="container">
+      <% if @event.errors.count > 0 %>
+      <script>
+        $('.split').css('height', 'auto');
+      </script>
+      <% end %>
+      <%= render template: 'events/new' %>   
+    </div>
+  
+  </div>
+<% end %>
+<!-- end create an event -->
+    
+  <div class="container target">  
     <div class="row">
       <div class="col-sm-3">
       <!--left col-->

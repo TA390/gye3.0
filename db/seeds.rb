@@ -34,3 +34,22 @@ Volunteer.create!(name: "Bill",
                     activated: true,
                     activated_at: Time.zone.now)
 end
+
+# generate events for NGOs
+ngos = Ngo.all
+# generate 10 randon events for each NGO
+10.times do
+  name =        Faker::Lorem.sentence,
+  start =       Faker::Date.forward(30),
+  end_ =        Faker::Date.between(start, start),
+  location =    Faker::Address.city
+  description = Faker::Lorem.paragraph,
+  occupancy =   Faker::Number.digit
+
+  ngos.each { |ngo| ngo.events.create!(name: name, 
+                                      start: start, 
+                                      end: end_,
+                                      location: location,
+                                      description: description,
+                                      occupancy: occupancy) }
+end

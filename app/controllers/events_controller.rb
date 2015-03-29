@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :add_volunteer]
+   before_action :correct_ngo, only: :destroy
+  
   #before_action(:set_event, { :only => [:show, :edit, :update, :destroy] })
   #two lines above are the same!!
   
@@ -32,8 +34,11 @@ class EventsController < ApplicationController
       
     else
       #show all
-      @events = Event.order(:start)
+      #@events = Event.order(:start)
+      @events = Event.paginate(page: params[:page], 
+        per_page: 10).order(created_at: :desc)
     end
+    
   end
 
 
@@ -57,12 +62,13 @@ class EventsController < ApplicationController
     
   end
 
+
   # GET /events/new
   def new
-    @event = Event.new
+    #@event = Event.new
     #@event = @ngo.events.create(event_params)
   end
-
+  
   # GET /events/1/edit
   def edit
   end
@@ -70,6 +76,18 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    
+    @event = current_ngo.events.build(event_params)
+    
+    if @event.save
+      flash[:success] = "Event successfully created!"
+      redirect_to events_path
+    else
+      @ngo = current_ngo
+      render 'ngos/show'
+    end
+    
+=begin
     @event = Event.new(event_params)
 
     respond_to do |format|
@@ -81,6 +99,7 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # PATCH/PUT /events/1
@@ -101,10 +120,17 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event.destroy
+    
+    flash[:success] = "Event Deleted"
+    redirect_to request.referrer || root_url
+    
+=begin
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
+=end
+    
   end
 
   private
@@ -115,6 +141,13 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :start, :end, :location)
+      params.require(:event).permit(:name, :start, :end, :location,
+                                    :description, :occupancy, :picture)
     end
+  
+    def correct_ngo
+      @event = current_ngo.events.find_by(id: params[:id])
+      redirect_to root_url if @event.nil?
+    end
+  
 end

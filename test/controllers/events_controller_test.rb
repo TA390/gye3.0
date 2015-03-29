@@ -2,11 +2,45 @@ require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
   
+  def setup
+    @event = events(:homeless)
+  end
+  
   # Events Page
   test "should get events" do
     get :index
     assert_response :success
     assert_select "title", "Events"
+  end
+  
+  test "prevent 'create' if not logged in" do
+    assert_no_difference 'Event.count' do
+      post :create, event: { 
+        name: "Serve Dinner at a Homeless Shelter",
+        start: DateTime.new(2015, 5, 30, 13, 0, 0),
+        end: DateTime.new(2015, 5, 30, 14, 30, 0),
+        location: "London", 
+        description: "Become an important member of the community by volunteering to serve those in need",
+        occupancy: 3 
+      }
+    end
+    assert_redirected_to login_url
+  end
+
+  test "prevent 'destroy' if not logged in" do
+    assert_no_difference 'Event.count' do
+      delete :destroy, id: @event
+    end
+    assert_redirected_to login_url
+  end
+  
+  test "prevent an ngo delete events of another ngo" do
+    log_in_as_ngo(ngos(:oxfam))
+    event = events(:homeless)
+    assert_no_difference 'Event.count' do
+      delete :destroy, id: event
+    end
+    assert_redirected_to root_url
   end
   
 =begin

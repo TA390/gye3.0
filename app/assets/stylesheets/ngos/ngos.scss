@@ -11,9 +11,73 @@
     height: 0px;
 }
 
-#trigger {
-  margin-top: 10px;
-  width: 154px;
-  
-}
+
+
+
+
+
 /* end create an event on the ngo profile page styling */
+
+
+/* wall ngo */
+.ngo_profile .titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.ngo_profile .titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+
+.ngo_profile .commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.ngo_profile .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.ngo_profile .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.ngo_profile .actionBox .form-group * {
+    width:100%;
+}
+.ngo_profile .taskDescription {
+    margin-top:10px 0;
+}
+.ngo_profile .commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+.ngo_profile .commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.ngo_profile .commentList li > div {
+    display:table-cell;
+}
+.ngo_profile .commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.ngo_profile .commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.ngo_profile .commentText p {
+    margin:0;
+}
+.ngo_profile .sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.ngo_profile .actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}

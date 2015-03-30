@@ -15,7 +15,6 @@
 
 .v_index .dropdownbarbox {
 	text-align: center;
-	background-color: white;
 	padding-top: 15px;	
 }
 
@@ -66,4 +65,10 @@ h2 { padding-top: 10px; }*/
     width: 180px; 
     height: 180px;
     border-radius: 20px;  
+}
+
+.v_index{
+  background-image: url(/assets/volunteer-bg/wood-bg.jpg);
+  background-size: cover;
+  
 }

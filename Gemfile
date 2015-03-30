@@ -103,7 +103,11 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 # image uploads
+gem "paperclip"
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+
+#font-awesome icons
+gem 'font-awesome-sass'
 

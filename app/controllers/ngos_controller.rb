@@ -1,5 +1,12 @@
 class NgosController < ApplicationController
   
+  # profile picture
+  has_attached_file :avatar, 
+    styles: { medium: "300x300>", thumb: "100x100>" }, 
+    default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, 
+                                    content_type: /\Aimage\/.*\Z/
+  
   # only allow logged in users to access certain pages
   before_action :logged_in_ngo, only: [:edit, :update]
   # only allower owner of profile to call edit and update
@@ -52,7 +59,8 @@ class NgosController < ApplicationController
   private
     def ngo_params
       params.require(:ngo).permit(:name, :password,
-                                  :password_confirmation,                                             :location, :url, :email, :phone)
+                                  :password_confirmation,                                                   :location, :url, :email, :phone,
+                                  :picture)
     end
  
     # redirect users that are not the user currently logged in

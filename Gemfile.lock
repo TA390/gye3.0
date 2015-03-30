@@ -63,6 +63,10 @@ GEM
       mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -165,6 +169,8 @@ GEM
     fog-xml (0.1.1)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
+    font-awesome-sass (4.3.2.1)
+      sass (~> 3.2)
     formatador (0.2.5)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
@@ -252,6 +258,11 @@ GEM
       multi_json (~> 1.3)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
+    paperclip (4.2.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.18.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -383,6 +394,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   faker
   fog
+  font-awesome-sass
   gon
   guard-minitest (= 2.3.1)
   immigrant
@@ -392,6 +404,7 @@ DEPENDENCIES
   mini_magick
   minitest-reporters (= 1.0.5)
   omniauth-facebook
+  paperclip
   pg
   puma
   rails (= 4.2.0)

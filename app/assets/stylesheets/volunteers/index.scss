@@ -1,7 +1,25 @@
 
-.v_index h1 {
+.v_index, p, h1, h2, h3, h4 {
   color: white;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 0px;
+  margin: 0px;
 }
+
+.v_index, p, h1, h2, h3, h4 {
+  color: white;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+.v_index{
+  background-image: url(/assets/volunteer-bg/wood-bg.jpg);
+
+}
+
+
 
 .v_index body {
     background-color: white;
@@ -11,11 +29,15 @@
 
 .v_index .dropdownbox_des {
 	text-align: center;
+  background-color: #004687;
+  padding: 15px;	
 }
 
 .v_index .dropdownbarbox {
-	text-align: center;
-	padding-top: 15px;	
+  background-color: #004687;
+  text-align: center;
+	padding: 15px;	
+  margin: 100px 0px 0px;
 }
 
 .v_index .sidebar_plus_volunteers{
@@ -36,7 +58,7 @@
 .v_index .search_result {
 	text-align: center;
 	padding-top: 20px;	
-	padding-bottom: 30px;	
+	padding-bottom: 20px;	
 }
 
 
@@ -47,28 +69,31 @@
 
 
 .v_index .volunteers {
-    background-color: blue;}
+   // background-color: blue;
+}
 
 /* h1 { padding-top: 10px; }
 h2 { padding-top: 10px; }*/
 
 .v_index .one_volunteer {
-	 margin: 20px;
-	 border: 1px solid #d3d3d3;
+	 margin: 0px 0px 20px 0px;
+	 border: 2px solid #d3d3d3;
 
    padding: 15px 15px 15px 15px;
-    background-color: red;
+    //background-color: red;
 }
 
 
-.v_index .volunteer_pic img {
+.v_index .volunteer_pic .img-circle {
     width: 180px; 
     height: 180px;
-    border-radius: 20px;  
+
 }
 
-.v_index{
-  background-image: url(/assets/volunteer-bg/wood-bg.jpg);
-  background-size: cover;
+
+
+.v_index .btn-primary {
+
   
 }
+

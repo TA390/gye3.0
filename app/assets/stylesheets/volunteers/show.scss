@@ -5,12 +5,18 @@
 
 .profile{
   background-image: url(/assets/volunteer-bg/shoes-bg.jpg);
-  background-size: cover;
-  
+
+}
+
+.profile, p, h1, h2, h3, h4 {
+
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+
 }
 
 .profile h1 {
   color: white;
-}
+  padding: 0px;
 
+}
 

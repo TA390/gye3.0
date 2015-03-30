@@ -1,18 +1,23 @@
 class Volunteer < ActiveRecord::Base
 
-
   has_many :event_volunteers, dependent: :destroy
   has_many :events, through: :event_volunteers
+  
   has_many :volunteer_tags
   has_many :tags, through: :volunteer_tags
   has_many :posts
- 
-  
+
   # enter all emails into the db in a lowercase format
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
-  
+
+  # profile picture
+  has_attached_file :avatar, 
+    styles: { medium: "300x300>", thumb: "100x100>" }, 
+    default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, 
+                                    content_type: /\Aimage\/.*\Z/
 
   # Returns count of sign ups to events
   def signups

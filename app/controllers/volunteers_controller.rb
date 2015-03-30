@@ -1,4 +1,6 @@
 class VolunteersController < ApplicationController
+  
+  
   before_action :logged_in_user, only: [:edit, :update, :event]
   before_action :correct_user, only: [:edit, :update]
   
@@ -87,7 +89,8 @@ class VolunteersController < ApplicationController
 
       params.require(:volunteer).permit(:name, :last_name, :email,
                                         :location, :gender, :password, 
-                                        :password_confirmation, :type)
+                                        :password_confirmation, :picture,
+                                        :avatar)
       
     end
   

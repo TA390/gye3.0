@@ -6,6 +6,17 @@ class Ngo < ActiveRecord::Base
   before_save   :downcase_email
   before_create :create_activation_digest
   
+  # profile picture
+  has_attached_file :avatar, 
+    styles: { large: "600x600#", medium: "300x300#", thumb: "100x100#" }, 
+    default_url: "/images/profile/default_profile.png"
+  validates_attachment_content_type :avatar, 
+                                    content_type: /\Aimage\/.*\Z/
+  
+  validates_attachment :avatar,
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] },
+    size: { in: 0..5.megabytes }
+  
   # converts email to lowercase
   def downcase_email
     self.email = email.downcase

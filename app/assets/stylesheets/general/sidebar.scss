@@ -1,0 +1,609 @@
+.sidebar {
+  margin: 0;
+  padding: 0;
+  background-color: #3D3D3D;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar > ul li {
+  display: block;
+  border: 0;
+  border-bottom: 1px #5c5c5c solid;
+  position: relative;
+}
+
+.sidebar > ul li.title {
+  padding: 20px 20px 10px 20px;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  color: #000000;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+  color: #ffffff;
+}
+
+.sidebar > ul li a {
+  display: block;
+  position: relative;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #eeeeee;
+  background-color: #3D3D3D;
+}
+
+.sidebar > ul li a:hover {
+  background-color: #262626;
+  color: #ffffff;
+}
+ .sidebar > ul li a.dropdown-toggle:after {
+  right: 10px;
+  bottom: 5px;
+}
+
+.sidebar > ul li a [class*="icon-"] {
+  margin-right: 15px;
+}
+
+.sidebar > ul li.stick {
+  position: relative;
+}
+
+.sidebar > ul li.stick:before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 40px;
+  left: -7px;
+  text-indent: -9999px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: inherit;
+}
+
+.sidebar > ul li.disabled a {
+  background-color: #8a8a8a;
+  cursor: default;
+  color: #555555;
+}
+
+.sidebar > ul li.active a {
+  background-color: #9a1616;
+  color: #ffffff;
+}
+
+.sidebar > ul ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  display: none;
+  z-index: 1000;
+  background: #ffffff;
+  min-width: 220px;
+  width: auto;
+  border: 1px solid #dcddde;
+  box-shadow: none;
+  position: relative !important;
+  background-color: #e5e5e5;
+  min-width: 100%;
+}
+
+.sidebar > ul ul li {
+  display: block;
+  margin: 10px 0;
+  padding: 0;
+  vertical-align: baseline;
+  position: relative;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.sidebar > ul ul li a {
+  display: block;
+  text-decoration: none;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  color: #000000;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
+  color: inherit;
+}
+
+.sidebar > ul ul li.title {
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+ 
+.sidebar > ul ul.compact a {
+  font-weight: normal;
+  font-size: 10.5pt;
+  line-height: 12pt;
+  color: inherit;
+}
+ 
+.sidebar > ul ul.compact li.title {
+  margin-bottom: 10px;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.02em;
+}
+ 
+.sidebar > ul ul ul.secondary {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: 15px;
+}
+ 
+.sidebar > ul ul ul.secondary li a {
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.02em;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.4rem;
+  color: inherit;
+}
+ 
+.sidebar > ul ul.shadow {
+  box-shadow: 3px 3px 0 rgba(236, 236, 236, 0.7);
+}
+ 
+.sidebar > ul ul li {
+  margin: 5px 0 0;
+  width: 100%;
+  border: 1px transparent solid;
+}
+ 
+.sidebar > ul ul li:last-child {
+  margin-bottom: 5px;
+}
+ 
+.sidebar > ul ul li.disabled,
+.sidebar > ul ul li.disabled:hover {
+  cursor: default !important;
+  background: transparent !important;
+  color: #eeeeee;
+}
+ 
+.sidebar > ul ul li.disabled a,
+.sidebar > ul ul li.disabled:hover a {
+  color: inherit;
+  cursor: inherit;
+  background: inherit;
+}
+ 
+.sidebar > ul ul a {
+  padding: 8px 32px !important;
+  color: inherit;
+  font-size: 15px !important;
+  line-height: 14px !important;
+  cursor: pointer;
+}
+ 
+.sidebar > ul ul li:hover {
+  background: #edf4fc;
+  border-color: #a8d2fd;
+}
+ 
+.sidebar > ul ul li.checked a:before,
+ .sidebar > ul ul li.checked-partial a:before,
+ .sidebar > ul ul li.unchecked a:before {
+  font-family: metroSysIcons;
+  position: absolute;
+  left: 10px;
+  content: "\e004";
+}
+
+.sidebar > ul ul li.checked-partial a:before {
+  content: "\e005";
+}
+ 
+.sidebar > ul ul li.unchecked a:before {
+  content: "\e005";
+}
+ 
+.sidebar > ul ul.place-right {
+  right: -15px;
+  left: auto;
+}
+ 
+.sidebar > ul ul .divider {
+  padding: 0;
+  height: 1px;
+  margin: 9px 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-width: 0;
+}
+ 
+.sidebar > ul ul .divider:hover {
+  background: #e5e5e5;
+}
+ 
+.sidebar > ul ul.open {
+  display: block !important;
+}
+ 
+.sidebar > ul ul .dropdown-menu {
+  left: 100%;
+  top: -10%;
+}
+ 
+.sidebar > ul ul > li:hover > .dropdown-menu[data-show="hover"] {
+  display: block;
+}
+ 
+.sidebar > ul ul > li > a.dropdown-toggle:after {
+  font-family: metroSysIcons;
+  font-size: .7em;
+  content: "\e001";
+  left: 90%;
+  top: 50%;
+  margin-top: -1.4em;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+ 
+.sidebar > ul ul.drop-left {
+  left: -100%;
+}
+ 
+.sidebar > ul ul.drop-up {
+  top: auto;
+  bottom: 0;
+}
+ 
+.sidebar > ul ul .menu-title {
+  background-color: #f6f7f8;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
+}
+ 
+.sidebar > ul ul .menu-title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+ 
+.sidebar > ul ul .menu-title:first-child:hover {
+  border-top-width: 0;
+}
+ 
+.sidebar > ul ul .menu-title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+}
+ 
+.sidebar > ul ul.inverse {
+  border: 2px #3b3b3b solid;
+}
+ 
+.sidebar > ul ul.inverse li {
+  border: 0;
+}
+ 
+.sidebar > ul ul.inverse li a {
+  padding: 9px 32px !important;
+}
+ 
+.sidebar > ul ul.inverse li:hover {
+  border: 0;
+  background-color: #e5e5e5;
+}
+ 
+.sidebar > ul ul.inverse .menu-title:hover {
+  background-color: #f6f7f8;
+}
+ 
+.sidebar > ul ul.inverse .divider {
+  margin-left: 0;
+  margin-right: 0;
+}
+ 
+
+.sidebar > ul ul li {
+  border: 0;
+}
+ 
+.sidebar > ul ul li a {
+  background-color: #e5e5e5;
+}
+ 
+.sidebar > ul ul li.divider {
+  background-color: #c2c2c2;
+}
+ 
+.sidebar > ul ul li.divider:hover {
+  background-color: #c2c2c2;
+}
+
+.sidebar > ul ul li.disabled a {
+  color: #999999;
+}
+
+.sidebar > ul ul li.disabled a:hover {
+  color: #999999;
+}
+
+.sidebar > ul ul.open {
+  display: block;
+}
+
+.sidebar.light {
+  background-color: #ffffff;
+  border: 1px #eaeaea solid;
+}
+.sidebar.light li {
+  border-bottom-color: #eeeeee;
+}
+.sidebar.light li.title {
+  color: #1d1d1d;
+}
+
+.sidebar.light li a {
+  color: #1d1d1d;
+  background-color: #ffffff;
+}
+
+.sidebar.light li a:hover {
+  background-color: #00aff0;
+}
+ 
+.sidebar.light li ul {
+  background-color: #ffffff;
+  border: 1px transparent solid;
+}
+
+.sidebar.light li .divider {
+  background-color: #eeeeee;
+}
+
+.sidebar.light li .divider:hover {
+  background-color: #eeeeee;
+}
+
+.sidebar.light li.disabled a {
+  background-color: #ffffff;
+  cursor: default;
+  color: #999999;
+}
+
+.sidebar.light li.active a {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+
+.dropdown-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  display: none;
+  z-index: 1000;
+  background: #ffffff;
+  min-width: 220px;
+  width: auto;
+  border: 1px solid #dcddde;
+}
+.dropdown-menu li {
+  display: block;
+  margin: 10px 0;
+  padding: 0;
+  vertical-align: baseline;
+  position: relative;
+  font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+}
+.dropdown-menu li a {
+  display: block;
+  text-decoration: none;
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  color: #000000;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
+  color: inherit;
+}
+.dropdown-menu li.title {
+  font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: #000000;
+  letter-spacing: 0.00em;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.01em;
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+.dropdown-menu.compact a {
+  font-weight: normal;
+  font-size: 10.5pt;
+  line-height: 12pt;
+  color: inherit;
+}
+.dropdown-menu.compact li.title {
+  margin-bottom: 10px;
+  font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.02em;
+}
+
+.dropdown-menu ul.secondary {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: 15px;
+}
+.dropdown-menu ul.secondary li a {
+  font-family: 'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.02em;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.4rem;
+  color: inherit;
+}
+.dropdown-menu.shadow {
+  box-shadow: 3px 3px 0 rgba(236, 236, 236, 0.7);
+}
+.dropdown-menu li {
+  margin: 5px 0 0;
+  width: 100%;
+  border: 1px transparent solid;
+}
+.dropdown-menu li:last-child {
+  margin-bottom: 5px;
+}
+.dropdown-menu li.disabled,
+.dropdown-menu li.disabled:hover {
+  cursor: default !important;
+  background: transparent !important;
+  color: #eeeeee;
+}
+.dropdown-menu li.disabled a,
+.dropdown-menu li.disabled:hover a {
+  color: inherit;
+  cursor: inherit;
+  background: inherit;
+}
+.dropdown-menu a {
+  padding: 8px 32px !important;
+  color: inherit;
+  font-size: 15px !important;
+  line-height: 14px !important;
+  cursor: pointer;
+}
+.dropdown-menu li:hover {
+  background: #edf4fc;
+  border-color: #a8d2fd;
+}
+.dropdown-menu li.checked a:before,
+.dropdown-menu li.checked-partial a:before,
+.dropdown-menu li.unchecked a:before {
+  font-family: metroSysIcons;
+  position: absolute;
+  left: 10px;
+  content: "\e004";
+}
+.dropdown-menu li.checked-partial a:before {
+  content: "\e005";
+}
+.dropdown-menu li.unchecked a:before {
+  content: "\e005";
+}
+.dropdown-menu.place-right {
+  right: -15px;
+  left: auto;
+}
+.dropdown-menu .divider {
+  padding: 0;
+  height: 1px;
+  margin: 9px 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-width: 0;
+}
+.dropdown-menu .divider:hover {
+  background: #e5e5e5;
+}
+.dropdown-menu.open {
+  display: block !important;
+}
+.dropdown-menu .dropdown-menu {
+  left: 100%;
+  top: -10%;
+}
+.dropdown-menu > li:hover > .dropdown-menu[data-show="hover"] {
+  display: block;
+}
+.dropdown-menu > li > a.dropdown-toggle:after {
+  font-family: metroSysIcons;
+  font-size: .7em;
+  content: "\e001";
+  left: 90%;
+  top: 50%;
+  margin-top: -1.4em;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.dropdown-menu.drop-left {
+  left: -100%;
+}
+.dropdown-menu.drop-up {
+  top: auto;
+  bottom: 0;
+}
+.dropdown-menu .menu-title {
+  background-color: #f6f7f8;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 4px 8px;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+  color: #646464;
+}
+.dropdown-menu .menu-title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.dropdown-menu .menu-title:first-child:hover {
+  border-top-width: 0;
+}
+.dropdown-menu .menu-title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+  border-bottom: 1px #dcddde solid;
+  border-top: 1px #dcddde solid;
+}

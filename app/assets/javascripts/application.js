@@ -15,5 +15,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require twitter/typeahead
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
 

@@ -52,7 +52,8 @@ class NgosController < ApplicationController
   private
     def ngo_params
       params.require(:ngo).permit(:name, :password,
-                                  :password_confirmation,                                             :location, :url, :email, :phone)
+                                  :password_confirmation,                                                   :location, :url, :email, :phone,
+                                  :picture, :avatar)
     end
  
     # redirect users that are not the user currently logged in

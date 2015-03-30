@@ -5,20 +5,20 @@ class VolunteersController < ApplicationController
   def index
     if params[:tags].present?
       #joins vol table to tags (via volunteer_tag) on tag name matching param tags
-      @volunteers = Volunteer.joins( :tags).where(tags: {:name => params[:tags]} ).order(:first_name)
+      @volunteers = Volunteer.joins( :tags).where(tags: {:name => params[:tags]} ).order(:name)
     
     elsif params[:event_ids].present?
       #joins vol table to events (via event_volunteer) on event id matching param event_ids
-      @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_ids]} ).order(:first_name)
+      @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_ids]} ).order(:name)
       
       
     elsif params[:location].present?
       #shows all vols with location matching params location
-      @volunteers = Volunteer.where(:location => params[:location]).order(:first_name)
+      @volunteers = Volunteer.where(:location => params[:location]).order(:name)
       
     else
       #show all
-      @volunteers = Volunteer.order(:first_name)
+      @volunteers = Volunteer.order(:name)
     end
   end
       

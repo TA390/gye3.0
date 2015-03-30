@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe VolunteersController, :type => :controller do
   describe "GET index" do
       
-    let!(:v1) { Volunteer.create!(first_name: 'aaaa', last_name: 'xyzd', email: 'testtest3@gmail.com', gender: 'M',
+    let!(:v1) { Volunteer.create!(name: 'aaaa', last_name: 'xyzd', email: 'testtest3@gmail.com', gender: 'M',
       location: 'London', password: 'giveyoureffort19') }
-    let!(:v2) { Volunteer.create!(first_name: 'bbbb', last_name: 'xyzd', email: 'testtest2@gmail.com', gender: 'F',
+    let!(:v2) { Volunteer.create!(name: 'bbbb', last_name: 'xyzd', email: 'testtest2@gmail.com', gender: 'F',
       location: 'New York', password: 'giveyoureffort19') }      
-    let!(:v3) { Volunteer.create!(first_name: 'cccc', last_name: 'xyzd', email: 'testtest4@gmail.com', gender: 'F',
+    let!(:v3) { Volunteer.create!(name: 'cccc', last_name: 'xyzd', email: 'testtest4@gmail.com', gender: 'F',
       location: 'San Francisco', password: 'giveyoureffort19') }
-    let!(:v4) { Volunteer.create!(first_name: 'dddd', last_name: 'xyzd', email: 'testtest1@gmail.com', gender: 'M',
+    let!(:v4) { Volunteer.create!(name: 'dddd', last_name: 'xyzd', email: 'testtest1@gmail.com', gender: 'M',
       location: 'New York', password: 'giveyoureffort19') }    
     
     
@@ -88,10 +88,14 @@ RSpec.describe VolunteersController, :type => :controller do
     
     
     context "when testing index functionality of volunteers for events" do     
-      let!(:test_event_1) { Event.create!(name: 'dog event in SF', start: DateTime.new(2015,3,7), location: 'San Francisco') } 
-      let!(:test_event_2) { Event.create!(name: 'event no tags in NY', start: DateTime.new(2015,3,8), location: 'New York') } 
-      let!(:test_event_3) { Event.create!(name: 'cat event in NY', start: DateTime.new(2015,4,8), location: 'New York') } 
-      let!(:test_event_4) { Event.create!(name: 'dog and cat event in SF', start: DateTime.new(2015,6,8), location: 'San Francisco') } 
+      let!(:test_event_1) { Event.create!(name: 'dog event in SF', start: DateTime.new(2015,3,7),
+        end: DateTime.new(2015,3,7), location: 'San Francisco') } 
+      let!(:test_event_2) { Event.create!(name: 'event no tags in NY', start: DateTime.new(2015,3,8),
+        end: DateTime.new(2015,3,8), location: 'New York') } 
+      let!(:test_event_3) { Event.create!(name: 'cat event in NY', start: DateTime.new(2015,4,8), 
+        end: DateTime.new(2015,4,8), location: 'New York') } 
+      let!(:test_event_4) { Event.create!(name: 'dog and cat event in SF', start: DateTime.new(2015,6,8), 
+        end: DateTime.new(2015,6,8), location: 'San Francisco') } 
       
       let!(:test_event_vol_1) { EventVolunteer.create!(event: test_event_1, volunteer: v1) }
       let!(:test_event_vol_2) { EventVolunteer.create!(event: test_event_2, volunteer: v1) }

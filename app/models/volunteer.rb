@@ -144,6 +144,3 @@ class Volunteer < ActiveRecord::Base
   end
   
 end
-
-class User < Volunteer; end 
-class Ngo < Volunteer; end

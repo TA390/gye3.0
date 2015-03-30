@@ -7,12 +7,42 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     #byebug
+          
+    #show all
+    @events = Event.order(:start)
+          
+    # http://stackoverflow.com/questions/21590671/handling-multiple-filters-params-cleanly-in-controller
+    ###################### needs testing ###########################################
+    if params[:tags].present? && params[:location].present? && params[:start].present?
+      #joins event table to tags, location, and start matching param tags, location, and start date 
+      @events = Event.where( :location => params[:location]).
+        where( :start.strftime('%F') => params[:start]).
+        joins( :tags).where(tags: {:name => params[:tags]} ).order(:name) 
     
-    # add params[:tags].present? && params[:location].present?
-    # filter by !3 - tag, loc, date
-    
-    if params[:tags].present?
-     #joins event table to tags (via event_tags) on tag name matching param tags
+    elsif params[:tags].present? && params[:location].present?
+      #joins event table to tags and location matching param tags and location 
+      @events = Event.where( :location => params[:location]).
+        joins( :tags).where(tags: {:name => params[:tags]} ).order(:start)
+      
+    elsif params[:start].present? && params[:location].present?
+      #event table where location and start matching param location and start date 
+      @events = Event.where( :location => params[:location]).
+        where( :start.strftime('%F') => params[:start]).order(:name)
+      
+    elsif params[:tags].present? && params[:start].present?
+      #joins event table to tags and start matching param tags and start date 
+      @events = Event.where( :start.strftime('%F') => params[:start]).
+        joins( :tags).where(tags: {:name => params[:tags]} ).order(:name)
+      
+      # input year-month-day like: '20015-3-19'
+    elsif params[ :start].present?
+      #shows all event with start date matching params start
+      @events = Event.where( :start.strftime('%F') => params[:start]).order(:name)      
+    ###################### needs testing ###########################################
+      
+      
+    elsif params[:tags].present?
+      #joins event table to tags (via event_tags) on tag name matching param tags
       @events = Event.joins( :tags).where(tags: {:name => params[:tags]} ).order(:start)
 
     elsif params[:ngos].present?
@@ -23,18 +53,10 @@ class EventsController < ApplicationController
       #shows all event with location matching params location
       @events = Event.where( :location => params[:location]).order(:start)
       
-    elsif params[:vid].present?
+    else params[:vid].present?
       #joins event table to volunteers (on volid) matching param volunteer id
-      @events = Event.joins( :volunteers).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)      
+      @events = Event.joins( :volunteers).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)
       
-      # needs testing!!! input year-month-day like: '20015-3-19'
-    elsif params[ :start].present?
-      #shows all event with start date matching params start
-      @events = Event.where( :start.strftime('%F') => params[:start]).order(:name)
-      
-    else
-      #show all
-      @events = Event.order(:start)
     end
   end
 

@@ -7,15 +7,20 @@
     <div class="row">
       <div class="col-sm-10">
         <h1 class=""><%= @user.name %> <%= @user.last_name %></h1>
-        <button type="button" class="btn btn-success">Send me a message</button>
+        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#msgModal">Send me a message</a>
       </div>
       
-      <div class="col-sm-2">
+      <div class="col-sm-2" style="height: 200px">
         <a href="/users" class="pull-right">
-        
-
           
-          <img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg">
+          <% if @user.avatar %>
+            <%= image_tag @user.avatar.url(:medium) %>
+           
+          <% else %>
+            <%= image_tag 'app/assets/images/profile/default_profile.png' %>
+          <% end%>
+          
+          <!-- <img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"> -->
         
         
         </a>
@@ -87,7 +92,29 @@
       </div>
     </div>
   </div>
-    
+  
+  <!-- Send me a message modal -->
+  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Message tool</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Message subject</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Message Text</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-sucess">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 </body> 
 
 

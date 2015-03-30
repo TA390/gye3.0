@@ -1,13 +1,13 @@
 
 .v_index, p, h1, h2, h3, h4 {
-  color: white;
+ 
   font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
   padding: 0px;
   margin: 0px;
 }
 
 .v_index, p, h1, h2, h3, h4 {
-  color: white;
+
   font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
   padding: 0px;
   margin: 0px;
@@ -15,29 +15,31 @@
 
 
 .v_index{
-  background-image: url(/assets/volunteer-bg/wood-bg.jpg);
+  /*background-image: url(/assets/volunteer-bg/wood-bg.jpg);*/
 
 }
 
 
 
 .v_index body {
-    background-color: white;
+
     padding-top: 70px;
   
 }
 
 .v_index .dropdownbox_des {
 	text-align: center;
-  background-color: #004687;
   padding: 15px;	
 }
 
 .v_index .dropdownbarbox {
-  background-color: #004687;
+ background-image: url(http://heartresearch.org.uk/sites/default/files/pageimages/Volunteers-sm.jpg);
+  
+  
+  
   text-align: center;
 	padding: 15px;	
-  margin: 100px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .v_index .sidebar_plus_volunteers{

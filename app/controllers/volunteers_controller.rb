@@ -89,7 +89,8 @@ class VolunteersController < ApplicationController
 
       params.require(:volunteer).permit(:name, :last_name, :email,
                                         :location, :gender, :password, 
-                                        :password_confirmation, :picture)
+                                        :password_confirmation, :picture,
+                                        :avatar)
       
     end
   

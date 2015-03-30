@@ -101,4 +101,19 @@ class VolunteerTest < ActiveSupport::TestCase
       assert_not @new_user.authenticated?(:remember, '')
   end
   
+  test "sign/unsign to/from an event" do
+    user = volunteers(:bill)
+    event  = events(:homeless)
+    # has user signed up
+    assert_not user.signed_up?(event)
+    # sign up user
+    user.sign_up(event)
+    # test that user is now sign up to event
+    assert user.signed_up?(event)
+    # unsign from an event
+    user.unsign(event)
+    # test that user is no longer signed up to an event
+    assert_not user.signed_up?(event)
+  end
+  
 end

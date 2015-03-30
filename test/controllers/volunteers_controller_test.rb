@@ -54,5 +54,10 @@ class VolunteersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
     
   end
+  
+  test "redirect user trying to access 'my events' page if not signed in" do
+    get :event_volunteers, id: @generic_user
+    assert_redirected_to login_url
+  end
 
 end

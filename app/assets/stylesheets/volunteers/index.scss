@@ -41,6 +41,12 @@
 }
 
 
+.v_index .checkbox{
+  padding: 0px 5px;
+  
+}
+
+
 .v_index .volunteers {
     background-color: blue;}
 
@@ -48,9 +54,9 @@
 h2 { padding-top: 10px; }*/
 
 .v_index .one_volunteer {
-	 margin-top: 50px;
+	 margin: 20px;
 	 border: 1px solid #d3d3d3;
-   border-radius: 25px; 
+
    padding: 15px 15px 15px 15px;
     background-color: red;
 }

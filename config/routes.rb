@@ -37,9 +37,13 @@ Rails.application.routes.draw do
   resources :volunteers
   resources :ngos
   resources :events
-  resources :event_volunteers
   resources :tags
  
+  resources :volunteers do
+    member do
+      get :events
+    end
+  end
   
   # account activation email link
   resources :account_activations, only: [:edit]
@@ -49,6 +53,8 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :ngo_password_resets, only: [:new, :create, :edit, :update]
             
+  # sign up and drop out of an event
+  resources :event_volunteers, only: [:create, :destroy]
   
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do

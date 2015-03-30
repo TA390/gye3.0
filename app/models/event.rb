@@ -5,13 +5,12 @@ class Event < ActiveRecord::Base
   
   has_many :event_tags
   has_many :tags, through: :event_tags
-  has_many :event_volunteers
+  has_many :event_volunteers, dependent: :destroy
   has_many :volunteers, through: :event_volunteers
   has_one :wall, dependent: :destroy 
   
-  before_save :valid_date?, only: [:create, :edit] 
-
-  validate  :picture_size
+  validate :event_date
+  validate :picture_size
   
   validates :ngo_id, 
     presence: true
@@ -33,7 +32,6 @@ class Event < ActiveRecord::Base
     length: { maximum: 1000 }
   
   validates :occupancy, 
-    presence: true,
     numericality: { greater_than_or_equal_to: 1 }
 
   
@@ -61,22 +59,18 @@ class Event < ActiveRecord::Base
   scope :upcoming, -> { where(future: true) }
   
   private
-    def valid_date?
-      valid = true
+  def event_date
       if past?
         valid = false
         errors.add(:start, "date cannot be in the past")
       end  
       
       if self.end < self.start
-        valid = false
         errors.add(:end, "date cannot be before start date")
       elsif self.end < ::DateTime.current
-        valid = false
         errors.add(:end, "date cannot be in the past")
       end
         
-      valid
     end
   
     # Validates the size of an uploaded picture.

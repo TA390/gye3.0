@@ -33,12 +33,12 @@
 
 
 <body class="v_index">
-  
+   
   <div class="dropdownbarbox">
     	<div class="container">
           <div class="dropdownbox_des">
- 				    <h3> Find Your Way to Make a Change </h3> 
-				     <h4> Wherever you like. Find your match! </h4>
+ 				    <h3> Volunteer Search Tool </h3> 
+				     <h4> Find Eligble Volunteers! </h4>
          	</div>
       </div>
 
@@ -100,39 +100,37 @@
 	</div>
   
   <div class = "sidebar_plus_volunteers">
-    <div class="col-md-2 metro"> 
- 	    <div class="form">
-        <label class="control-label"> CAUSE AREA </label>
-        <label class="radio"> <input value="1" type="radio">animals </label>
-        <label class="radio"> <input value="2" type="radio">children </label>
-        <label class="radio"> <input value="3" type="radio">health care </label>
-        <label class="radio"> <input value="4" type="radio">enviroment </label>
-      </div>
-		 	<br>
-
-      <div class="form">
-        <label class="control-label">RATINGS </label>
-        <label class="radio"> <input value="1" type="radio"> 6 Stars </label> 
-        <label class="radio"> <input value="2" type="radio"> 5 Stars </label> 
-        <label class="radio"> <input value="3" type="radio"> 4 Stars </label> 
-        <label class="radio"> <input value="4" type="radio"> 3 Stars </label> 
-        <label class="radio"> <input value="5" type="radio"> 2 Stars </label> 
-        <label class="radio"> <input value="6" type="radio"> 1 Stars </label>
-     </div>
-  	 <br>
+    <div class="col-md-3"> 
+     
+    <div class="list-group">
+      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#rating-checkbox">Rating</a>
+        <div class ="collapse checkbox" id="rating-checkbox"> 
+          <form role="form">
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 5 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 4 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 3 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i>
+               2 stars</label></div>
+             <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i>
+               1 star</label></div>
+          </form>
+        </div>
       
-      <div class="form">
-         <label class="control-label"> TIME </label>
-         <label class="radio"><input value="1" type="radio"> 1 Hour</label> 
-         <label class="radio"><input value="2" type="radio"> 2 hours </label> 
-         <label class="radio"><input value="2" type="radio"> 3 hours</label> 
-         <label class="radio"><input value="2" type="radio"> 4 hours</label> 
-         <label class="radio"><input value="2" type="radio"> 5 hours or above</label> 
-      </div>
+      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#sex-checkbox">Gender</a>
+         <div class ="collapse checkbox" id="sex-checkbox"> 
+          <form role="form">
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-male"></i> Male</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-female"></i> Female</label></div>
+          </form>
+        </div>
+      
+      <a href="#" class="list-group-item">Third item</a>
+    </div>
+    
     </div>
 	            
 	  
-    <div class="volunteers col-md-9 col-md-offset-1">
+    <div class="volunteers col-md-9">
       <%= will_paginate %>
       <% @volunteers.each do |volunteer| %>
         <div class = "one_volunteer">

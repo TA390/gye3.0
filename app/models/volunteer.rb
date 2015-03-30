@@ -1,11 +1,12 @@
 class Volunteer < ActiveRecord::Base
 
 
-  has_many :event_volunteers
+  has_many :event_volunteers, dependent: :destroy
   has_many :events, through: :event_volunteers
   has_many :volunteer_tags
   has_many :tags, through: :volunteer_tags
   has_many :posts
+ 
   
   # enter all emails into the db in a lowercase format
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -121,6 +122,21 @@ class Volunteer < ActiveRecord::Base
   # Function to test and return true if a password reset has expired
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+  
+  # Sign up to an event.
+  def sign_up(event)
+    event_volunteers.create(volunteer_id: event.id)
+  end
+
+  # Unsign from an event.
+  def unsign(event)
+    event_volunteers.find_by(volunteer_id: event.id).destroy
+  end
+
+  # Function to test and return true if volunteer is signed up to 'event'
+  def signed_up?(event)
+    event_volunteers.include?(event)
   end
   
   private

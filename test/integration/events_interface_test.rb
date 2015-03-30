@@ -17,7 +17,7 @@ class EventsInterfaceTest < ActionDispatch::IntegrationTest
         start:       "2010-05-30 13:00:00",
         end:         "2015-05-30 14:30:00",
         location:    "London",
-        description: ""
+        description: "",
         occupancy:   3  
         
       }

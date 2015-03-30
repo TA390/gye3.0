@@ -1,47 +1,66 @@
-
-    <div id="signupform">
+<div id="signupform">
       
-      <div class="container">
-        <div class="row text-center">
-          <br/>
-          <h1>NGO</h1>
-          <br/>
-        </div>
-      </div>
+  <div class="container">
+    <div class="row text-center">
+      <br/>
+        <h1>Ngo</h1>
+      <br/>
+    </div>
+  </div>   
       
-      
-      
-      <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3 form-group">
-          <%= form_for(@ngo) do |f| %>
+  <div class="container">
+    <div class="row centered-form">
+      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+          
+          <div class="panel-heading">    
+            <h3 class="panel-title"> Join us and make an impact <small>It's free!</small></h3>
+          </div>
+          
+          <div class="panel-body">
+            <%= form_for(@ngo) do |f| %>
           
             <%= render 'shared/error_messages', object: f.object %>
 
-            <%= f.label "Name" %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <div class="form-group">
+              <%= f.text_field :name, placeholder: "Company Name", class: 'form-control' %>
+            </div>
 
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
+            <div class="form-group">
+              <%= f.email_field :email, placeholder: "Email", class: 'form-control' %>
+            </div>
 
-
-            <%= f.label :location %>
-            <%= f.text_field :location, class: 'form-control' %>
-          
-            <%= f.label :url %>
-            <%= f.url_field :url, class: 'form-control' %>
+            <div class="form-group">
+              <%= f.text_field :location, placeholder: "Location", class: 'form-control' %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.url_field :url, placeholder: "Url", class: 'form-control' %>
+            </div>
            
-            <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control' %>
-
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
+            
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <%= f.password_field :password, placeholder: "Password",class: 'form-control' %>
+                </div>
+              </div>
+                    
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <%= f.password_field :password_confirmation, placeholder: "Confirm Pasword", class: 'form-control' %>
+                </div>
+              </div>
+                    
+            </div>
 
             <%= submit_tag 'Create NGO Account', class: "btn btn-primary" %>
             
           <% end %>
+                     
+          </div>
         </div>
       </div>
-      </div>
-        
     </div>
+  </div>  
+</div>

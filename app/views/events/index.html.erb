@@ -30,7 +30,7 @@
               <span class="ngo"><h3><%= event.name %></h3></span>
               <span class="description"> <%= event.description %> </span>
 
-              <%=button_to 'I want to help', "#", method: :post, class: "btn btn-info"%>
+              <%= render 'volunteers/sign_up' if logged_in? %>
               
               <%=button_to 'Learn More', events_path(event), method: :get, class: "btn btn-info"%>
               

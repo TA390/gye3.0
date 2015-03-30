@@ -1,5 +1,5 @@
 class VolunteersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :event]
   before_action :correct_user, only: [:edit, :update]
   
   def index
@@ -72,6 +72,12 @@ class VolunteersController < ApplicationController
     end
   end
   
+  def events
+    @title = "My Events"
+    @user  = Volunteer.find(params[:id])
+    @users = @user.event_volunteers.paginate(page: params[:page], per_page: 10)
+    render 'show_event'
+  end
 
 
   # private functions

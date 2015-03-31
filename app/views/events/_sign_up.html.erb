@@ -1,0 +1,9 @@
+<%= form_for(current_user.event_volunteers.build, remote: true) do |f| %>
+
+  <div>
+    <%= hidden_field_tag :event_id, @event.id %>
+  </div>
+ 
+  <%= f.submit "Attend", class: "btn btn-primary" %>
+
+<% end %>

@@ -59,7 +59,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    
+    @event = Event.find(params[:id])
+    redirect_to root_url and return unless @event
   end
 
 

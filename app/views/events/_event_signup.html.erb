@@ -1,7 +1,7 @@
 <% unless current_user?(@user) %>
   <div id="signup_form">
   <% if current_user.signed_up?(@event) %>
-    <%= render 'drop_out' %>
+    <%= render 'opt_out' %>
   <% else %>
     <%= render 'sign_up' %>
   <% end %>

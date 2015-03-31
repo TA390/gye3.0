@@ -29,7 +29,7 @@
                   </li> 
           
             <% elsif logged_in_ngo? %>
-          
+<%= link_to "Log out", nlogout_path, method: "delete" %>          
                   <li class="dropdown">
 
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle" >

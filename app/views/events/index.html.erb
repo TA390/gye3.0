@@ -2,152 +2,240 @@
 <p id="notice"><%= notice %></p>
 
 
-
-
-
-
 <body class="e_index">
-  
-  
-  
-       <div class="dropdownbarbox">
-    	<div class="container">
-          <div class="dropdownbox_des">
- 				    <h1>Event Listing </h1> 
-				    <h2> Find The Best Event For You! </h2>
-         	</div>
+
+  <div class="dropdownbarbox">
+    <div class="container">
+      <div class="dropdownbox_des">
+ 			  <h1>Event Listing </h1> 
+				<h2> Find The Best Event For You! </h2>
       </div>
+    </div>
   </div>
-  
-    
-  
-  	<div class="search_result">
-		<p>We have found xxx events based on your screening criteria</p>  
+
+  <div class="search_result">
+	  <p>We have found xxx events based on your screening criteria</p>  
 	</div>
   
- 
-  
-  
-  
-  
 
   
-  
-  
-<div class="col-md-3"> 
-     
-    <div class="list-group">
+<div class="col-md-3">    
+  <div class="list-group">
       
-      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#categories-checkbox">Categories</a>
-        <div class ="collapse checkbox" id="categories-checkbox"> 
-          <form role="form">
-            <div class="checkbox"><label><input type="checkbox" value=""></i> Children</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""></i> Animal</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""></i> Teaching</label></div>
-            <div class="checkbox"><label><input type="checkbox" value="">Elderly</label></div>
-             <div class="checkbox"><label><input type="checkbox" value="">Outdoor</label></div>
-                <div class="checkbox"><label><input type="checkbox" value=""> All</label></div>
-          </form>
-        </div>
+    <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#categories-checkbox">Categories</a>
+      <div class ="collapse checkbox" id="categories-checkbox"> 
+        <form role="form">
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Children
+            </label>
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Animal
+            </label>
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Teaching
+            </label>
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Elderly
+            </label>
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Outdoor
+            </label>
+          </div>    
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> All
+            </label>
+          </div>
+          
+        </form>
+      </div>
 
 
 
-          <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#distance-checkbox">Distance</a>
-         <div class ="collapse checkbox" id="distance-checkbox"> 
-          <form role="form">
-            <div class="checkbox"><label><input type="checkbox" value=""> Wihtin 2 km</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""> Withinn 5 km </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> Within 10 km </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> Within 20 km </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> Within 50 km </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> All </label></div>
-          </form>
-        </div>
+    <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#distance-checkbox">Distance</a>
+      <div class ="collapse checkbox" id="distance-checkbox"> 
+        <form role="form">
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Wihtin 2 km
+            </label>
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Withinn 5 km 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Within 10 km 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Within 20 km 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Within 50 km 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> All 
+            </label>
+          </div>
+          
+        </form>
+      </div>
       
 
-        <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#startingtime-checkbox">Starting Time</a>
-         <div class ="collapse checkbox" id="startingtime-checkbox"> 
-          <form role="form">
-            <div class="checkbox"><label><input type="checkbox" value=""> 6am to 9am </label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""> 9am to 12pm</label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> 12pm to 3pm </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> 3pm to 6pm </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> 6pm to 9pm </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> 9pm to 12am </label></div>
-                    <div class="checkbox"><label><input type="checkbox" value=""> All </label></div>
-          </form>
-        </div>
-      
-
-
-      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#duration-checkbox">Duration</a>
-         <div class ="collapse checkbox" id="duration-checkbox"> 
-          <form role="form">
-            <div class="checkbox"><label><input type="checkbox" value=""> Less than 1 hour </label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""> 1 to 2 Hours </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> 2 to 3 Hours  </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> 3 to 5 Hours </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> Full day </label></div>
-                   <div class="checkbox"><label><input type="checkbox" value=""> All </label></div>
-          </form>
-        </div>
-
-      
+    <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#startingtime-checkbox">Starting Time</a>
+      <div class ="collapse checkbox" id="startingtime-checkbox"> 
+        <form role="form">
+            
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 6am to 9am 
+            </label>
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 9am to 12pm
+            </label>
+          </div>
+           
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 12pm to 3pm 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 3pm to 6pm 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 6pm to 9pm 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 9pm to 12am 
+            </label>
+          </div>
+                    
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> All 
+            </label>
+          </div>
         
-</div>      
-    </div>
-    
+        </form>
+      </div>
+      
+
+
+    <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#duration-checkbox">Duration</a>
+      <div class ="collapse checkbox" id="duration-checkbox"> 
+        <form role="form">
+            
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Less than 1 hour 
+            </label>
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 1 to 2 Hours 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 2 to 3 Hours  
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> 3 to 5 Hours 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> Full day 
+            </label>
+          </div>
+                   
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value=""> All 
+            </label>
+          </div>
+          
+        </form>
+      </div>
+      
+  </div>      
 </div>
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
 
   
-    <div class="col-md-9">
-      <%= will_paginate %>
-      <% @events.each do |event| %>
+<div class="col-md-9">
+<%= will_paginate %>
+  <% @events.each do |event| %>    
       
-      
-      
-      
-        <div class = "one_event">
-          <div class ="row">
+    <div class = "one_event">
+      <div class ="row">
 
-            <div class="col-md-3">
-              <div class="container">
-                <div class ="event_pic">
-              
-                 
+        <div class="col-md-3">
+          <div class="container">
+            <div class ="event_pic">
 
-                  <!-- load picture if an event has one -->
-                  <%if event.picture?%> 
-                  <%= image_tag event.picture.url, class:"img-cirlcle"%>
-                  <% end%>
-                  
-                  <!-- the following is fefault photo-->
-                  <%if !event.picture?%> 
-                    <img class="img-circle" src="http://wikivillage.co.za/sites/default/files/media/garden-route-spca/garden-route-spca1.jpg" alt="description here "/>
-                  <%end%> 
+            <!-- event picture (default provided) -->
+            <%= image_tag event.avatar.url(:medium), size: '250x250' %>
+
                   
                 </div>
               </div>
             </div>
 
-            <div class="col-md-9 ">
+            <div class="col-md-8 ">
               
               <span class="ngo"><h3><%= event.name %></h3></span>
-              <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h4> </span>
+              <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h5> </span>
              <br>
               <span class="start"> <p> Start Time: <%= event.start %> </p> </span>
               <span class="end"> <p> End Time: <%= event.end %> </p> </span>

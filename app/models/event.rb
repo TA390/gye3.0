@@ -1,7 +1,17 @@
 class Event < ActiveRecord::Base
   belongs_to :ngo
   default_scope -> { order(created_at: :desc) }
-  mount_uploader :picture, PictureUploader
+  
+  # profile picture
+  has_attached_file :avatar, 
+    styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" },
+    default_url: "event/default_event.png"
+  validates_attachment_content_type :avatar, 
+                                    content_type: /\Aimage\/.*\Z/
+  
+  validates_attachment :avatar,
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] },
+    size: { in: 0..5.megabytes }
   
   has_many :event_tags
   has_many :tags, through: :event_tags
@@ -10,7 +20,6 @@ class Event < ActiveRecord::Base
   has_one :wall, dependent: :destroy 
   
   validate :event_date
-  validate :picture_size
   
   validates :ngo_id, 
     presence: true
@@ -70,13 +79,6 @@ class Event < ActiveRecord::Base
       elsif self.end < ::DateTime.current
         errors.add(:end, "date cannot be in the past")
       end       
-    end
-
-    # Validates the size of an uploaded picture.
-    def picture_size
-      if picture.size > 5.megabytes
-        errors.add(:picture, "should be less than 5MB")
-      end
     end
   
   

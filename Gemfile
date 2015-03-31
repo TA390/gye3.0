@@ -115,3 +115,6 @@ gem 'font-awesome-sass'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
+# sending emails
+gem 'figaro'
+gem 'ruby-gmail'

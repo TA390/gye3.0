@@ -1,5 +1,7 @@
 class VolunteerMailer < ApplicationMailer
 
+  default from: "giveyoureffort19@gmail.com"
+  
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -7,7 +9,7 @@ class VolunteerMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-    mail to: user.email, subject: "GYE Account Activation"
+    mail(to: @user.email, subject: "GYE Account Activation")
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,6 +19,6 @@ class VolunteerMailer < ApplicationMailer
   #
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "GYE Password Reset"
+    mail(to: @user.email, subject: "GYE Password Reset")
   end
 end

@@ -1,12 +1,22 @@
-<h1>Give Your Effort</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  
+  <body>
+    <h1>Give Your Effort</h1>
 
-<p>Hi <%= @user.name %>,</p>
+    <p>Hi <%= @user.name %>,</p>
 
-<p>
-Welcome to Give Your Effort! 
+    <p>
+    Welcome to Give Your Effort! 
 
-Click on the link below to activate your account:
-</p>
+    Click on the link below to activate your account:
+    </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
-                                                    email: @user.email) %>
+    <%= link_to "account activation",
+          edit_account_activation_url(@user.activation_token,
+                                      email: @user.email) %>
+  </body>
+<html>

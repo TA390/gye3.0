@@ -1,7 +1,7 @@
 <h1> Detailed Event Page </h1>
 
 <!-- sign up to an event -->
-
+<div class="event_signup">
 <% if logged_in?%>
 
   <%= render 'event_signup' %>
@@ -12,5 +12,5 @@
         class: "btn btn-primary", method: :get  %>
 
 <% end %>         
-
+</div>
 <!-- end sign up to an event -->

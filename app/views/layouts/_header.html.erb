@@ -12,7 +12,7 @@
           <li><%= link_to "Volunteer", volunteers_path %></li>
           <li><%= link_to "NGO", ngos_path %></li>
             <% if logged_in? %>
-
+<%= link_to "Log out", vlogout_path, method: "delete" %>
                   <li class="dropdown">
 
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle" >

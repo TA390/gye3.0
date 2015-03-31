@@ -1,47 +1,18 @@
 <% provide(:title, @title) %>
 
 <!-- content to be updated using Ajax -->
-<div class="event_info">
+<div>
 <div class="container horizontal-center">
 
   <div>
     <span><%= link_to "back to profile", @user %></span>
   </div>
   
-  <h1><%= @user.name %>'s 
-    Upcoming Events (<%= @user.events.count %>)
-  </h1>
-
-  <div class="col-md-12">
-    <h3><%= @title %></h3>
-    <% if @events.any? %>
-      <% @events.each do |event| %>
-        <div>
-          <%= image_tag event.picture %>   
-        </div>
-        <div>
-          <%= event.name %>   
-        </div>
-        <div>
-          <%= event.id %>   
-        </div>
-        <div>
-          <%= event.description %>   
-        </div>
-    
-      <!-- display 'Opt out' btn on user's profile -->
-      <div>   
-        <%= form_for(event.event_volunteers.find_by(volunteer_id: @user.id), 
-            html: { method: :delete }, remote: true) do |f| %>
-
-          <%= f.submit "Opt out", class: "btn" %>     
-        <% end %>
-      </div>
-      <!-- end display 'Opt out' btn on user's profile -->
-    
-      <% end %>
-    <% end %>
+  <div class="my_events">
+    <%= render 'event_list' %>
   </div>
+  
+  
 </div>
 </div>
 <!-- end content to be updated using Ajax -->

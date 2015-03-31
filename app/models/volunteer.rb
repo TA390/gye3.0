@@ -141,7 +141,7 @@ class Volunteer < ActiveRecord::Base
   def opt_out(event)
     event_volunteers.find_by(event_id: event.id).destroy
   end
-
+  
   # Function to test and return true if volunteer is signed up to 'event'
   def signed_up?(event)
     events.include?(event)

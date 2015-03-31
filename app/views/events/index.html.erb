@@ -31,18 +31,22 @@
               <span class="description"> <%= event.description %> </span>
             
               <!-- sign up to an event -->
-              <% if current_user.signed_up?(event) %>
-                <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
-                      html: { method: :delete }) do |f| %>
-                <%= f.submit "Opt out", class: "btn" %>
+              <% if logged_in?%>
+                <% if current_user.signed_up?(event) %>
+                  <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
+                        html: { method: :delete }) do |f| %>
+                  <%= f.submit "Opt out", class: "btn" %>
+                  <% end %>
+                <% else %>
+                  <%= form_for(current_user.event_volunteers.build) do |f| %>
+                    <div>
+                      <%= hidden_field_tag :event_id, event.id %>
+                    </div>
+                    <%= f.submit "I want to help!", class: "btn btn-primary" %>
+                  <% end %>
                 <% end %>
-              <% else %>
-                <%= form_for(current_user.event_volunteers.build) do |f| %>
-                  <div>
-                    <%= hidden_field_tag :event_id, event.id %>
-                  </div>
-                  <%= f.submit "I want to help!", class: "btn btn-primary" %>
-                <% end %>
+              <% elsif !logged_in_ngo? %>
+                <%= button_to "I want to help!", login_path, class: "btn btn-primary" %>
               <% end %>
               
 

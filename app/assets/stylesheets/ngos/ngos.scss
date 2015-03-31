@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.ngo_profile{
+ 
+ background-image: url(/assets/volunteer-bg/subtle-bg.png);
+ 
+  background-attachment: fixed;
+  background-repeat: repeat;
+ 
+}
+
+
 /* create an event on the ngo profile page styling */
 .split {
     margin: 10px auto 20px auto;

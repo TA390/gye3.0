@@ -1,9 +1,18 @@
+.n_index .ngo_pic .img-circle {
+    width: 180px; 
+    height: 180px;
 
-// new event index CSS starts here
+}
+
+.n_index, p, h1, h2, h3, h4 { 
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 0px;
+  margin: 0px;
+  //color: white;
+}
 
 
-
-.e_index{
+.n_index{
  background-image: url(/assets/volunteer-bg/subtle-bg.png);
  
 
@@ -12,24 +21,20 @@
   
 }
 
-.e_index, p, h1, h2, h3, h4 { 
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-  padding: 0px;
-  margin: 0px;
+
+
+.n_index body {
+    padding-top: 70px;
 }
 
-.e_index body {
-    padding-top: 700px;
-}
-
-.e_index .dropdownbox_des {
+.n_index .dropdownbox_des {
 	text-align: center;
   padding: 50px 15px 15px 30px;	
 }
 
-.e_index .dropdownbarbox {
+.n_index .dropdownbarbox {
   //background: rgba(0,255,255,0.7);
-    background: rgba(152 ,251,152,0.6);
+    background: rgba(255,51,51,0.7);
   text-align: center;
   padding: 15px;	
   margin: 0px 0px 0px 0px;
@@ -43,27 +48,32 @@
   
 }
 
+.n_index .sidebar_plus_ngo{
+	margin-right: 30px;
+	margin-left: 30px ;
+}
 
-.e_index .search_result {
+
+
+
+.n_index .search_result {
 	text-align: center;
 	padding-top: 20px;	
 	padding-bottom: 20px;	
 }
 
-.e_index .checkbox{
+
+.n_index .checkbox{
   padding: 0px 5px;
   
 }
 
-.e_index .event_pic .img-circle {
-    width: 180px; 
-    height: 180px;
-
-}
 
 
+/* h1 { padding-top: 10px; }
+h2 { padding-top: 10px; }*/
 
-.e_index .one_event {
+.n_index .one_ngo {
 	 margin: 0px 0px 20px 0px;
 	 //border: 2px solid #d3d3d3;
 
@@ -78,8 +88,5 @@
 
 }
 
-/*
-.e_index .sidebar_plus_event{
-	margin-right: 30px;
-	margin-left: 30px ;
-}*/ 
+
+

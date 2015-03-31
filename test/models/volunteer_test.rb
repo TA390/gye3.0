@@ -116,4 +116,15 @@ class VolunteerTest < ActiveSupport::TestCase
     assert_not user.signed_up?(event)
   end
   
+  test "bookmarking an event" do
+    user = volunteers(:bill)
+    event  = events(:homeless)
+    
+    assert_not user.watching?(event)
+    user.watch(event)
+    assert user.watching?(event)
+    user.unwatch(event)
+    assert_not user.watching?(event)
+  end
+  
 end

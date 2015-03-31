@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   # sign up and drop out of an event
   resources :event_volunteers, only: [:create, :destroy, :update]
   
+  # watch and unwatch events
+  resources :watchlists, only: [:create, :destroy, :update]
+  
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do
   get 'ngo_password_resets/new'

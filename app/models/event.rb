@@ -15,9 +15,11 @@ class Event < ActiveRecord::Base
   
   has_many :event_tags
   has_many :tags, through: :event_tags
+  has_one :wall, dependent: :destroy   
+  # sign up to an event
   has_many :event_volunteers, dependent: :destroy
   has_many :volunteers, through: :event_volunteers
-  has_one :wall, dependent: :destroy 
+
   
   validate :event_date
   

@@ -1,5 +1,6 @@
 class Volunteer < ActiveRecord::Base
 
+  # sign up to an event
   has_many :event_volunteers, dependent: :destroy
   has_many :events, through: :event_volunteers
   
@@ -138,6 +139,7 @@ class Volunteer < ActiveRecord::Base
     event_volunteers.create(event_id: event.id)
   end
   
+  # Opt out of an event you were signed up to
   def opt_out(event)
     event_volunteers.find_by(event_id: event.id).destroy
   end

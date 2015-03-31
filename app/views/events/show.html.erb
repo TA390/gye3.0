@@ -3,15 +3,12 @@
 <!-- sign up to an event -->
 <div class="event_signup">
 <% if logged_in?%>
-
-  <%= render 'event_signup' %>
-
+  <div>
+    <%= render 'event_signup' %>
+  </div>
 <% else %>
 
   <%= button_to "Attend", login_path, 
-        class: "btn btn-primary", method: :get  %>
-  
-  <%= button_to "Add to Watch List", login_path, 
         class: "btn btn-primary", method: :get  %>
 
 <% end %>         

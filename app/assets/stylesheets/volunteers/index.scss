@@ -1,45 +1,39 @@
-
-.v_index, p, h1, h2, h3, h4 {
- 
+.v_index, p, h1, h2, h3, h4 { 
   font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
   padding: 0px;
   margin: 0px;
-}
-
-.v_index, p, h1, h2, h3, h4 {
-
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-  padding: 0px;
-  margin: 0px;
+  color: white;
 }
 
 
 .v_index{
-  /*background-image: url(/assets/volunteer-bg/wood-bg.jpg);*/
-
+  background-image: url(/assets/volunteer-bg/wood-bg.jpg);
 }
 
 
 
 .v_index body {
-
     padding-top: 70px;
-  
 }
 
 .v_index .dropdownbox_des {
 	text-align: center;
-  padding: 15px;	
+  padding: 50px 15px 15px 30px;	
 }
 
 .v_index .dropdownbarbox {
- background-image: url(http://heartresearch.org.uk/sites/default/files/pageimages/Volunteers-sm.jpg);
-  
-  
-  
+  background: rgba(0,255,255,0.7);
   text-align: center;
-	padding: 15px;	
+  padding: 15px;	
   margin: 0px 0px 0px 0px;
+  border-radius: .2em;
+  border: 2px solid #cccccc;
+
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
+  -moz-transition: border linear .2s, box-shadow linear .2s;
+  -o-transition: border linear .2s, box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+  
 }
 
 .v_index .sidebar_plus_volunteers{
@@ -79,10 +73,11 @@ h2 { padding-top: 10px; }*/
 
 .v_index .one_volunteer {
 	 margin: 0px 0px 20px 0px;
-	 border: 2px solid #d3d3d3;
+	 //border: 2px solid #d3d3d3;
 
    padding: 15px 15px 15px 15px;
-    //background-color: red;
+   background: rgba(255,255,255,0.3);
+
 }
 
 

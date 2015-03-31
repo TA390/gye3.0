@@ -1,4 +1,0 @@
-<%= form_for(current_user.event_volunteers.find_by(volunteer_id: @user.id),
-             html: { method: :delete }) do |f| %>
-  <%= f.submit "Drop out", class: "btn" %>
-<% end %>

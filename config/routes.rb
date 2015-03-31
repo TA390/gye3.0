@@ -26,13 +26,14 @@ Rails.application.routes.draw do
 
   get 'login'       => 'logins#new'              # login_path
 
-  get 'vlogin'       => 'sessions#new'           # login_path
-  post 'vlogin'      => 'sessions#create'        # login_path
-  delete 'vlogout'   => 'sessions#destroy'       # logout_path
+  get 'vlogin'       => 'sessions#new'           # vlogin_path
+  post 'vlogin'      => 'sessions#create'        # vlogin_path
+  delete 'vlogout'   => 'sessions#destroy'       # vlogout_path
 
-  get 'nlogin'       => 'ngo_sessions#new'       # login_path
-  post 'nlogin'      => 'ngo_sessions#create'    # login_path
-  delete 'nlogout'   => 'ngo_sessions#destroy'   # logout_path
+  get 'nlogin'       => 'ngo_sessions#new'       # nlogin_path
+  post 'nlogin'      => 'ngo_sessions#create'    # nlogin_path
+  delete 'nlogout'   => 'ngo_sessions#destroy'   # nlogout_path
+
   
   resources :volunteers
   resources :ngos

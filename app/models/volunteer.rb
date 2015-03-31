@@ -14,8 +14,8 @@ class Volunteer < ActiveRecord::Base
 
   # profile picture
   has_attached_file :avatar, 
-    styles: { large: "600x600#", medium: "300x300#", thumb: "100x100#" },
-    default_url: "/images/profile/default_profile.png"
+    styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" },
+    default_url: "profile/default_profile.png"
   validates_attachment_content_type :avatar, 
                                     content_type: /\Aimage\/.*\Z/
   
@@ -135,17 +135,16 @@ class Volunteer < ActiveRecord::Base
   
   # Sign up to an event.
   def sign_up(event)
-    event_volunteers.create(volunteer_id: event.id)
+    event_volunteers.create(event_id: event.id)
   end
-
-  # Unsign from an event.
-  def unsign(event)
-    event_volunteers.find_by(volunteer_id: event.id).destroy
+  
+  def opt_out(event)
+    event_volunteers.find_by(event_id: event.id).destroy
   end
 
   # Function to test and return true if volunteer is signed up to 'event'
   def signed_up?(event)
-    event_volunteers.include?(event)
+    events.include?(event)
   end
   
   private

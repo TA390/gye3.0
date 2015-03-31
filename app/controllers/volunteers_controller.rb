@@ -1,7 +1,7 @@
 class VolunteersController < ApplicationController
   
   
-  before_action :logged_in_user, only: [:edit, :update, :event]
+  before_action :logged_in_user, only: [:edit, :update, :events]
   before_action :correct_user, only: [:edit, :update]
   
   def index
@@ -31,10 +31,8 @@ class VolunteersController < ApplicationController
       
 
   def show
-
       @user = Volunteer.find(params[:id])
       redirect_to root_url and return unless @user
-    
   end
   
   def new
@@ -77,8 +75,7 @@ class VolunteersController < ApplicationController
   def events
     @title = "My Events"
     @user  = Volunteer.find(params[:id])
-    @users = @user.event_volunteers.paginate(page: params[:page], per_page: 10)
-    render 'show_event'
+    @events = @user.events.paginate(page: params[:page], per_page: 10)
   end
 
 
@@ -86,12 +83,10 @@ class VolunteersController < ApplicationController
   private
   
     def user_params
-
       params.require(:volunteer).permit(:name, :last_name, :email,
                                         :location, :gender, :password, 
                                         :password_confirmation, :picture,
-                                        :avatar)
-      
+                                        :avatar)  
     end
   
     # Function to test if a user has logged in

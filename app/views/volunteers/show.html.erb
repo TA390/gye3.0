@@ -10,20 +10,13 @@
         <a href="#" class="btn btn-success" data-toggle="modal" data-target="#msgModal">Send me a message</a>
       </div>
       
-      <div class="col-sm-2" style="height: 200px">
-        <a href="/users" class="pull-right">
-          
-          <% if @user.avatar %>
-            <%= image_tag @user.avatar.url(:medium) %>
-           
-          <% else %>
-            <%= image_tag 'app/assets/images/profile/default_profile.png' %>
-          <% end%>
+      <div class="col-sm-2" style="height: 300px">
+        <div class="pull-right">
+
+          <%= image_tag @user.avatar.url(:medium), size: '250x250' %>      
           
           <!-- <img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"> -->
-        
-        
-        </a>
+
       </div>
     </div>
     <br>
@@ -49,7 +42,9 @@
           <div class="panel-heading"><strong class="">Activity <i class="fa fa-dashboard fa-1x"></i></strong></div>
             <ul class="list-group">
               
-              <%= render 'shared/my_events' %>
+              <div class="eventinfo">
+                <%= render 'shared/my_events' %>
+              </div>
               
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Events attended</strong></span> 6</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Events bookmarked</strong></span> 13</li>

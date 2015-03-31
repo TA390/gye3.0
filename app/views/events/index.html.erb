@@ -29,8 +29,24 @@
               
               <span class="ngo"><h3><%= event.name %></h3></span>
               <span class="description"> <%= event.description %> </span>
+            
+              <!-- sign up to an event -->
+              <% if current_user.signed_up?(event) %>
+                <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
+                      html: { method: :delete }) do |f| %>
+                <%= f.submit "Opt out", class: "btn" %>
+                <% end %>
+              <% else %>
+                <%= form_for(current_user.event_volunteers.build) do |f| %>
+                  <div>
+                    <%= hidden_field_tag :event_id, event.id %>
+                  </div>
+                  <%= f.submit "I want to help!", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+              
 
-              <%= render 'volunteers/sign_up' if logged_in? %>
+              <!-- end sign up to an event -->
               
               <%=button_to 'Learn More', events_path(event), method: :get, class: "btn btn-info"%>
               

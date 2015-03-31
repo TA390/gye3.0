@@ -59,20 +59,19 @@ class Event < ActiveRecord::Base
   scope :upcoming, -> { where(future: true) }
   
   private
-  def event_date
+    def event_date
       if past?
         valid = false
         errors.add(:start, "date cannot be in the past")
       end  
-      
+
       if self.end < self.start
         errors.add(:end, "date cannot be before start date")
       elsif self.end < ::DateTime.current
         errors.add(:end, "date cannot be in the past")
-      end
-        
+      end       
     end
-  
+
     # Validates the size of an uploaded picture.
     def picture_size
       if picture.size > 5.megabytes

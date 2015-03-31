@@ -1,0 +1,41 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="col-md-4">
+    
+    <section class="user_info">
+      <h1><%= @user.name %>'s 
+        Upcoming Events (<%= @user.events.count %>)
+      </h1>
+      <div>
+        <span><%= link_to "back to profile", @user %></span>
+      </div>
+    </section>
+
+  </aside>
+  <div class="col-md-8">
+    <h3><%= @title %></h3>
+    <% if @events.any? %>
+      <% @events.each do |event| %>
+        <div>
+          <%= image_tag event.picture %>   
+        </div>
+        <div>
+          <%= event.name %>   
+        </div>
+        <div>
+          <%= event.id %>   
+        </div>
+        <div>
+          <%= event.description %>   
+        </div>
+    
+        <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
+              html: { method: :delete }) do |f| %>
+            <%= f.submit "Opt out", class: "btn" %>
+        <% end %>
+    
+      <% end %>
+      
+    <% end %>
+  </div>
+</div>

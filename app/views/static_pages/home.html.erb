@@ -10,7 +10,7 @@
     <li><span>Image 06</span><div><h3><!--fade-text-here--></h3></div></li>
   </ul>
   
-<div class="intro-message">
+<div class="intro-message" id="top-of-page">
   <h1>GIVE YOUR EFFORT</h1>
   <h3>Where Charity meets Giving</h3>
   <hr class="intro-divider">
@@ -20,7 +20,7 @@
   </form>     
           
   <div class="page-scroll">
-    <a href="#categories" class="btn btn-circle">
+    <a href="#categories" class="btn btn-circle" onclick="$('#categories').animatescroll({scrollSpeed:2000,easing:'easeOutBack'});">
       <i class="fa fa-angle-double-down animated"></i>
     </a>
   </div>
@@ -165,7 +165,24 @@
       
     
     </div>
+    
+    <div class="row">
+      <div class="page-scroll">
+        <a href="#top-of-page" class="btn btn-circle" onclick="$('#top-of-page').animatescroll({scrollSpeed:2000,easing:'easeOutBack'});">
+        <i class="fa fa-angle-double-up animated"></i>
+        </a>
+      </div>
+    
+    </div>
+      
+    
   </div>  
+  
+
+
+
+  
+  
 <!---->
 </body>
 

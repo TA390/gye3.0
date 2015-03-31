@@ -1,9 +1,0 @@
-<% unless current_user?(@user) %>
-  <div id="signup_form">
-  <% if current_user.event_volunteers?(@user) %>
-    <%= render 'drop_out' %>
-  <% else %>
-    <%= render 'sign_up' %>
-  <% end %>
-  </div>
-<% end %>

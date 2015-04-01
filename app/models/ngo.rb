@@ -9,7 +9,7 @@ class Ngo < ActiveRecord::Base
   # profile picture
   has_attached_file :avatar, 
     styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" }, 
-  default_url: ":style/profile/default_profile.png"
+    default_url: "profile/default_profile.png"
   validates_attachment_content_type :avatar, 
                                     content_type: /\Aimage\/.*\Z/
   

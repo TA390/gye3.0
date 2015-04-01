@@ -20,11 +20,14 @@
         
       </div>      
       
-      <div class="col-sm-2">
-        <a href="/users" class="pull-right">
-          <img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg">
-        </a>
+      <div class="col-sm-2" style="height: 300px">
+        <div class="pull-right">
+
+          <%= image_tag @ngo.avatar.url(:medium), size: '250x250' %>      
+
+        </div>
       </div>
+      
     </div>
   </div>
   

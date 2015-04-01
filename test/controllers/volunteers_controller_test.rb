@@ -8,6 +8,13 @@ class VolunteersControllerTest < ActionController::TestCase
     @second_user = volunteers(:steve)
   end
   
+  # Volunteer Page
+  test "should get volunteer" do
+    get :index
+    assert_response :success
+    assert_select "title", "Volunteer"
+  end
+  
   test "should get new" do
     get :new
     assert_response :success
@@ -46,6 +53,11 @@ class VolunteersControllerTest < ActionController::TestCase
     assert flash.empty?
     assert_redirected_to root_url
     
+  end
+  
+  test "redirect user trying to access 'my events' page if not signed in" do
+    get :event_volunteers, id: @generic_user
+    assert_redirected_to login_url
   end
 
 end

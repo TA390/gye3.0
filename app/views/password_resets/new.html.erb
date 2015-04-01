@@ -1,0 +1,44 @@
+<% provide(:title, "Forgot Password") %>
+
+<div id="signupform">
+      
+  <div class="container">
+    <div class="row text-center">
+      <br/>
+        <h1>Forgot Password</h1>
+      <br/>
+    </div>
+  </div>   
+      
+  <div class="container">
+    <div class="row centered-form">
+      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+          
+          <div class="panel-heading">    
+            <h3 class="panel-title"> email me the link
+            </h3>
+          </div>
+          
+          <div class="panel-body">
+                          
+            <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+              
+                <form role="form">
+                              
+                  <div class="form-group">
+                    <%= f.email_field :email, placeholder: "Email", class: 'form-control' %>
+                  </div>
+                  
+                 <%= f.submit "Submit", class: "btn btn-primary" %>
+                            
+                </form>
+                  
+            <% end %>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>

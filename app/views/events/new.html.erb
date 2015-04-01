@@ -1,5 +1,79 @@
-<h1>New Event</h1>
+<br/>
+<div id="signupform">      
+  <div class="container">
+    <div class="row centered-form">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+          
+          <div class="panel-heading">    
+            <h3 class="panel-title"> New Event</h3>
+          </div>
+          
+          <div class="panel-body">
+            <%= form_for @event, html: { multipart: true } do |f| %>
+          
+            <%= render 'shared/error_messages', object: f.object %>
 
-<%= render 'form' %>
+            <div class="form-group">
+              <%= f.text_field :name, placeholder: "Name of event", class: 'form-control' %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.text_area :description, placeholder: "Describe the event", class: 'form-control' %>
+            </div>
 
-<%= link_to 'Back', events_path %>
+            <div class="form-group">
+              <%= f.text_field :location, placeholder: "Location", class: 'form-control' %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :occupancy,  "Occupancy"%>
+              <%= f.number_field :occupancy, placeholder: "0", class: 'form-control' %>
+            </div>
+            
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <%= f.label :start, "Start Date" %>
+                  <%= f.datetime_select :start, class: 'form-control' %>
+                </div>
+              </div>
+                    
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <%= f.label :end, "End Date" %>
+                  <%= f.datetime_select :end, class: 'form-control' %>
+                </div>
+              </div>                
+            </div>
+            
+            <br/>
+            <br/>
+              <div class="form-group">
+                <%= f.label :avatar, "Add a Photo" %>
+                <%= f.file_field :avatar %>
+              </div>
+            <br/>
+            <br/>
+
+            <%= submit_tag 'New Event', class: "btn btn-primary" %>
+            
+          <% end %>
+                     
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<!-- prevent an ngo from uploading a large image -->
+<script type="text/javascript">
+  $('#event_picture').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
+<!-- end prevent an ngo from uploading a large image -->

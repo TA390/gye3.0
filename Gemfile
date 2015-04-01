@@ -95,4 +95,26 @@ gem 'immigrant'
 # table inheritance
 gem 'active_record-acts_as'
 
+# add fake users to the db
+gem 'faker'
 
+# page scrolling
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
+# image uploads
+gem "paperclip"
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
+#font-awesome icons
+gem 'font-awesome-sass'
+
+#Date and time picker
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
+
+# sending emails
+gem 'figaro'
+gem 'ruby-gmail'

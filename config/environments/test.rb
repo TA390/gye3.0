@@ -34,6 +34,10 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  
+  # configure emails with domain
+  config.action_mailer.default_url_options = 
+    { host: 'http://gye-vm-199744.euw1.nitrousbox.com' }
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
@@ -43,4 +47,19 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+    # sending emails
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :user_name            => ENV['gmail_username'],
+   :password             => ENV['gmail_password'],
+   :authentication       => "plain",
+  :enable_starttls_auto => true
+  }
+  # end sending emails
+  
+  
 end

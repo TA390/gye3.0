@@ -20,7 +20,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       # erroneous sign up information
       post volunteers_path, 
       volunteer: {name:  "",
+                  last_name: "",
                   email: "joebloggs",
+                  gender: "M",
                   location: "",
                   password: "pass",
                   password_confirmation: "word"}
@@ -47,7 +49,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       # valid sign up information
       post volunteers_path, 
       volunteer: {name:  "Joe",
+                  last_name: "Bloggs",
                   email: "joe_bloggs@test.com",
+                  gender: "M",
                   location: "London",
                   password: "password",
                   password_confirmation: "password"}

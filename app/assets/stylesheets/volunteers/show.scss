@@ -1,9 +1,24 @@
+
+.profile .body{
+  padding-top: 70px;
+}
+
 .profile{
-  background-image: url(/assets/volunteer-bg/volunteer-bg.jpg);
-  background-size: cover;
-  
+  background-image: url(/assets/volunteer-bg/shoes-bg.jpg);
+
+}
+
+.profile, p, h1, h2, h3, h4 {
+
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+
 }
 
 .profile h1 {
   color: white;
+  padding: 0px;
+
 }
+
+
+

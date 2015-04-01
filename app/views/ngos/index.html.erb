@@ -1,3 +1,144 @@
+<% provide(:title, 'Ngo') %>
+
+
+
+
+
+
+<body class="n_index">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+       <div class="dropdownbarbox">
+    	<div class="container">
+          <div class="dropdownbox_des">
+ 				    <h1> NGO Lists </h1> 
+				    <h2> Find The Best NGO For You! </h2>
+         	</div>
+      </div>
+  </div>
+  
+    
+  
+  	<div class="search_result">
+		<p>We have found xxx NGOs based on your screening criteria</p>  
+	</div>
+  
+  
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+<div class="col-md-3"> 
+     
+    <div class="list-group">
+      
+      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#categories-checkbox">Categories</a>
+        <div class ="collapse checkbox" id="categories-checkbox"> 
+          <form role="form">
+            <div class="checkbox"><label><input type="checkbox" value=""></i> Children</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""></i> Animal</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""></i> Teaching</label></div>
+            <div class="checkbox"><label><input type="checkbox" value="">Elderly</label></div>
+             <div class="checkbox"><label><input type="checkbox" value="">Outdoor</label></div>
+                <div class="checkbox"><label><input type="checkbox" value=""> All</label></div>
+          </form>
+        </div>
+
+           <div class="list-group">
+      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#rating-checkbox">Rating</a>
+        <div class ="collapse checkbox" id="rating-checkbox"> 
+          <form role="form">
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 5 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 4 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 3 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i>
+               2 stars</label></div>
+             <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i>
+               1 star</label></div>
+          </form>
+        </div>
+        
+</div>      
+    </div>
+    
+</div>
+  
+  
+  
+  
+
+ 
+  
+    <div class="col-md-9">
+      <%= will_paginate %>
+      <%= @ngos.each do |ngo| %>
+        <div class = "one_ngo">
+          <div class ="row">
+
+            <div class="col-md-3">
+              <div class="container">
+                <div class ="ngo_pic">
+                  
+                  <img class ="img-circle" src="http://wikivillage.co.za/sites/default/files/media/garden-route-spca/garden-route-spca1.jpg" alt="description here "/>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-9 ">
+              <h3><%= ngo.name %> <%=ngo.id%> </h3>
+             
+              <p>Location: <%= ngo.location %></p>
+               <p>Website: <%= ngo.url %></p>
+               
+
+              <%=button_to 'Show', ngo, :method => :get, :class => "btn btn-info"%>
+
+            </div>
+          </div>
+          <!--End of Row -->
+        </div>
+        <!--End of one_volunteer wrappper -->
+      <% end %>
+      <%= will_paginate %>
+      </div>
+  
+  
+
+</body>
+
+
+
+
+<%= link_to 'New Ngo', new_ngo_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- following for testing purpose -->
+
+
 <br>
 <br>
 <h1>Listing Ngos</h1>
@@ -14,8 +155,9 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @ngo.each do |ngo| %>
+  <tbody> 
+
+    <% @ngos.each do |ngo| %>
       <tr>
         <td><%= ngo.name %></td>
         <td><%= ngo.location %></td>
@@ -31,6 +173,4 @@
 </table>
 
 <br>
-
-<%= link_to 'New Ngo', new_ngo_path %>
 

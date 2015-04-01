@@ -1,0 +1,6 @@
+<%= form_for(current_user.event_volunteers.find_by(event_id: @event.id), 
+      html: { method: :delete }, remote: true) do |f| %>
+
+  <%= f.submit "Opt out", class: "btn btn-primary" %>
+                  
+<% end %>

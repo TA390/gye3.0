@@ -5,7 +5,7 @@ class VolunteerTest < ActiveSupport::TestCase
   def setup
   
     @new_user = 
-           User.new(name: "Joe", 
+      Volunteer.new(name: "Joe", 
                     last_name: "Bloggs",
                     gender: "M",
                     location: "London, UK",
@@ -83,7 +83,7 @@ class VolunteerTest < ActiveSupport::TestCase
   test "password should be present" do
     @new_user.password =
       @new_user.password_confirmation = "     "
-    assert_not @new_user.valid?
+    assert @new_user.valid?
   end
   
   test "password should have a minimum length" do
@@ -91,10 +91,40 @@ class VolunteerTest < ActiveSupport::TestCase
       @new_user.password_confirmation = "xxxxx"
       assert_not @new_user.valid?
   end
+  
+  test "passwords should match" do
+    assert (@new_user.password == @new_user.password_confirmation)
+  end
   # end password 
   
   test "authenticated? - return false for users will nil digest" do
       assert_not @new_user.authenticated?(:remember, '')
+  end
+  
+  test "sign/unsign to/from an event" do
+    user = volunteers(:bill)
+    event  = events(:homeless)
+    # has user signed up
+    assert_not user.signed_up?(event)
+    # sign up user
+    user.sign_up(event)
+    # test that user is now sign up to event
+    assert user.signed_up?(event)
+    # unsign from an event
+    user.unsign(event)
+    # test that user is no longer signed up to an event
+    assert_not user.signed_up?(event)
+  end
+  
+  test "bookmarking an event" do
+    user = volunteers(:bill)
+    event  = events(:homeless)
+    
+    assert_not user.watching?(event)
+    user.watch(event)
+    assert user.watching?(event)
+    user.unwatch(event)
+    assert_not user.watching?(event)
   end
   
 end

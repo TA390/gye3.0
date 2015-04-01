@@ -1,23 +1,32 @@
 class Volunteer < ActiveRecord::Base
 
-
-  has_many :event_volunteers
+  # sign up to an event
+  has_many :event_volunteers, dependent: :destroy
   has_many :events, through: :event_volunteers
+  
   has_many :volunteer_tags
   has_many :tags, through: :volunteer_tags
   has_many :posts
-  
+
   # enter all emails into the db in a lowercase format
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
-  
-  # To allow inheritance
-  def self.type
-    %w(User Ngo)
-  end
 
-  # Returns count of sign ups to events
+  # profile picture
+  has_attached_file :avatar, 
+    styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" },
+    default_url: "profile/default_profile.png"
+  validates_attachment_content_type :avatar, 
+                                    content_type: /\Aimage\/.*\Z/
+  
+  validates_attachment :avatar,
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] },
+    size: { in: 0..5.megabytes }
+
+
+  
+    # Returns count of sign ups to events
   def signups
     return self.event_volunteers.count()
   end
@@ -25,15 +34,13 @@ class Volunteer < ActiveRecord::Base
   # Returns count of sign ups to events in the future
   def future_signups
     return self.event_volunteers.joins( :event).where("start > ?", DateTime.now).count()
+    #method below return same as above (for reference)
     #return Event.where("start > ?", DateTime.now).joins( :volunteers).where(volunteers: {:id => self.id} ).count()
-    #same as above (for refence)
   end
   
   # Returns count of sign ups to events in the past
   def past_signups
     return self.event_volunteers.joins( :event).where("start < ?", DateTime.now).count()
-    #return Event.where("start < ?", DateTime.now).joins( :volunteers).where(volunteers: {:id => self.id} ).count()
-    #same as above (for refence)
   end
   
   def future_signups_list
@@ -44,20 +51,7 @@ class Volunteer < ActiveRecord::Base
     return Event.where("start < ?", DateTime.now).joins( :volunteers).where(volunteers: {:id => self.id} )
   end
   
-
-
-  scope :users, -> { where(type: 'User') } 
-  scope :ngos, -> { where(type: 'Ngo') } 
-  
-  def self.inherited(child)
-    child.instance_eval do
-      def model_name
-        Volunteer.model_name
-      end
-    end
-    super
-  end
-  # end of inheritance
+ 
   
   def self.select_options
     descendants.map{ |c| c.to_s }.sort
@@ -66,6 +60,13 @@ class Volunteer < ActiveRecord::Base
       validates :name, 
         presence: true,
         length: {maximum: 254}
+  
+      validates :last_name, 
+        presence: true,
+        length: {maximum: 254}
+  
+      validates :gender, 
+        presence: true
 
       validates :email,
         presence: true,
@@ -81,6 +82,8 @@ class Volunteer < ActiveRecord::Base
 
       # their profile (i.e they don't have to enter a new password)
       validates :password,
+        # allow blank will only apply to profile updates
+        allow_blank: true,
         presence: true,
         length: { minimum: 6, maximum: 254 }
   
@@ -119,9 +122,47 @@ class Volunteer < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
   
+  # Function to activate an account, setting the values in the db
+  def activate
+    update_attribute(:activated, true)
+    update_attribute(:activated_at, Time.zone.now)
+  end
+  
   # Function to send an activation email
   def send_activation_email
     VolunteerMailer.account_activation(self).deliver_now
+  end
+  
+  # password reset
+  def create_reset_digest
+    self.reset_token = Volunteer.new_token
+    update_attribute(:reset_digest, Volunteer.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  # sends password reset email
+  def send_password_reset_email
+    VolunteerMailer.password_reset(self).deliver_now
+  end
+  
+  # Function to test and return true if a password reset has expired
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+  
+  # Sign up to an event.
+  def sign_up(event)
+    event_volunteers.create(event_id: event.id)
+  end
+  
+  # Opt out of an event you were signed up to
+  def opt_out(event)
+    event_volunteers.find_by(event_id: event.id).destroy
+  end
+  
+  # Function to test and return true if volunteer is signed up to 'event'
+  def signed_up?(event)
+    events.include?(event)
   end
   
   private
@@ -137,10 +178,6 @@ class Volunteer < ActiveRecord::Base
       self.activation_digest = Volunteer.digest(activation_token)
     end
   
-  # Function to activate an account, setting the values in the db
-  def activate
-    update_attribute(:activated,    true)
-    update_attribute(:activated_at, Time.zone.now)
-  end
+
   
 end

@@ -7,13 +7,16 @@
     <div class="row">
       <div class="col-sm-10">
         <h1 class=""><%= @user.name %> <%= @user.last_name %></h1>
-        <button type="button" class="btn btn-success">Send me a message</button>
+        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#msgModal">Send me a message</a>
       </div>
       
-      <div class="col-sm-2">
-        <a href="/users" class="pull-right"><img title="profile image" class="img-cir img-responsive" src="http://www.rlsandbox.com/img/profile.jpg"></a>
+      <div class="col-sm-2" style="height: 300px">
+        <div class="pull-right">
+
+          <%= image_tag @user.avatar.url(:medium), size: '250x250' %>      
+
+        </div>
       </div>
-    </div>
     <br>
     
     <div class="row">
@@ -36,8 +39,12 @@
         <div class="panel panel-default">
           <div class="panel-heading"><strong class="">Activity <i class="fa fa-dashboard fa-1x"></i></strong></div>
             <ul class="list-group">
-
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Events attended</strong></span> 125</li>
+              
+              <div class="eventinfo">
+                <%= render 'shared/my_events' %>
+              </div>
+              
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Events attended</strong></span> 6</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Events bookmarked</strong></span> 13</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average volunteer rating</strong></span> 4.5</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Attendance record</strong></span> 95%</li>
@@ -60,17 +67,17 @@
      <!--Main panels-->
       <div class="col-sm-9" contenteditable="false" style="">
         <div class="panel panel-default">
-          <div class="panel-heading"><%= @user.name %><!-- <%= @user.last_name %> -->'s Biography</div>
+          <div class="panel-heading"><%= @user.name %> <%= @user.last_name %>'s Biography</div>
             <div class="panel-body"> A long description about me.</div>
         </div>
       
       <div class="panel panel-default">
-        <div class="panel-heading"><%= @user.name %><!-- <%= @user.last_name %> -->'s Friends</div>
+        <div class="panel-heading"><%= @user.name %> <%= @user.last_name %>'s Friends</div>
             <div class="panel-body"> Friend 1 Friend 2....</div>
       </div>
       
       <div class="panel panel-default">
-        <div class="panel-heading"><%= @user.name %><!-- <%= @user.last_name %> -->'s Event Testimonials</div>
+        <div class="panel-heading"><%= @user.name %> <%= @user.last_name %> 's Event Testimonials</div>
             <div class="panel-body"> "Blah blah"</div>
       </div>
        
@@ -78,7 +85,29 @@
       </div>
     </div>
   </div>
-    
+  
+  <!-- Send me a message modal -->
+  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Message tool</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Message subject</h4>
+          </div>
+          <div class="modal-body">
+            <h4>Message Text</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-sucess">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 </body> 
 
 

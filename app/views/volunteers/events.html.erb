@@ -1,0 +1,18 @@
+<% provide(:title, @title) %>
+
+<!-- content to be updated using Ajax -->
+<div>
+<div class="container horizontal-center">
+
+  <div>
+    <span><%= link_to "back to profile", @user %></span>
+  </div>
+  
+  <div class="my_events">
+    <%= render 'event_list' %>
+  </div>
+  
+  
+</div>
+</div>
+<!-- end content to be updated using Ajax -->

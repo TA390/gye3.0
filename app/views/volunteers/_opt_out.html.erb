@@ -1,0 +1,35 @@
+<h1><%= @user.name %>'s 
+  Upcoming Events (<%= @user.events.count %>)
+</h1>
+
+<div class="col-md-12">
+  <h3><%= @title %></h3>
+  <% if @events.any? %>
+    <% @events.each do |event| %>
+      <div>
+        <%= image_tag event.picture %>   
+      </div>
+      <div>
+        <%= event.name %>   
+      </div>
+      <div>
+        <%= event.id %>   
+      </div>
+      <div>
+        <%= event.description %>   
+      </div>
+    
+      <!-- display 'Opt out' btn on user's profile -->
+      <div>   
+      <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
+            html: { method: :patch }, remote: true) do |f| %>
+
+        <%= f.submit "Opt out", class: "btn" %>
+
+      <% end %>
+      </div>
+      <!-- end display 'Opt out' btn on user's profile -->
+
+    <% end %>
+  <% end %>
+</div>

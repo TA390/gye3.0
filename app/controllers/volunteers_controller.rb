@@ -1,5 +1,7 @@
 class VolunteersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  
+  
+  before_action :logged_in_user, only: [:edit, :update, :events]
   before_action :correct_user, only: [:edit, :update]
   
   def index
@@ -8,9 +10,10 @@ class VolunteersController < ApplicationController
       @volunteers = Volunteer.joins( :tags).where(tags: {:name => params[:tags]} ).order(:name)
     
     elsif params[:event_ids].present?
+
       #joins vol table to events (via event_volunteer) on event id matching param event_ids
       @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_ids]} ).order(:name)
-      
+      # need to add to table, 2 columns, sign_up and basket (AND signup == true)
       
     elsif params[:location].present?
       #shows all vols with location matching params location
@@ -18,32 +21,30 @@ class VolunteersController < ApplicationController
       
     else
       #show all
-      @volunteers = Volunteer.order(:name)
+      # SET ACTIVATED TO true FOR PRODUCTION
+      @volunteers = Volunteer.paginate(page: params[:page], 
+        per_page: 10).order(:name).where(activated: false).order(:name)
     end
+   
   end
       
 
   def show
-    @user = Volunteer.find(params[:id])
+      @user = Volunteer.find(params[:id])
+      redirect_to root_url and return unless @user
   end
   
   def new
-    @user = User.new
+    @user = Volunteer.new
   end
   
   def create
   
-    if params[:commit] == "Create Volunteer Account"
-      @user = User.new(user_params)
-      @created_for = "new_user"
-    else
-      @user = Ngo.new(user_params)
-      @created_for = "new_ngo"
-    end
+    @user = Volunteer.new(user_params)
       
     if @user.save
       @user.send_activation_email
-      flash[:info] = "We have sent your activation email."
+      flash[:notice] = "Please check your email to activate your account"
       redirect_to root_url
       
       #log_in(@user)
@@ -70,17 +71,21 @@ class VolunteersController < ApplicationController
     end
   end
   
+  def events
+    @title = "My Events"
+    @user  = Volunteer.find(params[:id])
+    @events = @user.events.paginate(page: params[:page], per_page: 10)
+  end
 
 
   # private functions
   private
   
     def user_params
-
       params.require(:volunteer).permit(:name, :last_name, :email,
                                         :location, :gender, :password, 
-                                        :password_confirmation, :type)
-      
+                                        :password_confirmation, :picture,
+                                        :avatar)  
     end
   
     # Function to test if a user has logged in

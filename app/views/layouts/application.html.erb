@@ -9,32 +9,33 @@
                               media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
+
+  
+</head>
+
+
   
 
-</head>
-<body>
-  <%= render 'layouts/header' %>
-<br>
-<br>
-<br>
   
-<div class="container-fluid">
+<body>
+  
+ <header> 
+   <%= render 'layouts/header' %>
+ </header> 
   
   <div class="container">
     <% flash.each do |message_type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
   </div>
+   
+  <%= yield %>
   
-  <div class="row">
-    <%= yield %>
-  </div>
-
-  <%= render 'layouts/footer' %>
-
-  <%= debug(params) if Rails.env.development? %>
-
+  <footer>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
+  </footer>
   
 </body>
+  
 </html>

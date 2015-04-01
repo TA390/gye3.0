@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   
+  get 'ngo_password_resets/new'
+
+  get 'ngo_password_resets/edit'
+
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
+  get 'ngo_sessions/new'
+
+  get 'logins/new'
+
   get 'sessions/new'
 
   root 'static_pages#home'
@@ -7,32 +19,61 @@ Rails.application.routes.draw do
   get 'home'        => 'static_pages#home'       # root_path
   get 'about'       => 'static_pages#about'      # about_path
   get 'events'      => 'events#index'            # events_path
-  get 'volunteers'  => 'static_pages#volunteer'  # volunteers_path
-  get 'ngos'        => 'static_pages#ngo'        # ngos_path
-  get 'signup'      => 'volunteers#new'          # signup_path
+  get 'volunteers'  => 'volunteers#index'        # volunteers_path
+  get 'ngos'        => 'ngos#index'              # ngos_path
+  get 'signup'      => 'sign_ups#new'            # signup_path
   
 
-  get 'login'       => 'sessions#new'      # login_path
-  post 'login'      => 'sessions#create'   # login_path
-  delete 'logout'   => 'sessions#destroy'  # logout_path
+  get 'login'       => 'logins#new'              # login_path
 
-  get 'login'       => 'sessions#new'            # login_path
-  post 'login'      => 'sessions#create'         # login_path
-  delete 'logout'   => 'sessions#destroy'        # logout_path
+  get 'vlogin'       => 'sessions#new'           # vlogin_path
+  post 'vlogin'      => 'sessions#create'        # vlogin_path
+  delete 'vlogout'   => 'sessions#destroy'       # vlogout_path
 
+  get 'nlogin'       => 'ngo_sessions#new'       # nlogin_path
+  post 'nlogin'      => 'ngo_sessions#create'    # nlogin_path
+  delete 'nlogout'   => 'ngo_sessions#destroy'   # nlogout_path
 
   
   resources :volunteers
   resources :ngos
   resources :events
-  resources :event_volunteers
   resources :tags
+ 
+  resources :volunteers do
+    member do
+      get :events
+    end
+  end
   
   # account activation email link
   resources :account_activations, only: [:edit]
+  resources :ngo_account_activations, only: [:edit]
+  
+  # forgotten passwords
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :ngo_password_resets, only: [:new, :create, :edit, :update]
+            
+  # sign up and drop out of an event
+  resources :event_volunteers, only: [:create, :destroy, :update]
+  
+  # watch and unwatch events
+  resources :watchlists, only: [:create, :destroy, :update]
   
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do
+  get 'ngo_password_resets/new'
+
+  get 'ngo_password_resets/edit'
+
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
+  get 'ngo_sessions/new'
+
+  get 'logins/new'
+
 #     get 'auth/:provider/callback', to: 'sessions#create'
 #     get 'auth/failure', to: redirect('/')
 #     get 'signout', to: 'sessions#destroy', as: 'signout'

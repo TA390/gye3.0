@@ -1,19 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-#  ngo_id: 1
-#  name: EString
-#  password: FString
-#  location: GString
-#  url: HString
-#  email: IString
-#  phone_number: JString
 
-#two:
-#  ngo_id: 2
-#  name: KString
-#  password: LString
-#  location: MString
-#  url: NString
-#  email: OString
-#  phone_number: PString
+oxfam:
+  name: Oxfam
+  email: oxfam@test.com
+  password_digest:  <%= Ngo.digest('password') %>
+  activated:        true
+  activated_at:     <%= Time.zone.now %>
+  
+water_aid:
+  name: Water Aid
+  email: wateraid@test.com
+  password_digest:  <%= Ngo.digest('password') %>
+  activated:        true
+  activated_at:     <%= Time.zone.now %>

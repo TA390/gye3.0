@@ -1,0 +1,43 @@
+<% provide(:title, "Log in") %>
+<body class="login">
+<!-- jquery for tabs -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script>
+    $(function() {
+      $( "#tabs" ).tabs();
+    });
+  </script>
+<!-- end jquery for tabs -->
+
+
+<!-- Volunteer / NGO login up form -->
+<ul class="nav nav-tabs container" role="tablist" id="tabs">
+  
+  <li role="presentation" class="active">  
+    <a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer</a>
+  </li>
+  <li>
+    <a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab">NGO</a>
+  </li>
+  
+</ul>
+
+  
+<div class="tab-content">
+ 
+
+  <div role="tabpanel" class="tab-pane active"  id="volunteer">
+    <%= render template: 'sessions/new' %>
+  </div>
+
+  <div role="tabpanel" class="tab-pane" id="ngo">
+    <%= render template: 'ngo_sessions/new' %>
+  </div>
+
+  
+</div>
+<!-- end Volunteer / NGO login form -->
+
+  </div>

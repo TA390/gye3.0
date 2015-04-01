@@ -1,0 +1,12 @@
+<% @user ||= current_user %>
+
+<li class="list-group-item text-right">
+  <a href="<%= events_volunteer_path(@user) %>">
+    <span class="pull-left">
+      <strong class="">Upcoming events</strong>
+    </span>
+    <strong id="myevents" class="eventinfo">
+      <%= @user.event_volunteers.count %>
+    </strong>
+  </a>
+</li>

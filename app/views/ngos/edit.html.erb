@@ -1,58 +1,81 @@
-<br>
-<br>
-<div class="container-fluid">
-  <%= link_to 'Go Back', ngos_path %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h1>Editing NGO</h1>
-    </div>
-    <div class="panel-body">
-      <%= form_for @ngo, class: 'text-center' do |f| %>
+<% provide(:title, "Update Profile") %>
 
-        <% if @ngo.errors.any? %>
-        <div id="error_explanation">
-          <h2> <%= pluralize(@ngo.errors.count, "error") %> prohibited 
-            this ngo from being saved: </h2>
-          <ul>
-            <% @ngo.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+<div id="signupform">  
+  
+  <div class="container">
+    <div class="row text-center">
+      <br/>
+        <h1>Settings</h1>
+      <br/>
+      <br/>
+    </div>
+  </div> 
+      
+  <div class="container">
+    <div class="row centered-form">
+      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+          
+          <div class="panel-heading">    
+            <h3 class="panel-title"> Update your profile</h3>
+          </div>
+          
+          <div class="panel-body">
+                          
+            <%= form_for @ngo, class: 'text-center' do |f| %>
+
+              <%= render 'shared/error_messages', object: f.object %>
+              
+                <form role="form">
+                  
+                  <div class="form-group">                  
+                    <%= f.text_field :name, placeholder: "Name", class: 'form-control' %>
+                  </div>      
+                              
+                  <div class="form-group">
+                    <%= f.email_field :email, placeholder: "Email", class: 'form-control' %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.text_field :location, placeholder: "Location", class: 'form-control' %>
+                  </div>
+                  
+                  <div class="form-group">
+                    <%= f.url_field :url, placeholder: "Website", class: 'form-control' %>
+                  </div>
+                  
+                  <div class="form-group">
+                    <%= f.telephone_field :phone_number, placeholder: "Phone Number", class: 'form-control' %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.password_field :password, placeholder: "Password",class: 'form-control' %>
+                  </div>
+                    
+                  <div class="form-group">
+                    <%= f.password_field :password_confirmation, placeholder: "Confirm Pasword", 
+                                            class: 'form-control' %>            
+                  </div>
+                  
+                  <br/>
+                  <br/>
+                  <div class="form-group">
+                    <%= f.label :avatar, "Change Profile Picture" %>
+                    <%= f.file_field :avatar %>
+                  </div>
+                  <br/>
+                  <br/>
+                            
+                  <%= f.submit "Save changes", class: "btn btn-primary" %>
+                            
+                </form>
+            
+
             <% end %>
-          </ul>
+                
+          </div>
         </div>
-        <% end %>
-
-        <div class="form-group">
-          <%= f.label :name %><br>
-          <%= f.text_field :name, class:"form-control" %>
-        </div>
-      
-        <div class="form-group">
-          <%= f.label :password %><br>
-          <%= f.password_field :password, class:"form-control" %>
-        </div>
-      
-        <div class="form-group">
-          <%= f.label :location %><br>
-          <%= f.text_field :location, class:"form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :url %><br>
-          <%= f.text_field :url, class:"form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :email %><br>
-          <%= f.email_field :email, class:"form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :phone_number %><br>
-          <%= f.text_field :phone_number, class:"form-control" %>
-        </div>
-
-        <%= f.submit class: "btn btn-primary btn-block" %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  </div>  
 </div>

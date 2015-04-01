@@ -1,30 +1,158 @@
+<% provide(:title, 'Volunteer') %>
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Volunteers</h1>
+<body class="v_index"> 
+  <div class="dropdownbarbox">
+    	<div class="container">
+          <div class="dropdownbox_des">
+ 				    <h1> Volunteer Search Tool </h1> 
+				    <h2> Find Eligible Volunteers! </h2>
+         	</div>
+      </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Email</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+	
+    
+  
+	<div class="search_result">
+		<p>We have found xxx volunteers based on your screening criteria</p>  
+	</div>
+  
+  <div class = "sidebar_plus_volunteers">
+    <div class="col-md-3"> 
+     
+    <div class="list-group">
+      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#rating-checkbox">Rating</a>
+        <div class ="collapse checkbox" id="rating-checkbox"> 
+          <form role="form">
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 5 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 4 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 3 stars</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i>
+               2 stars</label></div>
+             <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i>
+               1 star</label></div>
+          </form>
+        </div>
+      
+      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#sex-checkbox">Gender</a>
+         <div class ="collapse checkbox" id="sex-checkbox"> 
+          <form role="form">
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-male"></i> Male</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-female"></i> Female</label></div>
+          </form>
+        </div>
+      
+       <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#av-checkbox">Availability</a>
+         <div class ="collapse checkbox" id="av-checkbox"> 
+          <form role="form">
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-male"></i> Male</label></div>
+            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-female"></i> Female</label></div>
+          </form>
+        </div>
+      
+     
+      
+      
+      
+      
+    </div>
+    
+    </div>
+	            
+	  
+    <div class="volunteers col-md-9">
+      <%= will_paginate %>
+      <% @volunteers.each do |volunteer| %>
+        <div class = "one_volunteer">
+          <div class ="row">
 
-  <tbody>
-    <% @volunteers.each do |event| %>
+            <div class="col-md-3">
+              <div class="container">
+                <div class ="volunteer_pic">
+                  <img class="img-circle" src="http://wikivillage.co.za/sites/default/files/media/garden-route-spca/garden-route-spca1.jpg" alt="description here "/>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-9 ">
+              <h3><%=volunteer.name %> <%=volunteer.last_name %></h3>
+                <h4>Bio:</h4>
+                <p> [Bio goes here] </p>
+                <p> Joining date: <%=volunteer.created_at%> </p>
+
+              <%=button_to 'Show Profile', volunteer_path(volunteer), :method => :get, :class => "btn btn-primary"%>
+
+            </div>
+          </div>
+          <!--End of Row -->
+        </div>
+        <!--End of one_volunteer wrappper -->
+      <% end %>
+      <%= will_paginate %>
+    </div>
+  </div>
+
+  <h1>Listing Volunteers</h1>
+
+  <table>
+    <thead>
       <tr>
-        <td><%= volunteer.first_name %></td>
-        <td><%= volunteer.email %></td>
-        <td><%= volunteer.location %></td>
-        <td><%= link_to 'Show', volunteer %></td>
-        <td><%= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
-        <td><%= link_to 'Destroy', volunteer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Location</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+
+      <% @volunteers.each do |volunteer| %>
+        <tr>
+
+          <td><%= volunteer.name %></td>
+          <td><%= volunteer.email %></td>
+          <td><%= volunteer.location %></td>
+          <td><%= link_to 'Show', volunteer_path(volunteer) %></td>
+          <td><%= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
+          <td><%= link_to 'Destroy', volunteer_path(volunteer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+
+
+    </tbody>
+  </table>
+  
+  
+  
+  
+</body>
+
+
+
+<!--
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "password_digest"
+    t.string   "location"
+    t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
+    t.string   "type"
+    t.string   "last_name"
+    t.string   "gender"
+    t.string   "phone_number"
+    t.string   "url"
+
+ <div class="btn-group">
+                  <button type="button" class="btn btn-info"> See More </button>
+                </div>
+
+
+-->
 
 <br>
 

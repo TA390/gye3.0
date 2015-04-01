@@ -25,24 +25,5 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_select "title", "About Us"
   end
   
-  # Events Page
-  test "should get events" do
-    get :event
-    assert_response :success
-    assert_select "title", "Events"
-  end
-  
-  # Volunteer Page
-  test "should get volunteer" do
-    get :volunteer
-    assert_response :success
-    assert_select "title", "Volunteer"
-  end
-  
-    test "should get ngo" do
-    get :ngo
-    assert_response :success
-    assert_select "title", "NGO"
-  end
 
 end

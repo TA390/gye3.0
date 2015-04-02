@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   #before_action(:set_event, { :only => [:show, :edit, :update, :destroy] })
   #two lines above are the same!!
   
-
   #scope for search params
   #has_scope :featured, :type => :boolean
   has_scope :by_tag
@@ -14,12 +13,11 @@ class EventsController < ApplicationController
   has_scope :by_period, :using => [:started_at, :ended_at], :type => :hash
 
   
-  
   def index 
     @events = apply_scopes(Event).all
     
     # Test PASS
-    if params[:tags].present? && params[:location].present? && params[:startdate].present?
+    if params[:tags].present? && params[:location].present? && params[:startdate].present? && params[:enddate].present?
       #joins event table to tags, location, and start/end matching param tags, location, and start date and end date
       @events = Event.find_by_sql(
         ["SELECT * FROM events e

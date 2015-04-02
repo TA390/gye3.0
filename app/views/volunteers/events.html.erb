@@ -1,8 +1,8 @@
 <% provide(:title, @title) %>
 
 <div class="container">
-  <h1><%= current_user.name %>'s 
-    Events (<%= current_user.events.count() %>)
+  <h1><%= @user.name %>'s 
+    Events (<%= @user.events.count() %>)
   </h1>
   <div>
     <span><%= link_to "back to profile", @user %></span>
@@ -23,8 +23,6 @@
 <!-- end jquery for tabs -->
 
 <body class = "">
-
-<!-- Volunteer / NGO sign up form -->
   
 
 <ul class="nav nav-tabs container" role="tablist" id="tabs">
@@ -60,6 +58,5 @@
  
   
 </div>
-<!-- end Volunteer / NGO sign up form -->
 
 </body>

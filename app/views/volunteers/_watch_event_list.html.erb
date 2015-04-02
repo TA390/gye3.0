@@ -20,25 +20,27 @@
         <%= event.start.to_formatted_s(:short) %>   
       </div>
       
+      <% if current_user?(@user) %>
       <!-- display 'Opt out' btn on user's profile -->
-      <div>   
-      <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
-            html: { method: :patch }) do |f| %>
-        <div>
-          <%= hidden_field_tag :attending, "false" %>
+        <div>   
+        <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
+              html: { method: :patch }) do |f| %>
+          <div>
+            <%= hidden_field_tag :attending, "false" %>
+          </div>
+          <%= f.submit "Remove from watchlist", class: "btn btn-default" %>
+        <% end %>
         </div>
-        <%= f.submit "Remove from watchlist", class: "btn btn-default" %>
-      <% end %>
-      </div>
-      <div>
-      <%= form_for(current_user.event_volunteers.build) do |f| %>
         <div>
-          <%= hidden_field_tag :event_id, event.id %>
-          <%= hidden_field_tag :attending, "true" %>
+        <%= form_for(current_user.event_volunteers.build) do |f| %>
+          <div>
+            <%= hidden_field_tag :event_id, event.id %>
+            <%= hidden_field_tag :attending, "true" %>
+          </div>
+          <%= f.submit "Attend", class: "btn btn-primary" %>
+        <% end %>
         </div>
-        <%= f.submit "Attend", class: "btn btn-primary" %>
-      <% end %>
-      </div>
+       <% end %>
       <!-- end display 'Opt out' btn on user's profile -->
     <% end %>
   <% end %>

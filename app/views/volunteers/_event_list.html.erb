@@ -20,18 +20,20 @@
       <div>
         <%= event.start.to_formatted_s(:short) %>   
       </div>
-      
-      <!-- display 'Opt out' btn on user's profile -->
-      <div>   
-      <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
-            html: { method: :patch }) do |f| %>
-        <div>
-          <%= hidden_field_tag :attending, "true" %>
+  
+       <% if current_user?(@user) %>
+        <!-- display 'Opt out' btn on user's profile -->
+        <div>   
+          <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
+                html: { method: :patch }) do |f| %>
+            <div>
+              <%= hidden_field_tag :attending, "true" %>
+            </div>
+            <%= f.submit "Opt out", class: "btn btn-primary" %>
+          <% end %>
         </div>
-        <%= f.submit "Opt out", class: "btn btn-primary" %>
+        <!-- end display 'Opt out' btn on user's profile -->
       <% end %>
-      </div>
-      <!-- end display 'Opt out' btn on user's profile -->
     <% end %>
   <% end %>
 </div>

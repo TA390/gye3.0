@@ -4,7 +4,7 @@
       <strong class="">Upcoming events</strong>
     </span>
     <strong id="myevents" class="eventinfo">
-      <%= current_user.events.
+      <%= @user.events.
             where(["events.start >= ? and event_volunteers.attending = ?", 
               DateTime.now, "t"]).count() %>
     </strong>
@@ -17,7 +17,7 @@
       <strong class="">Events attended</strong>
     </span>
     <strong id="myevents" class="eventinfo">
-      <%= current_user.events.
+      <%= @user.events.
             where(["events.start < ? and event_volunteers.attending = ?", 
               DateTime.now, "t"]).count() %>
     </strong>
@@ -30,7 +30,7 @@
       <strong class="">Events bookmarked</strong>
     </span>
     <strong id="myevents" class="eventinfo">
-      <%= current_user.events.
+      <%= @user.events.
             where(["events.start >= ? and event_volunteers.attending = ?", 
               DateTime.now, "f"]).count() %>
     </strong>

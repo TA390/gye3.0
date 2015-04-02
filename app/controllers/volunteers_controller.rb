@@ -100,6 +100,8 @@ class VolunteersController < ApplicationController
   
   def events
     
+    @user = Volunteer.find(params[:id])
+    
     # future events
     @title = "Upcoming Events"
     # bookmarked events
@@ -109,9 +111,9 @@ class VolunteersController < ApplicationController
     
     #@events = Event.joins(:event_volunteers).where("events.start >= ?", DateTime.now)
     
-    @events = current_user.events.where(["events.start >= ? and event_volunteers.attending = ?", DateTime.now, "t"]).paginate(page: params[:page], per_page: 10)
-    @watch_events = current_user.events.where(["events.start >= ? and event_volunteers.attending = ?", DateTime.now, "f"]).paginate(page: params[:page], per_page: 10)
-    @past_events = current_user.events.where(["events.start < ? and event_volunteers.attending = ?", DateTime.now, "t"]).paginate(page: params[:page], per_page: 10)
+    @events = @user.events.where(["events.start >= ? and event_volunteers.attending = ?", DateTime.now, "t"]).paginate(page: params[:page], per_page: 10)
+    @watch_events = @user.events.where(["events.start >= ? and event_volunteers.attending = ?", DateTime.now, "f"]).paginate(page: params[:page], per_page: 10)
+    @past_events = @user.events.where(["events.start < ? and event_volunteers.attending = ?", DateTime.now, "t"]).paginate(page: params[:page], per_page: 10)
   end
 
 

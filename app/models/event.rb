@@ -19,7 +19,6 @@ class Event < ActiveRecord::Base
   # sign up to an event
   has_many :event_volunteers, dependent: :destroy
   has_many :volunteers, through: :event_volunteers
-
   
   validate :event_date
   
@@ -49,12 +48,12 @@ class Event < ActiveRecord::Base
   # Checks to see if event is full (occupancy==count of event_volunteers)
   # Returns true if count is greater or equal to occupancy (does not block)
   def full?
-    self.event_volunteers.count() >= self.occupancy
+    self.event_volunteers.where(["event_volunteers.attending = ?", "t"]).count() >= self.occupancy
   end
   
   # Returns count of sign ups to event
   def signups
-    return self.event_volunteers.count()
+    return self.event_volunteers.where(["event_volunteers.attending = ?", "t"]).count()
   end
 
   # Returns true for an an event in the future

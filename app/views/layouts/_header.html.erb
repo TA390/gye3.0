@@ -12,7 +12,7 @@
           <li><%= link_to "Volunteer", volunteers_path %></li>
           <li><%= link_to "NGO", ngos_path %></li>
             <% if logged_in? %>
-<%= link_to "Log out", vlogout_path, method: "delete" %>
+
                   <li class="dropdown">
 
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle" >
@@ -27,9 +27,10 @@
                       </li>
                     </ul>
                   </li> 
+          <!-- TEMPORARY until navbar is fixed -->
+          <li><%= link_to "Log out", vlogout_path, method: "delete" %></li>
           
             <% elsif logged_in_ngo? %>
-<%= link_to "Log out", nlogout_path, method: "delete" %>          
                   <li class="dropdown">
 
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle" >
@@ -44,6 +45,8 @@
                       </li>
                     </ul>
                   </li> 
+          <!-- TEMPORARY until navbar is fixed -->
+          <li><%= link_to "Log out", nlogout_path, method: "delete" %></li>
           
               <% else %>
                 <li id="log_in_btn"><%= link_to "Log in", login_path %></li>

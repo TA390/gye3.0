@@ -11,7 +11,7 @@
   
         </div>
 
-        <%if logged_in_ngo? %>
+        <%if logged_in_ngo? && current_ngo?(@ngo) %>
           <div>
             <button id="trigger" type="button" 
               class="btn btn-success">Create event</button>

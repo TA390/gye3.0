@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :add_volunteer]
-   before_action :correct_ngo, only: :destroy
+  before_action :correct_ngo, only: :destroy
   
   #before_action(:set_event, { :only => [:show, :edit, :update, :destroy] })
   #two lines above are the same!!
@@ -84,6 +84,7 @@ class EventsController < ApplicationController
       flash[:success] = "Event successfully created!"
       redirect_to events_path
     else
+      
       @ngo = current_ngo
       render 'ngos/show'
     end

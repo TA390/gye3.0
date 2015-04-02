@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  
+  <body>
+    <h1>Give Your Effort</h1>
+
+    <p>Hi <%= @user.name %>,</p>
+
+    <h2>
+      Thank you for signing up to the event: <strong><%= @event.name %></strong>
+    </h2>
+    
+    </br>
+    <p>
+    <h4><b>Description</b></h4>
+      <%= @event.description %>
+      <br/>
+      <br/>
+    <h4><b>Date</b></h4>
+      Start: <%= @event.start.to_formatted_s(:long_ordinal) %>
+    </br>
+      End:&nbsp;&nbsp; <%= @event.end.to_formatted_s(:long_ordinal) %>
+    </p>
+  
+  <p>
+    Thanks,<br/>
+    GYE Team
+  </p>
+  </body>
+<html>

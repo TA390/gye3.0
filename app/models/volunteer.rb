@@ -152,7 +152,7 @@ class Volunteer < ActiveRecord::Base
   
   # Sign up to an event.
   def sign_up(event)
-    event_volunteers.create(event_id: event.id)
+    event_volunteers.create(event_id: event.id, attending: true)
   end
   
   # Opt out of an event you were signed up to
@@ -162,7 +162,24 @@ class Volunteer < ActiveRecord::Base
   
   # Function to test and return true if volunteer is signed up to 'event'
   def signed_up?(event)
-    events.include?(event)
+    (events.include?(event)) && 
+      (self.event_volunteers.where(event_id: event.id, attending: true).present?) 
+  end
+  
+  # Watch an event
+  def watch(event)
+    event_volunteers.create(event_id: event.id, attending: false)
+  end
+  
+  # Stop watching an event
+  def unwatch(event)
+    event_volunteers.find_by(event_id: event.id).destroy
+  end
+  
+  # Function to test if an event is being watched'
+  def watching?(event)
+    (events.include?(event)) && 
+      (self.event_volunteers.where(event_id: event.id, attending: false).present?)
   end
   
   private

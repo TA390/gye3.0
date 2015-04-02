@@ -1,0 +1,17 @@
+<% unless current_user?(@user) %>
+  <div>
+  <% if current_user.signed_up?(@event) %>
+    <div>
+      <%= render 'blank_watch' %>
+    </div>
+  <% else %>
+    <div>
+      <% if current_user.watching?(@event) %>
+        <%= render 'unwatch_event' %>
+      <% else %>
+        <%= render 'watch_event' %>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+<% end %>

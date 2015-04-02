@@ -1,3 +1,10 @@
 <!-- refresh 'Opt Out' btn to show 'Attend' -->
 
-$(".event_signup").html("<%= escape_javascript(render('events/sign_up')) %>")
+<% if @attend == "true" %>
+
+  $(".events_signup").html("<%= escape_javascript(render('events/sign_up')) %>")
+  $(".watch").html("<%= escape_javascript(render('events/watch_event')) %>")
+
+<% else %>
+  $(".watch").html("<%= escape_javascript(render('events/watch_event')) %>")
+<% end %>

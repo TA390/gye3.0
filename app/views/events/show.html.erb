@@ -1,16 +1,29 @@
 <h1> Detailed Event Page </h1>
 
-<!-- sign up to an event -->
-<div class="event_signup">
-<% if logged_in?%>
-  <div>
-    <%= render 'event_signup' %>
-  </div>
+<% if @event.past? %>
+  
+  <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
+
 <% else %>
+  <% if logged_in?%>
+  <!-- sign up to an event -->
+    <div class="events_signup">
+      <%= render 'event_signup' %>
+    </div>
 
-  <%= button_to "Attend", login_path, 
-        class: "btn btn-primary", method: :get  %>
+    <!-- this div has been left empty to render buttons using ajax -->
+    <div class="watch">
+      <%= render 'watching_form'%>
+    </div>
 
-<% end %>         
-</div>
-<!-- end sign up to an event -->
+  <% else %>
+
+    <%= button_to "Attend", login_path, 
+          class: "btn btn-primary", method: :get  %>
+
+  <%= button_to "Add to watchlist", login_path, 
+          class: "btn btn-primary", method: :get  %>
+
+  <% end %> 
+  <!-- end sign up to an event -->
+<% end %>

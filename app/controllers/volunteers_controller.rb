@@ -85,7 +85,11 @@ class VolunteersController < ApplicationController
   end
   
   def update
+    
     @user = Volunteer.find(params[:id])
+    
+    dynaspan_text_field(current_user, :name) if logged_in? && current_user?(@user)
+    
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -95,9 +99,19 @@ class VolunteersController < ApplicationController
   end
   
   def events
-    @title = "My Events"
-    @user  = Volunteer.find(params[:id])
-    @events = @user.events.paginate(page: params[:page], per_page: 10)
+    
+    # future events
+    @title = "Upcoming Events"
+    # bookmarked events
+    @watch_title = "Watchlist"
+    # past events
+    @past_title = "Past Events"
+    
+    #@events = Event.joins(:event_volunteers).where("events.start >= ?", DateTime.now)
+    
+    @events = current_user.events.where(["events.start >= ? and event_volunteers.attending = ?", DateTime.now, "t"]).paginate(page: params[:page], per_page: 10)
+    @watch_events = current_user.events.where(["events.start >= ? and event_volunteers.attending = ?", DateTime.now, "f"]).paginate(page: params[:page], per_page: 10)
+    @past_events = current_user.events.where(["events.start < ? and event_volunteers.attending = ?", DateTime.now, "t"]).paginate(page: params[:page], per_page: 10)
   end
 
 

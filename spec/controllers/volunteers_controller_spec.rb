@@ -14,12 +14,6 @@ RSpec.describe VolunteersController, :type => :controller do
     
     
     context "when testing index functionality of volunteers for locations" do      
- 
-#       let!(:test_event_tag_1) { EventTag.create!(tag: dog, event: test_event_1) }
-#       let!(:test_event_tag_2) { EventTag.create!(tag: cat, event: test_event_3) }
-#       let!(:test_event_tag_3) { EventTag.create!(tag: dog, event: test_event_4) }
-#       let!(:test_event_tag_4) { EventTag.create!(tag: cat, event: test_event_4) }
-
       #        NY = v2v4
       #        SF = v3
       #        Lon = v1
@@ -75,27 +69,44 @@ RSpec.describe VolunteersController, :type => :controller do
       end      
 
       it "assigns @volunteers when query tag = dog and cat" do
-        get :index, tags: ['dog' && 'cat']
+        get :index, tags: ['dog','cat']
         expect(assigns(:volunteers)).to eq([v4])
       end
+
+      it "assigns @volunteers when query tag = dog and cat, loc = NY" do
+        get :index, tags: ['dog','cat'], location: ['New York']
+        expect(assigns(:volunteers)).to eq([v4])
+      end  
+      
+      let!(:test_vol_tag_5) { VolunteerTag.create!(tag: dog, volunteer: v2) }
+      it "assigns @volunteers when query tag = dog, loc = NY" do
+        get :index, tags: ['dog'], location: ['New York']
+        expect(assigns(:volunteers)).to eq([v2,v4])
+      end        
+            
+      it "assigns @volunteers when query tag = cat, loc = SF" do
+        get :index, tags: ['cat'], location: ['San Francisco']
+        expect(assigns(:volunteers)).to eq([v3])
+      end        
       
       it "assigns @volunteers when query tag = elephant" do
         get :index, tags: ['elephant']
         expect(assigns(:volunteers)).to eq([])
-        #assert_nil(assigns(:volunteers))
       end      
    end # /when testing index functionality of volunteers for tags
     
     
     context "when testing index functionality of volunteers for events" do     
-      let!(:test_event_1) { Event.create!(name: 'dog event in SF', start: DateTime.new(2015,3,7),
-        end: DateTime.new(2015,3,7), location: 'San Francisco') } 
-      let!(:test_event_2) { Event.create!(name: 'event no tags in NY', start: DateTime.new(2015,3,8),
-        end: DateTime.new(2015,3,8), location: 'New York') } 
-      let!(:test_event_3) { Event.create!(name: 'cat event in NY', start: DateTime.new(2015,4,8), 
-        end: DateTime.new(2015,4,8), location: 'New York') } 
-      let!(:test_event_4) { Event.create!(name: 'dog and cat event in SF', start: DateTime.new(2015,6,8), 
-        end: DateTime.new(2015,6,8), location: 'San Francisco') } 
+      let!(:unicef) { Ngo.create!(name: 'unicef', email: 'test201@gmail.com', password: 'xzyabc123') }
+      
+      let!(:test_event_1) { Event.create!(name: 'dog event in SF', start: DateTime.new(2016,3,7),
+        end: DateTime.new(2016,3,7), location: 'San Francisco', ngo: unicef, description: 'blah', occupancy: '3') } 
+      let!(:test_event_2) { Event.create!(name: 'event no tags in NY', start: DateTime.new(2016,3,8),
+        end: DateTime.new(2016,3,8), location: 'New York', ngo: unicef, description: 'blah', occupancy: '3') } 
+      let!(:test_event_3) { Event.create!(name: 'cat event in NY', start: DateTime.new(2016,4,8), 
+        end: DateTime.new(2016,4,8), location: 'New York', ngo: unicef, description: 'blah', occupancy: '3') } 
+      let!(:test_event_4) { Event.create!(name: 'dog and cat event in SF', start: DateTime.new(2016,6,8), 
+        end: DateTime.new(2016,6,8), location: 'San Francisco', ngo: unicef, description: 'blah', occupancy: '3') } 
       
       let!(:test_event_vol_1) { EventVolunteer.create!(event: test_event_1, volunteer: v1) }
       let!(:test_event_vol_2) { EventVolunteer.create!(event: test_event_2, volunteer: v1) }
@@ -104,12 +115,11 @@ RSpec.describe VolunteersController, :type => :controller do
       let!(:test_event_vol_6) { EventVolunteer.create!(event: test_event_2, volunteer: v2) }
       let!(:test_event_vol_7) { EventVolunteer.create!(event: test_event_3, volunteer: v3) }
       let!(:test_event_vol_8) { EventVolunteer.create!(event: test_event_1, volunteer: v4) }
-     
-      
       #       e1 = v1v2v4
       #       e2 = v1v2
       #       e3 = v1v3
       #       e4 = none
+      
       it "assigns @volunteers when query event = e1" do
         get :index, event_ids: [test_event_1.id]
         expect(assigns(:volunteers)).to eq([v1,v2,v4])

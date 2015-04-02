@@ -118,3 +118,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 # sending emails
 gem 'figaro'
 gem 'ruby-gmail'
+
+
+# search params
+gem 'has_scope'

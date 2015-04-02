@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :ngo
-  default_scope -> { order(created_at: :desc) }
+  has_many :posts
+  #default_scope -> { order(created_at: :desc) }
   
   # profile picture
   has_attached_file :avatar, 
@@ -15,7 +16,6 @@ class Event < ActiveRecord::Base
   
   has_many :event_tags
   has_many :tags, through: :event_tags
-  has_one :wall, dependent: :destroy   
   # sign up to an event
   has_many :event_volunteers, dependent: :destroy
   has_many :volunteers, through: :event_volunteers
@@ -67,7 +67,15 @@ class Event < ActiveRecord::Base
     self.start < ::DateTime.current
   end
   
-  scope :upcoming, -> { where(future: true) }
+    
+   # for search params
+   # scope :featured, -> { where(:featured => true) }
+   scope :by_tag, -> tag { where(:tags.name => tag) }
+   scope :by_ngo, -> ngo { where(:ngos.name => ngo) }
+   scope :by_vol, -> vol { where(:volunteers.volunteer_id => vol) }
+   scope :by_loc, -> location { where(:location => location) }
+   scope :by_period, -> started_at, ended_at { where("start = ? AND end = ?", started_at, ended_at) }
+   scope :upcoming, -> { where(future: true) }
   
   private
     def event_date

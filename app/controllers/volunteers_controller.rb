@@ -5,15 +5,38 @@ class VolunteersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   
   def index
-    if params[:tags].present?
+    if params[:tags].present? && params[:location].present?
+      #joins vol table to tags (via volunteer_tag) on tag name matching param tags and location
+      @volunteers = Volunteer.find_by_sql(
+        ["SELECT * FROM volunteers
+        WHERE location = (?) 
+        AND id IN 
+          (SELECT vt.volunteer_id 
+          FROM volunteer_tags vt 
+          INNER JOIN tags t ON vt.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY vt.volunteer_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY name", 
+        params[:location],params[:tags],params[:tags].size])
+      
+    elsif params[:tags].present?
       #joins vol table to tags (via volunteer_tag) on tag name matching param tags
-      @volunteers = Volunteer.joins( :tags).where(tags: {:name => params[:tags]} ).order(:name)
-    
+      @volunteers = Volunteer.find_by_sql(
+        ["SELECT * FROM volunteers
+        WHERE id IN 
+          (SELECT vt.volunteer_id 
+          FROM volunteer_tags vt 
+          INNER JOIN tags t ON vt.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY vt.volunteer_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY name", 
+        params[:tags],params[:tags].size])
+      
     elsif params[:event_ids].present?
-
       #joins vol table to events (via event_volunteer) on event id matching param event_ids
       @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_ids]} ).order(:name)
-      # need to add to table, 2 columns, sign_up and basket (AND signup == true)
       
     elsif params[:location].present?
       #shows all vols with location matching params location

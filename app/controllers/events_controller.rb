@@ -1,82 +1,147 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :add_volunteer]
    before_action :correct_ngo, only: :destroy
-  
   #before_action(:set_event, { :only => [:show, :edit, :update, :destroy] })
   #two lines above are the same!!
   
-  # GET /events
-  # GET /events.json
-  def index
-    #byebug
-      
-          
-    # http://stackoverflow.com/questions/21590671/handling-multiple-filters-params-cleanly-in-controller
-    ###################### needs testing ###########################################
-    if params[:tags].present? && params[:location].present? && params[:start].present?
-      #joins event table to tags, location, and start matching param tags, location, and start date 
-      @events = Event.where( :location => params[:location]).
-        where( :start.strftime('%F') => params[:start]).
-        joins( :tags).where(tags: {:name => params[:tags]} ).order(:name) 
+
+  #scope for search params
+  #has_scope :featured, :type => :boolean
+  has_scope :by_tag
+  has_scope :by_ngo
+  has_scope :by_vol
+  has_scope :by_loc
+  has_scope :by_period, :using => [:started_at, :ended_at], :type => :hash
+
+  
+  
+  def index 
+    @events = apply_scopes(Event).all
     
+    # Test PASS
+    if params[:tags].present? && params[:location].present? && params[:startdate].present?
+      #joins event table to tags, location, and start/end matching param tags, location, and start date and end date
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE e.location = (?)
+        AND e.start >= (?)
+        AND e.end <= (?)
+        AND e.id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY e.start", 
+        params[:location],params[:startdate], params[:enddate],params[:tags],params[:tags].size])
+    
+    # Test PASS
     elsif params[:tags].present? && params[:location].present?
       #joins event table to tags and location matching param tags and location 
-      @events = Event.where( :location => params[:location]).
-        joins( :tags).where(tags: {:name => params[:tags]} ).order(:start)
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events
+        WHERE location = (?)
+        AND id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY start", 
+        params[:location],params[:tags],params[:tags].size])
       
-    elsif params[:start].present? && params[:location].present?
-      #event table where location and start matching param location and start date 
-      @events = Event.where( :location => params[:location]).
-        where( :start.strftime('%F') => params[:start]).order(:name)
+    # Test PASS
+    elsif params[:startdate].present? && params[:enddate].present? && params[:location].present?
+      #event table where location and start/end matching param location and start date and end date
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE e.start >= (?)
+        AND e.end <= (?)
+        AND e.location = (?)
+        ORDER BY e.start", 
+        params[:startdate], params[:enddate],params[:location]])
       
-    elsif params[:tags].present? && params[:start].present?
-      #joins event table to tags and start matching param tags and start date 
-      @events = Event.where( :start.strftime('%F') => params[:start]).
-        joins( :tags).where(tags: {:name => params[:tags]} ).order(:name)
+    # Test PASS
+    elsif params[:tags].present? && params[:startdate].present? && params[:enddate].present?
+      #joins event table to tags and start matching param tags and start date and end date
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE e.start >= (?)
+        AND e.end <= (?)
+        AND e.id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY e.start", 
+        params[:startdate], params[:enddate],params[:tags],params[:tags].size])
       
-      # input year-month-day like: '20015-3-19'
-    elsif params[ :start].present?
+    # Test PASS
+    # input by DateTime (year-month-day) e.g. '2015-03-19' or DateTime.now
+    elsif params[ :startdate].present? && params[ :enddate].present?
+      #shows all event with start date matching params start and end
+      #end is keyword, need to run query in find_by_sql
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE e.start >= (?)
+        AND e.end <= (?)
+        ORDER BY start", 
+        params[:startdate], params[:enddate]])
+      
+    # Test PASS
+    elsif params[ :startdate].present?
       #shows all event with start date matching params start
-      @events = Event.where( :start.strftime('%F') => params[:start]).order(:name)      
-    ###################### needs testing ###########################################
+      @events = Event.where( :start => params[:startdate]).order(:name)      
+
+    # Test PASS      
+    elsif params[ :enddate].present?
+      #shows all event with start date matching params start
+      @events = Event.where( :end => params[:enddate]).order(:name)         
       
-      
+    # Test PASS
     elsif params[:tags].present?
       #joins event table to tags (via event_tags) on tag name matching param tags
-      @events = Event.joins( :tags).where(tags: {:name => params[:tags]} ).order(:start)
-
+      #find_by_SQL allows for multiple tag params to be passed in
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events
+        WHERE id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY start", 
+        params[:tags],params[:tags].size])
+      
+    # Test PASS
     elsif params[:ngos].present?
       #joins event table to ngos (on ngoid) matching param ngos name
       @events = Event.joins( :ngo).where(ngos: {:name => params[:ngos]} ).order(:start)
       
+    # Test PASS  
     elsif params[:location].present?
       #shows all event with location matching params location
       @events = Event.where( :location => params[:location]).order(:start)
-      
-    else params[:vid].present?
+
+    # Test PASS
+    elsif params[:vid].present?
       #joins event table to volunteers (on volid) matching param volunteer id
-      @events = Event.joins( :volunteers).where(volunteers: {:volunteer_id => params[:vid]} ).order(:start)    
+      @events = Event.joins( :volunteers).where(volunteers: {:id => params[:vid]} ).order(:start)    
       
-      # needs testing!!! input year-month-day like: '20015-3-19'
-    elsif params[:start].present?
-      #shows all event with start date matching params start
-      @events = Event.where( :start.strftime('%F') => params[:start]).order(:name)
-      
+    # Test PASS
     else
       #show all
       @events = Event.paginate(page: params[:page],
         per_page: 10).order(:start)
-    end
-    
-  end
+      
+    end # end if
+  end # end def index
 
-
-#   SELECT "events".* 
-#   FROM "events" 
-#   INNER JOIN "event_tags" ON "event_tags"."event_id" = "events"."id" 
-#   INNER JOIN "tags" ON "tags"."id" = "event_tags"."tag_id" 
-#   WHERE "tags"."name" = 'dog'  
-#   ORDER BY "events"."start" ASC
   
   
   def add_volunteer

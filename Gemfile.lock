@@ -195,6 +195,9 @@ GEM
     guard-minitest (2.3.1)
       guard (~> 2.0)
       minitest (>= 3.0)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hashie (3.4.1)
     hike (1.2.3)
     hitimes (1.2.2)
@@ -411,6 +414,7 @@ DEPENDENCIES
   font-awesome-sass
   gon
   guard-minitest (= 2.3.1)
+  has_scope
   immigrant
   jbuilder (~> 2.0)
   jquery-rails

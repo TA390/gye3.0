@@ -1,0 +1,38 @@
+<li class="list-group-item text-right">
+  <a href="<%= events_volunteer_path(@user) %>">
+    <span class="pull-left">
+      <strong class="">Upcoming events</strong>
+    </span>
+    <strong id="myevents" class="eventinfo">
+      <%= @user.events.
+            where(["events.start >= ? and event_volunteers.attending = ?", 
+              DateTime.now, "t"]).count() %>
+    </strong>
+  </a>
+</li>
+
+<li class="list-group-item text-right">
+  <a href="<%= events_volunteer_path(@user) %>">
+    <span class="pull-left">
+      <strong class="">Events attended</strong>
+    </span>
+    <strong id="myevents" class="eventinfo">
+      <%= @user.events.
+            where(["events.start < ? and event_volunteers.attending = ?", 
+              DateTime.now, "t"]).count() %>
+    </strong>
+  </a>
+</li>
+
+<li class="list-group-item text-right">
+  <a href="<%= events_volunteer_path(@user) %>">
+    <span class="pull-left">
+      <strong class="">Events bookmarked</strong>
+    </span>
+    <strong id="myevents" class="eventinfo">
+      <%= @user.events.
+            where(["events.start >= ? and event_volunteers.attending = ?", 
+              DateTime.now, "f"]).count() %>
+    </strong>
+  </a>
+</li>

@@ -1,0 +1,12 @@
+Hi <%= @user.name %>,
+
+Thank you for signing up to the event: <%= @event.name %> 
+
+Event Information
+    
+Description
+<%= @event.description %>
+
+Date
+Start: <%= @event.start.to_formatted_s(:long_ordinal) %>
+End:   <%= @event.end.to_formatted_s(:long_ordinal) %>

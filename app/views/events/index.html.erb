@@ -225,7 +225,7 @@
             <div class ="event_pic">
 
             <!-- event picture (default provided) -->
-            <%= image_tag event.avatar.url(:medium), size: '250x250' %>
+            <%= link_to (image_tag event.avatar.url(:medium), size: '250x250'), event_path(event) %>
 
                   
                 </div>
@@ -237,18 +237,22 @@
               <span class="ngo"><h3><%= event.name %></h3></span>
               <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h5> </span>
              <br>
-              <span class="start"> <p> Start Time: <%= event.start %> </p> </span>
-              <span class="end"> <p> End Time: <%= event.end %> </p> </span>
+              <span class="start"> <p> Start Date: <%= event.start.to_formatted_s(:short) %> </p> </span>
+              <span class="end"> <p>   End Date:&nbsp; <%= event.end.to_formatted_s(:short) %> </p> </span>
                <span class="description"> <p> Event Description: <%= event.description %> </p></span>
             
-              
-              <%= button_to 'I want to help!', event_path(event),
-                    method: :get, :class => "btn btn-primary"%>
+              <% if event.full? %>
+                <%= button_to 'Full', event_path(event),
+                      method: :get, class: "btn btn-danger"%>
+              <% else %>
+                <%= button_to 'I want to help!', event_path(event),
+                      method: :get, class: "btn btn-primary"%>
+              <% end %>
               
               <% if current_ngo?(event.ngo) %>
                 <%= button_to "Delete", event, method: :delete,
                       data: { confirm: "Are you Sure?" },
-                      :class => "btn btn-info" %>
+                      class: "btn btn-info" %>
               <% end %>
 
               <br/>

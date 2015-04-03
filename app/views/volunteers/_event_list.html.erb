@@ -1,35 +1,40 @@
-<h1><%= @user.name %>'s 
-  Upcoming Events (<%= @user.event_volunteers.count %>)
-</h1>
 
+<!-- show future events -->
+<div class="container">
 <div class="col-md-12">
-  <h3><%= @title %></h3>
-  <% if @events.any? %>
-    <% @events.each do |event| %>
+
+<% if @events.any? %> 
+<h3><%= @title %></h3>
+  <% @events.each do |event| %>
+
       <div>
-        <%= image_tag event.avatar.url(:medium), size: '250x250' %>   
+        <%= link_to (image_tag event.avatar.url(:medium), size: '250x250'), event_path(event) %>   
       </div>
       <div>
         <%= event.name %>   
       </div>
       <div>
-        <%= event.id %>   
-      </div>
-      <div>
         <%= event.description %>   
       </div>
-    
-      <!-- display 'Opt out' btn on user's profile -->
-      <div>   
-      <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
-            html: { method: :patch }) do |f| %>
-
-        <%= f.submit "Opt out", class: "btn" %>
-
-      <% end %>
+  
+      <div>
+        <%= event.start.to_formatted_s(:short) %>   
       </div>
-      <!-- end display 'Opt out' btn on user's profile -->
-
+  
+       <% if current_user?(@user) %>
+        <!-- display 'Opt out' btn on user's profile -->
+        <div>   
+          <%= form_for(current_user.event_volunteers.find_by(event_id: event.id), 
+                html: { method: :patch }) do |f| %>
+            <div>
+              <%= hidden_field_tag :attending, "true" %>
+            </div>
+            <%= f.submit "Opt out", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+        <!-- end display 'Opt out' btn on user's profile -->
+      <% end %>
     <% end %>
   <% end %>
+</div>
 </div>

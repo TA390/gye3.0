@@ -1,0 +1,36 @@
+<script>
+// MIT LICENSE
+// Copyright (c) 2014 Daniel P. Clark
+(function($){
+  $.fn.dynaspan = function(){};
+
+  $.fn.dynaspan.upLast = function(uniq_id_ref){
+    $('#dyna_span_field_val_' + uniq_id_ref).val($('#last_dyna_span_val_' + uniq_id_ref).val());
+  };
+
+  $.fn.dynaspan.upShow = function(uniq_id_ref){
+    $('#dyna_span_div' + uniq_id_ref).show().find('input').focus();
+    $('#dyna_span_span' + uniq_id_ref).hide();
+  };
+
+  $.fn.dynaspan.upHide = function(uniq_id_ref){
+    var field_val = $('#dyna_span_field_val_' + uniq_id_ref).val();
+    $('#dyna_span_div' + uniq_id_ref + ' > form').trigger('submit.rails');
+    $('#last_dyna_span_val_' + uniq_id_ref).val(field_val);
+    $('#dyna_span_span' + uniq_id_ref).show().html(field_val);
+    $('#dyna_span_div' + uniq_id_ref).hide();
+  };
+})(jQuery);
+</script>
+
+
+<div>
+<input id="last_dyna_span_val_1" name="last_dyna_span_val_1" value="Bio" type="hidden">
+<div id="dyna_span_div1" class="dyna-span" style="display:none;">
+<div style="display:none"><input name="utf8" value="✓" type="hidden"><input name="_method" value="patch" type="hidden"><input name="authenticity_token" value="GLiVGp6vyjaPXGJ7qUpcLWgOc7rU6SfrR5zhPMKbSG4=" type="hidden"></div>
+<input id="contact_relationships_attributes_0_id" name="contact[relationships_attributes][0][id]" value="540" type="hidden">
+<input class="dyna-span form-control" id="dyna_span_field_val_1" name="contact[relationships_attributes][0][kind]" onblur="$().dynaspan.upHide('1');" onfocus="$().dynaspan.upLast('1');" value="Editable Text" type="text">
+</div>
+<span class="dyna-span dyna-span-text" id="dyna_span_span1" onclick="$().dynaspan.upShow('1');" style="display:block;"><%= @user.bio %></span>
+<div class="dyna-span-edit-text pull-right" onclick="$().dynaspan.upShow('1');" style="cursor:pointer;"><i>edit</i></div>
+</div>

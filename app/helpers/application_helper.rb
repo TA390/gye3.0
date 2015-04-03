@@ -10,4 +10,7 @@ module ApplicationHelper
     end
   end
   
+  # bio text field
+  include Dynaspan::ApplicationHelper
+  
 end

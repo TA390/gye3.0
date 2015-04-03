@@ -11,6 +11,8 @@ class EventVolunteer < ActiveRecord::Base
     presence: true
   
   def ensure_not_full
-    errors.add(:event, "sorry this event is full") if event.full?
+    errors.add(:event, "Sorry this event is full") if event.full?
   end
+
+  
 end

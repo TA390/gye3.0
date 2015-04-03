@@ -1,0 +1,17 @@
+Hi <%= @user.name %>,
+
+We're sad to see you go!
+    
+You have been unsubscribed from the event: <%= @event.name %>
+    
+
+Description
+<%= @event.description %>
+    
+Date
+Start: <%= @event.start.to_formatted_s(:long_ordinal) %>
+End:   <%= @event.end.to_formatted_s(:long_ordinal) %>
+
+
+Thanks,
+GYE Team

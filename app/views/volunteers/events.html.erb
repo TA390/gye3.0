@@ -1,18 +1,62 @@
 <% provide(:title, @title) %>
 
-<!-- content to be updated using Ajax -->
-<div>
-<div class="container horizontal-center">
-
+<div class="container">
+  <h1><%= @user.name %>'s 
+    Events (<%= @user.events.count() %>)
+  </h1>
   <div>
     <span><%= link_to "back to profile", @user %></span>
   </div>
+  <br/>
+</div>
+
+
+<!-- jquery for tabs -->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script>
+    $(function() {
+      $( "#tabs" ).tabs();
+    });
+  </script>
+<!-- end jquery for tabs -->
+
+<body class = "">
   
-  <div class="my_events">
+
+<ul class="nav nav-tabs container" role="tablist" id="tabs">
+  
+  <li role="presentation" class="active">  
+    <a href="#upcoming" aria-controls="upcoming" role="tab" data-toggle="tab">Upcoming Events (<%= @events.count() %>)</a>
+  </li>
+  <li>
+    <a href="#watchlist" aria-controls="watchlist" role="tab" data-toggle="tab">Watchlist (<%= @watch_events.count() %>)</a>
+  </li>
+  <li>
+    <a href="#past" aria-controls="past" role="tab" data-toggle="tab">Past Event (<%= @past_events.count() %>)</a>
+  </li>
+  
+</ul>
+
+  
+<div class="tab-content">
+ 
+
+  <div role="tabpanel" class="tab-pane active"  id="upcoming">
     <%= render 'event_list' %>
   </div>
+
+  <div role="tabpanel" class="tab-pane" id="watchlist">
+    <%= render 'watch_event_list' %>
+  </div>
   
+  <div role="tabpanel" class="tab-pane" id="past">
+    <%= render 'past_event_list' %>
+  </div>
+
+ 
   
 </div>
-</div>
-<!-- end content to be updated using Ajax -->
+
+</body>

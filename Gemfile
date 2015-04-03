@@ -119,6 +119,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 gem 'figaro'
 gem 'ruby-gmail'
 
-
 # search params
 gem 'has_scope'
+
+# bio text field
+gem 'dynaspan'
+

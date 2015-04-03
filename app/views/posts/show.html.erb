@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Volunteer:</b>
+  <%= @post.volunteer.name %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @post.comment %>
+</p>
+
+
+<!-- /events/:event_id/posts/:id/edit -->
+<%= link_to 'Edit', edit_event_post_path(@post.event, @post)%>
+
+<!-- /events/:event_id/posts/ -->
+<%= link_to 'Back', event_posts_path(@post.event) %>

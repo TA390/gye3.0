@@ -1,0 +1,8 @@
+<h1>Editing post</h1>
+
+<%= render 'form' %>
+
+<!-- /events/:event_id/posts/:id -->
+<%= link_to 'Show', [@post.event, @post] %> |
+<!-- /events/:event_id/posts/ -->
+<%= link_to 'Back', event_posts_path(@post.event) %>

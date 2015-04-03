@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe PostsController, :type => :controller do
   describe "GET index" do
     
-    let(:unicef) { Ngo.create!(name: 'unicef', email: 'test@gmail.com', password: 'xzyabc123') }
-    let(:wateraid) { Ngo.create!(name: 'wateraid', email: 'w@gmail.com', password: 'xzyabc123') }
-    let!(:charityRus) { Ngo.create!(name: 'charityRus', email: 'crus@gmail.com', password: 'xzyabc123') } 
+    let(:unicef) { Ngo.create!(name: 'unicef', email: 'test321123@gmail.com', password: 'xzyabc123') }
+    let(:wateraid) { Ngo.create!(name: 'wateraid', email: 'ww2@gmail.com', password: 'xzyabc123') }
+    let!(:charityRus) { Ngo.create!(name: 'charityRus', email: 'crus123321@gmail.com', password: 'xzyabc123') } 
     
     let!(:unicefEvent) { Event.create!(name: 'test event a', ngo: unicef, 
       start: DateTime.new(2016,1,8), end: DateTime.new(2016,1,8), location: 'London',
@@ -22,11 +22,6 @@ RSpec.describe PostsController, :type => :controller do
   
 
     context "When users write on walls" do
-      let!(:unicefEventWall) { Wall.create!(event: unicefEvent) }
-      let!(:gyeEventWall) { Wall.create!(event: gyeEvent) }
-      let!(:wateraidEvent1Wall) { Wall.create!(event: wateraidEvent1) }
-      let!(:wateraidEvent2Wall) { Wall.create!(event: wateraidEvent2) }
-
       let!(:v1) { Volunteer.create!(name: 'aaaa', last_name: 'xyzd', email: 'testtest3@gmail.com', gender: 'M',
         location: 'London', password: 'giveyoureffort19') }
       let!(:v2) { Volunteer.create!(name: 'bbbb', last_name: 'xyzd', email: 'testtest2@gmail.com', gender: 'F',
@@ -37,12 +32,19 @@ RSpec.describe PostsController, :type => :controller do
         location: 'New York', password: 'giveyoureffort19') }    
 
 
-      it "assigns @events when query ngos = charity" do
-        get :index
-        expect(assigns(:events)).to eq([])
+      it "assigns @posts when query posts = []" do
+        get :index, event_id: [unicefEvent.id]
+        expect(assigns(:posts)).to eq([])
       end
 
-
+      let!(:post_1) { Post.create!(event: unicefEvent, volunteer: v1, comment: 'awesome!') }
+        
+      it "assigns @posts when query posts = 1" do
+        get :index, event_id: [unicefEvent.id]
+        expect(assigns(:posts)).to eq([post_1])
+      end    
+      
+      
     # test event.wall show []
 
     # user a post wall

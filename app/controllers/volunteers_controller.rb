@@ -34,9 +34,9 @@ class VolunteersController < ApplicationController
         ORDER BY name", 
         params[:tags],params[:tags].size])
       
-    elsif params[:event_ids].present?
-      #joins vol table to events (via event_volunteer) on event id matching param event_ids
-      @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_ids]} ).order(:name)
+    elsif params[:event_id].present?
+      #joins vol table to events (via event_volunteer) on event id matching param event_id
+      @volunteers = Volunteer.joins( :events).where(events: {:id => params[:event_id]} ).order(:name)
       
     elsif params[:location].present?
       #shows all vols with location matching params location

@@ -46,6 +46,12 @@ Rails.application.routes.draw do
     end
   end
   
+  
+  # nested resource for posts on events
+  resources :events do
+    resources :posts
+  end
+  
   # account activation email link
   resources :account_activations, only: [:edit]
   resources :ngo_account_activations, only: [:edit]

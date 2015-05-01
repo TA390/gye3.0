@@ -71,7 +71,7 @@
             <div class="panel-body">
               <div>
               <% if current_user?(@user) %>
-                <%= render 'bio_field' %>
+                <%= dynaspan_text_area(@user, @user.bio, :bio, 'edit') %>
               <% else %>
                 <%= @user.bio %>
               <% end %>

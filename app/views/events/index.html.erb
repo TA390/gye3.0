@@ -249,6 +249,15 @@
                       method: :get, class: "btn btn-primary"%>
               <% end %>
               
+              <%= link_to image_tag("social/facebook-icon-sm.png"), 
+                    'http://www.facebook.com/sharer.php?u='+request.fullpath, 
+                    :target => :blank, class: "" %>
+              
+              <%= link_to image_tag("social/twitter-icon-sm.png"), 
+                    '#', 
+                    :target => :blank, class: "" %>
+              
+              
               <% if current_ngo?(event.ngo) %>
                 <%= button_to "Delete", event, method: :delete,
                       data: { confirm: "Are you Sure?" },

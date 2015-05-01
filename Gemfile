@@ -62,7 +62,7 @@ group :test do
 end
 
 group :production do
-  # Used by Heroku to serve static assets 
+  # Used by Heroku to serve static assets
   # such as images and stylesheets
   # ADDED: 1/3/15
   gem 'rails_12factor'
@@ -124,4 +124,3 @@ gem 'has_scope'
 
 # bio text field
 gem 'dynaspan'
-

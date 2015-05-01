@@ -16,13 +16,13 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   
+  
   get 'home'        => 'static_pages#home'       # root_path
   get 'about'       => 'static_pages#about'      # about_path
   get 'events'      => 'events#index'            # events_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   get 'ngos'        => 'ngos#index'              # ngos_path
   get 'signup'      => 'sign_ups#new'            # signup_path
-  
 
   get 'login'       => 'logins#new'              # login_path
 

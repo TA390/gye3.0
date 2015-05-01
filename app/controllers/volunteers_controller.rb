@@ -53,8 +53,8 @@ class VolunteersController < ApplicationController
       
 
   def show
-      @user = Volunteer.find(params[:id])
-      redirect_to root_url and return unless @user
+    @user = Volunteer.find(params[:id])
+    redirect_to root_url and return unless @user
   end
   
   def new
@@ -87,8 +87,6 @@ class VolunteersController < ApplicationController
   def update
     
     @user = Volunteer.find(params[:id])
-    
-    dynaspan_text_field(current_user, :name) if logged_in? && current_user?(@user)
     
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
@@ -124,7 +122,7 @@ class VolunteersController < ApplicationController
       params.require(:volunteer).permit(:name, :last_name, :email,
                                         :location, :gender, :password, 
                                         :password_confirmation, :picture,
-                                        :avatar)  
+                                        :avatar, :bio)  
     end
   
     # Function to test if a user has logged in

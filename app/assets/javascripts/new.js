@@ -1,8 +1,9 @@
+
 $(document).ready(function(){
 
   var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
-      var matches, substringRegex;
+      var matches, substrRegex;
 
       // an array that will be populated with substring matches
       matches = [];
@@ -24,7 +25,16 @@ $(document).ready(function(){
     };
   };
 
-  var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen']
+  var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+    'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+    'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+    'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+    'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+  ];
 
   $('.typeahead').typeahead({
     hint: true,
@@ -34,7 +44,7 @@ $(document).ready(function(){
   {
     name: 'states',
     displayKey: 'value',
-    source: substringMatcher(cars)
+    source: substringMatcher(states)
   });
-
+  
 }); 

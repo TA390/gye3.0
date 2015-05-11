@@ -1,7 +1,5 @@
 <% provide(:title, @ngo.name) %>
 
-<body class="ngo_profile">
-  
   <div class="container target">
     <div class="row">
       <div class="col-sm-10">
@@ -74,7 +72,7 @@
     
   <div class="container target">  
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-5">
       <!--left col-->
         <div class="panel panel-default">
           <div class="panel-heading"><strong class="">Profile</strong></div>
@@ -82,12 +80,11 @@
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @ngo.created_at%></li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= @ngo.email %></li>
+                
+              
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Location: </strong></span><%= @ngo.location %></li>
           </ul>
-        </div>
-        
-        
-       
-                   
+        </div>     
    
         
         <div class="panel panel-default">
@@ -95,9 +92,9 @@
             <ul class="list-group">
 
               <li class="list-group-item text-right"><span class="pull-left"><strong class=""> Event Hosted </strong></span> 125</li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class=""> Average Attendents Number </strong></span> 13</li>
+        
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average Rating</strong></span> 4.5</li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
+              
             </ul>
         </div>
         
@@ -119,13 +116,13 @@
       </div>
       
      <!--Main panels-->
-      <div class="col-sm-9" contenteditable="false" style="">
+      <div class="col-sm-7" contenteditable="false" style="">
         
         
         
         <div class="panel panel-default">
           <div class="panel-heading"><%= @ngo.name %>'s Biography</div>
-            <div class="panel-body"> A long description about me.
+            <div class="panel-body"> (note** ngo description doesnt exitts on the database yet) A long description about me.
                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                              XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -135,7 +132,7 @@
      
       
       <div class="panel panel-default">
-        <div class="panel-heading"><%= @ngo.name %>'s Upcoming Events </div>
+        <div class="panel-heading"><%= @ngo.name %>'s Recent Events </div>
             <div class="panel-body"> 
               
               <table class="table table-hover">
@@ -146,119 +143,24 @@
                             </tr>
                         </thead>
                 
-                         <tbody>
-                            <tr>
-                               <td>Event1 name + hyperlink </td>
-                               <td>21 Oct 2017</td>
-                            </tr>
-                            <tr>
-                               <td>Event2 name + hyperling </td>
-                               <td>23 Oct 2017</td>
-                            </tr>
-                         </tbody>
-              </table>
-        
-        
-            </div>
-      </div>
-        
-        
-        
-<div class="panel panel-default">
-  <div class="panel-heading"><%= @ngo.name %>'s  Wall </div>
-<div class="panel-body"> 
-  
-        <div class="detailBox">
-    <div class="titleBox">
-      <label>Let others know what you think about us!</label>
-    </div>
-
-    <div class="actionBox">
-        <ul class="commentList">
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/6" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/7" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/9" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline" role="form">
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Your comments" />
-            </div>
-            <div class="form-group">
-                <button class="btn btn-default">Add</button>
-            </div>
-        </form>
-    </div>
-
-     
-  </div>
- </div>
-        
-  </div>
-        
-        
-       
-  
-<div class="panel panel-default">
-        <div class="panel-heading"><%= @ngo.name %>'s Past Events </div>
-            <div class="panel-body"> 
               
-              <table class="table table-hover">
-                       <thead>
-                            <tr>
-                             <th>Event Name</th>
-                              <th>Date</th>
-                            </tr>
-                        </thead>
                 
                          <tbody>
+                           
+                           <% @ngo.events.order(created_at: :desc).limit(3).each do |event| %>
                             <tr>
-                               <td>Old Event1 name + hyperlink </td>
-                               <td>21 Oct 2012</td>
+                              <td><%=link_to event.name, event_path(event) %> </td>
+                              <td><%= event.start%> </td>
                             </tr>
-                            <tr>
-                               <td>Old Event2 name + hyperling </td>
-                               <td>23 Oct 2011</td>
-                            </tr>
+                        
+                           <% end %>
                          </tbody>
+                
               </table>
         
         
             </div>
       </div>
-        
-        
-       
-      
-      </div>
-    </div>
-  </div>
-    
-</body> 
-
 
 <br>
 <br>

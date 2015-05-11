@@ -1,0 +1,142 @@
+// Place all the styles related to the Logins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.login {
+    background-color: #F2F2F2;
+}
+
+.login .btn-circle {  
+    width: 70px;
+    height: 70px;
+    margin-top: 30px;
+    padding: 7px 7px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: #fff;
+    background: 0 0;
+    float: right;
+}
+
+.login .signup_pic img {
+  width: 100%;
+   border-radius: 0px;
+  filter: blur(1px) sepia(10%);
+
+}
+
+.login {
+ background-image: url(/assets/volunteer-bg/plant-bg.jpg);
+  background-attachment: fixed;
+  background-size:cover;
+}
+
+
+/* wrapper */
+.login .wrapper{
+
+  position: relative;
+  padding: 5% 5%;
+  margin: 5% auto;
+  
+}
+
+.login .nav-tabs{
+  border: none;
+    color: white;
+  text-shadow: 2px 2px #606060;
+}
+
+
+.login .tab-content{
+ background: rgba(0,0,0,0.4);
+  //border-style: solid;
+  //border-color: rgba(255,255,255,.4);
+}
+
+
+
+.login .nav-tabs > li.active > a, .login  .nav-tabs > li.active > a:hover, .login .nav-tabs > li.active > a:focus {
+  background: rgba(0,0,0,.4);
+  //border-color: rgba(255,255,255,.4);
+  color: white;
+  border: 0px;
+}
+
+.login h1 {
+  font-size: 36px;
+  color: white;
+  text-shadow: 2px 2px #606060;
+}
+
+.login > small {
+  color: white;
+  //text-shadow: 2px 2px #606060;
+}
+
+
+.login label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.login div#signupform {
+  padding: 30px 0px 100px 0px;
+}
+      
+
+.login .panel {
+ // padding: 20px;
+}
+
+.login .panel-heading {
+  padding: 20px;
+}
+
+.login .panel-body {
+  padding: 20px;
+}
+
+
+/* Top image */
+.login .dropdownbarbox {
+
+  height: 100px;
+  width: auto;
+  color: #ffffff;
+  background-image: image-url('volunteer-bg/plant-bg.jpg');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-weight: 300;
+    font-size: 80px;
+  }
+  h2{
+    font-weight: 100;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+  
+}

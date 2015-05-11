@@ -2,7 +2,20 @@
     background-color: #F2F2F2;
 }
 
-  
+.signup .signup_pic img {
+  width: 100%;
+   border-radius: 0px;
+  filter: blur(1px) sepia(10%);
+}
+
+.signup {
+ background-image: url(/assets/volunteer-bg/subtle-bg.png); 
+  background-attachment: fixed;
+  background-repeat: repeat;
+
+}
+
+
 .signup .btn-circle {  
     width: 70px;
     height: 70px;

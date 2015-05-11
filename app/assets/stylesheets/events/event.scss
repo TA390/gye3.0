@@ -35,9 +35,11 @@
   h1{
     font-weight: 300;
     font-size: 80px;
+    text-shadow: 2px 2px #606060;
   }
+  
   h2{
-    font-weight: 100;
+    font-weight: 200;
   }
   
   /* Internet Explorer 10 */
@@ -69,11 +71,12 @@
 	padding-bottom: 20px;	
 }
 
+
 .e_index .event_pic{
-    width: 100%; 
+    width: 200px; 
     height: 250px;
-    padding: 0px;
-    margin: 0px;
+    padding: 10px;
+    margin: 10px;
 }
 
 

@@ -31,9 +31,16 @@
    
   <%= yield %>
   
+  <!-- remove for final version -->
+  <div>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
+  <div class="clearfix"></div>
+  <!-- remove for final version -->
+  
   <footer>
     <%= render 'layouts/footer' %>
-    <%= debug(params) if Rails.env.development? %>
+    
   </footer>
   
 </body>

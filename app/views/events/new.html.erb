@@ -1,3 +1,65 @@
+<style>
+  /* form tags */
+.col-sm-1 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    margin:5px;
+    padding:0px;
+    height: 80px;
+    width: 80px;
+    background-color:#f2f2f2;
+    overflow:hidden;
+}
+
+.col-sm-1:hover {
+    background:#eaeaea;
+}
+
+.col-sm-1 label {
+    height: 80px;
+    width: 80px;
+}
+
+.tag-btn label span {
+    height: 80px;
+    width: 80px;
+    text-align:center;
+    padding:0px;
+    display:block;
+  
+    /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+}
+
+.tag-btn label input {
+    position:absolute;
+    top:-20px;
+}
+
+.tag-btn input:checked + span {
+    background-color:#0088cc;
+    color:#fff;
+}
+/* end form tags */ 
+</style>
+
 <br/>
 <div id="signupform">      
   <div class="container">
@@ -24,8 +86,99 @@
               <%= f.label :occupancy,  "Occupancy"%>
               <%= f.number_field :occupancy, placeholder: "0", class: 'form-control' %>
             </div>
-            <br>
-            <br>
+
+            <!-- 12 tags -->
+            <label>Event Tags</label>
+            <div class="form-group">
+            
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag"type="checkbox" value="Elderly"><span>Elderly</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Arts & Culture"><span>Arts & Culture</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Animals"><span>Animals</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Food"><span>Food</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag"type="checkbox" value="Healthcare"><span>Healthcare</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Teaching"><span>Teaching</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Mental Health"><span>Mental Health</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Homeless"><span>Homeless</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Children"><span>Children</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Abroad"><span>Abroad</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Physically Disabled"><span>Physically Disabled</span>
+                 </label>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div class="tag-btn">
+                 <label>
+                    <input name="tag" type="checkbox" value="Community"><span>Community</span>
+                 </label>
+              </div>
+            </div>
+            </div>
+            <!-- end 12 tags -->
+            <br><br><br><br><br><br>
+            
             <div class="form-group">
               <%= f.text_field :street, placeholder: "Street name / Street number", class: 'form-control' %>
             </div>

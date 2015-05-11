@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'home'        => 'static_pages#home'       # root_path
   get 'about'       => 'static_pages#about'      # about_path
   get 'events'      => 'events#index'            # events_path
-  put 'events'     => 'events#search_result'    # events_path
+  put 'events'      => 'events#search'           # events_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   get 'ngos'        => 'ngos#index'              # ngos_path
   post 'ngos'       => 'events#create'           # ngos_path

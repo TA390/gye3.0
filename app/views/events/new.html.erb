@@ -10,49 +10,69 @@
           </div>
           
           <div class="panel-body">
-            <%= form_for @event, html: { multipart: true } do |f| %>
+            <%= form_for @event, url: { action: 'create'}, html: { multipart: true } do |f| %>
           
             <%= render 'shared/error_messages', object: f.object %>
 
             <div class="form-group">
-              <%= f.text_field :name, placeholder: "Name of event", class: 'form-control' %>
-            </div>
-            
+              <%= f.text_field :name, placeholder: "Name the event", class: 'form-control' %>
+            </div>      
             <div class="form-group">
               <%= f.text_area :description, placeholder: "Describe the event", class: 'form-control' %>
             </div>
-
-            <div class="form-group">
-              <%= f.text_field :location, placeholder: "Location", class: 'form-control' %>
-            </div>
-            
             <div class="form-group">
               <%= f.label :occupancy,  "Occupancy"%>
               <%= f.number_field :occupancy, placeholder: "0", class: 'form-control' %>
             </div>
-            
+            <br>
+            <br>
+            <div class="form-group">
+              <%= f.text_field :street, placeholder: "Street name / Street number", class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :address, placeholder: "Address", class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :location, placeholder: "City / Town", class: 'form-control' %>
+            </div>           
+            <div class="form-group">
+              <%= f.text_field :postcode, placeholder: "Postcode", class: 'form-control' %>
+            </div>
+            <br>
+            <br>           
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <%= f.label :avatar, "Add an Event Photo" %>
+                  <%= f.file_field :avatar %>
+                </div>
+                <div class="form-group">
+                  <%= f.text_field :url, placeholder: "Embed Video / Image", class: 'form-control' %>
+                </div>
                 <div class="form-group">
                   <%= f.label :start, "Start Date" %>
                   <%= f.datetime_select :start, class: 'form-control' %>
                 </div>
-              </div>
-                    
-              <div class="col-xs-6 col-sm-6 col-md-6">
+              
                 <div class="form-group">
-                  <%= f.label :end, "End Date" %>
+                  <%= f.label :end, "End Date  " %>
                   <%= f.datetime_select :end, class: 'form-control' %>
-                </div>
-              </div>                
+                </div>              
             </div>
-            
-            <br/>
-            <br/>
+          
+            <div class="col-xs-6 col-sm-6 col-md-6">
               <div class="form-group">
-                <%= f.label :avatar, "Add a Photo" %>
-                <%= f.file_field :avatar %>
+                <%= f.label :contact, "Contact Photo" %>
+                <%= f.file_field :contact %>
               </div>
+              <div class="form-group">
+                <%= f.text_field :cname, placeholder: "Contact's name", class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.text_field :cemail, placeholder: "Contact's email", class: 'form-control' %>
+              </div>
+            </div>
+          </div>
             <br/>
             <br/>
 

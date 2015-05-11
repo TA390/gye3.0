@@ -3,16 +3,39 @@ class Event < ActiveRecord::Base
   has_many :posts
   #default_scope -> { order(created_at: :desc) }
   
-  # profile picture
+  # event picture
   has_attached_file :avatar, 
-    styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" },
-    default_url: "event/default_event.png"
+    #styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" },
+  default_url: "event/event_default.png"
   validates_attachment_content_type :avatar, 
                                     content_type: /\Aimage\/.*\Z/
   
   validates_attachment :avatar,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] },
     size: { in: 0..5.megabytes }
+  
+  # logo picture
+  has_attached_file :logo, 
+    #styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" },
+  default_url: "event/event_default.png"
+  validates_attachment_content_type :logo, 
+                                    content_type: /\Aimage\/.*\Z/
+  
+  validates_attachment :logo,
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] },
+    size: { in: 0..5.megabytes }
+  
+    # contact picture
+  has_attached_file :contact, 
+    #styles: { large: "600x600!", medium: "300x300!", thumb: "100x100!" },
+  default_url: "event/event_default.png"
+  validates_attachment_content_type :contact, 
+                                    content_type: /\Aimage\/.*\Z/
+  
+  validates_attachment :logo,
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] },
+    size: { in: 0..5.megabytes }
+  
   
   has_many :event_tags
   has_many :tags, through: :event_tags
@@ -34,6 +57,15 @@ class Event < ActiveRecord::Base
   validates :end, 
     presence: true
 
+  validates :street,
+    presence: true
+  
+  validates :address,
+    presence: true
+
+  validates :postcode,
+    presence: true
+  
   validates :location, 
     presence: true
   
@@ -43,7 +75,14 @@ class Event < ActiveRecord::Base
   
   validates :occupancy, 
     numericality: { greater_than_or_equal_to: 1 }
-
+  
+  validates :cname, 
+    presence: true,
+    length: {maximum: 254}
+  
+  validates :cemail, 
+    presence: true,
+    length: {maximum: 254}
   
   # Checks to see if event is full (occupancy==count of event_volunteers)
   # Returns true if count is greater or equal to occupancy (does not block)

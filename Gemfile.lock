@@ -81,7 +81,6 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    dynaspan (0.1.1)
     erubis (2.7.0)
     excon (0.45.1)
     execjs (2.4.0)
@@ -409,7 +408,6 @@ DEPENDENCIES
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)
-  dynaspan
   faker
   figaro
   fog

@@ -425,3 +425,71 @@ list-style: none;
   opacity : 1;
 } 
 
+
+
+
+
+
+/* wall event */
+.event_detail .titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.event_detail .titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+
+.event_detail .commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.event_detail .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.event_detail .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.event_detail .actionBox .form-group * {
+    width:100%;
+}
+.event_detail .taskDescription {
+    margin-top:10px 0;
+}
+.event_detail .commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+.event_detail .commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.event_detail .commentList li > div {
+    display:table-cell;
+}
+.event_detail .commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.event_detail .commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.event_detail .commentText p {
+    margin:0;
+}
+.event_detail .sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.event_detail .actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}
+

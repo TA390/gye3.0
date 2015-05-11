@@ -121,7 +121,3 @@ gem 'ruby-gmail'
 
 # search params
 gem 'has_scope'
-
-# bio text field
-gem 'dynaspan'
-

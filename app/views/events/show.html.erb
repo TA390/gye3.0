@@ -1,29 +1,588 @@
-<h1> Detailed Event Page </h1>
-
-<% if @event.past? %>
+<head>
   
-  <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
+  <title>Simple click event</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <style>
+    html, body, #map-canvas {
+      height: 100%;
+      margin: 0px;
+      padding: 0px
+    }
+  </style>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+  
+  <script>
+  /* convert postcode to coordinates */
+      var latitude = 0;
+      var longitude = 0;
+      var geocoder = new google.maps.Geocoder();
+      var address = "<%=j @event.postcode %>;"
+        geocoder.geocode({ 'address': address }, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            latitude = results[0].geometry.location.lat();
+            longitude = results[0].geometry.location.lng();
+          };
+        });
+ /* end convert postcode to coordinates */
+    
+    function initialize() {
+   
+      var mapOptions = {
+        zoom: 4,
+        center: new google.maps.LatLng(latitude, longitude)
+      };
 
-<% else %>
-  <% if logged_in?%>
-  <!-- sign up to an event -->
-    <div class="events_signup">
-      <%= render 'event_signup' %>
+      var map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+      var marker = new google.maps.Marker({
+        position: map.getCenter(),
+        map: map,
+        title: 'Click to zoom'
+      });
+
+      google.maps.event.addListener(map, 'center_changed', function() {
+        // 3 seconds after the center of the map has changed, pan back to the
+        // marker.
+        window.setTimeout(function() {
+          map.panTo(marker.getPosition());
+        }, 3000);
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        map.setZoom(8);
+        map.setCenter(marker.getPosition());
+      });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+</head>
+
+  <!-- ==========================================================================================================
+        Sign up to event buttons
+      ========================================================================================================== -->
+<br/>
+<br/>
+<div class="container">
+  <h1> <%=@event.name %> </h1>
+    <% if @event.past? %>
+
+      <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
+
+    <% else %>
+      <% if logged_in?%>
+      <!-- sign up to an event -->
+        <div class="events_signup">
+          <%= render 'event_signup' %>
+        </div>
+
+        <!-- this div has been left empty to render buttons using ajax -->
+        <div class="watch">
+          <%= render 'watching_form'%>
+        </div>
+
+      <% else %>
+
+        <%= button_to "Attend", login_path, 
+              class: "btn btn-primary", method: :get  %>
+
+      <%= button_to "Add to watchlist", login_path, 
+              class: "btn btn-primary", method: :get  %>
+
+      <% end %> 
+      <!-- end sign up to an event -->
+    <% end %>
+
+  <!-- ==========================================================================================================
+        Search line
+      ========================================================================================================== -->
+  <div class="container">
+       <div class="col-sm-12" style="background-color:indianred; color:black">
+            <h3><B>Find Your Way to Make a Change!</B>
+		        <p class="small", style="color:black">Whenever you like. Global find your match!</p>
+		    </h3>
+			<div class="row no-gutter">
+				<div class="col-sm-2">
+					<select class="form-control input-sm" id="Location">
+						<option>LOCATION</option>
+						<option>London</option>
+						<option>Madrid</option>			
+						<option>New York</option>
+						<option>Paris</option>
+						<option>Rome</option>
+						<option>Tokio</option>
+					</select>		
+				</div>	
+		   
+				<div class="col-sm-2">
+					<select class="form-control input-sm" id="What">
+							<option>WHAT</option>
+							<option>NGO</option>
+							<option>Volunteer</option>
+							<option>I don't care!</option>
+					</select>	
+				</div>	
+		   
+				<div class="col-sm-2">
+					<select class="form-control input-sm" id="When">
+						<option>WHEN</option>
+						<option>immediate</option>
+						<option>1st of January</option>
+						<option>1st of April</option>
+						<option>1st of July</option>
+						<option>1st of October</option>
+					</select>	
+				</div>	
+		   
+				<div class="col-sm-2">
+					<select class="form-control input-sm" id="Length">
+						<option>LENGTH</option>
+						<option>1 Month</option>
+						<option>6 Month</option>
+						<option>12 Month</option>
+					</select>	
+				</div>
+		   
+				<div class="col-sm-2">
+					<select class="form-control input-sm" id="Effort">
+					    <option>EFFORT</option>
+						<option>Low</option>
+						<option>Medium</option>
+						<option>High</option>
+					</select>	
+				</div>
+				<div class="col-sm-2">
+				    <a href="./result.html" class="btn btn-default btn-sm" role="button">
+						<span class="glyphicon glyphicon-search"></span> Search 
+					</a>	
+			    </div>
+		     </div>
+		   <br>		   
+	   </div>
+   </div>	
+	
+<!-- ==========================================================================================================
+ Unicef video and Google map
+========================================================================================================== -->	  
+  <div class="col-sm-2">
+    <img src="<% @event.logo.url() %>" width="98" height="32" alt="unicef UK" />
+  </div>
+  <div class="col-sm-4">
+	  <font size="-3"> #giving food #londonershelplondoners #goodfood #southken</font>
+  </div>
+  <div>
+  <div class="col-sm-4"> 
+    <%=@date %> 
+  </div>
+    
+  <div class="clearfix"></div>
+
+  <div class="col-sm-6" style="margin-top:10px">
+    <iframe width="100%" height="300" src="<%= @event.url %>"></iframe>
+	</div>
+		
+  <div class="col-sm-6">
+    <p id="today"></p>
+    
+	  <div id="map-canvas" style="width:100%; height:300px;"></div>					
+  </div>
+    
+  <div class="clearfix"></div>
+  <!-- ==========================================================================================================
+                 SCORES
+      ========================================================================================================== -->
+  <div class="container">
+		<div class="row">
+			<div class="col-sm-6" style="background-color:white; text-align:left">
+			    <span style="color: black;"><B>SCORE OF THE EVENT</B></span>
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="effort" id="effort1" value = "1">         <label for="effort1">1</label>
+					<input type="radio" name="effort" id="effort2" value = "2" checked> <label for="effort2">2</label>
+					<input type="radio" name="effort" id="effort3" value = "3">         <label for="effort3">3</label>
+					<input type="radio" name="effort" id="effort4" value = "4">         <label for="effort4">4</label>
+					<input type="radio" name="effort" id="effort5" value = "5">         <label for="effort5">5</label>
+					<input type="radio" name="effort" id="effort6" value = "6">         <label for="effort6">6</label>
+				</span> EFFORT 
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="expense" id="expense1" value = "1">         <label for="expense1">1</label>
+					<input type="radio" name="expense" id="expense2" value = "2" checked> <label for="expense2">2</label>
+					<input type="radio" name="expense" id="expense3" value = "3">         <label for="expense3">3</label>
+					<input type="radio" name="expense" id="expense4" value = "4">         <label for="expense4">4</label>
+					<input type="radio" name="expense" id="expense5" value = "5">         <label for="expense5">5</label>
+					<input type="radio" name="expense" id="expense6" value = "6">         <label for="expense6">6</label>
+				</span> EXPENSES 
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="impact" id="impact1" value = "1">         <label for="impact1">1</label>
+					<input type="radio" name="impact" id="impact2" value = "2">         <label for="impact2">2</label>
+					<input type="radio" name="impact" id="impact3" value = "3" checked> <label for="impact3">3</label>
+					<input type="radio" name="impact" id="impact4" value = "4">         <label for="impact4">4</label>
+					<input type="radio" name="impact" id="impact5" value = "5">         <label for="impact5">5</label>
+					<input type="radio" name="impact" id="impact6" value = "6">         <label for="impact6">6</label>
+				</span> IMPACT 
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="time" id="time1" value = "1">         <label for="time1">1</label>
+					<input type="radio" name="time" id="time2" value = "2">         <label for="time2">2</label>
+					<input type="radio" name="time" id="time3" value = "3">         <label for="time3">3</label>
+					<input type="radio" name="time" id="time4" value = "4">         <label for="time4">4</label>
+					<input type="radio" name="time" id="time5" value = "5" checked> <label for="time5">5</label>
+					<input type="radio" name="time" id="time6" value = "6">         <label for="time6">6</label>
+				</span> TIME COMMITMENT 
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="security" id="security1" value = "1">         <label for="security1">1</label>
+					<input type="radio" name="security" id="security2" value = "2">         <label for="security2">2</label>
+					<input type="radio" name="security" id="security3" value = "3">         <label for="security3">3</label>
+					<input type="radio" name="security" id="security4" value = "4" checked> <label for="security4">4</label>
+					<input type="radio" name="security" id="security5" value = "5">         <label for="security5">5</label>
+					<input type="radio" name="security" id="security6" value = "6">         <label for="security6">6</label>
+				</span> SECURITY
+				<br><br>	
+			</div>
+			
+			<div class="col-sm-6" style="background-color:white; text-align:left">
+			    <span style="color: black;"><B>SCORE OF THE NGO</B></span>
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="overall" id="overall1" value = "1">         <label for="overall1">1</label>
+					<input type="radio" name="overall" id="overall2" value = "2" checked> <label for="overall2">2</label>
+					<input type="radio" name="overall" id="overall3" value = "3">         <label for="overall3">3</label>
+					<input type="radio" name="overall" id="overall4" value = "4">         <label for="overall4">4</label>
+					<input type="radio" name="overall" id="overall5" value = "5">         <label for="overall5">5</label>
+					<input type="radio" name="overall" id="overall6" value = "6">         <label for="overall6">6</label>
+				</span> OVERALL 
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="tasks" id="tasks1" value = "1">         <label for="tasks1">1</label>
+					<input type="radio" name="tasks" id="tasks2" value = "2">         <label for="tasks2">2</label>
+					<input type="radio" name="tasks" id="tasks3" value = "3"checked>  <label for="tasks3">3</label>
+					<input type="radio" name="tasks" id="tasks4" value = "4">         <label for="tasks4">4</label>
+					<input type="radio" name="tasks" id="tasks5" value = "5">         <label for="tasks5">5</label>
+					<input type="radio" name="tasks" id="tasks6" value = "6">         <label for="tasks6">6</label>
+				</span> TASKS 
+				<br><br>
+				<span class="starRating">
+					<input type="radio" name="people" id="people1" value = "1"checked>  <label for="people1">1</label>
+					<input type="radio" name="people" id="people2" value = "2">         <label for="people2">2</label>
+					<input type="radio" name="people" id="people3" value = "3">         <label for="people3">3</label>
+					<input type="radio" name="people" id="people4" value = "4">         <label for="people4">4</label>
+					<input type="radio" name="people" id="people5" value = "5">         <label for="people5">5</label>
+					<input type="radio" name="people" id="people6" value = "6">         <label for="people6">6</label>
+				</span> PEOPLE 
+				<br><br>		
+				<span class="starRating">
+					<input type="radio" name="instruct" id="instruct1" value = "1">         <label for="instruct1">1</label>
+					<input type="radio" name="instruct" id="instruct2" value = "2">         <label for="instruct2">2</label>
+					<input type="radio" name="instruct" id="instruct3" value = "3">         <label for="instruct3">3</label>
+					<input type="radio" name="instruct" id="instruct4" value = "4"checked>  <label for="instruct4">4</label>
+					<input type="radio" name="instruct" id="instruct5" value = "5">         <label for="instruct5">5</label>
+					<input type="radio" name="instruct" id="instruct6" value = "6">         <label for="instruct6">6</label>
+				</span> INSTRUCTION 
+				<br><br>	
+				<span class="starRating">
+					<input type="radio" name="mission" id="mission1" value = "1">         <label for="mission1">1</label>
+					<input type="radio" name="mission" id="mission2" value = "2" checked> <label for="mission2">2</label>
+					<input type="radio" name="mission" id="mission3" value = "3">         <label for="mission3">3</label>
+					<input type="radio" name="mission" id="mission4" value = "4">         <label for="mission4">4</label>
+					<input type="radio" name="mission" id="mission5" value = "5">         <label for="mission5">5</label>
+					<input type="radio" name="mission" id="mission6" value = "6">         <label for="mission6">6</label>
+				</span> MISSION 
+				<br><br>	
+			</div>	
+		</div>
+  </div>
+  
+  <!-- ==========================================================================================================
+        Opportunity Description
+      ========================================================================================================== -->  
+  <div class="container">
+    <div class="row">
+		<div class="col-sm-5" style="background-color:white; text-align:left">
+			<span style="color: black"><B>DESCRIPTION</B></span>
+		</div>
+		<div class="col-sm-3" style="background-color:white; text-align:center">
+			<span style="color: black"><B>MEET OTHER ATTENDEES</B></span>
+		</div>  
+	</div> 
+	
+  	<div class="row">
+	 <div id="equalheight"> 
+		<div class="col-sm-5 col-sm-height equalheight" style="background-color:white; text-align:left">
+			<br>
+			<blockquote>
+					<h5><%=@event.description %></h5>
+		    </blockquote>
+	   </div>
+		<div class="col-sm-3 col-sm-height equalheight" style="background-color:white; text-align:center">
+			<br>
+			<table class="table table-condensed">
+				<tbody>
+					<tr>
+						<td>			 
+							<a href="#" class="img-responsive">
+				               <img src="images/general/dave.jpg" alt="Dave" class="img-circle"
+							        title="Dave" width="90" height="90">
+			                </a>	 
+						</td>
+						<td>	
+							<a href="#" class="img-responsive">
+				               <img src="images/general/eric.jpg" alt="Eric" class="img-circle"
+							        title="Eric" width="90" height="90">
+			                </a>									 
+						</td>
+					</tr>				
+					<tr>
+						<td>		
+							<a href="#" class="img-responsive">
+				               <img src="images/general/laura.jpg" alt="Laura" class="img-circle"
+							        title="Laura" width="90" height="90">
+			                </a>								 
+						</td>
+						<td>
+							<a href="#" class="img-responsive">
+				               <img src="images/general/yin.jpg" alt="Yin" class="img-circle"
+							        title="Yin" width="90" height="90">
+			                </a>									 
+						</td>
+					</tr>
+					<tr>
+						<td>		
+							<a href="#" class="img-responsive">
+				               <img src="images/general/nina.jpg" alt="Nina" class="img-circle"
+							        title="Nina" width="90" height="90">
+			                </a>								 
+						</td>
+						<td>
+							<a href="#" class="img-responsive">
+				               <img src="images/general/marc.jpg" alt="Marc" class="img-circle"
+							        title="Marc" width="90" height="90">
+			                </a>								 
+						</td>
+					</tr>					
+				</tbody>
+			</table>
+	    </div>
+	  </div> 
+	</div>   
+  </div>
+
+  <!-- ==========================================================================================================
+      Additional Information + Contact
+      ========================================================================================================== -->  
+
+<div class="container">
+    <div class="row">
+		<div class="col-sm-5" style="background-color:white; text-align:left">
+			<span style="color: black"><B></B></span>
+		</div>
+		<div class="col-sm-3" style="background-color:white; text-align:center">
+			<span style="color: black"><B>CONTACT PERSON</B></span>
+		</div>  
+	</div> 
+	
+  	<div class="row">
+	 <div id="equalheight"> 
+		<div class="col-sm-5 col-sm-height equalheight" style="background-color:white; text-align:left">
+			<br>
+			<blockquote>
+				<B>Duration</B>
+					<h5><%=@duration %></h5>
+		    </blockquote>
+	   </div>
+		<div class="col-sm-3 col-sm-height equalheight" style="background-color:white; text-align:center">
+			<br>
+			<table class="table table-condensed">
+				<tbody>
+					<tr>
+						<td>			 
+							<a href="#" class="img-responsive">
+				       <img src=<%=@event.logo.url() %> alt="Dave" class="img-circle"
+							 title="Dave" width="90" height="90">
+			                </a>	 
+						</td>	
+					</tr>											
+						<tr>
+						  <td>			 
+							  <p>
+                  <%=@event.cname %>
+			         </p>
+						</td>	
+					</tr>
+          <tr>
+						  <td>			 
+							  <p>
+                  <%=@event.cemail %>
+			         </p>
+						</td>	
+					</tr>
+				</tbody>
+			</table>
+	    </div>
+	  </div> 
+	</div>   
+  </div>
+
+
+
+  <!-- ==========================================================================================================
+              TELL A FRIEND
+      ========================================================================================================== -->
+  <div class="container">
+    <div class="row">
+		<div class="col-sm-12" style="background-color:indianred; text-align:left">
+			<br>
+			<a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+			<small>Tell a friend</small>
+			<br>
+			<a href="#"><span class="glyphicon glyphicon-log-in"></span></a>
+			<small>Sign up</small>
+			<br><br>
+		</div>	 
+	</div>  	
+  </div>  
+   
+  <!-- ==========================================================================================================
+                  OTHER EVENTS
+      ========================================================================================================== -->
+  <div class="container">
+   	 <div class="row">
+        <div class="col-sm-8" style="background-color:white; text-align:left">
+	         <h3><p class="text-muted"><B>OTHER EVENTS IN THIS AREA</B></p></h3>
+	    </div>
+	 </div> 
+	 
+	<div class="row">
+       <div class="col-sm-8" style="background-color:white; text-align:left">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<td>
+						<a href="#" class="img-responsive">
+				            <img src="images/general/Event1.gif" 
+							     class="img-rounded" title="January 2015"
+								 alt="Event1" width="150" height="100">
+			            </a>									 
+					</td>
+					<td>
+						<a href="#" class="img-responsive">
+							<img src="images/general/Event2.gif"   
+								 class="img-rounded" title="Come together"  
+								 alt="Event2" width="150" height="100">
+						</a>			 
+					</td>
+					<td>
+						<a href="#" class="img-responsive">						
+							<img src="images/general/Event3.gif"   
+							 	 class="img-rounded" title="All Time Low"  
+								 alt="Event3" width="150" height="100">
+						</a>								 
+					</td>
+					<td>
+						<a href="#" class="img-responsive">					
+							<img src="images/general/Event6.gif"   
+							 	 class="img-rounded" title="Out of this world"  
+								 alt="Event6" width="150" height="100">
+						</a>								 
+					</td>					
+				</tr>
+				<tr>
+					<td>
+						<a href="#" class="img-responsive">					
+							<img src="images/general/Event_May.gif"   
+							 	 class="img-rounded" title="May 2015"  
+								 alt="May" width="150" height="100">
+						</a>								 
+					</td>
+					<td>
+						<a href="#" class="img-responsive">						
+							<img src="images/general/Event_June.gif"   
+							 	 class="img-rounded" title="June 2015"  
+								 alt="June" width="150" height="100">
+						</a>								 
+					</td>
+					<td>
+						<a href="#" class="img-responsive">						
+							<img src="images/general/Event_July.gif"   
+							 	 class="img-rounded" title="July 2015"  
+								 alt="July" width="150" height="100">
+						</a>								 
+					</td>
+					<td>
+						<a href="#" class="img-responsive">						
+							<img src="images/general/Event5.gif"   
+							 	 class="img-rounded" title="Team"  
+								 alt="Event5" width="150" height="100">
+						</a>								 
+					</td>					
+				</tr>				
+			</tbody>
+         </table>
+	   </div>
+	</div>   
+  </div>
+   
+  <!-- ==========================================================================================================
+                  FOOTER
+      ========================================================================================================== -->
+
+
+<div class="event_detail">        
+<div class="panel panel-default">
+  <div class="panel-heading"><%= @event.name %>'s  Wall </div>
+<div class="panel-body"> 
+  
+        <div class="detailBox">
+    <div class="titleBox">
+      <label>Let others know what you think about us!</label>
     </div>
 
-    <!-- this div has been left empty to render buttons using ajax -->
-    <div class="watch">
-      <%= render 'watching_form'%>
+    <div class="actionBox">
+        <ul class="commentList">
+            <li>
+                <div class="commenterImage">
+                  <img src="http://lorempixel.com/50/50/people/6" />
+                </div>
+                <div class="commentText">
+                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                </div>
+            </li>
+            <li>
+                <div class="commenterImage">
+                  <img src="http://lorempixel.com/50/50/people/7" />
+                </div>
+                <div class="commentText">
+                    <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                </div>
+            </li>
+            <li>
+                <div class="commenterImage">
+                  <img src="http://lorempixel.com/50/50/people/9" />
+                </div>
+                <div class="commentText">
+                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Your comments" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default">Add</button>
+            </div>
+        </form>
     </div>
 
-  <% else %>
-
-    <%= button_to "Attend", login_path, 
-          class: "btn btn-primary", method: :get  %>
-
-  <%= button_to "Add to watchlist", login_path, 
-          class: "btn btn-primary", method: :get  %>
-
-  <% end %> 
-  <!-- end sign up to an event -->
-<% end %>
+     
+  </div>
+ </div>   
+  </div>
+</div>

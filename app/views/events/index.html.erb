@@ -1,6 +1,18 @@
 <% provide(:title, 'Events') %>
-<p id="notice"><%= notice %></p>
+<p id="notice" class="id" ><%= notice %></p>
 
+<!-- datepicker for form -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>
+<!-- datepicker for form -->
 
 <body class="e_index">
 
@@ -14,11 +26,30 @@
   </div>
 
   <div class="search_result">
-	  <p>We have found xxx events based on your screening criteria</p>  
+	  <p><%= @msg %></p>
+    
+    
+    <%= form_for :event, url: { action: "search_result"}, html:{method: 'put'} do |f| %>
+     <form class="form-inline">
+       <div class="form-group">
+         <%= f.text_field :description, placeholder: "Looking for something?", class: 'form-control' %>
+       </div>
+
+       <div class="form-group">
+         <%= f.text_field :start, placeholder: "Start Date", class: 'form-control datepicker' %>
+       </div>
+       
+       <div class="form-group">
+         <%= f.text_field :end, placeholder: "End Date", class: 'form-control datepicker' %>
+       </div>
+                  
+       <%= f.submit "Search", class: "btn btn-default" %>                       
+     </form>                  
+   <% end %>
 	</div>
   
 
-  
+<!--
 <div class="col-md-3">    
   <div class="list-group">
       
@@ -208,66 +239,50 @@
   </div>      
 </div>
   
-  
+-->
   
 
 
   
-<div class="col-md-9">
+<div class="container">
 <%= will_paginate %>
   <% @events.each do |event| %>    
-      
-    <div class = "one_event">
-      <div class ="row">
 
-        <div class="col-md-3">
-          <div class="container">
-            <div class ="event_pic">
-
-            <!-- event picture (default provided) -->
-            <%= link_to (image_tag event.avatar.url(:medium), size: '250x250'), event_path(event) %>
-
-                  
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-8 ">
-              
-              <span class="ngo"><h3><%= event.name %></h3></span>
-              <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h5> </span>
-             <br>
-              <span class="start"> <p> Start Date: <%= event.start.to_formatted_s(:short) %> </p> </span>
-              <span class="end"> <p>   End Date:&nbsp; <%= event.end.to_formatted_s(:short) %> </p> </span>
-               <span class="description"> <p> Event Description: <%= event.description %> </p></span>
-            
-              <% if event.full? %>
-                <%= button_to 'Full', event_path(event),
-                      method: :get, class: "btn btn-danger"%>
-              <% else %>
-                <%= button_to 'I want to help!', event_path(event),
-                      method: :get, class: "btn btn-primary"%>
-              <% end %>
-              
-              <% if current_ngo?(event.ngo) %>
-                <%= button_to "Delete", event, method: :delete,
-                      data: { confirm: "Are you Sure?" },
-                      class: "btn btn-info" %>
-              <% end %>
-
-              <br/>
-              <br/>
-              <br/>
-            </div>
-          </div>
-          <!--End of Row -->
-        </div>
-        <!--End of one_volunteer wrappper -->
-      <% end %>
-      <%= will_paginate %>
+  <div class="one_event">
+    <div class ="event_pic">
+      <!-- event picture (default provided) -->
+      <%= link_to (image_tag event.avatar.url()), event_path(event) %> 
     </div>
+    
+      <span class="ngo"><h3><%= event.name %></h3></span>
+      <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h5> </span>
+      <br>
+      <span class="start"> <p> Start Date: <%= event.start.to_formatted_s(:short) %> </p> </span>
+      <span class="end"> <p>   End Date:&nbsp; <%= event.end.to_formatted_s(:short) %> </p> </span>
+      <span class="description"> <p> Event Description: <%= event.description %> </p></span>
 
+      <% if event.full? %>
+        <%= button_to 'Full', event_path(event),
+              method: :get, class: "btn btn-danger"%>
+      <% else %>
+        <%= button_to 'I want to help!', event_path(event),
+              method: :get, class: "btn btn-primary"%>
+      <% end %>
 
+      <% if current_ngo?(event.ngo) %>
+        <%= button_to "Delete", event, method: :delete,
+              data: { confirm: "Are you Sure?" }, class: "btn btn-info" %>
+      <% end %>
+
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  
+    <!--End of one_volunteer wrappper -->
+    <% end %>
+    <%= will_paginate %>
+  </div>
 </body>
 
 

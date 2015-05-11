@@ -70,11 +70,7 @@
           <div class="panel-heading"><%= @user.name %> <%= @user.last_name %>'s Biography</div>
             <div class="panel-body">
               <div>
-              <% if current_user?(@user) %>
-                <%= render 'bio_field' %>
-              <% else %>
                 <%= @user.bio %>
-              <% end %>
               </div>
           </div>
         </div>

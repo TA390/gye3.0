@@ -27,18 +27,41 @@
 }
 
 .v_index .dropdownbarbox {
-  //background: rgba(0,255,255,0.7);
-    background: rgba(175 ,218,251,0.7);
-  text-align: center;
-  padding: 15px;	
-  margin: 0px 0px 0px 0px;
-  border-radius: .2em;
-  border: 2px solid #cccccc;
 
-  -webkit-transition: border linear .2s, box-shadow linear .2s;
-  -moz-transition: border linear .2s, box-shadow linear .2s;
-  -o-transition: border linear .2s, box-shadow linear .2s;
-  transition: border linear .2s, box-shadow linear .2s;
+  height: 400px;
+  color: #ffffff;
+  background-image: image-url('volunteer-bg/community-bg.jpg');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-weight: 300;
+    font-size: 80px;
+  }
+  h2{
+    font-weight: 100;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
   
 }
 

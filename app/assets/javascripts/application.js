@@ -17,6 +17,5 @@
 //= require twitter/typeahead
 //= require moment
 //= require bootstrap-datetimepicker
-//= require dynaspan/dynaspan
 //= require_tree .
 

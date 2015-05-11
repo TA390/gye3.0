@@ -1,11 +1,7 @@
-
 // new event index CSS starts here
 
-
-
 .e_index{
- background-image: url(/assets/volunteer-bg/subtle-bg.png);
- 
+  background-image: url(/assets/volunteer-bg/subtle-bg.png);
 
   background-attachment: fixed;
   background-repeat: repeat;
@@ -28,18 +24,41 @@
 }
 
 .e_index .dropdownbarbox {
-  //background: rgba(0,255,255,0.7);
-    background: rgba(152 ,251,152,0.6);
-  text-align: center;
-  padding: 15px;	
-  margin: 0px 0px 0px 0px;
-  border-radius: .2em;
-  border: 2px solid #cccccc;
 
-  -webkit-transition: border linear .2s, box-shadow linear .2s;
-  -moz-transition: border linear .2s, box-shadow linear .2s;
-  -o-transition: border linear .2s, box-shadow linear .2s;
-  transition: border linear .2s, box-shadow linear .2s;
+  height: 400px;
+  color: #ffffff;
+  background-image: image-url('event/event_home.png');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-weight: 300;
+    font-size: 80px;
+  }
+  h2{
+    font-weight: 100;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
   
 }
 
@@ -50,33 +69,34 @@
 	padding-bottom: 20px;	
 }
 
-.e_index .checkbox{
-  padding: 0px 5px;
-  
-}
-
-.e_index .event_pic .img-circle {
-    width: 180px; 
-    height: 180px;
-
+.e_index .event_pic{
+    width: 100%; 
+    height: 250px;
+    padding: 0px;
+    margin: 0px;
 }
 
 
 
 .e_index .one_event {
-	 margin: 0px 0px 20px 0px;
-	 //border: 2px solid #d3d3d3;
-
-   padding: 15px 15px 15px 15px;
+	 margin: 0px 0px 30px 0px;
+   padding: 0px;
+   height: 100%;
+   overflow: hidden;
   
-   //background: rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.75);
-  
-  border-style: solid;
-    border-width: 1px;
-  border-color: #d3d3d3;
-
+   border-style: solid;
+   border-width: 1px;
+   border-color: #eaeaea;
+   background-color: #ffffff;
 }
+
+
+.e_index img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
 
 /*
 .e_index .sidebar_plus_event{

@@ -154,6 +154,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @date = @event.start.strftime("%A, %b %d")
+    @time = @event.start.strftime("%l:%M %p")
     redirect_to root_url and return unless @event
   end
 
@@ -226,7 +228,22 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
 =end
+  end
+  
+  def search_result
     
+    @events = Event.where("description ~* ?", "[.]*#{params[:event][:description]}[.]*")
+  
+  
+    search_params = [:start, :created_at]
+    search_params.each do |p|
+      @events = @events.where("date(#{p}) = ?", params[:event][p]) if params[:event][p].present?
+    end
+  
+    @msg = "We found #{@events.count} event(s) based on your search"
+    @events = @events.paginate(page: params[:page], per_page: 10).order(:start)
+
+    render 'index'
   end
 
   private
@@ -238,7 +255,8 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:name, :start, :end, :location, :description, 
-                                    :occupancy, :picture, :avatar)
+        :occupancy, :avatar, :video, :cname, :cemail, :street, :address, :postcode,
+        :contact, :url)
     end
   
     def correct_ngo

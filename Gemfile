@@ -121,3 +121,6 @@ gem 'ruby-gmail'
 
 # search params
 gem 'has_scope'
+
+# event calendar
+gem 'event-calendar', :require => 'event_calendar'

@@ -1,4 +1,7 @@
 class Volunteer < ActiveRecord::Base
+  
+  #calendar entries
+  has_many :calendars, dependent: :destroy
 
   # sign up to an event
   has_many :event_volunteers, dependent: :destroy
@@ -165,19 +168,9 @@ class Volunteer < ActiveRecord::Base
     #ensure signed up is true and event is in past
     if self.past_signups_list.include? event
       ev = event_volunteers.find_by(event_id: event.id)
-      ev.update(event_score = '?', score)
+      ev.update(event_score: score)
    end
   end
-  
-#   # Review an event you were signed up to
-#   def review_event(event)
-#     #ensure signed up is true and event is in past
-#     if self.past_signups_list.include? event
-#       ev = event_volunteers.find_by(event_id: event.id)
-#       ev.update(event_score: '5')
-#     end
-#   end
-  
   
   
   # Function to test and return true if volunteer is signed up to 'event'

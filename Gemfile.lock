@@ -82,6 +82,7 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
+    event-calendar (2.3.3)
     excon (0.45.1)
     execjs (2.4.0)
     faker (1.4.3)
@@ -408,6 +409,7 @@ DEPENDENCIES
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)
+  event-calendar
   faker
   figaro
   fog

@@ -20,7 +20,7 @@
 
 .e_index .dropdownbox_des {
 	text-align: center;
-  padding: 50px 15px 15px 30px;	
+  padding: 0px 15px 15px 30px;	
 }
 
 .e_index .dropdownbarbox {
@@ -34,12 +34,10 @@
   
   h1{
     font-weight: 300;
-    font-size: 80px;
-    text-shadow: 2px 2px #606060;
+    font-size: 100px;
   }
-  
   h2{
-    font-weight: 200;
+    font-weight: 300;
   }
   
   /* Internet Explorer 10 */
@@ -67,8 +65,13 @@
 
 .e_index .search_result {
 	text-align: center;
-	padding-top: 20px;	
-	padding-bottom: 20px;	
+  margin: 0px 0px 20px 0px;
+	padding-top: 30px;	
+	padding-bottom: 38px;
+  background-color: #eaeaea;
+  
+  color: #0087c9;
+  
 }
 
 
@@ -99,6 +102,8 @@
   height: auto;
   max-width: 100%;
 }
+
+
 
 
 /*

@@ -94,88 +94,89 @@
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag"type="checkbox" value="Elderly"><span>Elderly</span>
+                   <%= check_box_tag "event[tag][]", 1 %><span>Elderly</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Arts & Culture"><span>Arts & Culture</span>
+                    <%= check_box_tag "event[tag][]", 2 %><span>Arts & Culture</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Animals"><span>Animals</span>
+                    <%= check_box_tag "event[tag][]", 3 %><span>Animals</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Food"><span>Food</span>
+                    <%= check_box_tag "event[tag][]", 4 %><span>Food</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag"type="checkbox" value="Healthcare"><span>Healthcare</span>
+                    <%= check_box_tag "event[tag][]", 5 %><span>Healthcare</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Teaching"><span>Teaching</span>
+                    <%= check_box_tag "event[tag][]", 6 %><span>Teaching</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Mental Health"><span>Mental Health</span>
+                    <%= check_box_tag "event[tag][]", 7 %><span>Mental Health</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Homeless"><span>Homeless</span>
+                    <%= check_box_tag "event[tag][]", 8 %><span>Homeless</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Children"><span>Children</span>
+                    <%= check_box_tag "event[tag][]", 9 %><span>Children</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Abroad"><span>Abroad</span>
+                    <%= check_box_tag "event[tag][]", 10 %><span>Abroad</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Physically Disabled"><span>Physically Disabled</span>
+                    <%= check_box_tag "event[tag][]", 11 %><span>Physically Disabled</span>
                  </label>
               </div>
             </div>
             <div class="col-sm-1">
               <div class="tag-btn">
                  <label>
-                    <input name="tag" type="checkbox" value="Community"><span>Community</span>
+                    <%= check_box_tag "event[tag][]", 12 %><span>Community</span>
                  </label>
               </div>
             </div>
             </div>
+
             <!-- end 12 tags -->
             <br><br><br><br><br><br>
             
@@ -239,14 +240,3 @@
     </div>
   </div>  
 </div>
-
-<!-- prevent an ngo from uploading a large image -->
-<script type="text/javascript">
-  $('#event_picture').bind('change', function() {
-    size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert('Maximum file size is 5MB. Please choose a smaller file.');
-    }
-  });
-</script>
-<!-- end prevent an ngo from uploading a large image -->

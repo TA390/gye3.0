@@ -22,6 +22,7 @@ class EventsController < ApplicationController
     # Default is to show all future events (start >= today)
     @events = Event.where("date(start) >= ?", DateTime.now).
       paginate(page: params[:page], per_page: 10).order(:start)
+    
   end # end def index
 
   
@@ -167,25 +168,6 @@ class EventsController < ApplicationController
         ORDER BY name", 
         params[:event][:enddate]])    
       
-    #
-    elsif params[:event][:tags].present? && params[:event][:name].present?
-      #joins event table to tags (via event_tags) on tag name matching param tags
-      #find_by_SQL allows for multiple tag params to be passed in
-      tag = params[:event][:tags].split
-      @events = Event.find_by_sql(
-        ["SELECT * FROM events
-        WHERE id IN 
-          (SELECT et.event_id 
-          FROM event_tags et 
-          INNER JOIN tags t ON et.tag_id = t.id 
-          WHERE t.name IN (?) 
-          GROUP BY et.event_id 
-          HAVING COUNT(*) = ?)
-        ORDER BY start", 
-        tag,tag.size])
-      @events = Event.where("name ~* ?", "[.]*#{params[:event][:name]}[.]*")
-      
-
     # Test PASS!! (treating tags as string - spliting values!)
     elsif params[:event][:tags].present?
       #joins event table to tags (via event_tags) on tag name matching param tags
@@ -201,9 +183,9 @@ class EventsController < ApplicationController
           GROUP BY et.event_id 
           HAVING COUNT(*) = ?)
         ORDER BY start", 
-        tag,tag.size])      
+        tag,tag.size])
       
-      # 
+    # 
     elsif params[:event][:ngos].present?
       #joins event table to ngos (on ngoid) matching param ngos name
       @events = Event.joins( :ngo).where(ngos: {:name => params[:event][:ngos]} ).order(:start)
@@ -218,16 +200,10 @@ class EventsController < ApplicationController
       #joins event table to volunteers (on volid) matching param volunteer id
       @events = Event.joins( :volunteers).where(volunteers: {:id => params[:event][:vid]} ).order(:start)    
       
-      
-    #  Test PASS!!
-    elsif params[:event][:name].present?
-      #shows all event with location matching params name
-      @events = Event.where("name ~* ?", "[.]*#{params[:event][:name]}[.]*")
-      
-      
     # Test PASS
     else
       #show all
+      #@events = Event.where("date(start) >= ?", DateTime.now).order(:start)
       @events = Event.all.order(:start) 
       
     end # end if
@@ -255,8 +231,8 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    #@event = Event.new
-    #@event = @ngo.events.create(event_params)
+    @event = Event.new
+    12.times {@event.event_tags.build}
   end
   
   # GET /events/1/edit
@@ -268,6 +244,14 @@ class EventsController < ApplicationController
   def create
     
     @event = current_ngo.events.build(event_params)
+    
+    # insert any tags selected
+    if params[:event][:tag].present?
+        params[:event][:tag].each do |t|
+          @event.event_tags.build(tag_id: t)
+        end
+      end
+    
     
     if @event.save
       flash[:success] = "Event successfully created!"
@@ -349,7 +333,7 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :start, :end, :location, :description, 
         :occupancy, :avatar, :video, :cname, :cemail, :street, :address, :postcode,
-        :contact, :url)
+        :contact, :url, :tags)
     end
   
     def correct_ngo

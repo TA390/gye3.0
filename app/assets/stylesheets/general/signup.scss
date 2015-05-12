@@ -1,4 +1,7 @@
 .signup {
+  
+    margin-top:50px;
+    
     background-color: #F2F2F2;
 }
 
@@ -9,9 +12,9 @@
 }
 
 .signup {
- background-image: url(/assets/volunteer-bg/subtle-bg.png); 
-  background-attachment: fixed;
-  background-repeat: repeat;
+  background: url(/assets/volunteer-bg/signup_bg.jpeg) no-repeat center center fixed; 
+  background-size: cover;
+  
 
 }
 

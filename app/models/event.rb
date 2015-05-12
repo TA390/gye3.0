@@ -37,8 +37,11 @@ class Event < ActiveRecord::Base
     size: { in: 0..5.megabytes }
   
   
-  has_many :event_tags
+  has_many :event_tags, dependent: :destroy
+  accepts_nested_attributes_for :event_tags, reject_if: lambda{ |a| a[:name].blank?}
+  
   has_many :tags, through: :event_tags
+  
   # sign up to an event
   has_many :event_volunteers, dependent: :destroy
   has_many :volunteers, through: :event_volunteers

@@ -254,26 +254,40 @@
 
 
   
-<div class="container">
 
-<%= will_paginate %>
-  <% @events.each do |event| %>    
 
-  <div class="one_event">
-    <div class ="event_pic">
+
+<div class="container ">
+   
+    
+    <%= will_paginate %>
+  
+     
+   
+
+     <% @events.each do |event| %>    
+  
+    <div class="one_event row">  
+      
+    <div class ="event_pic col-md-6 ">
       <!-- event picture (default provided) -->
       <%= link_to (image_tag event.avatar.url()), event_path(event) %> 
     </div>
-  </div>
     
-  <div>
-      <span class="ngo"><h3><%= event.name %></h3></span>
+      
+    <div class ="col-md-6 ">
+      <span class="ngo"><h3><%= link_to event.name, event_path(event) %></h3></span>
       <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h5> </span>
       <br>
       <span class="start"> <p> Start Date: <%= event.start.to_formatted_s(:short) %> </p> </span>
       <span class="end"> <p>   End Date:&nbsp; <%= event.end.to_formatted_s(:short) %> </p> </span>
       <span class="description"> <p> Event Description: <%= event.description %> </p></span>
-
+   
+     
+     
+       <br>
+        
+   
       <% if event.full? %>
         <%= button_to 'Full', event_path(event),
               method: :get, class: "btn btn-danger"%>
@@ -286,17 +300,20 @@
         <%= button_to "Delete", event, method: :delete,
               data: { confirm: "Are you Sure?" }, class: "btn btn-info" %>
       <% end %>
-
-      <br/>
-      <br/>
-      <br/>
-    </div>
-  
+      </div>
+      
+      
+      </div>
+    
+      
+      
+     
     <!--End of one_volunteer wrappper -->
     <% end %>
+     
     <%= will_paginate %>
-
-</div>
+ 
+   
 </body>
 
 

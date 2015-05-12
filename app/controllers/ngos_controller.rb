@@ -12,7 +12,9 @@ class NgosController < ApplicationController
   end
 
   def show
-    @event = current_ngo.events.build if logged_in_ngo?
+    
+    @event = Event.new
+
     @ngo = Ngo.find_by(id: params[:id])
     redirect_to root_url and return unless @ngo
   end

@@ -147,7 +147,7 @@
                 
                          <tbody>
                            
-                           <% @ngo.events.order(created_at: :desc).limit(3).each do |event| %>
+                           <% @ngo.events.order(created_at: :desc).limit(6).each do |event| %>
                             <tr>
                               <td><%=link_to event.name, event_path(event) %> </td>
                               <td><%= event.start%> </td>

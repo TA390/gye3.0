@@ -112,7 +112,6 @@ gem 'fog'
 gem 'font-awesome-sass'
 
 #Date and time picker
-gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
 # sending emails
@@ -123,4 +122,5 @@ gem 'ruby-gmail'
 gem 'has_scope'
 
 # event calendar
-gem 'event-calendar', :require => 'event_calendar'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'

@@ -22,9 +22,8 @@ Rails.application.routes.draw do
   put 'events'      => 'events#search'           # events_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   get 'ngos'        => 'ngos#index'              # ngos_path
-  post 'ngos'       => 'events#create'           # ngos_path
   get 'signup'      => 'sign_ups#new'            # signup_path
-  
+  put 'ngos'        => 'events#create'           # ngos_path
 
   get 'login'       => 'logins#new'              # login_path
 
@@ -35,7 +34,6 @@ Rails.application.routes.draw do
   get 'nlogin'       => 'ngo_sessions#new'       # nlogin_path
   post 'nlogin'      => 'ngo_sessions#create'    # nlogin_path
   delete 'nlogout'   => 'ngo_sessions#destroy'   # nlogout_path
-
   
   resources :volunteers
   resources :ngos
@@ -79,6 +77,9 @@ Rails.application.routes.draw do
   get 'ngo_sessions/new'
 
   get 'logins/new'
+  
+  
+  
 
 #     get 'auth/:provider/callback', to: 'sessions#create'
 #     get 'auth/failure', to: redirect('/')

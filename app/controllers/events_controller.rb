@@ -243,25 +243,20 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     
-    @event = current_ngo.events.build(event_params)
+    @ngo = current_ngo
+    @event = @ngo.events.build(event_params)
     
-    # insert any tags selected
-    if params[:event][:tag].present?
-        params[:event][:tag].each do |t|
-          @event.event_tags.build(tag_id: t)
-        end
-      end
+    params[:event][:tag].each do |t|
+      @event.event_tags.build(tag_id: t)
+    end
     
     
     if @event.save
       flash[:success] = "Event successfully created!"
       redirect_to events_path
     else
-      
-      @ngo = current_ngo
       render 'ngos/show'
     end
-    
 =begin
     @event = Event.new(event_params)
 
@@ -331,9 +326,8 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :start, :end, :location, :description, 
-        :occupancy, :avatar, :video, :cname, :cemail, :street, :address, :postcode,
-        :contact, :url, :tags)
+      params.require(:event).permit(:name, :description, :occupancy, :tag, :street, :address, :location,
+                                    :postcode, :avatar, :url, :start, :end, :contact, :cname, :cemail)
     end
   
     def correct_ngo

@@ -1,15 +1,27 @@
 <!-- watched events -->
-<div class="container">
-<div class="col-md-12">
+
+<div class = "v_sorted">
+  
+<div class = "container">
   
 <% if @past_events.any? %>
 <h3><%= @past_title %></h3>
   <% @past_events.each do |event| %>
 
-      <div>
+  
+  <div class="one_event row">  
+    
+    
+  <div class="event_pic col-md-6">
         <%= link_to (image_tag event.avatar.url(:medium), size: '250x250'), event_path(event) %>   
-      </div>
+  </div>
+  
+  
+  <div class="col-md-6">
+             
       <div>
+        <br>
+         <br>
         <%= event.name %>   
       </div>
       <div>
@@ -18,14 +30,28 @@
   
       <div>
         <%= event.start.to_formatted_s(:short) %>   
+         <br>
+         <br>
       </div>
       
       <!-- display 'Opt out' btn on user's profile -->
       <div>   
         <%= button_to 'Event page', event_path(event),
               method: :get, class: "btn btn-danger"%>
-      </div>
+      </div> 
       <!-- end display 'Opt out' btn on user's profile -->
-    <% end %>
+    
+      </div>
+    
+       </div>  
+
+         <br>
+    <% end %>     
+       </div> 
+
+    
   <% end %>
-</div>
+
+</div> 
+
+

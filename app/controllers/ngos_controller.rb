@@ -12,10 +12,9 @@ class NgosController < ApplicationController
   end
 
   def show
-    
+    @ngo = Ngo.find(params[:id])
     @event = Event.new
-
-    @ngo = Ngo.find_by(id: params[:id])
+    
     redirect_to root_url and return unless @ngo
   end
 

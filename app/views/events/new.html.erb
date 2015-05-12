@@ -72,7 +72,7 @@
           </div>
           
           <div class="panel-body">
-            <%= form_for @event, url: { action: 'create'}, html: { multipart: true } do |f| %>
+            <%= form_for @event, url: { action: 'create'}, html: { method: 'put', multipart: true } do |f| %>
           
             <%= render 'shared/error_messages', object: f.object %>
 

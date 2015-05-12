@@ -1,16 +1,24 @@
+<div class = "v_sorted">
 
 <!-- show future events -->
 <div class="container">
-<div class="col-md-12">
+
 
 <% if @events.any? %> 
 <h3><%= @title %></h3>
   <% @events.each do |event| %>
 
-      <div>
+       <div class="one_event row"> 
+  
+  
+        <div class="event_pic col-md-6">
         <%= link_to (image_tag event.avatar.url(:medium), size: '250x250'), event_path(event) %>   
       </div>
+         
+       <div class="col-md-6">    
       <div>
+        <br>
+         <br>
         <%= event.name %>   
       </div>
       <div>
@@ -19,6 +27,8 @@
   
       <div>
         <%= event.start.to_formatted_s(:short) %>   
+        <br>
+       <br>
       </div>
   
        <% if current_user?(@user) %>
@@ -34,7 +44,14 @@
         </div>
         <!-- end display 'Opt out' btn on user's profile -->
       <% end %>
+ 
+         
+  </div>
+        <br>
+         <br>
+  </div>
     <% end %>
   <% end %>
+
 </div>
 </div>

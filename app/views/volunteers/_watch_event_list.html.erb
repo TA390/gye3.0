@@ -1,3 +1,5 @@
+<div class = "v_sorted">
+
 <!-- watched events -->
 <div class="container">
 <div class="col-md-12">
@@ -5,11 +7,16 @@
 <% if @watch_events.any? %>
 <h3><%= @watch_title %></h3>
   <% @watch_events.each do |event| %>
-
-      <div>
+        <div class="one_event row">  
+       <div class="event_pic col-md-6">
         <%= link_to (image_tag event.avatar.url(:medium), size: '250x250'), event_path(event)  %>   
       </div>
+  
+  
+      <div class="col-md-6">
       <div>
+        <br>
+         <br>
         <%= event.name %>   
       </div>
       <div>
@@ -18,6 +25,8 @@
   
       <div>
         <%= event.start.to_formatted_s(:short) %>   
+        <br>
+        <br>
       </div>
       
       <% if current_user?(@user) %>
@@ -31,6 +40,9 @@
           <%= f.submit "Remove from watchlist", class: "btn btn-default" %>
         <% end %>
         </div>
+        
+       
+        <br>
         <div>
         <%= form_for(current_user.event_volunteers.build) do |f| %>
           <div>
@@ -41,8 +53,16 @@
         <% end %>
         </div>
        <% end %>
+       
       <!-- end display 'Opt out' btn on user's profile -->
+         
+        <br>
+          </div>
+    </div>
     <% end %>
+        
+   
   <% end %>
+</div>
 </div>
 </div>

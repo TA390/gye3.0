@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
+  
   belongs_to :ngo
+  
   has_many :posts
   #default_scope -> { order(created_at: :desc) }
   
@@ -108,6 +110,9 @@ class Event < ActiveRecord::Base
     self.start < ::DateTime.current
   end
   
+  def events_in_area(location)
+    Event.where("location ~* ?", "[.]*#{location}[.]*").limit(9)
+  end
     
    # for search params
    # scope :featured, -> { where(:featured => true) }

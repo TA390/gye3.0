@@ -43,124 +43,125 @@
       </div>   
       
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=ArtsCulture/">
           <div class="tile">
-            <img src ="assets/tiles/arts.jpg">
+            <%= link_to image_tag('tiles/arts.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'ArtsCulture'}}), method: :put %>
             <div class="overlay" >
               Arts & Culture
             </div>
-         </div>
-        </a>  
+         </div> 
       </div> 
     
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Animals/">
+      <div class="col-lg-3 col-md-6 col-sm-6">        
           <div class="tile">
-            <img src ="assets/tiles/animals.jpg">
+            <%= link_to image_tag('tiles/animals.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Animals'}}), method: :put %>
             <div class="overlay" >
               Animals
             </div>
          </div>
-        </a>  
       </div> 
       
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Food/">
+        
           <div class="tile">
-            <img src ="assets/tiles/food.jpg">
+            <%= link_to image_tag('tiles/food.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Food'}}), method: :put %>
             <div class="overlay" >
               Food
             </div>
          </div>
-        </a>  
       </div>   
       
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Healthcare/">
           <div class="tile">
-            <img src ="assets/tiles/healthcare.jpg">
+            <%= link_to image_tag('tiles/healthcare.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Healthcare'}}), method: :put %>
             <div class="overlay" >
               Healthcare
             </div>
          </div>
-        </a>  
       </div> 
     
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Teaching/">
           <div class="tile">
-            <img src ="assets/tiles/teacher.jpg">
+            <%= link_to image_tag('tiles/teacher.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Teaching'}}), method: :put %>
             <div class="overlay" >
               Teaching 
             </div>
          </div>
-        </a>  
       </div>
       
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=MentalHealth/">
           <div class="tile">
-            <img src ="assets/tiles/mental.jpg">
+            <%= link_to image_tag('tiles/mental.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'MentalHealth'}}), method: :put %>
             <div class="overlay" >
               Mental Health 
             </div>
          </div>
-        </a>  
       </div> 
     
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Homeless/">
           <div class="tile">
-            <img src ="assets/tiles/homeless.jpg">
+            <%= link_to image_tag('tiles/homeless.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Homeless'}}), method: :put %>
             <div class="overlay" >
               Homeless 
             </div>
-         </div>
-        </a>  
+         </div> 
       </div> 
       
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Children/">
           <div class="tile">
-            <img src ="assets/tiles/children.jpg">
+            <%= link_to image_tag('tiles/children.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Children'}}), method: :put %>
             <div class="overlay" >
               Children
             </div>
-         </div>
-        </a>  
+         </div>  
       </div> 
     
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Abroad/">
           <div class="tile">
-            <img src ="assets/tiles/abroad.jpg">
+            <%= link_to image_tag('tiles/abroad.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Abroad'}}), method: :put %>
             <div class="overlay" >
               Abroad
             </div>
-         </div>
-        </a>  
+         </div> 
       </div>
       
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=PhysicallyDisabled/">
           <div class="tile">
-            <img src ="assets/tiles/disabled.jpg">
+            <%= link_to image_tag('tiles/disabled.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Disabled'}}), method: :put %>
             <div class="overlay" >
               Physically Disabled
             </div>
-         </div>
-        </a>  
+         </div> 
       </div> 
     
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Community/">
           <div class="tile">
-            <img src ="assets/tiles/community.jpg">
+            <%= link_to image_tag('tiles/community.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Community'}}), method: :put %>
             <div class="overlay" >
               Community
             </div>
-         </div>
-        </a>  
+         </div> 
       </div> 
       
     

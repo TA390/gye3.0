@@ -109,6 +109,24 @@ class Ngo < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
   
+  
+  # Review a volunteer who attended your event
+  def review_volunteer(volunteer,event,score)
+    if self.events.include? (event.id) && event.past? && logged_in_ngo?
+      ev = event_volunteers.find_by_volunteer_id_and_event_id(volunteer.id, event.id)
+      ev.update(volunteer_score: score)
+    end
+   end
+  
+#   # Review a vol that signed up to event
+#   def review_volunteer(volunteer,event,score)
+#     #ensure signed up is true and event is in past
+#     if volunteer.past_signups_list.include? (event) && self.events.include? (event)
+#       ev = event_volunteers.find_by(event_id: event.id)
+#       ev.update(volunteer_score: score)
+#     end
+#   end
+  
   private
 
     # Creates and assigns the activation token and digest.

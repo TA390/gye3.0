@@ -32,14 +32,14 @@
     <!--Start row-->
     <div class="row">
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <a href ="/events/?tags=Elderly/"> 
           <div class="tile">
-            <img src ="assets/tiles/elderly.jpg">
+            <%= link_to image_tag('tiles/elderly.jpg'), 
+                  url_for({:controller => 'events', :action => 'search', 
+                    event:{tags:'Elderly'}}), method: :put %>
             <div class="overlay" >
               Elderly 
             </div>
          </div>
-        </a>  
       </div>   
       
       <div class="col-lg-3 col-md-6 col-sm-6">
@@ -176,13 +176,7 @@
     </div>
       
     
-  </div>  
-  
-
-
-
-  
-  
+  </div>    
 <!---->
 </body>
 

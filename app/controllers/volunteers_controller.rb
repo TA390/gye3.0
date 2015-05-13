@@ -53,8 +53,8 @@ class VolunteersController < ApplicationController
       
 
   def show
-      @user = Volunteer.find(params[:id])
-      redirect_to root_url and return unless @user
+    @user = Volunteer.find(params[:id])   
+    redirect_to root_url and return unless @user
   end
   
   def new

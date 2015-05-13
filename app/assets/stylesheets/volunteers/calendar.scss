@@ -1,4 +1,12 @@
 #calendar {
-	width: 100%;
+	width: 0 100%;
 	margin: 0 auto;
+  
+  color: #eaeaea
+}
+
+.cal {
+  height: 0px;
+  overflow: hidden;
+  background-color: #abaeb1;
 }

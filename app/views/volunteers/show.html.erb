@@ -29,13 +29,6 @@
       </div>
     <br>
       
-    <!-- Calendar Test -->
-    <div class="container">
-      <div id='calendar'></div>  
-    </div>  
-    <!-- End Calendar Test -->
-      
-    
     <div class="row">
       <div class="col-sm-3">
       <!--left col-->
@@ -100,37 +93,26 @@
       
       <div class="panel panel-default">
         <div class="panel-heading"><%= @user.name %> <%= @user.last_name %> 's Event Testimonials</div>
-            <div class="panel-body"> "Blah blah"</div>
+         <div class="panel-body"> "Blah blah"</div>
       </div>
-       
-      
-      </div>
-    </div>
-  </div>
-  
-  <!-- Send me a message modal -->
-  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Message tool</h4>
-          </div>
-          <div class="modal-body">
-            <h4>Message subject</h4>
-          </div>
-          <div class="modal-body">
-            <h4>Message Text</h4>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-sucess">Send</button>
-          </div>
+        
+        <!-- calendar btn -->
+        <div>
+          <button id="open" type="button" class="btn btn-success">Calender</button>
         </div>
+        <!-- end calendar btn -->
+
+        <!-- calendar -->
+          <div class="cal">
+              <div id='calendar'>  
+          </div>
+        <!-- end calendar -->
+
       </div>
     </div>
-  
-</body> 
+  </div>    
+    
+<body> 
 
 
 

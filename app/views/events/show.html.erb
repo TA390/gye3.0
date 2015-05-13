@@ -56,246 +56,227 @@
 </head>
 
 <body class="e_detail">
-  
-  <!-- To place image on the bar -->
-  <div class="dropdownbarbox"></div>
-  <br><br>
 
-<div class="container">
-  <!-- Event name and logo row-->
-  <div class="row">
-    <div class="col-md-9">
-     <h1> <%=@event.name %> </h1>
-     <h2> <%=@date %></h2>
-      
-    </div>
-     <!--MAKE LOGO DYNAMIC-->
-     <div class="col-md-3">
-        <img class="float-right" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSw1LRycUA1vc7w3XNJbJy6w87yfrLaD_f-2H42TF9oRCAwEfEGyVocI6Jk" width="100" height="100" alt="unicef UK" />
-    </div>
-    
-  </div><!--End Row Div-->  
-  
-  <!-- Button row-->
-  <div class="row">
-    <div class="col-md-12">
-        <% if @event.past? %>
-          <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
-        
-          <!-- rating events -->
-          <% if logged_in? && %>          
-               
+    <!-- To place image on the bar -->
+    <div class="dropdownbarbox"></div>
+    <br><br>
 
-      
-          <% end %>
-     
-        <% else %>
-        <% if logged_in?%>
-          <!-- sign up to an event -->
-            <div class="events_signup">
-              <%= render 'event_signup' %>
-            </div>
+  <div class="container">
+    <!-- Event name and logo row-->
+    <div class="row">
+      <div class="col-md-9">
+       <h1> <%=@event.name %> </h1>
+       <h2> <%=@date %></h2>
 
-            <!-- this div has been left empty to render buttons using ajax -->
-            <div class="watch">
-              <%= render 'watching_form'%>
-            </div>
+      </div>
+       <!--MAKE LOGO DYNAMIC-->
+       <div class="col-md-3">
+           <%= image_tag @event.ngo.avatar.url(), size: '100x100', class: 'float-right' %>  
+      </div>
+
+    </div><!--End Row Div-->  
+
+    <!-- Button row-->
+    <div class="row">
+      <div class="col-md-12">
+          <% if @event.past? %>
+            <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
+
+            <!-- rating events -->
+            <% if logged_in? && %>          
+
+
+
+            <% end %>
 
           <% else %>
+          <% if logged_in?%>
+            <!-- sign up to an event -->
+              <div class="events_signup">
+                <%= render 'event_signup' %>
+              </div>
 
-            <%= button_to "Attend", login_path, 
-class: "btn btn-primary col-md-1 il-button", method: :get  %>
+              <!-- this div has been left empty to render buttons using ajax -->
+              <div class="watch">
+                <%= render 'watching_form'%>
+              </div>
 
-          <%= button_to "Add to watchlist", login_path, 
-                  class: "btn btn-primary col-md-1 il-button", method: :get  %>
+            <% else %>
 
-          <% end %> 
-          <!-- end sign up to an event -->
-        <% end %>
-    </div>
-  </div><!--End Row Div-->  
-  <br><br>
-  <!--Event Descrtiption / Details Row--> 
-  <div class="row">
-    <!--Description Panel-->  
-    <div class="col-md-8">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong class="">Event Description</strong></div>
-          <div class="e_panel">
-            <%=@event.description %>
-          </div>     
+              <%= button_to "Attend", login_path, 
+  class: "btn btn-primary col-md-1 il-button", method: :get  %>
+
+            <%= button_to "Add to watchlist", login_path, 
+                    class: "btn btn-primary col-md-1 il-button", method: :get  %>
+
+            <% end %> 
+            <!-- end sign up to an event -->
+          <% end %>
       </div>
-    </div>    
-  
-   <!-- Event Details-->
-  
-     
-    <div class="col-md-4">
+    </div><!--End Row Div-->  
+    <br><br>
+    <!--Event Descrtiption / Details Row--> 
+    <div class="row">
+      <!--Description Panel-->  
+      <div class="col-md-8">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Event Details</strong></div>
-            <ul class="list-group">
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Date:</strong></span> <%=@date %> </li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Creation Date:</strong></span> Yesterday</li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Duration: </strong></span><%=@duration %> To Delete</li>
-          </ul>
+          <div class="panel-heading"><strong class="">Event Description</strong></div>
+            <div class="e_panel">
+              <%=@event.description %>
+            </div>     
         </div>
-    </div>    
-    </div><!--End Row Div-->
-  
-  <!--Video Row--> 
-  <div class="row">
-  
-    <!--Map component-->
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong class="">Event Location</strong></div>
-          <div class="e_panel">
-            <p id="today"></p>
-	          <div id="map-canvas" style="width:100%; height:300px;"></div>
-          </div>
-        <div class="panel-heading"><strong class="">Address</strong></div>
-           <div class="e_panel">
+      </div>    
+
+     <!-- Event Details-->
 
 
+      <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong class="">Event Details</strong></div>
+              <ul class="list-group">
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Date:</strong></span> <%=@date %> </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Duration: </strong></span>[PENDING]</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Creation Date:</strong></span><%=@event.created_at %></li>
+            </ul>
           </div>
-        
-      </div>
-    </div>
-   
-    <!--Video component-->  
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong class="">Event Video</strong></div>
-          <div class="e_panel">
-            <iframe width="100%" height="500px" src="<%= @event.url %>"></iframe>
-          </div>
-      </div>
-    </div>
+      </div>    
+      </div><!--End Row Div-->
 
-  </div><!--End Row Div-->  
-  
-  <!--Whose attending row-->
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong class="">Who is attending?</strong></div>
-          <div class="e_panel">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_01.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_02.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_03.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_04.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_05.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_06.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_07.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_08.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_09.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-          </div>
+    <!--Video Row--> 
+    <div class="row">
+
+      <!--Map component-->
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Event Location</strong></div>
+            <div class="e_panel">
+              <p id="today"></p>
+              <div id="map-canvas" style="width:100%; height:300px;"></div>
+            </div>
+          
+          <div class="panel-heading"><strong class="">Address</strong></div>
+             <div class="e_panel">
+               <p><%=@event.street %>  <%=@event.address %>,</p>
+               <p><%=@event.location %>, <%=@event.postcode %></p>
+            </div>
+
+        </div>
       </div>
-    </div>
-  </div><!--End Row Div-->  
-  
-    <!--Wall and Organiser Row--> 
-  <div class="row">
-   
-   <!--Event Wall-->  
-    <div class="col-sm-8">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong class="">Event Wall</strong></div>
-          <div class="e_panel">
-            <!-- MAKE WALL DYNAMIC -->
-            <div class="input-group">
-             <input type="text" class="form-control">
-               <span class="input-group-btn"><button class="btn btn-primary" type="button">Add</button></span>
+
+      <!--Video component-->  
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Event Video</strong></div>
+            <div class="e_panel">
+              <iframe width="100%" height="500px" src="<%= @event.url %>"></iframe>
             </div>
         </div>
       </div>
-    </div>
-                  
-   <!--Score component-->
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong class="">Organiser Details</strong></div>
-          <div class="e_panel">
-            <p id="today"></p>
-	          <div id="map-canvas" style="width:100%; height:300px;"></div>
-          </div>
+
+    </div><!--End Row Div-->  
+
+    <!--Who is attending row-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Who is attending?</strong></div>
+            <div class="e_panel">
+              <% $attending = 1 %>
+              <% $row = 10 %>
+
+              <% @event.volunteers.each do |e| %>
+              <%= image_tag e.avatar.url(), size: '100x100',  style: 'padding: 5px; margin: 1px;' %>
+              <% $attending += 1 %>
+              <% end %>
+
+              <% while $attending < $row  do %>
+              <%= image_tag "https://img-w.zeebox.com/images/profile/generic/Empty_Profile_0#{$attending}.png:small", size: '100x100', style: 'padding: 5px; margin: 1px;' %>
+              <% $attending += 1 %>
+              <% end %>
+            </div>
+        </div>
       </div>
-    </div>     
-            
-  </div><!--End Row Div-->  
+    </div><!--End Row Div-->  
 
+      <!--Wall and Organiser Row--> 
+    <div class="row">
 
-  <!--Events in your area-->
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong class="">Events in your areas</strong></div>
-          <div class="e_panel">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_01.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_02.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_03.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_04.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_05.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_06.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_07.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_08.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
-            <img src="https://img-w.zeebox.com/images/profile/generic/Empty_Profile_09.png:small" style="width:100px; height:100px; padding: 5px; margin: 1px;">
+     <!--Event Wall-->  
+      <div class="col-sm-8">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Event Wall</strong></div>
+            <div class="e_panel">
+              <!-- MAKE WALL DYNAMIC -->
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="one-c">Name</th>
+                    <th class="two-c">Comment</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @event.posts.each do |p| %>  
+                <tr>
+                  <td class="one-c"><%=p.volunteer_id %></td>
+                  <td class="two-c"><%=p.comment %></td>
+                </tr>
+
+                <% end %>  
+                </tbody>
+            </table>
+              
+              
+              
+              <div class="input-group">
+               <input type="text" class="form-control">
+                 <span class="input-group-btn"><button class="btn btn-primary" type="button">Add</button></span>
+              </div>
           </div>
+        </div>
       </div>
-    </div>
-  </div><!--End Row Div-->  
-  
-  
-  
-  
-<!--End Container Div-->
-</div>
-  
-<!-- LINKING -->
-<div>
-  <!-- contact pic -->
-  <%= image_tag @event.contact.url(), size: '300x300' %>
-  <!-- end contact pic -->
-  
-  <div class="clearfix"></div>
-  
-  <!-- ngo pic/logo -->
-  <%= image_tag @event.ngo.avatar.url(), size: '300x300' %> 
-  <!-- end ngo pic/logo -->
-  
-  <div class="clearfix"></div>
-  
-  <!-- who is attending -->
-  <% $attending = 1 %>
-  <% $row = 10 %>
-  
-  <% @event.volunteers.each do |e| %>
-  <%= image_tag e.avatar.url(), size: '100x100' %>
-  <% $attending += 1 %>
-  <% end %>
-  
-  <% while $attending < $row  do %>
-  <%= image_tag "https://img-w.zeebox.com/images/profile/generic/Empty_Profile_0#{$attending}.png:small", size: '100x100' %>
-  <% $attending += 1 %>
-  <% end %>
-  <!-- end is attending -->
-  
-  <div class="clearfix"></div>
 
-  <!-- events in area -->
-  <% $count = 1 %>
-  <% $max = 10 %>
-  
-  <% @event.events_in_area(@event.location) do |e| %>
-  <%= image_tag e.avatar.url(), size: '100x100' %>
-  <% $count += 1 %>
-  <% end %>
-  
-  <% while $count < $max  do %>
-  <%= image_tag "https://img-w.zeebox.com/images/profile/generic/Empty_Profile_0#{$count}.png:small", size: '100x100' %>
-  <% $count += 1 %>
-  <% end %>
-  <!-- end events in area -->
-                    
-</div>  
-<!-- END LINKING -->
+     <!--Score component-->
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Organiser Details</strong></div>
+            <div class="e_panel">
+              <div class="o-image">
+                <%= image_tag @event.contact.url(), size: '100x100', class: 'o-image' %>
+               </div>
+                <p style ="text-align: center;"><%=@event.cname %></p>
+                <p style ="text-align: center;"><%=@event.cemail %></p>
+
+            </div>
+        </div>
+      </div>     
+
+    </div><!--End Row Div-->  
+
+
+    <!--Events in your area-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Events in your areas</strong></div>
+            <div class="e_panel">
+            <% $count = 1 %>
+            <% $max = 10 %>
+
+            <% @event.events_in_area(@event.location) do |e| %>
+            <%= image_tag e.avatar.url(), size: '100x100', style: 'padding: 5px; margin: 1px;' %>
+            <% $count += 1 %>
+            <% end %>
+
+            <% while $count < $max  do %>
+            <%= image_tag "https://img-w.zeebox.com/images/profile/generic/Empty_Profile_0#{$count}.png:small", size: '100x100', style: 'padding: 5px; margin: 1px;' %>
+            <% $count += 1 %>
+            <% end %>
+            </div>
+        </div>
+      </div>
+    </div><!--End Row Div-->  
+
+    
+  <!--End Container Div-->
+  </div>
+</body> 

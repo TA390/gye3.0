@@ -172,6 +172,11 @@ class Volunteer < ActiveRecord::Base
    end
   end
   
+  # Average score for volunteer (from event_volunteers table)
+  def volunteer_avg_score
+  	return self.event_volunteers.average(:volunteer_score)
+  end
+  
   
   # Function to test and return true if volunteer is signed up to 'event'
   def signed_up?(event)

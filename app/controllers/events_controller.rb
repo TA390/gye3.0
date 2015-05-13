@@ -27,8 +27,29 @@ class EventsController < ApplicationController
 
   
   def search
-    # Test PASS!!
-    if params[:event][:tags].present? && params[:event][:location].present? && 
+    
+    # Test PASS
+    if params[:event][:name].present? && params[:event][:tags].present? && params[:event][:location].present? && 
+      params[:event][:startdate].present? && params[:event][:enddate].present?
+      tag = params[:event][:tags].split
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND UPPER(e.location) LIKE UPPER(concat('%', ?, '%'))
+        AND date(e.start) >= (?)
+        AND date(e.end) <= (?)
+        AND e.id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY e.start", 
+        params[:event][:name], params[:event][:location], params[:event][:startdate], params[:event][:enddate],tag,tag.size])    
+    
+    # Test PASS
+      elsif params[:event][:tags].present? && params[:event][:location].present? && 
       params[:event][:startdate].present? && params[:event][:enddate].present?
       #joins event table to tags, location, and start/end matching param tags, location, and start date and end date
       tag = params[:event][:tags].split
@@ -47,7 +68,26 @@ class EventsController < ApplicationController
         ORDER BY e.start", 
         params[:event][:location],params[:event][:startdate], params[:event][:enddate],tag,tag.size])
 
-    # Test PASS!!
+    # Test PASS
+    elsif params[:event][:name].present? && params[:event][:tags].present? && 
+      params[:event][:location].present? && params[:event][:startdate].present?
+      tag = params[:event][:tags].split
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND UPPER(e.location) LIKE UPPER(concat('%', ?, '%'))
+        AND date(e.start) = (?)
+        AND e.id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY e.start", 
+        params[:event][:name], params[:event][:location], params[:event][:startdate], tag,tag.size])      
+      
+    # Test PASS
     elsif params[:event][:tags].present? && params[:event][:location].present? && 
       params[:event][:startdate].present?
       #joins event table to tags, location, and start/end matching param tags, location, and start date
@@ -66,7 +106,25 @@ class EventsController < ApplicationController
         ORDER BY e.start", 
         params[:event][:location],params[:event][:startdate],tag,tag.size])      
       
-    # Test PASS!!
+    # Test PASS
+    elsif params[:event][:name].present? && 
+      params[:event][:tags].present? && params[:event][:location].present?
+      tag = params[:event][:tags].split
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND UPPER(e.location) LIKE UPPER(concat('%', ?, '%'))
+        AND e.id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY e.start", 
+        params[:event][:name], params[:event][:location], tag, tag.size])
+      
+    # Test PASS
     elsif params[:event][:tags].present? && params[:event][:location].present?
       #joins event table to tags and location matching param tags and location 
       tag = params[:event][:tags].split
@@ -82,8 +140,20 @@ class EventsController < ApplicationController
           HAVING COUNT(*) = ?)
         ORDER BY start", 
         params[:event][:location],tag,tag.size])
+     
+    # Test PASS
+    elsif params[:event][:name].present? && params[:event][:location].present? && 
+      params[:event][:startdate].present? && params[:event][:enddate].present?
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE date(e.start) >= (?)
+        AND date(e.end) <= (?)
+        AND UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND UPPER(e.location) LIKE UPPER(concat('%', ?, '%'))
+        ORDER BY e.start", 
+        params[:event][:startdate], params[:event][:enddate], params[:event][:name], params[:event][:location]])      
       
-    # Test PASS!!
+    # Test PASS
     elsif params[:event][:location].present? && 
       params[:event][:startdate].present? && params[:event][:enddate].present?
       #event table where location and start/end matching param location and start date and end date
@@ -94,8 +164,19 @@ class EventsController < ApplicationController
         AND e.location = (?)
         ORDER BY e.start", 
         params[:event][:startdate], params[:event][:enddate],params[:event][:location]])
+
+    # Test PASS
+    elsif params[:event][:name].present? && params[:event][:location].present? && 
+      params[:event][:startdate].present?
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE date(e.start) = (?)
+        AND UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND UPPER(e.location) LIKE UPPER(concat('%', ?, '%'))
+        ORDER BY e.start", 
+        params[:event][:startdate],params[:event][:name],params[:event][:location]])    
       
-    # Test PASS!!
+    # Test PASS
     elsif params[:event][:location].present? && params[:event][:startdate].present?
       #event table where location and start/end matching param location and start date
       @events = Event.find_by_sql(
@@ -104,8 +185,28 @@ class EventsController < ApplicationController
         AND e.location = (?)
         ORDER BY e.start", 
         params[:event][:startdate],params[:event][:location]])
+     
+    # Test PASS
+    elsif params[:event][:name].present? && params[:event][:tags].present? && 
+      params[:event][:startdate].present? && params[:event][:enddate].present?
+      #joins event table to tags and start matching param tags and start date and end date
+      tag = params[:event][:tags].split
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE date(e.start) >= (?)
+        AND date(e.end) <= (?)
+        AND UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND e.id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY e.start", 
+        params[:event][:startdate], params[:event][:enddate],params[:event][:name],tag,tag.size])           
       
-    # Test PASS!!
+    # Test PASS
     elsif params[:event][:tags].present? && 
       params[:event][:startdate].present? && params[:event][:enddate].present?
       #joins event table to tags and start matching param tags and start date and end date
@@ -124,7 +225,26 @@ class EventsController < ApplicationController
         ORDER BY e.start", 
         params[:event][:startdate], params[:event][:enddate],tag,tag.size])      
       
-    # Test PASS!!
+
+    # Test PASS
+    elsif params[:event][:name].present? && 
+      params[:event][:tags].present? && params[:event][:startdate].present?
+      tag = params[:event][:tags].split
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE date(e.start) = (?)
+        AND UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND e.id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY e.start", 
+        params[:event][:startdate],params[:event][:name],tag,tag.size])      
+      
+    # Test PASS
     elsif params[:event][:tags].present? && params[:event][:startdate].present?
       #joins event table to tags and start matching param tags and start date
       tag = params[:event][:tags].split
@@ -140,8 +260,20 @@ class EventsController < ApplicationController
           HAVING COUNT(*) = ?)
         ORDER BY e.start", 
         params[:event][:startdate],tag,tag.size])
+
       
-    # Test PASS!!
+    # Test PASS
+    elsif params[:event][:name].present? &&
+      params[:event][:startdate].present? && params[:event][:enddate].present?
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE date(e.start) >= (?)
+        AND date(e.end) <= (?)
+        AND UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        ORDER BY start", 
+        params[:event][:startdate], params[:event][:enddate], params[:event][:name]])      
+      
+    # Test PASS
     # input by DateTime (year-month-day) e.g. '2015-03-19' or DateTime.now
     elsif params[:event][:startdate].present? && params[:event][:enddate].present?
       #shows all event with start date matching params start and end
@@ -152,13 +284,31 @@ class EventsController < ApplicationController
         AND date(e.end) <= (?)
         ORDER BY start", 
         params[:event][:startdate], params[:event][:enddate]])
+
+    # Test PASS
+    elsif params[:event][:name].present? && params[:event][:startdate].present?
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND date(e.start) = (?)
+        ORDER BY name", 
+        params[:event][:name],params[:event][:startdate]])              
       
-    # Test PASS!!
+    # Test PASS
     elsif params[:event][:startdate].present?
       #shows all event with start date matching params start
       @events = Event.where("date(start) = ?", params[:event][:startdate]).order(:name)      
 
-    # Test PASS!!
+    # Test PASS
+    elsif params[:event][:name].present? && params[:event][:enddate].present?
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events e
+        WHERE UPPER(e.name) LIKE UPPER(concat('%', ?, '%'))
+        AND date(e.end) = (?)
+        ORDER BY name", 
+        params[:event][:name],params[:event][:enddate]])          
+      
+    # Test PASS
     elsif params[:event][:enddate].present?
       #shows all event with end matching params enddate
       #end is keyword, need to run query in find_by_sql
@@ -167,8 +317,26 @@ class EventsController < ApplicationController
         WHERE date(e.end) = (?)
         ORDER BY name", 
         params[:event][:enddate]])    
+     
+    # Test PASS
+    elsif params[:event][:name].present? && params[:event][:tags].present?
+      #joins event table to tags (via event_tags) on tag name matching param tags
+      #find_by_SQL allows for multiple tag params to be passed in
+      tag = params[:event][:tags].split
+      @events = Event.find_by_sql(
+        ["SELECT * FROM events
+        WHERE UPPER(name) LIKE UPPER(concat('%', ?, '%'))
+        AND id IN 
+          (SELECT et.event_id 
+          FROM event_tags et 
+          INNER JOIN tags t ON et.tag_id = t.id 
+          WHERE t.name IN (?) 
+          GROUP BY et.event_id 
+          HAVING COUNT(*) = ?)
+        ORDER BY start", 
+        params[:event][:name],tag,tag.size])
       
-    # Test PASS!! (treating tags as string - spliting values!)
+    # Test PASS (treating tags as string - spliting values!)
     elsif params[:event][:tags].present?
       #joins event table to tags (via event_tags) on tag name matching param tags
       #find_by_SQL allows for multiple tag params to be passed in
@@ -190,10 +358,10 @@ class EventsController < ApplicationController
       #joins event table to ngos (on ngoid) matching param ngos name
       @events = Event.joins( :ngo).where(ngos: {:name => params[:event][:ngos]} ).order(:start)
       
-    #  Test PASS!!
+    #  Test PASS
     elsif params[:event][:location].present?
       #shows all event with location matching params location
-      @events = Event.where( :location => params[:event][:location]).order(:start)
+      @events = Event.where("location ~* ?", "[.]*#{params[:event][:location]}[.]*")
 
     # 
     elsif params[:event][:vid].present?
@@ -201,10 +369,15 @@ class EventsController < ApplicationController
       @events = Event.joins( :volunteers).where(volunteers: {:id => params[:event][:vid]} ).order(:start)    
       
     # Test PASS
+    elsif params[:event][:name].present?
+      #substring matching on event name
+      @events = Event.where("name ~* ?", "[.]*#{params[:event][:name]}[.]*")
+      
+    # Test PASS
     else
       #show all
-      #@events = Event.where("date(start) >= ?", DateTime.now).order(:start)
-      @events = Event.all.order(:start) 
+      @events = Event.where("date(start) >= ?", DateTime.now).order(:start)
+      #@events = Event.all.order(:start) 
       
     end # end if
     
@@ -243,11 +416,13 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     
-    @ngo = current_ngo
-    @event = @ngo.events.build(event_params)
+    @event = current_ngo.events.build(event_params)
     
-    params[:event][:tag].each do |t|
-      @event.event_tags.build(tag_id: t)
+    # insert any tags selected
+    if params[:event][:tag].present?
+        params[:event][:tag].each do |t|
+          @event.event_tags.build(tag_id: t)
+        end
     end
     
     
@@ -255,8 +430,11 @@ class EventsController < ApplicationController
       flash[:success] = "Event successfully created!"
       redirect_to events_path
     else
+      
+      @ngo = current_ngo
       render 'ngos/show'
     end
+    
 =begin
     @event = Event.new(event_params)
 
@@ -326,8 +504,9 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :description, :occupancy, :tag, :street, :address, :location,
-                                    :postcode, :avatar, :url, :start, :end, :contact, :cname, :cemail)
+      params.require(:event).permit(:name, :start, :end, :location, :description, 
+        :occupancy, :avatar, :video, :cname, :cemail, :street, :address, :postcode,
+        :contact, :url, :tags)
     end
   
     def correct_ngo

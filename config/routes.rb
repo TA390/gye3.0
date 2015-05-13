@@ -35,6 +35,11 @@ Rails.application.routes.draw do
   post 'nlogin'      => 'ngo_sessions#create'    # nlogin_path
   delete 'nlogout'   => 'ngo_sessions#destroy'   # nlogout_path
   
+  #JSON calendar entries url
+  get 'cal'          => 'event_calendars#index'
+  
+  put '/events/?tags=Elderly' => 'events#search'
+  
   resources :volunteers
   resources :ngos
   resources :events

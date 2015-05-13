@@ -40,8 +40,7 @@ class Event < ActiveRecord::Base
   
   
   has_many :event_tags, dependent: :destroy
-  accepts_nested_attributes_for :event_tags, reject_if: lambda{ |a| a[:name].blank?}
-  
+  accepts_nested_attributes_for :event_tags, reject_if: lambda{ |a| a[:name].blank?} 
   has_many :tags, through: :event_tags
   
   # sign up to an event
@@ -114,6 +113,12 @@ class Event < ActiveRecord::Base
     Event.where("location ~* ?", "[.]*#{location}[.]*").limit(9)
   end
     
+  # average score for event (from event_volunteers table)
+  def event_avg_score
+  	return self.event_volunteers.average(:event_score)
+  end
+  
+  
    # for search params
    # scope :featured, -> { where(:featured => true) }
    scope :by_tag, -> tag { where(:tags.name => tag) }

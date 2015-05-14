@@ -380,9 +380,17 @@ class EventsController < ApplicationController
       #@events = Event.all.order(:start) 
       
     end # end if
-    
+   
+
+    if @events.count < 1
+      flash[:success] = "Sorry, we did not find any events matching your screening criteria"   
+    elsif @events.count == 1
+      flash[:success] = "We found 1 event based on your screening criteria"
+    else
+      flash[:success] = "We found " + @events.count.to_s + " events based on your screening criteria"
+    end
+
     @events = @events.paginate(page: params[:page], per_page: 10)
-    
     render 'index'
   end
   

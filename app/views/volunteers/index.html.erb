@@ -11,57 +11,35 @@
       </div>
   </div>
 
-	
+  <div class="form-inline">
+    <%= form_for :volunteer, url: {action: "search"}, html:{method: 'put'} do |f| %>
     
-  
-	<div class="search_result">
-		<p>We have found xxx volunteers based on your screening criteria</p>  
-	</div>
-  
-  <div class = "sidebar_plus_volunteers">
-    <div class="col-md-3"> 
+      
+       <div class="form-group">
+         <%= f.text_field :name, placeholder: "Volunteer name", class: 'form-control' %>
+       </div>
+      
+       <div class="form-group">
+         <%= f.text_field :tags, placeholder: "Search by volunteer interest", class: 'form-control' %>
+       </div>
+
+       <div class="form-group">
+         <%= f.text_field :location, :size => 30, placeholder: "Volunteer location", class: 'form-control' %>
+       </div>
+
+       <div class="form-group">
+         <%= f.text_field :gender, placeholder: "Gender", class: 'form-control' %>
+       </div>
+       
      
-    <div class="list-group">
-      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#rating-checkbox">Rating</a>
-        <div class ="collapse checkbox" id="rating-checkbox"> 
-          <form role="form">
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 5 stars</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 4 stars</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 3 stars</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i><i class="fa fa-star"></i>
-               2 stars</label></div>
-             <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-star"></i>
-               1 star</label></div>
-          </form>
-        </div>
-      
-      <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#sex-checkbox">Gender</a>
-         <div class ="collapse checkbox" id="sex-checkbox"> 
-          <form role="form">
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-male"></i> Male</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-female"></i> Female</label></div>
-          </form>
-        </div>
-      
-       <a href="#" class="list-group-item" data-toggle="collapse" data-target ="#av-checkbox">Availability</a>
-         <div class ="collapse checkbox" id="av-checkbox"> 
-          <form role="form">
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-male"></i> Male</label></div>
-            <div class="checkbox"><label><input type="checkbox" value=""><i class="fa fa-female"></i> Female</label></div>
-          </form>
-        </div>
-      
-     
-      
-      
-      
-      
-    </div>
-    
-    </div>
-	            
-	  
-    <div class="volunteers col-md-9">
+       <div class="form-group">      
+         <%= f.submit "Search", class: "btn btn-default" %>
+       </div>  
+     </div>
+   <% end %>
+  
+  <div class = "container">  
+    <div class="volunteers col-md-12">
       <%= will_paginate %>
       <% @volunteers.each do |volunteer| %>
         <div class = "one_volunteer">
@@ -94,7 +72,6 @@
   </div>
 
   <h1>Listing Volunteers</h1>
-
   <table>
     <thead>
       <tr>
@@ -104,9 +81,7 @@
         <th colspan="3"></th>
       </tr>
     </thead>
-
     <tbody>
-
       <% @volunteers.each do |volunteer| %>
         <tr>
 
@@ -118,13 +93,8 @@
           <td><%= link_to 'Destroy', volunteer_path(volunteer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
-
-
     </tbody>
   </table>
-  
-  
-  
   
 </body>
 

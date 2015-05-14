@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- chris testing 2222 -->
 <html>
 <head>
 
@@ -10,25 +9,23 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  
 </head>
-
-
-  
 
   
 <body>
   
- <header> 
+  
+  
+ <header class="col-xs-12, col-sm-12 col-md-12 col-lg-12"> 
    <%= render 'layouts/header' %>
  </header> 
   
-  <div class="container">
+  <div class="container-fluid">
     <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type} notification") %>
     <% end %>
   </div>
-   
+  
   <%= yield %>
   
   <!-- remove for final version -->

@@ -259,20 +259,72 @@
 
 <div class="container ">
    
-    
-    <%= will_paginate %>
+   <%= will_paginate %>
+   <% @events.each do |event| %>    
   
-     
-   
-
-     <% @events.each do |event| %>    
-  
-    <div class="one_event row">  
+   <div class="one_event row">  
       
     <div class ="event_pic col-md-6 ">
       <!-- event picture (default provided) -->
       <%= link_to (image_tag event.avatar.url()), event_path(event) %> 
-    </div>
+     <div class="icon-holder">
+       
+       <% if event.event_tags.where("tag_id = ?", 1).exists? %>
+          <i class="fa fa-heartbeat"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 2).exists? %>
+         <i class="fa fa-paint-brush"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 3).exists? %>
+         <i class="fa fa-paw"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 4).exists? %>
+         <i class="fa fa-cutlery"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 5).exists? %>
+         <i class="fa fa-ambulance"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 6).exists? %>
+         <i class="fa fa-book"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 7).exists? %>
+          <i class="fa fa-smile-o"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 8).exists? %>
+         <i class="fa fa-home"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 9).exists? %>
+         <i class="fa fa-child"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 10).exists? %>
+          <i class="fa fa-plane"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 11).exists? %>
+         <i class="fa fa-wheelchair"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 12).exists? %>
+         <i class="fa fa-users"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 13).exists? %>
+          <i class="fa fa-suitcase"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 14).exists? %>
+         <i class="fa fa-life-ring"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 15).exists? %>
+         <i class="fa fa-leaf"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 16).exists? %>
+          <i class="fa fa-arrows"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 17).exists? %>
+         <i class="fa fa-ship"></i>
+       <% end %>
+       <% if event.event_tags.where("tag_id = ?", 18).exists? %>
+         <i class="fa fa-futbol-o"></i>
+       <% end %>
+     </div>  
+   </div>
     
       
     <div class ="col-md-6 ">
@@ -287,33 +339,31 @@
      
        <br>
         
-   
+
       <% if event.full? %>
         <%= button_to 'Full', event_path(event),
-              method: :get, class: "btn btn-danger"%>
+              method: :get, class: "btn btn-danger il-button" , style: "display:inline;"%>
       <% else %>
         <%= button_to 'I want to help!', event_path(event),
-              method: :get, class: "btn btn-primary"%>
+              method: :get, class: "btn btn-primary il-button", style: "display:inline;" %>
       <% end %>
 
       <% if current_ngo?(event.ngo) %>
         <%= button_to "Delete", event, method: :delete,
-              data: { confirm: "Are you Sure?" }, class: "btn btn-info" %>
+data: { confirm: "Are you Sure?" }, class: "btn btn-info il-button", style: "display:inline;" %>
       <% end %>
+
+     </div>
+      
+
       </div>
       
-      
-      </div>
-    
-      
-      
-     
     <!--End of one_volunteer wrappper -->
     <% end %>
      
     <%= will_paginate %>
  
-   
+  </div>  
 </body>
 
 

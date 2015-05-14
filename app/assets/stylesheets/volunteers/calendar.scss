@@ -5,8 +5,20 @@
   color: #eaeaea
 }
 
-.cal {
+#cal {
+
+  overflow: hidden;
+  background-color: #abaeb1;
+}
+
+.cal-form {
   height: 0px;
   overflow: hidden;
   background-color: #abaeb1;
+}
+
+.modal { 
+    position: absolute;  
+    width: auto; 
+    margin: 0; 
 }

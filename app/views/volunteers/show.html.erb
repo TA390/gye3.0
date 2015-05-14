@@ -45,18 +45,14 @@
         </div>
                    
         <div class="panel panel-default">
-          <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://www.leonardodicaprio.com/" class="">www.leonardodicaprio.com</a></div>
-          </div>
+          <div class="panel-heading">Website<i class="fa fa-link fa-1x"></i></div>
+          <div class="panel-body"><a href=@user.url class=""><%= @user.url %> </a></div>
+        </div>
         
         <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Activity <i class="fa fa-dashboard fa-1x"></i></strong></div>
+          <div class="panel-heading"><strong class="">Statistics <i class="fa fa-dashboard fa-1x"></i></strong></div>
             <ul class="list-group">
-              
-              <div class="eventinfo">
-                <%= render 'my_events' %>
-              </div>
-
+             
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average volunteer rating</strong></span> 4.5</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Attendance record</strong></span> 95%</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
@@ -86,32 +82,33 @@
           </div>
         </div>
       
-      <div class="panel panel-default">
-        <div class="panel-heading"><%= @user.name %> <%= @user.last_name %>'s Friends</div>
-            <div class="panel-body"> Friend 1 Friend 2....</div>
-      </div>
-      
-      <div class="panel panel-default">
-        <div class="panel-heading"><%= @user.name %> <%= @user.last_name %> 's Event Testimonials</div>
-         <div class="panel-body"> "Blah blah"</div>
-      </div>
+    
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Activity <i class="fa fa-dashboard fa-1x"></i></strong></div>
+            <ul class="list-group">
+              
+              <div class="eventinfo">
+                <%= render 'my_events' %>
+              </div>
+              
+            </ul>
+          </div>
         
         <!-- calendar btn -->
         <div>
           <button id="open" type="button" class="btn btn-success">Calender</button>
         </div>
         <!-- end calendar btn -->
-
         <!-- calendar -->
-          <div class="cal">
-              <div id='calendar'>  
-          </div>
+        <div class="cal-form">
+          <%= render 'calendar_form' %>
+        </div>
+        <div id='calendar'></div>
         <!-- end calendar -->
-
       </div>
     </div>
-  </div>    
-    
+  </div>      
+
 <body> 
 
 

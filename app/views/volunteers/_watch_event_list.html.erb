@@ -58,11 +58,26 @@
          
         <br>
           </div>
-    </div>
+    </div> 
     <% end %>
         
-   
+  <% else %> 
+  
+   <h1> Opps! No events found here <%= link_to "(find out more here)",  events_path%></h1>
+     <br>
+      <%=  link_to image_tag('volunteer-bg/empty_corp.jpg',size: '1150x350'),events_path %>
+     <br>
+    <br>
+    <br>
+   <br>
+    <br>
+    <br>
+   <br>
+    <br>
+    <br>
   <% end %>
+  
+  
 </div>
 </div>
 </div>

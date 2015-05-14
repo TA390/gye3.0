@@ -14,11 +14,15 @@
   <h1>GIVE YOUR EFFORT</h1>
   <h3>Where Charity meets Giving</h3>
   <hr class="intro-divider">
-  <form class="form-wrapper cf">
-    <input type="text" placeholder="Search here..." required>
-    <button type="submit">Search</button>
-  </form>     
-          
+  
+ <!--Search bar-->
+  <%= form_for :event, url: {controller:"events", action: "search"}, method: 'put' do |f| %>     
+    <div class="form-wrapper cf">
+      <%= f.text_field :name, placeholder: "Search here...", class: 'form-control' %>   
+    </div>           
+  <% end %>
+         
+  
   <div class="page-scroll">
     <a href="#categories" class="btn btn-circle" onclick="$('#categories').animatescroll({scrollSpeed:2000,easing:'easeOutBack'});">
       <i class="fa fa-angle-double-down animated"></i>

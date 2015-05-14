@@ -8,16 +8,16 @@ class EventCalendarsController < ApplicationController
   def create
     if logged_in?
       @entry  = current_user.event_calendars.build(calendar_params)
-      render json: @cal
     end
     
-    if @event.save
-      flash[:success] = "New Calendar Entry Created!"
-      redirect_to volunteers_path(current_user)
-    else
-      render 'volunteers/show'
+    if @entry.save
+      flash.now[:success] = "New Calendar Entry Created!"      
     end
     
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.js
+    end
     
   end
   
@@ -25,7 +25,7 @@ class EventCalendarsController < ApplicationController
   private
   
   def calendar_params
-    params.require(:event).permit(:id, :title, :start, :end, :color, :url, :volunteer_id)
+    params.require(:event_calendar).permit(:title, :start, :end, :color, :url)
   end
   
 end

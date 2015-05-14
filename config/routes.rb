@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'about'       => 'static_pages#about'      # about_path
   get 'events'      => 'events#index'            # events_path
   put 'events'      => 'events#search'           # events_path
+  put 'volunteers'  => 'volunteers#search'       # volunteers_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   get 'ngos'        => 'ngos#index'              # ngos_path
   get 'signup'      => 'sign_ups#new'            # signup_path
@@ -37,13 +38,15 @@ Rails.application.routes.draw do
   
   #JSON calendar entries url
   get 'cal'          => 'event_calendars#index'
+  post 'cal'          => 'event_calendars#create'
   
-  put '/events/?tags=Elderly' => 'events#search'
+  
   
   resources :volunteers
   resources :ngos
   resources :events
   resources :tags
+  resources :event_calendars
  
   resources :volunteers do
     member do
@@ -57,6 +60,11 @@ Rails.application.routes.draw do
     resources :posts
   end
   
+  # nested resource for calendar on volunteers
+  resources :volunteers do
+    resources :event_calendars
+  end
+  
   # account activation email link
   resources :account_activations, only: [:edit]
   resources :ngo_account_activations, only: [:edit]
@@ -67,6 +75,9 @@ Rails.application.routes.draw do
             
   # sign up and drop out of an event
   resources :event_volunteers, only: [:create, :destroy, :update]
+  
+  
+  resources :event_calendars, only: [:create, :destroy]
 
   
 #   # added for fb authentication

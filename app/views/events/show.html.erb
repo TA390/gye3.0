@@ -81,11 +81,16 @@
       <div class="col-md-12">
           <% if @event.past? %>
             <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
+        
+        
+        
 
             <!-- rating events -->
-            <% if logged_in? && %>          
+            <% if !logged_in? && %>          
 
-
+            
+                
+        
 
             <% end %>
 

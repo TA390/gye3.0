@@ -13,36 +13,36 @@ $(document).ready(function () {
     },
                
     dayClick: function( date, allDay, jsEvent, view ) { 
-                                   
-      alert(date);
       
       $(this).css('background-color', 'red');  
-    }      
-                
+    }
+    
   });
   
 });
 
 /***************************************************************************/
 /***************************************************************************/
+
 $(document).ready(function () {
   document.getElementById("open").addEventListener("click", function() {
 
-    var split = $('.cal').height();
+    var split = $('.cal-form').height();
 
     if( 0 === split ){
 
-    var autoHeight = $('.cal').css('height', 'auto').height();
+    var autoHeight = $('.cal-form').css('height', 'auto').height();
 
-    $('.cal').height(0).animate(
+    $('.cal-form').height(0).animate(
       {'height': autoHeight }, 'slow'
     );
     }
     else{
-      $('.cal').animate(
+      $('.cal-form').animate(
         {'height': '0px'}, 'slow'
       );
     }
 
   }, true);
+                                                   
 });

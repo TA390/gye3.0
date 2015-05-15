@@ -269,77 +269,50 @@
       <%= link_to (image_tag event.avatar.url()), event_path(event) %> 
      <div class="icon-holder">
        
-       <% if event.event_tags.where("tag_id = ?", 1).exists? %>
-          <i class="fa fa-heartbeat"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 2).exists? %>
-         <i class="fa fa-paint-brush"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 3).exists? %>
-         <i class="fa fa-paw"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 4).exists? %>
-         <i class="fa fa-cutlery"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 5).exists? %>
-         <i class="fa fa-ambulance"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 6).exists? %>
-         <i class="fa fa-book"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 7).exists? %>
-          <i class="fa fa-smile-o"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 8).exists? %>
-         <i class="fa fa-home"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 9).exists? %>
-         <i class="fa fa-child"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 10).exists? %>
-          <i class="fa fa-plane"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 11).exists? %>
-         <i class="fa fa-wheelchair"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 12).exists? %>
-         <i class="fa fa-users"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 13).exists? %>
-          <i class="fa fa-suitcase"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 14).exists? %>
-         <i class="fa fa-life-ring"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 15).exists? %>
-         <i class="fa fa-leaf"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 16).exists? %>
-          <i class="fa fa-arrows"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 17).exists? %>
-         <i class="fa fa-ship"></i>
-       <% end %>
-       <% if event.event_tags.where("tag_id = ?", 18).exists? %>
-         <i class="fa fa-futbol-o"></i>
-       <% end %>
-     </div>  
-   </div>
+       <% icons = ["", "fa-heartbeat", "fa-paint-brush", "fa-paw", "fa-cutlery", "fa-ambulance", "fa-book", 
+                   "fa-smile-o", "fa-home", "fa-child", "fa-plane", "fa-wheelchair", "fa-users", 
+                   "fa-suitcase", "fa-life-ring", "fa-leaf", "fa-arrows", "fa-ship", "fa-futbol-o"] %>
+       
+       <% event.event_tags.each do |t| %>
+         <i class="fa <%=icons.fetch(t.tag_id)%>"></i>
+       <%end%>
+
+         </div>  
+     </div>
     
       
     <div class ="col-md-6 ">
       <span class="ngo"><h3><%= link_to event.name, event_path(event) %></h3></span>
+           
+      
       <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h5> </span>
-      <br>
+       
+      
       <span class="start"> <p> Start Date: <%= event.start.to_formatted_s(:short) %> </p> </span>
       <span class="end"> <p>   End Date:&nbsp; <%= event.end.to_formatted_s(:short) %> </p> </span>
       <span class="description"> <p> Event Description: <%= event.description %> </p></span>
-   
+       
+      
      
-     
-       <br>
-        
+     <span class="stars">
 
+            <input class="star star-5" id="star-5" type="radio" name="star" value="1" />
+            <label class="star star-5" for="star-5"></label>
+            <input class="star star-4" id="star-4" type="radio" name="star" value="2" />
+            <label class="star star-4" for="star-4"></label>
+            <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+            <label class="star star-3" for="star-3"></label>
+            <input class="star star-2" id="star-2" type="radio" name="star" value="4" />
+            <label class="star star-2" for="star-2"></label>
+            <input class="star star-1" id="star-1" type="radio" name="star" value="5" />
+            <label class="star star-1" for="star-1"></label>
+
+        </span>
+        <br>
+         <br>
+  
+       <span>
+      
       <% if event.full? %>
         <%= button_to 'Full', event_path(event),
               method: :get, class: "btn btn-danger il-button" , style: "display:inline;"%>
@@ -352,7 +325,9 @@
         <%= button_to "Delete", event, method: :delete,
 data: { confirm: "Are you Sure?" }, class: "btn btn-info il-button", style: "display:inline;" %>
       <% end %>
-
+      </span>
+        <br>
+      
      </div>
       
 

@@ -9,7 +9,7 @@ class VolunteersController < ApplicationController
     
   def index 
     @volunteers = Volunteer.paginate(page: params[:page],per_page: 10).
-      order(:name).where(activated: false).order(:name)
+      order(:name).order(:name)
   end # end def index
   
   
@@ -335,7 +335,7 @@ class VolunteersController < ApplicationController
     #  Test PASS
     elsif params[:volunteer][:location].present?
       #shows all volunteer with location matching params location
-      @volunteers = Volunteer.where("location ~* ?", "[.]*#{params[:volunteer][:location]}[.]*")
+      @volunteers = Volunteer.where("location ~* ?", "[.]*#{params[:volunteer][:location]}[.]*").order(:name)
 
     # 
     elsif params[:volunteer][:vid].present?
@@ -368,7 +368,7 @@ class VolunteersController < ApplicationController
 
 
     # SET ACTIVATED TO true FOR PRODUCTION
-    @volunteers = @volunteers.where(activated: false).paginate(page: params[:page],per_page: 10)
+    @volunteers = @volunteers.paginate(page: params[:page],per_page: 10)
     render 'index'
  
   end

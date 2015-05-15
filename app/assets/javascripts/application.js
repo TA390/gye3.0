@@ -19,4 +19,3 @@
 //= require fullcalendar
 //= require moment
 //= require_tree .
-

@@ -18,8 +18,12 @@ Rails.application.routes.draw do
   
   get 'home'        => 'static_pages#home'       # root_path
   get 'about'       => 'static_pages#about'      # about_path
+  
   get 'events'      => 'events#index'            # events_path
   put 'events'      => 'events#search'           # events_path
+  post 'ratings'    => 'events#enable_rate'      # ratings_path
+  post 'dis_ratings'=> 'events#disable_rate'     # dis_ratings_path
+  
   put 'volunteers'  => 'volunteers#search'       # volunteers_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   get 'ngos'        => 'ngos#index'              # ngos_path
@@ -47,6 +51,12 @@ Rails.application.routes.draw do
   resources :events
   resources :tags
   resources :event_calendars
+  
+  resources :events do 
+  member do
+    post 'enable_rate'
+  end
+end
  
   resources :volunteers do
     member do
@@ -76,9 +86,7 @@ Rails.application.routes.draw do
   # sign up and drop out of an event
   resources :event_volunteers, only: [:create, :destroy, :update]
   
-  
   resources :event_calendars, only: [:create, :destroy]
-
   
 #   # added for fb authentication
 #   FacebookAuthExample::Application.routes.draw do

@@ -361,7 +361,7 @@ class EventsController < ApplicationController
     #  Test PASS
     elsif params[:event][:location].present?
       #shows all event with location matching params location
-      @events = Event.where("location ~* ?", "[.]*#{params[:event][:location]}[.]*")
+      @events = Event.where("location ~* ?", "[.]*#{params[:event][:location]}[.]*").order(:start)
 
     # 
     elsif params[:event][:vid].present?
@@ -371,7 +371,7 @@ class EventsController < ApplicationController
     # Test PASS
     elsif params[:event][:name].present?
       #substring matching on event name
-      @events = Event.where("name ~* ?", "[.]*#{params[:event][:name]}[.]*")
+      @events = Event.where("name ~* ?", "[.]*#{params[:event][:name]}[.]*").order(:start)
       
     # Test PASS
     else
@@ -406,6 +406,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @date = @event.start.strftime("%A, %b %d")
     @time = @event.start.strftime("%l:%M %p")
+    @rating = @event.rating.to_i
     redirect_to root_url and return unless @event
   end
 
@@ -503,6 +504,25 @@ class EventsController < ApplicationController
 
     render 'index'
   end
+
+
+  def enable_rate  
+    respond_to do |format|
+      format.html {}
+      format.js
+    end
+  end
+
+  def disable_rate
+    
+    flash.now[:notice] = "FORM"
+    
+    respond_to do |format|
+      format.html { redirect_to @event }
+      format.js
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

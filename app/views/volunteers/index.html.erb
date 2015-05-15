@@ -11,6 +11,8 @@
       </div>
   </div>
 
+  <p></p>
+  
   <div class="form-inline">
     <%= form_for :volunteer, url: {action: "search"}, html:{method: 'put'} do |f| %>
     
@@ -20,11 +22,11 @@
        </div>
       
        <div class="form-group">
-         <%= f.text_field :tags, placeholder: "Search by volunteer interest", class: 'form-control' %>
+         <%= f.text_field :tags, :size => 30, placeholder: "Search by volunteer interest", class: 'form-control' %>
        </div>
 
        <div class="form-group">
-         <%= f.text_field :location, :size => 30, placeholder: "Volunteer location", class: 'form-control' %>
+         <%= f.text_field :location, placeholder: "Volunteer location", class: 'form-control' %>
        </div>
 
        <div class="form-group">
@@ -38,6 +40,8 @@
      </div>
    <% end %>
   
+    <p></p>
+  
   <div class = "container">  
     <div class="volunteers col-md-12">
       <%= will_paginate %>
@@ -49,6 +53,68 @@
               <div class="container">
                 <div class ="volunteer_pic">
                   <img class="img-circle" src="http://wikivillage.co.za/sites/default/files/media/garden-route-spca/garden-route-spca1.jpg" alt="description here "/>
+                  
+                      
+              
+                   <!-- tag icons associated with volunteers -->
+                  <div class="icon-holder">
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 1).exists? %>
+                      <i class="fa fa-heartbeat"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 2).exists? %>
+                     <i class="fa fa-paint-brush"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 3).exists? %>
+                     <i class="fa fa-paw"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 4).exists? %>
+                     <i class="fa fa-cutlery"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 5).exists? %>
+                     <i class="fa fa-ambulance"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 6).exists? %>
+                     <i class="fa fa-book"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 7).exists? %>
+                      <i class="fa fa-smile-o"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 8).exists? %>
+                     <i class="fa fa-home"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 9).exists? %>
+                     <i class="fa fa-child"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 10).exists? %>
+                      <i class="fa fa-plane"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 11).exists? %>
+                     <i class="fa fa-wheelchair"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 12).exists? %>
+                     <i class="fa fa-users"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 13).exists? %>
+                      <i class="fa fa-suitcase"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 14).exists? %>
+                     <i class="fa fa-life-ring"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 15).exists? %>
+                     <i class="fa fa-leaf"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 16).exists? %>
+                      <i class="fa fa-arrows"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 17).exists? %>
+                     <i class="fa fa-ship"></i>
+                   <% end %>
+                   <% if volunteer.volunteer_tags.where("tag_id = ?", 18).exists? %>
+                     <i class="fa fa-futbol-o"></i>
+                   <% end %>
+                  </div>  <!-- end of tag icons associated with volunteers -->
+                  
+                  
                 </div>
               </div>
             </div>

@@ -1,1 +1,1 @@
-$(".stars").html("<%= escape_javascript(render('events/enable_rating')) %>")
+$(".stars").html("<%= escape_javascript(render partial: 'events/enable_rating', locals:{event: @event}) %>")

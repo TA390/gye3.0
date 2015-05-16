@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   post 'ratings'    => 'events#enable_rate'      # ratings_path
   post 'dis_ratings'=> 'events#disable_rate'     # dis_ratings_path
   
+  post 'posts'      => 'posts#create'            # wall_post_path
+  
   put 'volunteers'  => 'volunteers#search'       # volunteers_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   get 'ngos'        => 'ngos#index'              # ngos_path

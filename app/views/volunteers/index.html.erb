@@ -58,60 +58,13 @@
               
                    <!-- tag icons associated with volunteers -->
                   <div class="icon-holder">
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 1).exists? %>
-                      <i class="fa fa-heartbeat"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 2).exists? %>
-                     <i class="fa fa-paint-brush"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 3).exists? %>
-                     <i class="fa fa-paw"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 4).exists? %>
-                     <i class="fa fa-cutlery"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 5).exists? %>
-                     <i class="fa fa-ambulance"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 6).exists? %>
-                     <i class="fa fa-book"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 7).exists? %>
-                      <i class="fa fa-smile-o"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 8).exists? %>
-                     <i class="fa fa-home"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 9).exists? %>
-                     <i class="fa fa-child"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 10).exists? %>
-                      <i class="fa fa-plane"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 11).exists? %>
-                     <i class="fa fa-wheelchair"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 12).exists? %>
-                     <i class="fa fa-users"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 13).exists? %>
-                      <i class="fa fa-suitcase"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 14).exists? %>
-                     <i class="fa fa-life-ring"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 15).exists? %>
-                     <i class="fa fa-leaf"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 16).exists? %>
-                      <i class="fa fa-arrows"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 17).exists? %>
-                     <i class="fa fa-ship"></i>
-                   <% end %>
-                   <% if volunteer.volunteer_tags.where("tag_id = ?", 18).exists? %>
-                     <i class="fa fa-futbol-o"></i>
-                   <% end %>
+                    <% icons = ["", "fa-heartbeat", "fa-paint-brush", "fa-paw", "fa-cutlery", "fa-ambulance", "fa-book", 
+                                "fa-smile-o", "fa-home", "fa-child", "fa-plane", "fa-wheelchair", "fa-users", 
+                                "fa-suitcase", "fa-life-ring", "fa-leaf", "fa-arrows", "fa-ship", "fa-futbol-o"] %>
+       
+                    <% volunteer.volunteer_tags.each do |t| %>
+                      <i class="fa <%=icons.fetch(t.tag_id)%>"></i>
+                    <%end%>
                   </div>  <!-- end of tag icons associated with volunteers -->
                   
                   

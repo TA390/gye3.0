@@ -404,6 +404,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @post = Post.new
     @date = @event.start.strftime("%A, %b %d")
     @time = @event.start.strftime("%l:%M %p")
     @rating = @event.rating.to_i
@@ -506,7 +507,8 @@ class EventsController < ApplicationController
   end
 
 
-  def enable_rate  
+  def enable_rate
+    @event = Event.find(params[:eid])
     respond_to do |format|
       format.html {}
       format.js
@@ -514,13 +516,22 @@ class EventsController < ApplicationController
   end
 
   def disable_rate
-    
-    flash.now[:notice] = "FORM"
+    @event = Event.find(params[:eid])
     
     respond_to do |format|
-      format.html { redirect_to @event }
+      format.html {redirect_to @event}
       format.js
     end
+    
+    if (value = @event.rating) > 0
+      @event.rating = ((value + params[:star].to_i) / 2)
+    else
+      @event.rating = params[:star].to_i
+    end
+    
+    @event.save
+    flash.now[:notice] = "Thank you for rating our Event"
+    
   end
 
 

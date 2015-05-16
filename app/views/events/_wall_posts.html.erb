@@ -1,0 +1,28 @@
+<!-- MAKE WALL DYNAMIC -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="one-c">Name</th>
+      <th class="two-c">Comment</th>
+    </tr>
+  </thead>
+  <tbody class="wall_posting">
+    <% @event.posts.each do |p| %>  
+      <tr>
+        <td class="one-c"><%=p.volunteer_id %></td>
+        <td class="two-c"><%=p.comment %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+                            
+<%= form_for(@event.posts.build, remote: true) do |f| %>
+  <%= hidden_field_tag :event_id, @event.id %>
+  <input type="hidden" name="post[volunteer_id]" value="<%=current_user.id%>">
+  <div class="input-group">
+    <input type="text" class="form-control" name="post[comment]" placeholder="post a message on our wall!">
+    <span class="input-group-btn">
+      <%= f.submit "Add", class: "btn btn-primary" %>
+    </span>  
+  </div>
+<% end %>

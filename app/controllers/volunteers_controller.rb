@@ -359,11 +359,11 @@ class VolunteersController < ApplicationController
     
     
     if @volunteers.count < 1
-      flash[:success] = "Sorry, we did not find any volunteers matching your search criteria"   
+      flash.now[:success] = "Sorry, we did not find any volunteers matching your search criteria"   
     elsif @volunteers.count == 1
-      flash[:success] = "We found 1 volunteer based on your search criteria"
+      flash.now[:success] = "We found 1 volunteer based on your search criteria"
     else
-      flash[:success] = "We found " + @volunteers.count.to_s + " volunteers based on your search criteria"
+      flash.now[:success] = "We found " + @volunteers.count.to_s + " volunteers based on your search criteria"
     end
 
 

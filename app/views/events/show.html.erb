@@ -11,13 +11,6 @@
     }
   </style>
   
-  <script>
-    $(function() {
-
-      $("#star-#{@rating}").attr('checked', 'checked');
-  
-    });
-  </script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
   
   <script>
@@ -75,22 +68,9 @@
       <div class="col-md-9">
        <h1> <%=@event.name %> </h1>
         
-        
         <div class="stars">
-
-            <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
-            <label class="star star-5" for="star-5"></label>
-            <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
-            <label class="star star-4" for="star-4"></label>
-            <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
-            <label class="star star-3" for="star-3"></label>
-            <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
-            <label class="star star-2" for="star-2"></label>
-            <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
-            <label class="star star-1" for="star-1"></label>
-
+          <%= render partial:'disable_rating', locals:{event: @event} %>
         </div>
-        
         
        <h2> <%=@date %></h2>
 
@@ -107,42 +87,23 @@
       <div class="col-md-12">
           <% if @event.past? %>
             <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
-        
-        
-        
-
-            <!-- rating events -->
-            <% if !logged_in? && %>          
-
-            
-                
-        
-
-            <% end %>
-
-          <% else %>
-          <% if logged_in?%>
+          <% elsif logged_in?%>
             <!-- sign up to an event -->
               <div class="events_signup">
                 <%= render 'event_signup' %>
               </div>
 
-              <!-- this div has been left empty to render buttons using ajax -->
               <div class="watch">
                 <%= render 'watching_form'%>
               </div>
 
             <% else %>
 
-              <%= button_to "Attend", login_path, 
-  class: "btn btn-primary col-md-1 il-button", method: :get  %>
+              <%= button_to "Attend", login_path, class: "btn btn-primary col-md-1 il-button", method: :get  %>
 
-            <%= button_to "Add to watchlist", login_path, 
-                    class: "btn btn-primary col-md-1 il-button", method: :get  %>
+              <%= button_to "Add to watchlist", login_path, class: "btn btn-primary col-md-1 il-button", method: :get  %>
 
             <% end %> 
-            <!-- end sign up to an event -->
-          <% end %>
       </div>
     </div><!--End Row Div-->  
     <br><br>
@@ -236,35 +197,11 @@
       <div class="col-sm-8">
         <div class="panel panel-default">
           <div class="panel-heading"><strong class="">Event Wall</strong></div>
-            <div class="e_panel">
-              <!-- MAKE WALL DYNAMIC -->
-              <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th class="one-c">Name</th>
-                    <th class="two-c">Comment</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% @event.posts.each do |p| %>  
-                <tr>
-                  <td class="one-c"><%=p.volunteer_id %></td>
-                  <td class="two-c"><%=p.comment %></td>
-                </tr>
-
-                <% end %>  
-                </tbody>
-            </table>
-              
-              
-              
-              <div class="input-group">
-               <input type="text" class="form-control">
-                 <span class="input-group-btn"><button class="btn btn-primary" type="button">Add</button></span>
-              </div>
+            <div class="wall_posting e_panel">
+              <%= render 'wall_posts' %>
+            </div>
           </div>
         </div>
-      </div>
 
      <!--Score component-->
       <div class="col-md-4">

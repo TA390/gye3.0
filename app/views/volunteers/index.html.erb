@@ -11,36 +11,33 @@
       </div>
   </div>
 
-  <p></p>
-  
-  <div class="form-inline">
-    <%= form_for :volunteer, url: {action: "search"}, html:{method: 'put'} do |f| %>
-    
-      
-       <div class="form-group">
-         <%= f.text_field :name, placeholder: "Volunteer name", class: 'form-control' %>
-       </div>
-      
-       <div class="form-group">
-         <%= f.text_field :tags, :size => 30, placeholder: "Search by volunteer interest", class: 'form-control' %>
-       </div>
+   
+  <div class="search_result">
+      <div class="form-inline">
+        <%= form_for :volunteer, url: {action: "search"}, html:{method: 'put'} do |f| %>
 
-       <div class="form-group">
-         <%= f.text_field :location, placeholder: "Volunteer location", class: 'form-control' %>
-       </div>
+           <div class="form-group">
+             <%= f.text_field :name, placeholder: "Volunteer name", class: 'form-control' %>
+           </div>
 
-       <div class="form-group">
-         <%= f.text_field :gender, placeholder: "Gender", class: 'form-control' %>
-       </div>
-       
-     
-       <div class="form-group">      
-         <%= f.submit "Search", class: "btn btn-default" %>
-       </div>  
-     </div>
-   <% end %>
-  
-    <p></p>
+           <div class="form-group">
+             <%= f.text_field :tags, :size => 30, placeholder: "Search by volunteer interest", class: 'form-control' %>
+           </div>
+
+           <div class="form-group">
+             <%= f.text_field :location, placeholder: "Volunteer location", class: 'form-control' %>
+           </div>
+
+           <div class="form-group">
+             <%= f.text_field :gender, placeholder: "Gender", class: 'form-control' %>
+           </div>
+
+           <div class="form-group">      
+             <%= f.submit "Search", class: "btn btn-default" %>
+           </div>  
+         <% end %>
+      </div>
+   </div>
   
   <div class = "container">  
     <div class="volunteers col-md-12">
@@ -52,7 +49,7 @@
             <div class="col-md-3">
               <div class="container">
                 <div class ="volunteer_pic">
-                  <img class="img-circle" src="http://wikivillage.co.za/sites/default/files/media/garden-route-spca/garden-route-spca1.jpg" alt="description here "/>
+                  <%= image_tag volunteer.avatar.url(:medium), size: '250x250' , class: 'img-circle' %>   
                   
                       
               

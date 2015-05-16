@@ -27,3 +27,8 @@ module Gye30
     config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end
+
+
+class Application < Rails::Application
+  config.web_console.whitelisted_ips = '129.31.195.133'
+end

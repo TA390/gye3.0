@@ -85,8 +85,11 @@
 
 .v_index .search_result {
 	text-align: center;
-	padding-top: 20px;	
-	padding-bottom: 20px;	
+  margin: 0px 0px 20px 0px;
+	padding-top: 30px;	
+	padding-bottom: 38px;
+  background-color: #eaeaea;  
+  color: #0087c9;
 }
 
 
@@ -105,16 +108,15 @@ h2 { padding-top: 10px; }*/
 
 .v_index .one_volunteer {
 	 margin: 0px 0px 20px 0px;
-	 //border: 2px solid #d3d3d3;
+
 
    padding: 15px 15px 15px 15px;
-  
-   //background: rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.75);
-  
-  border-style: solid;
-    border-width: 1px;
-  border-color: #d3d3d3;
+
+   border-style: solid;
+   border-width: 2px;
+   border-color: #428BCA;
+   box-shadow: 6px 4px 4px #454545;
+   background: rgba(255,255,255,0.75);
 
 }
 

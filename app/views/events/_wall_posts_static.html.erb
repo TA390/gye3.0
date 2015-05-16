@@ -1,4 +1,4 @@
-<!-- MAKE WALL DYNAMIC -->
+<!-- STATIC WALL FOR USER'S NOT LOGGED IN -->
 <table class="table table-striped">
   <thead>
     <tr>
@@ -17,10 +17,8 @@
 </table>
                             
 <%= form_for(@event.posts.build, remote: true) do |f| %>
-  <%= hidden_field_tag :event_id, @event.id %>
-  <input type="hidden" name="post[volunteer_id]" value="<%=volunteer.id%>">
   <div class="input-group">
-    <input type="text" class="form-control" name="post[comment]" placeholder="post a message on our wall!">
+    <input type="text" class="form-control" placeholder="post a message on our wall!">
     <span class="input-group-btn">
       <%= f.submit "Add", class: "btn btn-primary" %>
     </span>  

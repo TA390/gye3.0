@@ -92,17 +92,19 @@
             </ul>
           </div>
         
-        <!-- calendar btn -->
-        <div>
-          <button id="open" type="button" class="btn btn-success">Calender</button>
-        </div>
-        <!-- end calendar btn -->
-        <!-- calendar -->
-        <div class="cal-form">
-          <%= render 'calendar_form' %>
-        </div>
-        <div id='calendar'></div>
-        <!-- end calendar -->
+        <% if current_user %>
+          <!-- calendar btn -->
+          <div>
+            <button id="open" type="button" class="btn btn-success">Calender</button>
+          </div>
+          <!-- end calendar btn -->
+          <!-- calendar -->
+          <div class="cal-form">
+            <%= render 'calendar_form' %>
+          </div>
+          <div id='calendar'></div>
+          <!-- end calendar -->
+        <% end %>
       </div>
     </div>
   </div>      

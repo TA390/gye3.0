@@ -24,7 +24,7 @@ class EventVolunteersController < ApplicationController
         current_user.sign_up(@event) if !current_user.signed_up?(@event)
         
         flash[:success] = "Thank you for joining our event. We have sent you a confirmation email with the event details"
-        #EventSignupMailer.event_signup(current_user, @event).deliver_now        
+        EventSignupMailer.event_signup(current_user, @event).deliver_now        
       end
     end
     

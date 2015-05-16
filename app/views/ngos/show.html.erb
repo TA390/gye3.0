@@ -1,3 +1,5 @@
+<div class="ngo_profile_2">
+
 <% provide(:title, @ngo.name) %>
 
 
@@ -7,7 +9,10 @@
     <div class="row">
       
       <div class="col-sm-10">
-        <h1 class=""><%= @ngo.name %></h1>
+        <br>
+        <br>
+        <br>
+        <h1><%= @ngo.name %></h1>
         
           <button type="button" class="btn btn-success">Send us a message</button>
         
@@ -22,13 +27,18 @@
       
       <div class="col-sm-2" style="height: 300px">
         <div class="pull-right">
-
+           <br>
+        <br>
+          <br>
           <%= image_tag @ngo.avatar.url(:medium), size: '250x250' %>      
         </div>
       </div>
       
+     
     </div>
 
+      <br>
+      <br>
   
 
 <!-- create an event js -->
@@ -82,8 +92,7 @@
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= @ngo.email %></li>
                 
-              
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Location: </strong></span><%= @ngo.location %></li>
+            
           </ul>
         </div>     
    
@@ -94,7 +103,7 @@
 
               <li class="list-group-item text-right"><span class="pull-left"><strong class=""> Event Hosted </strong></span> <%= @ngo.events.count %> </li>
         
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average Rating</strong></span> 4.5</li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average Rating</strong></span> N/A </li>
               
             </ul>
         </div>
@@ -193,3 +202,5 @@
 
 <%= link_to 'Back', ngos_path %> |
 <%= link_to 'Edit', edit_ngo_path(@ngo) %>
+        
+      </div>

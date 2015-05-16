@@ -70,10 +70,10 @@
             </div>
 
             <div class="col-md-9 ">
-              <h3><%=volunteer.name %> <%=volunteer.last_name %></h3>
-                <h4>Bio:</h4>
-                <p> [Bio goes here] </p>
-                <p> Joining date: <%=volunteer.created_at%> </p>
+              <h3><%=volunteer.name %> <%=volunteer.last_name %></h3>       
+              <p> Bio: <%=volunteer.bio%> </p>
+              <p> Joining date: <%=volunteer.created_at%> </p>    
+              <p> Location: <%=volunteer.location%> </p>
 
               <%=button_to 'Show Profile', volunteer_path(volunteer), :method => :get, :class => "btn btn-primary"%>
 

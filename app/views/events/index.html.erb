@@ -16,6 +16,25 @@
 </head>
 <!-- datepicker -->
 
+<!-- Facebook Plug-in Javascript --> 
+<script>
+  (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- End Facebook Plug-in Javascript --> 
+
+<!-- Begin Twitter Plug-in Javascript --> 
+<script>
+      window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||        {};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+</script>
+<!-- End Twitter Plug-in Javascript --> 
+
+
 <body class="e_index">
 
   <div class="dropdownbarbox">
@@ -60,12 +79,30 @@
    <% end %>
 	</div>
   
-  <div class="container ">
+  <div class="container ">    
    
    <%= will_paginate %>
    <% @events.each do |event| %>    
   
    <div class="one_event row">  
+     
+      <!-- Facebook Button -->
+  <div class="fb-share-button" data-href='<%= events_path(event) %>' data-layout="button"></div>
+  <!-- End Facebook Button -->
+  
+    <!-- Begin Twitter Button -->
+  <a class="twitter-share-button" href="https://twitter.com/intent/tweet?button_hashtag=<%=events_path(event) %>&text=My%20story%20is%20about%20this%20cool%20event%20at%20GiveYourEffort.com!%20%20Check%20it%20out!"
+   data-related="twitter">
+   data-size="large"
+   data-count="none">
+   Tweet #<%=event.name %>
+  </a>
+   <!-- End Twitter Button -->
+
+   <!-- Begin Linkedin Button -->
+    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+    <script type="IN/Share" data-counter="right"></script>
+   <!-- End Linkedin Button -->
       
     <div class ="event_pic col-md-6 ">
       <!-- event picture (default provided) -->
@@ -90,7 +127,7 @@
       
       <span class="hosting_ngo"> <h5> hosted by <%= link_to event.ngo.name, ngo_path(event.ngo)%> </h5> </span>
        
-      
+      <span class="location"> <p> Location: <%= event.location %> </p> </span>
       <span class="start"> <p> Start Date: <%= event.start.to_formatted_s(:short) %> </p> </span>
       <span class="end"> <p>   End Date:&nbsp; <%= event.end.to_formatted_s(:short) %> </p> </span>
       <span class="description"> <p> Event Description: <%= event.description %> </p></span>

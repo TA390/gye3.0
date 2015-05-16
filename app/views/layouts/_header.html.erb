@@ -28,19 +28,19 @@
                 <li class="divider"></li>
                 <li><%= link_to "Log out", vlogout_path, method: :delete %></li>
               </ul>
-            </li>
+             </li>
           <% elsif logged_in_ngo? %>
             <li class="dropdown">
               <a href ="#" class="dropdown-toggle" data-toggle="dropdown" >
                 <%= current_ngo.name %><b class="caret"></b>
-              </a>
+              </a> -
               <ul class="dropdown-menu" role="menu">
                 <li><%= link_to "Profile", current_ngo %></li>
                 <li><%= link_to "Settings", edit_ngo_path(current_ngo) %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Log out", nlogout_path, method: :delete %></li>
               </ul>
-            </li>   
+             </li>  
           <% else %>
             <li id="log_in_btn"><%= link_to "Log in", login_path %></li>
             <li id="sign_up_btn"><%= link_to "Sign Up", signup_path %></li>

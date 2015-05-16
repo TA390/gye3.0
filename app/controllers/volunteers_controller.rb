@@ -411,14 +411,13 @@ class VolunteersController < ApplicationController
     
     @user = Volunteer.find(params[:id])
     
-    dynaspan_text_field(current_user, :name) if logged_in? && current_user?(@user)
+      if @user.update_attributes(user_params)
+        flash[:success] = "Profile updated"
+        redirect_to @user
+      else
+        render 'edit'
+      end
     
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
-    else
-      render 'edit'
-    end
   end
   
   def events
@@ -439,6 +438,30 @@ class VolunteersController < ApplicationController
     @past_events = @user.events.where(["events.start < ? and event_volunteers.attending = ?", DateTime.now, "t"]).paginate(page: params[:page], per_page: 10)
   end
 
+
+  def bio_form
+    @user = Volunteer.find(params[:id])
+    
+    respond_to do |format|
+      format.html {redirect_to @user}
+      format.js
+    end
+  end
+
+  def bio_update
+  
+    @user = Volunteer.find(params[:id]) 
+    @user.bio = params[:volunteer][:bio]
+    @user.save
+    
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.json 
+    end
+    
+  end
+
+
   # private functions
   private
   
@@ -446,7 +469,7 @@ class VolunteersController < ApplicationController
       params.require(:volunteer).permit(:name, :last_name, :email,
                                         :location, :gender, :password, 
                                         :password_confirmation, :picture,
-                                        :avatar)  
+                                        :avatar, :bio)  
     end
   
     # Function to test if a user has logged in

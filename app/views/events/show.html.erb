@@ -58,95 +58,98 @@
 
 <body class="e_detail">
 
-    <!-- To place image on the bar -->
-    <div class="dropdownbarbox"></div>
-    <br><br>
+  <!-- Start of Sidebar -->
+<div class='fixedmenu' onmouseout='this.className=&apos;fixedmenu&apos;' onmouseover='this.className=&apos;fixedmenu1&apos;'>
+   <div class='fixedmenu_1'><a href='https://www.facebook.com/sharer/sharer.php?u=%22%3C%25=%40<%=events_path(@event)%>%20%25%3E' target='_blank'><img alt='Like us on Facebook' src='http://3.bp.blogspot.com/-jWaYNYywDf0/Ud1_G7YS7RI/AAAAAAAAAtA/8b40N46byIQ/s1600/facebook-hover1.png' title='Like us on Facebook'/></a><br/>
+  </div>
 
-  <div class="container">
-    <!-- Event name and logo row-->
-    <div class="row">
-      <div class="col-md-9">
-       <h1> <%=@event.name %> </h1>
-        
-        <div class="stars">
-          <%= render partial:'disable_rating', locals:{event: @event} %>
-        </div>
-        
-       <h2> <%=@date %></h2>
+</div><div class='fixedmenutw' onmouseout='this.className=&apos;fixedmenutw&apos;' onmouseover='this.className=&apos;fixedmenutw1&apos;'>
+  <div class='fixedmenutw_1'>
+  <a href='https://twitter.com/intent/tweet?button_hashtag=<%=@event.url %>&text=My%20story%20is%20about%20this%20cool%20event%20at%20GiveYourEffort.com!%20%20Check%20it%20out!' target='_blank'><img alt='Share this event us on Twitter' src='http://3.bp.blogspot.com/-ppQkr4BjSVQ/Ud1_HkD_OBI/AAAAAAAAAtU/xN5krYZPBhY/s1600/twitter_hover1.png' title='Share this event on Twitter'/></a><br/>
+  </div>
+</div>
 
-      </div>
-       <!--MAKE LOGO DYNAMIC-->
-       <div class="col-md-3">
-           <%= image_tag @event.ngo.avatar.url(), size: '100x100', class: 'float-right' %>  
-      </div>
+<div class='fixedmenufb' onmouseout='this.className=&apos;fixedmenufb&apos;' onmouseover='this.className=&apos;fixedmenufb1&apos;'>
+   <div class='fixedmenufb_1'>
+  <a href='https://plus.google.com/share?url=%3C%25=events_path(%40event)%25%3E' target='_blank'><img alt='Recommend us on Google Plus' src='http://3.bp.blogspot.com/-fPA1gJ6k9Bk/Ud1_G_aexzI/AAAAAAAAAtI/rcqioslWMN0/s1600/Gplus_hover1.png' title='Recommend us on Google Plus'/></a><br/>
+  </div>
+</div>
 
-    </div><!--End Row Div-->  
+<div class='fixedmenurss' onmouseout='this.className=&apos;fixedmenurss&apos;' onmouseover='this.className=&apos;fixedmenurss1&apos;'>
+  <div class='fixedmenurss_1'> <a href='http://feeds.feedburner.com/bloggertrix' target='_blank'>
+    <img alt='Subscribe me on RSS' src='http://3.bp.blogspot.com/-1XXERhy9eeQ/Ud1_GgCBHTI/AAAAAAAAAs8/TIB78w-42eg/s1600/linkedin_hover1.png' title='Subscribe me'/></a><br/>
+  </div>
+</div>
+<!-- End of Sidebar -->
+  
+  
+  <!-- To place image on the bar -->
+  <div class="dropdownbarbox"></div>
+    
+  <div class="blue-bar">
+      <!-- Event name and logo row-->
+      <div class="row">
+        <div class="col-md-9">
+         <h1> <%=@event.name %> </h1>
 
-    <!-- Button row-->
-    <div class="row">
-      <div class="col-md-12">
-          <% if @event.past? %>
-            <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
-          <% elsif logged_in?%>
-            <!-- sign up to an event -->
-              <div class="events_signup">
-                <%= render 'event_signup' %>
-              </div>
-
-              <div class="watch">
-                <%= render 'watching_form'%>
-              </div>
-
-            <% else %>
-
-              <%= button_to "Attend", login_path, class: "btn btn-primary col-md-1 il-button", method: :get  %>
-
-              <%= button_to "Add to watchlist", login_path, class: "btn btn-primary col-md-1 il-button", method: :get  %>
-
-            <% end %> 
-      </div>
-    </div><!--End Row Div-->  
-    <br><br>
-    <!--Event Descrtiption / Details Row--> 
-    <div class="row">
-      <!--Description Panel-->  
-      <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Event Description</strong></div>
-            <div class="e_panel">
-              <%=@event.description %>
-            </div>     
-        </div>
-      </div>    
-
-     <!-- Event Details-->
-
-
-      <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading"><strong class="">Event Details</strong></div>
-              <ul class="list-group">
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Date:</strong></span> <%=@date %> </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Duration: </strong></span>[PENDING]</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Creation Date:</strong></span><%=@event.created_at %></li>
-            </ul>
+          <div class="stars">
+            <%= render partial:'disable_rating', locals:{event: @event} %>
           </div>
-      </div>    
-      </div><!--End Row Div-->
 
-    <!--Video Row--> 
-    <div class="row">
+         <h2> <%=@date %></h2>
 
+        </div>
+
+         <div class="col-md-3">
+           <%= image_tag @event.ngo.avatar.url(), size: '200x200', class: 'float-right img-circle', style:'top: -120px; right: 50px; position: absolute; border-color: white; border-style: solid; border-width: 5px; border-radius: 50px;' %>  
+        </div>
+
+      </div><!--End Row Div-->  
+
+      <!-- Button row-->
+      <div class="row">
+        <div class="col-md-12">
+            <% if @event.past? %>
+              <%= button_to "Historic Event", 'javascript:;', class: "btn btn-info"  %>
+            <% elsif logged_in?%>
+              <!-- sign up to an event -->
+                <div class="events_signup">
+                  <%= render 'event_signup' %>
+                </div>
+
+                <div class="watch">
+                  <%= render 'watching_form'%>
+                </div>
+
+              <% else %>
+
+                <%= button_to "Attend", login_path, class: "btn btn-primary col-md-1 il-button", method: :get  %>
+
+                <%= button_to "Add to watchlist", login_path, class: "btn btn-primary col-md-1 il-button", method: :get  %>
+
+              <% end %> 
+        </div>
+
+
+      </div><!--End Row Div-->  
+  </div>
+  
+  
+  
+  
+  <div class="container big-wrap">
+  
+    <!--Map & Video Row--> 
+    <div class="row" style="width:100%; height:500px;">
       <!--Map component-->
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Event Location</strong></div>
             <div class="e_panel">
               <p id="today"></p>
               <div id="map-canvas" style="width:100%; height:300px;"></div>
             </div>
           
-          <div class="panel-heading"><strong class="">Address</strong></div>
+          <div class="panel-heading" style="height:auto;"><strong class="">Address</strong></div>
              <div class="e_panel">
                <p><%=@event.street %>  <%=@event.address %>,</p>
                <p><%=@event.location %>, <%=@event.postcode %></p>
@@ -158,18 +161,59 @@
       <!--Video component-->  
       <div class="col-sm-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Event Video</strong></div>
             <div class="e_panel">
-              <iframe width="100%" height="500px" src="<%= @event.url %>"></iframe>
+              <iframe width="100%" height="430px" src="<%= @event.url %>"></iframe>
             </div>
         </div>
       </div>
 
     </div><!--End Row Div-->  
 
-    <!--Who is attending row-->
+    <!--Event Descrtiption / Details Row--> 
     <div class="row">
-      <div class="col-md-12">
+      <!--Description Panel-->  
+      <div class="col-md-8">
+        <div class="panel panel-default" style="height: 433px">
+          <div class="panel-heading"><strong class="">Event Description</strong></div>
+            <div class="e_panel" >
+              <%=@event.description %>
+            </div>     
+        </div>
+      </div>    
+
+     <!-- Event Details-->
+      <div class="col-md-4">
+          <div class="panel panel-default" style:="height: 410px;">
+            <div class="panel-heading"><strong class="">Event Details</strong></div>
+              <ul class="list-group">
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Date:</strong></span> <%=@date %> </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Duration: </strong></span> <%= (((@event.end - @event.start) / 60 ) / 60 ).to_i %> hours </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Creation Date:</strong></span><%=@event.created_at %></li>
+            </ul>
+            <div class="panel-heading"><strong class="">Organiser Details</strong></div>
+                <div class="e_panel">
+                  <div class="o-image">
+                    <%= image_tag @event.contact.url(), size: '100x100', class: 'o-image' %>
+                   </div>
+            </div> 
+                  
+                <ul class="list-group">
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Organiser:</strong></span><%=@event.cname %></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Contact email: </strong></span><%=@event.cemail %></li>
+               </ul>
+
+                </div>
+            </div>  
+        
+
+          
+           
+    </div><!--End Row Div-->
+    
+    
+    <!--Who is attending & Events in your area row-->
+    <div class="row">
+      <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading"><strong class="">Who is attending?</strong></div>
             <div class="e_panel">
@@ -177,7 +221,7 @@
               <% $row = 10 %>
 
               <% @event.volunteers.each do |e| %>
-              <%= image_tag e.avatar.url(), size: '100x100',  style: 'padding: 5px; margin: 1px;' %>
+              <%= image_tag e.avatar.url(), size: '110x110',  style: 'padding: 5px; margin: 1px;' %>
               <% $attending += 1 %>
               <% end %>
 
@@ -188,42 +232,7 @@
             </div>
         </div>
       </div>
-    </div><!--End Row Div-->  
-
-      <!--Wall and Organiser Row--> 
-    <div class="row">
-
-     <!--Event Wall-->  
-      <div class="col-sm-8">
-        <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Event Wall</strong></div>
-            <div class="wall_posting e_panel">
-              <%= render 'wall_posts' %>
-            </div>
-          </div>
-        </div>
-
-     <!--Score component-->
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Organiser Details</strong></div>
-            <div class="e_panel">
-              <div class="o-image">
-                <%= image_tag @event.contact.url(), size: '100x100', class: 'o-image' %>
-               </div>
-                <p style ="text-align: center;"><%=@event.cname %></p>
-                <p style ="text-align: center;"><%=@event.cemail %></p>
-
-            </div>
-        </div>
-      </div>     
-
-    </div><!--End Row Div-->  
-
-
-    <!--Events in your area-->
-    <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading"><strong class="">Events in your areas</strong></div>
             <div class="e_panel">
@@ -231,7 +240,7 @@
             <% $max = 10 %>
 
             <% @event.events_in_area(@event.location) do |e| %>
-            <%= image_tag e.avatar.url(), size: '100x100', style: 'padding: 5px; margin: 1px;' %>
+            <%= image_tag e.avatar.url(), size: '110x110', style: 'padding: 5px; margin: 1px;' %>
             <% $count += 1 %>
             <% end %>
 
@@ -242,7 +251,30 @@
             </div>
         </div>
       </div>
+    
+    
+    
     </div><!--End Row Div-->  
+
+      <!--Wall Row--> 
+    <div class="row">
+
+     <!--Event Wall-->  
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong class="">Event Wall</strong></div>
+            <div class="wall_posting e_panel">
+              <%= render 'wall_posts' %>
+            </div>
+          </div>
+        </div>
+
+
+
+    </div><!--End Row Div-->  
+
+
+
 
     
   <!--End Container Div-->

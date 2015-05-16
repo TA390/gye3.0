@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   
   put 'volunteers'  => 'volunteers#search'       # volunteers_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
+  post 'bio_form'   => 'volunteers#bio_form'     # bio_form_path
+  post 'edit_bio'   => 'volunteers#bio_update'   # edit_bio_path
+  
   get 'ngos'        => 'ngos#index'              # ngos_path
   get 'signup'      => 'sign_ups#new'            # signup_path
   put 'ngos'        => 'events#create'           # ngos_path

@@ -6,6 +6,7 @@ class LoginsController < ApplicationController
       redirect_to Ngo.find_by(id: session[:ngo_id])
     end
   end
+
   
   def not_logged_in_ngo?
     

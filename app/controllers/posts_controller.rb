@@ -57,26 +57,33 @@ class PostsController < ApplicationController
   # POST /events/:event_id/posts
   # POST /events/:event_id/posts.xml
   def create
+    
     #1st you retrieve the event thanks to params[:event_id]
     @event = Event.find(params[:event_id])
-    #2nd you create the post with arguments in post_params
-    @post = @event.posts.build(post_params)
     
     respond_to do |format|
-      if @post.save
-        #1st argument of redirect_to is an array, in order to build the correct route to the nested resource post
-        format.html { redirect_to([@post.event, @post], :notice => 'Post was successfully created.') }
-        #the key :location is associated to an array in order to build the correct route to the nested resource post
-        format.xml  { render :xml => @post, :status => :created, :location => [@post.event, @post] }
-        # render wall using json
-        format.js
+      if logged_in?
+      #2nd you create the post with arguments in post_params
+      @post = @event.posts.build(post_params)
+
+        if @post.save
+          #1st argument of redirect_to is an array, in order to build the correct route to the nested resource post
+          format.html { redirect_to([@post.event, @post], :notice => 'Post was successfully created.') }
+          #the key :location is associated to an array in order to build the correct route to the nested resource post
+          format.xml  { render :xml => @post, :status => :created, :location => [@post.event, @post] }
+          # render wall using json
+          format.js
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
+          format.js
+        end    
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
+        flash.now[:notice] = "Please log in to make a post"
+        format.html { redirect_to([@post.event, @post]) }
         format.js
       end
     end
-
   end
 
   # PUT /events/:event_id/posts/:id

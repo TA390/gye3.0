@@ -14,34 +14,48 @@
 <body class = "signup">
 
 <!-- Volunteer / NGO sign up form -->
+  <ul class="cb-slideshow">
+      <li><span>Image 01</span><div><h3><!--fade-text-here--></h3></div></li>
+      <li><span>Image 02</span><div><h3><!--fade-text-here--></h3></div></li>
+      <li><span>Image 03</span><div><h3><!--fade-text-here--></h3></div></li>
+      <li><span>Image 04</span><div><h3><!--fade-text-here--></h3></div></li>
+      <li><span>Image 05</span><div><h3><!--fade-text-here--></h3></div></li>
+      <li><span>Image 06</span><div><h3><!--fade-text-here--></h3></div></li>
+  </ul>
   
 
-<ul class="nav nav-tabs container" role="tablist" id="tabs">
-  
-  <li role="presentation" class="active">  
-    <a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab">Volunteer</a>
-  </li>
-  <li>
-    <a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab">NGO</a>
-  </li>
-  
-</ul>
-
-  
-<div class="tab-content">
- 
-
-  <div role="tabpanel" class="tab-pane active"  id="volunteer">
-    <%= render template: 'volunteers/new' %>
-  </div>
-
-  <div role="tabpanel" class="tab-pane" id="ngo">
-    <%= render template: 'ngos/new' %>
-  </div>
-
+<div class="wrapper">
+   
+  <div class="container">
+    <div class="row text-center">
+        <br/>
+          <h1>Sign Up Now!</h1>
+        <br/>
+      </div>    
+    </div>
  
   
-</div>
+  <div class="container">
+    <ul class="nav nav-tabs container" role="tablist" id="tabs">
+      <li role="presentation" class="active">  
+        <a href="#volunteer" aria-controls="volunteer" role="tab" data-toggle="tab" style="font-weight: bold;">Volunteer</a>
+      </li>
+      <li>
+        <a href="#ngo" aria-controls="ngo" role="tab" data-toggle="tab" style="font-weight: bold;">NGO</a>
+      </li>
+    </ul>
+     
+  </div>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active"  id="volunteer">
+      <%= render template: 'volunteers/new' %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="ngo">
+      <%= render template: 'ngos/new' %>
+    </div>
+  </div>
 <!-- end Volunteer / NGO sign up form -->
+</div><!-- end wrapper -->
 
 </body>

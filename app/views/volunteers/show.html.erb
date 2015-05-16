@@ -9,28 +9,39 @@
 		<script class="cssdesk" src="//arshaw.com/js/fullcalendar-1.5.3/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 </head>
 
-<body class="profile">
-  
+
+  <div class="profile">
+    
+    <body>
   <div class="container target">
     <div class="row">
       <div class="col-sm-10">
+        <br>
+        <br>
+        <br>
         <h1 class=""><%= @user.name %> <%= @user.last_name %></h1>
         <a href="#" class="btn btn-success" data-toggle="modal" data-target="#msgModal">Send me a message</a>
       </div>
       
       <div class="col-sm-2" style="height: 300px">
+        <br>
+        <br>
+        <br>
         <div class="pull-right">
 
           <%= image_tag @user.avatar.url(:medium), size: '250x250' %>      
-
         </div>
       </div>
-    <br>
+       </div>
       
+     
+   <br>
+    <br>
     <div class="row">
       <div class="col-sm-3">
       <!--left col-->
         <div class="panel panel-default">
+          
           <div class="panel-heading"><strong class="">Profile</strong></div>
             <ul class="list-group">
               <li class="list-group-item text-right">
@@ -51,9 +62,9 @@
           <div class="panel-heading"><strong class="">Statistics <i class="fa fa-dashboard fa-1x"></i></strong></div>
             <ul class="list-group">
              
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average volunteer rating</strong></span> 4.5</li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Attendance record</strong></span> 95%</li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average volunteer rating</strong></span> N/A </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Attendance record</strong></span> N/A </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 0</li>
             </ul>
         </div>
         
@@ -72,6 +83,7 @@
      <!--Main panels-->
       <div class="col-sm-9" contenteditable="false" style="">
         <div class="panel panel-default">
+          
           <div class="panel-heading"><%= @user.name %> <%= @user.last_name %>'s Biography</div>
             <div class="panel-body">
               <div>
@@ -110,7 +122,7 @@
   </div>      
 
 <body> 
-
+  </div>
 
 
 

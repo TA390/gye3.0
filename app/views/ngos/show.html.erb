@@ -1,19 +1,21 @@
 <% provide(:title, @ngo.name) %>
 
+
   <div class="container target">
+    
+
     <div class="row">
+      
       <div class="col-sm-10">
         <h1 class=""><%= @ngo.name %></h1>
-        <div>
+        
           <button type="button" class="btn btn-success">Send us a message</button>
-  
-        </div>
+        
 
         <%if logged_in_ngo? && current_ngo?(@ngo) %>
-          <div>
+          
             <button id="trigger" type="button" 
               class="btn btn-success">Create event</button>
-          </div>
         <% end %>
         
       </div>      
@@ -22,12 +24,11 @@
         <div class="pull-right">
 
           <%= image_tag @ngo.avatar.url(:medium), size: '250x250' %>      
-
         </div>
       </div>
       
     </div>
-  </div>
+
   
 
 <!-- create an event js -->

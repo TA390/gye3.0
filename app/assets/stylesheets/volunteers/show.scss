@@ -1,14 +1,20 @@
 
 .profile .body{
-  margin-top: 70px;
+  margin-top: 20%;
   padding-top: 70px;
 }
 
 .profile{
+   
   
-  background-image: url(/assets/volunteer-bg/shoes-bg.jpg);
-
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/volunteer-bg/shoes-bg3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ 
 }
+
 
 .profile, p, h1, h2, h3, h4 {
 

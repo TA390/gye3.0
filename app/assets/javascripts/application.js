@@ -11,9 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap
-//= require events
+//= require turbolinks
+//= require twitter/typeahead
+//= require bootstrap-datetimepicker
 //= require fullcalendar
 //= require moment
-//= require turbolinks
 //= require_tree .

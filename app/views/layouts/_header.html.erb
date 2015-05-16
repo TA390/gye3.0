@@ -26,7 +26,7 @@
                 <li><%= link_to "Settings", edit_volunteer_path(current_user) %></li>
                 <li><%= link_to "My Events", events_volunteer_path(current_user) %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Log out", vlogout_path, method: "delete" %></li>
+                <li><%= link_to "Log out", vlogout_path, method: :delete %></li>
               </ul>
             </li>
           <% elsif logged_in_ngo? %>
@@ -38,7 +38,7 @@
                 <li><%= link_to "Profile", current_ngo %></li>
                 <li><%= link_to "Settings", edit_ngo_path(current_ngo) %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Log out", nlogout_path, method: "delete" %></li>
+                <li><%= link_to "Log out", nlogout_path, method: :delete %></li>
               </ul>
             </li>   
           <% else %>

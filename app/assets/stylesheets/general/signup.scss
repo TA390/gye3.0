@@ -1,7 +1,5 @@
 .signup {
-  
     margin-top:50px;
-    
     background-color: #F2F2F2;
 }
 
@@ -12,10 +10,8 @@
 }
 
 .signup {
-  background: url(/assets/volunteer-bg/signup_bg.jpeg) no-repeat center center fixed; 
+  //background: url(/assets/volunteer-bg/signup_bg.jpeg) no-repeat center center fixed; 
   background-size: cover;
-  
-
 }
 
 
@@ -32,3 +28,62 @@
     float: right;
 }
 
+.signup .wrapper{
+  position: relative;
+  padding: 0px;
+  margin: 100px 0px 0px 0px;
+}
+
+.signup .nav-tabs{
+  color: white;
+  width: 180px;
+  border-style: none; 
+  margin: 0px auto;
+}
+
+.signup.tab-content{
+  margin: 0 auto;
+}
+
+
+.signup .nav-tabs > li.active > a, .signup  .nav-tabs > li.active > a:hover, .signup .nav-tabs > li.active > a:focus {
+  background-color: #F5F5F5;
+  color: black;
+  border: 2px;
+}
+
+.signup h1 {
+  font-size: 36px;
+  color: white;
+  text-shadow: 2px 2px #606060;
+}
+
+.signup > small {
+  color: white;
+  //text-shadow: 2px 2px #606060;
+}
+
+
+.signup label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.signup div#signupform {
+  padding: 0px;
+}
+      
+
+.signup .panel {
+ // padding: 20px;
+}
+
+.signup .panel-heading {
+  padding: 20px;
+}
+
+.signup .panel-body {
+  padding: 20px;
+}

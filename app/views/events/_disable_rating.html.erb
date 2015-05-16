@@ -11,7 +11,7 @@
   <label class="star star-1" for="star-1"></label>
 </form>
 
-<%= link_to 'rate the event', ratings_path(eid: event.id), method: :post,  :remote => true %>
+<%= link_to 'rate the event', ratings_path(eid: event.id), method: :post,  :remote => true if logged_in? %>
 
 <script type="text/javascript">
   $(function () {

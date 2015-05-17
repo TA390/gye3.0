@@ -1,9 +1,11 @@
-<div>
 
   <% match.each do |m| %>
-  
-    <%= m.name %> <%= m.id %>
-  
+  <div class="col-sm-4">
+    <div class="row">
+    <%= m.name %>
+    </div>
+    <div class="">
+    <%= link_to (image_tag m.avatar.url(), :style => "height:180px;" ), event_path(m) %>
+    </div>
+  </div>
   <% end %>
-  
-</div>

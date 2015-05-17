@@ -2,18 +2,26 @@
            "MentalHealth", "Homeless", "Children", "Abroad", "PhysicallyDisabled", "Community", 
            "HumanRights", "DisasterRelief", "Environment", "FaithBased", "ImmigrantsRefugees", 
            "SportsRecreation"] %>
-              
+
 <% user_tags = user.tags.pluck(:id) %>
 
 <%= form_for :volunteer, url: interests_path, method: :post, remote: true do |f| %>
+  
+  <% icons = ["", "fa-heartbeat", "fa-paint-brush", "fa-paw", "fa-cutlery", "fa-ambulance", "fa-book", 
+              "fa-smile-o", "fa-home", "fa-child", "fa-plane", "fa-wheelchair", "fa-users", 
+               "fa-suitcase", "fa-life-ring", "fa-leaf", "fa-arrows", "fa-ship", "fa-futbol-o"] %>
+
   <% 18.times do |count| %>
     <div class="col-sm-4">
       <div class="tag-btn">
         <label>   
           <%= check_box_tag "volunteer[tag][]", count+1, false, {id:"#{count+1}"} %>
-          <span><%=tags.fetch(count)%></span> 
+          <span> <i class="fa <%=icons.fetch((count+1))%>"></i> <%=tags.fetch(count)%></span> 
+          
         </label>
+        
       </div>
+    
     </div>
   <% end %>
   
@@ -25,5 +33,5 @@
   </script>
   <% end %>
   <%= hidden_field_tag :id, user.id %>
-  <%= f.submit 'save changes', class:"btn btn-default col-sm-12 submit-btn" %>
+  <%= f.submit 'save changes', class:"btn btn-danger col-sm-12 submit-btn" %>
 <% end %>

@@ -27,7 +27,8 @@
 
   height: 400px;
   color: #ffffff;
-  background-image: image-url('event/event_home.png');
+  //background-image: image-url('event/event_home.png');
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/event/event_home.png) no-repeat center center fixed;
   background-size:cover;
   padding: 0px;	
   margin: 0px 0px 0px 0px;
@@ -113,23 +114,17 @@
 
 
 /* STAR rating */
-.e_index div.stars {
-  width: 270px;
-  display: inline-block;
- 
-}
 
 .e_index input.star { display: none; }
 
 .e_index label.star {
-  float: right;
+
   padding: 5px;
   font-size: 18px;
   color: #444;
   transition: all .2s;
-  
    position: relative;
-    //left: -410px;
+
 }
 
 .e_index input.star:checked ~ label.star:before {

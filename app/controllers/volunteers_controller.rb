@@ -495,7 +495,7 @@ class VolunteersController < ApplicationController
     end
     
     respond_to do |format|
-      format.js { render :matches_found }
+      format.js
     end
     
   end

@@ -43,7 +43,8 @@
   height: 400px;
   width: auto;
   color: #ffffff;
-  background-image: image-url('volunteer-bg/plant-bg.jpg');
+  //background-image: image-url('volunteer-bg/plant-bg.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/volunteer-bg/plant-bg.jpg) no-repeat center center fixed;
   background-size:cover;
   padding: 0px;	
   margin: 0px 0px 0px 0px;

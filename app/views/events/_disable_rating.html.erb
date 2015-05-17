@@ -13,10 +13,12 @@
     <label class="star star-1" for="star-1"></label>
   </div>
   
-  <div class="form-group">
-    <%= (link_to 'rate the event', ratings_path(eid: event.id), method: :post, 
-      class:"form-group", remote: true) if current_user.event_volunteers.where(event_id: event.id).exists? %>
-  </div>
+  <% if logged_in? %>
+    <div class="form-group">
+      <%= (link_to 'rate the event', ratings_path(eid: event.id), method: :post, 
+        class:"form-group", remote: true) if current_user.event_volunteers.where(event_id: event.id).exists? %>
+    </div>
+  <% end %>
   
 </div>
 

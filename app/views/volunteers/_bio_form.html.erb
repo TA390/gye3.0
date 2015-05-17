@@ -10,8 +10,5 @@
       <%= f.submit 'update', class:"btn btn-primary" %>
     </span>
     <% end %>
-    
-    <%= (link_to 'update', bio_update_path(id: user.id, bio: user.bio), method: :post, 
-        class:"btn btn-primary", remote: true) if current_user?(@user) %>
   </div>         
 </div>

@@ -18,7 +18,7 @@
  <!--Search bar-->
   <%= form_for :event, url: {controller:"events", action: "search"}, method: 'put' do |f| %>     
     <div class="form-wrapper cf">
-      <%= f.text_field :name, placeholder: "Search here...", class: 'form-control' %>   
+      <%= f.text_field :name, placeholder: "Search for an event...", class: 'form-control' %>   
     </div>           
   <% end %>
          

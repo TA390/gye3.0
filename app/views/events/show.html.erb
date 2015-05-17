@@ -161,10 +161,10 @@
       </div>
 
       <!--Video component-->  
-      <div class="col-sm-6">
+      <div class="col-sm-6" style="padding-right: 0px;">
         <div class="panel panel-default">
-            <div class="e_panel">
-              <iframe width="100%" height="430px" src="<%= @event.url %>"></iframe>
+            <div class="e_panel" >
+              <iframe width="100%" height="434px" src="<%= @event.url %>"></iframe>
             </div>
         </div>
       </div>
@@ -220,7 +220,7 @@
           <div class="panel-heading"><strong class="">WHO IS ATTENDING?</strong></div>
             <div class="e_panel">
               <% $attending = 1 %>
-              <% $row = 10 %>
+              <% $row = 9 %>
 
               <% @event.volunteers.each do |e| %>
               <%= image_tag e.avatar.url(), size: '110x110',  style: 'padding: 5px; margin: 1px;' %>
@@ -239,7 +239,7 @@
           <div class="panel-heading"><strong class="">EVENTS IN YOUR AREA</strong></div>
             <div class="e_panel">
             <% $count = 1 %>
-            <% $max = 10 %>
+            <% $max = 9 %>
 
             <% @event.events_in_area(@event.location) do |e| %>
             <%= image_tag e.avatar.url(), size: '110x110', style: 'padding: 5px; margin: 1px;' %>

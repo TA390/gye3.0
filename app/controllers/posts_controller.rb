@@ -62,7 +62,7 @@ class PostsController < ApplicationController
     @event = Event.find(params[:event_id])
     
     respond_to do |format|
-      if logged_in?
+      if @event.posts.where(comment: params[:post][:comment]).empty?
       #2nd you create the post with arguments in post_params
       @post = @event.posts.build(post_params)
 
@@ -71,18 +71,16 @@ class PostsController < ApplicationController
           format.html { redirect_to([@post.event, @post], :notice => 'Post was successfully created.') }
           #the key :location is associated to an array in order to build the correct route to the nested resource post
           format.xml  { render :xml => @post, :status => :created, :location => [@post.event, @post] }
-          # render wall using json
-          format.js
         else
           format.html { render :action => "new" }
           format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
-          format.js
         end    
       else
         flash.now[:notice] = "Please log in to make a post"
         format.html { redirect_to([@post.event, @post]) }
-        format.js
       end
+      # render wall using json
+      format.js
     end
   end
 

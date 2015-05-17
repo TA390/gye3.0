@@ -20,7 +20,7 @@ class NgoSessionsController < ApplicationController
     ngo = Ngo.find_by(email: params[:ngo_session][:email].downcase)
     
     if ngo && ngo.authenticate(params[:ngo_session][:password])
-      if ngo.activated? == false
+      if ngo.activated? == true
         log_in_ngo ngo
         params[:ngo_session][:remember_me] == '1' ? 
           remember_ngo(ngo) : forget_ngo(ngo)

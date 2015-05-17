@@ -7,7 +7,7 @@ class NgoAccountActivationsController < ApplicationController
          
          ngo.activate
          log_in_ngo ngo
-         flash[:success] = "Account activated!"
+      flash[:success] = "Account activated - Welcome to Give Your Effort"
          redirect_to ngo
     else
       flash[:danger] = "Invalid activation link"

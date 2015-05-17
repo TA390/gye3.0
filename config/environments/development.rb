@@ -60,8 +60,8 @@ Rails.application.configure do
    :port                 => 587,
    :domain               => 'gmail.com',
    :user_name            => 'giveyoureffort19@gmail.com',
-   :password             => 'group19gye',
-   :authentication       => 'plain',
+   :password             => 'degzyhyltisnappj',
+   :authentication       => 'login',
    :enable_starttls_auto => true
   }
   # end sending emails
@@ -70,7 +70,7 @@ Rails.application.configure do
 Rails.env = 'development'
   
 # stop AJAX executing twice
-config.serve_static_files = false
+# config.serve_static_files = true
   
 end
 

@@ -9,7 +9,7 @@
   <tbody class="wall_posting">
     <% @event.posts.each do |p| %>  
       <tr>
-        <td class="one-c"><%=p.volunteer_id %></td>
+        <td class="one-c"><%=Volunteer.find(p.volunteer_id).name %></td>
         <td class="two-c"><%=p.comment %></td>
       </tr>
     <% end %>

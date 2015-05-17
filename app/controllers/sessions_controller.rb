@@ -15,8 +15,8 @@ class SessionsController < ApplicationController
     
     
     if  user && user.authenticate(params[:session][:password])
-      # SET TO TRUE AFTER DEVELOPMENT
-      if user.activated? == false
+      # SET TO TRUE FOR DEVELOPMENT
+      if user.activated? == true
         log_in user
         # remember user if they checked the box
         params[:session][:remember_me] == 1 ? 

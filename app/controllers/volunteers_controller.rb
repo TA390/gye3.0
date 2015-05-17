@@ -5,6 +5,7 @@ class VolunteersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :events]
   before_action :correct_user, only: [:edit, :update]
   
+  helper_method :matching
   
     
   def index 
@@ -450,8 +451,25 @@ class VolunteersController < ApplicationController
 
   def bio_update
   
-    @user = Volunteer.find(params[:id]) 
-    @user.bio = params[:volunteer][:bio]
+    @user = Volunteer.find(params[:id])
+    @user.bio = params[:bio]
+    @user.save
+    
+    respond_to do |format|
+      format.html {redirect_to @user}
+      format.json { render :file => "/volunteers/bio_update.js.erb" }
+    end
+    
+  end
+
+  def interests
+    @user = Volunteer.find(params[:id])
+    @user.volunteer_tags.destroy_all
+    
+    params[:volunteer][:tag].each do |t|
+      @user.volunteer_tags.build(tag_id: t)
+    end
+    
     @user.save
     
     respond_to do |format|
@@ -461,6 +479,26 @@ class VolunteersController < ApplicationController
     
   end
 
+  def matching
+    
+    tags = current_user.tags.select(:id)
+    free = current_user.event_calendars.select(:start, :end).where(color: "#83bf17")
+    
+    free.each do |f|
+      @events = Event.where("start >= ?", f.start)
+    end 
+
+    @matches = []
+    @events.each do |e|
+      e_tags = e.tags.select(:id)
+      @matches << e if !(tags & e_tags).empty?
+    end
+    
+    respond_to do |format|
+      format.js { render :matches_found }
+    end
+    
+  end
 
   # private functions
   private

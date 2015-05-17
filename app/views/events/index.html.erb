@@ -73,7 +73,7 @@
          <%= f.text_field :enddate, placeholder: "End Date", class: 'form-control datepicker' %>
        </div>
        <div class="form-group">      
-         <%= f.submit "Search", class: "btn btn-default" %>
+         <%= f.submit "Search", class: "btn btn-danger" %>
        </div>  
      </div>
    <% end %>
@@ -85,29 +85,11 @@
    <% @events.each do |event| %>    
   
    <div class="one_event row">  
-     
-      <!-- Facebook Button -->
-  <div class="fb-share-button" data-href='<%= events_path(event) %>' data-layout="button"></div>
-  <!-- End Facebook Button -->
-  
-    <!-- Begin Twitter Button -->
-  <a class="twitter-share-button" href="https://twitter.com/intent/tweet?button_hashtag=<%=events_path(event) %>&text=My%20story%20is%20about%20this%20cool%20event%20at%20GiveYourEffort.com!%20%20Check%20it%20out!"
-   data-related="twitter">
-   data-size="large"
-   data-count="none">
-   Tweet #<%=event.name %>
-  </a>
-   <!-- End Twitter Button -->
-
-   <!-- Begin Linkedin Button -->
-    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-    <script type="IN/Share" data-counter="right"></script>
-   <!-- End Linkedin Button -->
       
     <div class ="event_pic col-md-6 ">
       <!-- event picture (default provided) -->
-      <%= link_to (image_tag event.avatar.url()), event_path(event) %> 
-     <div class="icon-holder">
+      <%= link_to (image_tag event.avatar.url(), :style => "height:180px;" ), event_path(event) %> 
+       <div class="icon-holder">
        
        <% icons = ["", "fa-heartbeat", "fa-paint-brush", "fa-paw", "fa-cutlery", "fa-ambulance", "fa-book", 
                    "fa-smile-o", "fa-home", "fa-child", "fa-plane", "fa-wheelchair", "fa-users", 
@@ -116,12 +98,31 @@
        <% event.event_tags.each do |t| %>
          <i class="fa <%=icons.fetch(t.tag_id)%>"></i>
        <%end%>
-
-         </div>  
+      </div>
+      
      </div>
     
       
-    <div class ="col-md-6 ">
+    <div class ="col-md-8">
+      <div class="social-holder pull-right" style="text-align: right; margin: 20px 0px 0px 0px;">
+      <!-- Facebook Button -->
+      <div class="fb-share-button" style="top: -4px;" data-href='<%= events_path(event) %>' data-layout="button"></div>
+      <!-- End Facebook Button -->
+
+        <!-- Begin Twitter Button -->
+      <a class="twitter-share-button" href="https://twitter.com/intent/tweet?button_hashtag=<%=events_path(event) %>&text=My%20story%20is%20about%20this%20cool%20event%20at%20GiveYourEffort.com!%20%20Check%20it%20out!"
+       data-related="twitter" style="margin-top: 5px;">
+      </a>
+       <!-- End Twitter Button -->
+
+       <!-- Begin Linkedin Button -->
+        <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+        <script type="IN/Share" data-counter="right"></script>
+       <!-- End Linkedin Button -->
+       
+      </div>
+      
+      
       <span class="ngo"><h3><%= link_to event.name, event_path(event) %></h3></span>
            
       
@@ -133,24 +134,25 @@
       <span class="description"> <p> Event Description: <%= event.description %> </p></span>
        
       
-     
-     <span class="stars">
+     <div>
+     <div class="stars" >
 
-            <input class="star star-5" id="star-5" type="radio" name="star" value="1" />
-            <label class="star star-5" for="star-5"></label>
+            <input class="star star-5"  id="star-5" type="radio" name="star" value="1" />
+            <label class="star star-5"  for="star-5"></label>
             <input class="star star-4" id="star-4" type="radio" name="star" value="2" />
-            <label class="star star-4" for="star-4"></label>
-            <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
-            <label class="star star-3" for="star-3"></label>
-            <input class="star star-2" id="star-2" type="radio" name="star" value="4" />
-            <label class="star star-2" for="star-2"></label>
+            <label class="star star-4"  for="star-4"></label>
+            <input class="star star-3"  id="star-3" type="radio" name="star" value="3" />
+            <label class="star star-3"  for="star-3"></label>
+            <input class="star star-2"  id="star-2" type="radio" name="star" value="4" />
+            <label class="star star-2"  for="star-2"></label>
             <input class="star star-1" id="star-1" type="radio" name="star" value="5" />
-            <label class="star star-1" for="star-1"></label>
+            <label class="star star-1"  for="star-1"></label>
 
-        </span>
+        </div>
         <br>
          <br>
-  
+      </div>
+        
        <span>
       
       <% if event.full? %>

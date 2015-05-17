@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   put 'volunteers'  => 'volunteers#search'       # volunteers_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   post 'bio_form'   => 'volunteers#bio_form'     # bio_form_path
-  post 'edit_bio'   => 'volunteers#bio_update'   # edit_bio_path
+  post 'bio_update'=> 'volunteers#bio_update'   # bio_update_path
+  post 'interests'  => 'volunteers#interests'    # interests_path
+  post 'matching'   => 'volunteers#matching'     
   
   get 'ngos'        => 'ngos#index'              # ngos_path
   get 'signup'      => 'sign_ups#new'            # signup_path
@@ -40,10 +42,12 @@ Rails.application.routes.draw do
   get 'vlogin'       => 'sessions#new'           # vlogin_path
   post 'vlogin'      => 'sessions#create'        # vlogin_path
   delete 'vlogout'   => 'sessions#destroy'       # vlogout_path
-
+  get 'vlogout'      => 'sessions#destroy'       # vlogout_path
+  
   get 'nlogin'       => 'ngo_sessions#new'       # nlogin_path
   post 'nlogin'      => 'ngo_sessions#create'    # nlogin_path
   delete 'nlogout'   => 'ngo_sessions#destroy'   # nlogout_path
+  get 'nlogout'      => 'ngo_sessions#destroy'       # nlogout_path
   
   #JSON calendar entries url
   get 'cal'          => 'event_calendars#index'

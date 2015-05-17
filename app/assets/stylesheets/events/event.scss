@@ -112,14 +112,6 @@
 }
 
 
-
-
-
-
-
-
-
-
 /* STAR rating */
 .e_index div.stars {
   width: 270px;
@@ -137,7 +129,7 @@
   transition: all .2s;
   
    position: relative;
-    left: -410px;
+    //left: -410px;
 }
 
 .e_index input.star:checked ~ label.star:before {
@@ -158,4 +150,10 @@
 .e_index label.star:before {
   content: '\f006';
   font-family: FontAwesome;
+}
+
+.e_index .fa {
+  color: #637577;
+  width: 40px;
+  height: 40px;
 }

@@ -16,7 +16,7 @@ class EventCalendarsController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to current_user }
-      format.js
+      format.js { render :file => "/volunteers/calendar.js.erb" }
     end
     
   end

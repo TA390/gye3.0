@@ -1,3 +1,6 @@
+<script>
+  $('#calendar').fullCalendar( 'refetchEvents' );
+</script>
 
       <%= form_for(current_user.event_calendars.build, remote: true) do |f| %>       
        <div class="form-horizontal">
@@ -28,7 +31,6 @@
 
          <div class="form-group">      
            <%= f.submit "Add to Calendar", class: "btn btn-default cal-sub-btn" %>
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          </div> 
        </div>
      <% end %>            

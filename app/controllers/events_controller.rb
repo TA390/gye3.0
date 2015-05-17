@@ -530,7 +530,8 @@ class EventsController < ApplicationController
     end
     
     @event.save
-    flash.now[:notice] = "Thank you for rating our Event"
+    
+    flash[:success] = "Thank you for rating our Event"
     
   end
 

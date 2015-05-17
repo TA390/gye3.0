@@ -1,12 +1,111 @@
-.v_event_all 
-{
-  margin-top: 55px;
+.v_event_all {
+  background-image: url(/assets/volunteer-bg/subtle-bg.png);
+  background-attachment: fixed;
+  background-repeat: repeat;
+}
+
+
+.v_event_all .dropdownbarbox {
+
+  height: 400px;
+  color: #ffffff;
+   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/event/volunteer.jpg) no-repeat center center fixed;
+  
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-size: 80px;
+    text-shadow: 2px 2px #606060;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
   
 }
+
+
 
 .v_e_search_bar
 { margin-top: 10px;
   padding: 10px 50px 20px 50px;
   background-color:#d3d3d3;
   border: 1px solid grey;
+  text-align: center;
+    position: relative;
 }  
+
+.yyyyy_pic{
+    width: 200px; 
+    height: 200px;
+    margin: 10px 0px 10px 0px;
+   
+}
+
+.v_event_all .match {
+
+  height: 0 auto;
+  color: #ffffff;
+  background-color: #B0C4DE;
+  
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-size: 80px;
+    text-shadow: 2px 2px #606060;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+  
+}
+
+.match .btn-default{
+  
+  margin: 20px 0px 20px 0px;
+  padding: 10px;
+  color: #ffffff;
+  
+  font-size: 15px;
+  background-color: #00008B;
+  border: solid, 4px, #ffffff;
+  
+}
+

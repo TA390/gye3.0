@@ -5,19 +5,20 @@
 <div class = "container">
   
 <% if @past_events.any? %>
-<h3><%= @past_title %></h3>
+  <div class=v_e_search_bar>  <h1><%= @past_title %></h1> </div>
+   <br>
   <% @past_events.each do |event| %>
 
   
   <div class="one_event row">  
     
     
-  <div class="event_pic col-md-6">
-        <%= link_to (image_tag event.avatar.url(:medium), size: '250x250'), event_path(event) %>   
+  <div class="yyyyy_pic col-md-4">
+        <%= link_to (image_tag event.avatar.url(:medium), size: '400x400'), event_path(event) %>   
   </div>
   
   
-  <div class="col-md-6">
+  <div class="col-md-8">
              
       <div>
         <br>
@@ -41,19 +42,24 @@
       </div> 
       <!-- end display 'Opt out' btn on user's profile -->
     
+    <br>
+          <br><br>
+          <br>
       </div>
     
        </div>  
 
-         <br>
-    <% end %>     
+         
+    <% end %>    
+  <br>
+  <br>
        </div> 
-
+<br><br><br><br><br><br>
       <% else %> 
     
  
  <div class="v_e_search_bar">
-   <h1> Opps! No events found here <%= link_to "(find out more below)",  events_path%></h1>
+  <h1>You have no events here</h1><%= link_to "find out more below",  events_path%>
   </div>
      <br>
   

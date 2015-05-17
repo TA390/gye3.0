@@ -69,6 +69,9 @@ Rails.application.configure do
   
 Rails.env = 'development'
   
+# stop AJAX executing twice
+config.serve_static_files = false
+  
 end
 
 

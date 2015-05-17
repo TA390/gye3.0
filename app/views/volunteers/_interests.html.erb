@@ -1,0 +1,29 @@
+<% tags = ["Elderly", "ArtsCulture", "Animals", "Food", "Healthcare", "Teaching", 
+           "MentalHealth", "Homeless", "Children", "Abroad", "PhysicallyDisabled", "Community", 
+           "HumanRights", "DisasterRelief", "Environment", "FaithBased", "ImmigrantsRefugees", 
+           "SportsRecreation"] %>
+              
+<% user_tags = user.tags.pluck(:id) %>
+
+<%= form_for :volunteer, url: interests_path, method: :post, remote: true do |f| %>
+  <% 18.times do |count| %>
+    <div class="col-sm-4">
+      <div class="tag-btn">
+        <label>   
+          <%= check_box_tag "volunteer[tag][]", count+1, false, {id:"#{count+1}"} %>
+          <span><%=tags.fetch(count)%></span> 
+        </label>
+      </div>
+    </div>
+  <% end %>
+  
+  <% user_tags.each do |t| %>
+  <script>
+    $(function () {
+      $('#' + "<%=t%>").prop('checked', true);
+    });
+  </script>
+  <% end %>
+  <%= hidden_field_tag :id, user.id %>
+  <%= f.submit 'save changes', class:"btn btn-default col-sm-12 submit-btn" %>
+<% end %>

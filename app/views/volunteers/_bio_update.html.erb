@@ -1,9 +1,9 @@
 <div class="panel-heading"><%= user.name %> <%= user.last_name %>'s Biography</div>
 <div class="panel-body">
   <div>
-    <%= @user.bio %>
+    <%= user.bio %>
       
-    <%= link_to 'edit', bio_form_path(id: user.id), method: :post, :remote => true if current_user %>
+    <%= link_to 'edit', bio_form_path(id: user.id), method: :post, remote: true if current_user?(user) %>
                 
   </div>
 </div>

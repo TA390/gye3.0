@@ -84,8 +84,10 @@
   
   
   <!-- To place image on the bar -->
-  <div class="dropdownbarbox"></div>
-    
+
+  <%= content_tag(:div,'',class: ["dropdownbarbox#{1+rand(4)}"]) %>
+
+  
   <div class="blue-bar">
       <!-- Event name and logo row-->
       <div class="row">
@@ -149,7 +151,7 @@
               <div id="map-canvas" style="width:100%; height:300px;"></div>
             </div>
           
-          <div class="panel-heading" style="height:auto;"><strong class="">Address</strong></div>
+          <div class="panel-heading" style="height:auto;"><strong class="">ADDRESS</strong></div>
              <div class="e_panel">
                <p><%=@event.street %>  <%=@event.address %>,</p>
                <p><%=@event.location %>, <%=@event.postcode %></p>
@@ -174,7 +176,7 @@
       <!--Description Panel-->  
       <div class="col-md-8">
         <div class="panel panel-default" style="height: 433px">
-          <div class="panel-heading"><strong class="">Event Description</strong></div>
+          <div class="panel-heading"><strong class="">EVENT DESCRIPTION</strong></div>
             <div class="e_panel" >
               <%=@event.description %>
             </div>     
@@ -184,13 +186,13 @@
      <!-- Event Details-->
       <div class="col-md-4">
           <div class="panel panel-default" style:="height: 410px;">
-            <div class="panel-heading"><strong class="">Event Details</strong></div>
+            <div class="panel-heading"><strong class="">EVENT DETAILS</strong></div>
               <ul class="list-group">
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Date:</strong></span> <%=@date %> </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Duration: </strong></span> <%= (((@event.end - @event.start) / 60 ) / 60 ).to_i %> hours </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Event Creation Date:</strong></span><%=@event.created_at %></li>
             </ul>
-            <div class="panel-heading"><strong class="">Organiser Details</strong></div>
+            <div class="panel-heading"><strong class="">ORGANISER DETAILS</strong></div>
                 <div class="e_panel">
                   <div class="o-image">
                     <%= image_tag @event.contact.url(), size: '100x100', class: 'o-image' %>
@@ -215,7 +217,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Who is attending?</strong></div>
+          <div class="panel-heading"><strong class="">WHO IS ATTENDING?</strong></div>
             <div class="e_panel">
               <% $attending = 1 %>
               <% $row = 10 %>
@@ -234,7 +236,7 @@
       </div>
       <div class="col-md-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Events in your areas</strong></div>
+          <div class="panel-heading"><strong class="">EVENTS IN YOUR AREA</strong></div>
             <div class="e_panel">
             <% $count = 1 %>
             <% $max = 10 %>
@@ -262,7 +264,7 @@
      <!--Event Wall-->  
       <div class="col-md-12">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong class="">Event Wall</strong></div>
+          <div class="panel-heading"><strong class="">TALK ABOUT THIS EVENT</strong></div>
             <div class="wall_posting e_panel">
               <%= render 'wall_posts' %>
             </div>

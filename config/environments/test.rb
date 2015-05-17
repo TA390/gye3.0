@@ -61,5 +61,7 @@ Rails.application.configure do
   }
   # end sending emails
   
+  config.assets.compile = false
+  config.serve_static_files = true
   
 end

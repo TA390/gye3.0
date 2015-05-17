@@ -1,0 +1,59 @@
+/* form tags */
+.e_tags .col-sm-1 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    margin:5px;
+    padding:0px;
+    height: 80px;
+    width: 80px;
+    background-color:#f2f2f2;
+    overflow:hidden;
+}
+
+.e_tags .col-sm-1:hover {
+    background:#eaeaea;
+}
+
+.e_tags .col-sm-1 label {
+    height: 80px;
+    width: 80px;
+}
+
+.e_tags .tag-btn label span {
+    height: 80px;
+    width: 80px;
+    text-align:center;
+    padding:0px;
+    display:block;
+  
+    /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+}
+
+.e_tags .tag-btn label input {
+    position:absolute;
+    top:-20px;
+}
+
+.e_tags .tag-btn input:checked + span {
+    background-color:#0088cc;
+    color:#fff;
+}
+/* end form tags */ 

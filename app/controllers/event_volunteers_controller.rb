@@ -23,8 +23,11 @@ class EventVolunteersController < ApplicationController
         current_user.opt_out(@event) if current_user.watching?(@event)
         current_user.sign_up(@event) if !current_user.signed_up?(@event)
         
-        flash[:success] = "Thank you for joining our event. We have sent you a confirmation email with the event details"
-        EventSignupMailer.event_signup(current_user, @event).deliver_now        
+        @cal = current_user.event_calendars.build(title: @event.name, start: @event.start, end: @event.end, url: event_path(@event))
+        @cal.save
+        
+        flash.now[:success] = "Thank you for joining our event. We have sent you a confirmation email with the event details"
+        #EventSignupMailer.event_signup(current_user, @event).deliver_now        
       end
     end
     
@@ -50,6 +53,9 @@ class EventVolunteersController < ApplicationController
         format.js
       end
 
+      # remove from calendar
+      current_user.event_calendars.find_by(title: event.name).destroy
+      
       flash[:success] = "You are no longer subscribed to #{@event.name}"
       #EventSignupMailer.event_optout(current_user, @event).deliver_now
       

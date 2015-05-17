@@ -7,7 +7,7 @@ class Volunteer < ActiveRecord::Base
   has_many :event_volunteers, dependent: :destroy
   has_many :events, through: :event_volunteers
   
-  has_many :volunteer_tags
+  has_many :volunteer_tags, dependent: :destroy
   has_many :tags, through: :volunteer_tags
   has_many :posts
 

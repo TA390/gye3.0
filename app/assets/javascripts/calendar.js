@@ -19,6 +19,9 @@ $(document).ready(function () {
     
   });
   
+  $('#calendar').fullCalendar( 'refetchEvents' );
+  
+  
 });
 
 /***************************************************************************/

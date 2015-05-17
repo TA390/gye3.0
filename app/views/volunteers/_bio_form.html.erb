@@ -3,12 +3,15 @@
 <div class="panel-body">
       
   <div class="input-group">
-    <%= form_for :volunteer, url: edit_bio_path, method: :post, remote: true do |f| %>
+    <%= form_for :volunteer, url: bio_update_path, method: :patch, remote: true do |f| %>
     <%= f.text_field :bio, value: "#{user.bio}", class:"form-control" %>
     <input type="hidden" name="id" value="<%=user.id%>">
     <span class="input-group-btn">
       <%= f.submit 'update', class:"btn btn-primary" %>
     </span>
     <% end %>
+    
+    <%= (link_to 'update', bio_update_path(id: user.id, bio: user.bio), method: :post, 
+        class:"btn btn-primary", remote: true) if current_user?(@user) %>
   </div>         
 </div>

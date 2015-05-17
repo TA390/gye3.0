@@ -1,18 +1,5 @@
-<div class="v_event_all">
-
+<head>
 <% provide(:title, @title) %>
-
-<div class="container">
-  <h1><%= @user.name %>'s 
-    Events (<%= @user.events.count() %>)
-  </h1>
-  <div>
-    <span><%= link_to "back to profile", @user %></span>
-  </div>
-  <br/>
-</div>
-
-
 <!-- jquery for tabs -->
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -23,11 +10,35 @@
     });
   </script>
 <!-- end jquery for tabs -->
+</head>
 
-<body class = "">
+<body class = "v_event_all">
   
-
-<ul class="nav nav-tabs container" role="tablist" id="tabs">
+  <div class="dropdownbarbox">
+    <div class="container">
+      <div class="dropdownbox_des">
+        <h1><%= @user.name %>'s Events</h1>
+        <h2 style="font: 30px"><span><%= link_to "<< Back to Profile", @user %></span></h2>
+      </div>
+    </div>
+  </div>  
+  
+<!--  
+  <div class="match">
+    <div class="container">
+      #<%= (link_to 'find events', matching_path, method: :post, 
+        class:"btn btn-default", remote: true) if current_user?(@user) %>
+    </div>
+    <div class="my_matches">
+      
+    </div>  
+         
+  </div>
+-->
+  
+<div class="container" style="padding: 3% 0%;">
+  
+  <ul class="nav nav-tabs container" role="tablist" id="tabs">
   
   <li role="presentation" class="active">  
     <a href="#upcoming" aria-controls="upcoming" role="tab" data-toggle="tab">Upcoming Events (<%= @events.count() %>)</a>
@@ -39,10 +50,10 @@
     <a href="#past" aria-controls="past" role="tab" data-toggle="tab">Past Event (<%= @past_events.count() %>)</a>
   </li>
   
-</ul>
+  </ul>
 
   
-<div class="tab-content">
+<div class="tab-content" style="border-color: red;">
  
 
   <div role="tabpanel" class="tab-pane active"  id="upcoming">
@@ -61,6 +72,7 @@
   
 </div>
 
+</div><!--end of v_event_all-->
+  
 </body>
   
-  </div>

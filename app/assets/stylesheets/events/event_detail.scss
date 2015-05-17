@@ -137,59 +137,20 @@
 }
 
 
-
-/* Coloured Nav bar */
-.e_detail .dropdownbarbox {
-  height: 500px;
-  color: #ffffff;
-  background-image: image-url('event/event_home.png');
-  background-size:cover;
-  padding: 0px;	
-  margin: 0px 0px 0px 0px;
-  
-  h1{
-    font-size: 80px;
-    text-shadow: 2px 2px #606060;
-  }
-  
-  h2{
-    font-weight: 200p;
-  }
-  
-  
-  /* Internet Explorer 10 */
-  display:-ms-flexbox;
-  -ms-flex-pack:center;
-  -ms-flex-align:center;
-
-  /* Firefox */
-  display:-moz-box;
-  -moz-box-pack:center;
-  -moz-box-align:center;
-
-  /* Safari, Opera, and Chrome */
-  display:-webkit-box;
-  -webkit-box-pack:center;
-  -webkit-box-align:center;
-
-  /* W3C */
-  display:box;
-  box-pack:center;
-  box-align:center;
-  
-}
-
 /* STAR rating */
 .e_detail div.stars {
   width: 270px;
   display: inline-block;
+  margin-bottom: 30px
 }
 
 .e_detail input.star { display: none; }
+.e_detail a.star { display: none; }
 
 .e_detail label.star {
   float: right;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
+  margin-bottom: 0px;
   font-size: 36px;
   color: #444;
   transition: all .2s;
@@ -244,3 +205,189 @@
 .fixedmenurss1{background:url('http://4.bp.blogspot.com/-SDcrlF3MTAU/Ud16dDy_wnI/AAAAAAAAAsE/QjdRXR9BekM/s1600/RSS-hover.png');background-repeat:no-repeat;width:150px;height:43px;position:fixed;right:0px;top:295px; z-index:1100;}
 
 .fixedmenurss_1{margin:0px 0 0 43px}
+
+
+
+/* RANDOM PICTURES */
+
+.e_detail .dropdownbarbox1 {
+
+  height: 400px;
+  color: #ffffff;
+  background-image: image-url('event/eventdetail1.jpg');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-size: 80px;
+    text-shadow: 2px 2px #606060;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+  
+}
+
+.e_detail .dropdownbarbox2 {
+
+  height: 400px;
+  color: #ffffff;
+  background-image: image-url('event/eventdetail2.jpg');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-size: 80px;
+    text-shadow: 2px 2px #606060;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+  
+}
+.e_detail .dropdownbarbox3 {
+
+  height: 400px;
+  color: #ffffff;
+  background-image: image-url('event/eventdetail3.jpg');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-size: 80px;
+    text-shadow: 2px 2px #606060;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+  
+}
+
+.e_detail .dropdownbarbox4 {
+
+  height: 400px;
+  color: #ffffff;
+  background-image: image-url('event/eventdetail4.jpg');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-size: 80px;
+    text-shadow: 2px 2px #606060;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+  
+}
+
+
+.e_detail .dropdownbarbox5 {
+
+  height: 400px;
+  color: #ffffff;
+  background-image: image-url('event/eventdetail5.jpg');
+  background-size:cover;
+  padding: 0px;	
+  margin: 0px 0px 0px 0px;
+  
+  h1{
+    font-size: 80px;
+    text-shadow: 2px 2px #606060;
+  }
+  
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+  
+}
+
+

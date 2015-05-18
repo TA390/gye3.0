@@ -1,14 +1,21 @@
 <div class="panel-heading"><%= user.name %> <%= user.last_name %>'s Biography</div>
 
 <div class="panel-body">
+<div class="my_bio"> 
+    <%= form_for current_user, method: :patch, remote: true do |f| %>
+      <div class="form-inline">
+       
+        <div class="form-group">
+          <%= f.text_area :bio, value: "#{user.bio}", placeholder: "tell us about yourself", class:"form-control" %>
+        </div>
+        
+        <input type="hidden" name="id" value="<%=user.id%>">
+        
+        <%= f.submit 'update', class:"btn btn-primary" %>
       
-  <div class="input-group">
-    <%= form_for :volunteer, url: bio_update_path, method: :patch, remote: true do |f| %>
-    <%= f.text_field :bio, value: "#{user.bio}", class:"form-control" %>
-    <input type="hidden" name="id" value="<%=user.id%>">
-    <span class="input-group-btn">
-      <%= f.submit 'update', class:"btn btn-primary" %>
-    </span>
+      </div>
+    
+
     <% end %>
-  </div>         
+</div>
 </div>

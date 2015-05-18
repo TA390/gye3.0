@@ -26,16 +26,20 @@
 
   <div class="match">
     <div class="container">
-      <%= (link_to 'find events', matching_path, method: :post, 
-        class:"btn btn-default", remote: true) if current_user?(@user) %>
       
-      <div class="my_matches">
-        
-      </div> 
+      <div class="row">
+        <%= (link_to 'Find Me Events', matching_path, method: :post, 
+          class:"btn btn-default", remote: true) if current_user?(@user) %>  
+      </div>
       
-    </div>
-     
-         
+      <div class="row">
+        <div class="my_matches">
+           
+            
+        </div>
+      </div>
+    
+    </div>      
   </div>
 
   

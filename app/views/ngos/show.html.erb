@@ -88,10 +88,10 @@
         <div class="panel panel-default">
           <div class="panel-heading"><strong class="">Profile</strong></div>
             <ul class="list-group">
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @ngo.created_at%></li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @ngo.created_at.to_date.to_formatted_s(:long_ordinal)%></li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Email: </strong></span><%= @ngo.email %></li>
-                
+              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Location: </strong></span><%= @ngo.location %></li>               
             
           </ul>
         </div>     
@@ -101,7 +101,7 @@
           <div class="panel-heading"><strong class="">Activity <i class="fa fa-dashboard fa-1x"></i></strong></div>
             <ul class="list-group">
 
-              <li class="list-group-item text-right"><span class="pull-left"><strong class=""> Event Hosted </strong></span> <%= @ngo.events.count %> </li>
+              <li class="list-group-item text-right"><span class="pull-left"><strong class=""> Events Hosted </strong></span> <%= @ngo.events.count %> </li>
         
               <li class="list-group-item text-right"><span class="pull-left"><strong class="">Average Rating</strong></span> N/A </li>
               
@@ -112,6 +112,7 @@
             <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
             <div class="panel-body"><a href=@ngo.url class=""><%= @ngo.url %></a></div>
           </div>
+        
         
           <div class="panel panel-default">
             <div class="panel-heading">Social Media</div>
@@ -142,7 +143,7 @@
      
       
       <div class="panel panel-default">
-        <div class="panel-heading"><%= @ngo.name %>'s Recent Events </div>
+        <div class="panel-heading"><%= @ngo.name %>' Events </div>
             <div class="panel-body"> 
               
               <table class="table table-hover">
@@ -160,7 +161,7 @@
                            <% @ngo.events.order(created_at: :desc).limit(6).each do |event| %>
                             <tr>
                               <td><%=link_to event.name, event_path(event) %> </td>
-                              <td><%= event.start%> </td>
+                              <td><%= event.start.to_date.to_formatted_s(:long_ordinal)%> </td>
                             </tr>
                         
                            <% end %>
@@ -175,32 +176,4 @@
 <br>
 <br>
 <br>
-<p>
-  <strong>Name:</strong>
-  <%= @ngo.name %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @ngo.location %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @ngo.url %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @ngo.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @ngo.phone_number %>
-</p>
-
-<%= link_to 'Back', ngos_path %> |
-<%= link_to 'Edit', edit_ngo_path(@ngo) %>
-        
-      </div>
+</div>

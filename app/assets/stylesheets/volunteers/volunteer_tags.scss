@@ -1,27 +1,27 @@
 /* form tags */
-.v_tags .col-sm-4 {
+.v_tags .col-sm-2 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 300;
     margin:5px;
     padding:0px;
-    height: 66px;
-    width: 66px;
+    height: 50px;
+    width: 125px;
     background-color:#f2f2f2;
     overflow:hidden;
 }
 
-.v_tags .col-sm-4:hover {
+.v_tags .col-sm-2:hover {
     background:#eaeaea;
 }
 
-.v_tags .col-sm-4 label {
-    height: 80px;
-    width: 80px;
+.v_tags .col-sm-2 label {
+    height: 50px;
+    width: 125px;
 }
 
 .v_tags .tag-btn label span {
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 125px;
     text-align:center;
     padding:0px;
     display:block;

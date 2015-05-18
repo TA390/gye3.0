@@ -413,11 +413,15 @@ class VolunteersController < ApplicationController
     @user = Volunteer.find(params[:id])
     
       if @user.update_attributes(user_params)
-        flash[:success] = "Profile updated"
-        redirect_to @user
+        flash.now[:success] = "Profile updated"
       else
         render 'edit'
       end
+    
+    respond_to do |format|
+      format.html {redirect_to @user}
+      format.js { render :file => "/volunteers/bio_update.js.erb" }
+    end
     
   end
   
@@ -482,16 +486,33 @@ class VolunteersController < ApplicationController
   def matching
     
     tags = current_user.tags.select(:id)
-    free = current_user.event_calendars.select(:start, :end).where(color: "#83bf17")
+    free = current_user.event_calendars.where(color: "#83bf17")
     
-    free.each do |f|
-      @events = Event.where("start >= ?", f.start)
-    end 
-
+    @events = []
+    
+    if free.count > 0
+      free.each do |f|
+        @events << Event.find_by_sql([
+          "
+            SELECT *
+            FROM events e
+            WHERE e.start >= ?
+            AND   e.end   <= ?
+          ", f.start, f.end
+          ])       
+      end 
+    end
+    
+    
     @matches = []
-    @events.each do |e|
-      e_tags = e.tags.select(:id)
-      @matches << e if !(tags & e_tags).empty?
+    
+    if @events.count > 0
+      @events.each do |event|
+        event.each do |e|
+          e_tags = e.tags.select(:id)
+          @matches << e if (e_tags - tags).empty?
+        end
+      end
     end
     
     respond_to do |format|

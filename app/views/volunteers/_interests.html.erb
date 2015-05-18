@@ -12,7 +12,7 @@
                "fa-suitcase", "fa-life-ring", "fa-leaf", "fa-arrows", "fa-ship", "fa-futbol-o"] %>
 
   <% 18.times do |count| %>
-    <div class="col-sm-4">
+    <div class="col-sm-2">
       <div class="tag-btn">
         <label>   
           <%= check_box_tag "volunteer[tag][]", count+1, false, {id:"#{count+1}"} %>

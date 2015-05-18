@@ -8,7 +8,7 @@ class NgosController < ApplicationController
   def index
     # SET ACTIVATED TO true FOR PRODUCTION
     @ngos = Ngo.paginate(page: params[:page], 
-      per_page: 10).where(activated: false).order(:name)
+      per_page: 10).where(activated: true).order(:name)
   end
 
   def show

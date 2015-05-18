@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   put 'volunteers'  => 'volunteers#search'       # volunteers_path
   get 'volunteers'  => 'volunteers#index'        # volunteers_path
   post 'bio_form'   => 'volunteers#bio_form'     # bio_form_path
-  post 'bio_update'=> 'volunteers#bio_update'   # bio_update_path
+  patch 'bio_update'=> 'volunteers#update'       # bio_update_path
   post 'interests'  => 'volunteers#interests'    # interests_path
   post 'matching'   => 'volunteers#matching'     
   

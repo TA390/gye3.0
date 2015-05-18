@@ -47,14 +47,14 @@ class EventVolunteersController < ApplicationController
     if current_user.signed_up?(@event)
     
       current_user.opt_out(@event)
+      
+      current_user.event_calendars.where(title: @event.name).destroy_all
 
       respond_to do |format|
         format.html { redirect_to @event }
         format.js
       end
-
-      # remove from calendar
-      current_user.event_calendars.find_by(title: event.name).destroy
+     
       
       flash[:success] = "You are no longer subscribed to #{@event.name}"
       #EventSignupMailer.event_optout(current_user, @event).deliver_now

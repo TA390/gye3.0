@@ -13,7 +13,7 @@
   
   
         <div class="yyyyy_pic col-md-4">
-        <%= link_to (image_tag event.avatar.url(:medium), size: '200x200'), event_path(event) %>   
+        <%= link_to (image_tag event.avatar.url(), size: '200x200'), event_path(event) %>   
           
           <br>
           <br>
@@ -62,7 +62,7 @@
      <% else %> 
  
  <div class="v_e_search_bar">
-   <h1> You have no events here <%= link_to "(find out more below)",  events_path%></h1>
+   <h1> You have no events here</h1><%= link_to "search for an event",  events_path%>
   </div>
    <br>
    

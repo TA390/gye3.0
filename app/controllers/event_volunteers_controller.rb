@@ -27,7 +27,7 @@ class EventVolunteersController < ApplicationController
         @cal.save
         
         flash.now[:success] = "Thank you for joining our event. We have sent you a confirmation email with the event details"
-        #EventSignupMailer.event_signup(current_user, @event).deliver_now        
+        EventSignupMailer.event_signup(current_user, @event).deliver_now        
       end
     end
     

@@ -30,6 +30,7 @@
       <div class="row">
         <%= (link_to 'Find Me Events', matching_path, method: :post, 
           class:"btn btn-default", remote: true) if current_user?(@user) %>  
+        <p>find events that match your selected interests and calendar free time</p>
       </div>
       
       <div class="row">
